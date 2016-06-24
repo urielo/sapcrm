@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="158326c0-4f81-4588-bf4f-593b4ab725fa" name="Default" comment="" />
+    <ignored path="sap.local.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <ignored path=".idea/dataSources.local.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="sap.local" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="autocomplete.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/themes/default/assets/js/autocomplete.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+              <folding>
+                <element signature="e#768#1527#0" expanded="false" />
+                <element signature="e#1567#2326#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="dummy://restClient/response8.json" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/public/themes/default/assets/js/autocomplete.js" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER">
+    <package-json value="$PROJECT_DIR$/package.json" />
+  </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <gulpfiles>
+      <GulpfileState>
+        <gulpfile-path>$PROJECT_DIR$/gulpfile.js</gulpfile-path>
+        <tasks>
+          <GulpTaskState>
+            <task-name>default</task-name>
+          </GulpTaskState>
+          <GulpTaskState>
+            <task-name>tdd</task-name>
+          </GulpTaskState>
+          <GulpTaskState>
+            <task-name>watch</task-name>
+          </GulpTaskState>
+          <GulpTaskState>
+            <task-name>sass</task-name>
+          </GulpTaskState>
+          <GulpTaskState>
+            <task-name>copy</task-name>
+          </GulpTaskState>
+        </tasks>
+      </GulpfileState>
+    </gulpfiles>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="PhpServers">
+    <servers />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="49" />
+    <option name="y" value="18" />
+    <option name="width" value="1317" />
+    <option name="height" value="750" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sap.local" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sap.local" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sap.local" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="SearchEverywhereHistoryKey" value="autocom&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/js/autocomplete.js&#10;Segurado&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/SeguradoController.php" />
+    <property name="ToolWindowREST Client.ShowToolbar" value="false" />
+    <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
+    <property name="js.buildTools.gulp.gulp_package_dir" value="$PROJECT_DIR$/node_modules/gulp" />
+  </component>
+  <component name="RestClientSettings">
+    <option name="REQUEST_HISTORY">
+      <list>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://www.webservice.local/gerar/cotacao" />
+          <option name="urlPath" value="/gerar/cotacao" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="X-API-KEY" />
+                <option name="value" value="000666" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Cache-Control" />
+                <option name="value" value="no-cache" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{     &quot;idParceiro&quot;: 99,     &quot;nmParceiro&quot;: &quot;Seguro AUTOPRATICO&quot;,     &quot;indCondutorVeic&quot;: 0,     &quot;indProprietVeic&quot;: 0,     &quot;comissao&quot;: 10,     &quot;perfilSegurado&quot;: {         &quot;cepPernoite&quot;: 123,         &quot;garagemPernoite&quot;: 0,         &quot;cepTrabalho&quot;: 77,         &quot;garagemTrabalho&quot;: 4,         &quot;seguradoEstuda&quot;: 5,         &quot;garagemEscola&quot;: 6,         &quot;outrosMotoristasApolice&quot;: 2,         &quot;motoristaJovem&quot;: 0,         &quot;seguradoAcidenteUltAno&quot;: 0,         &quot;seguradoRoubadoUltAno&quot;: 1,         &quot;renovaApolice&quot;: 0,         &quot;renovaSeguradora&quot;: &quot;Porto Seguro&quot;,         &quot;bonusApoliceUltAno&quot;: 0,         &quot;kmPorDia&quot;: 15,         &quot;outrosCarros&quot;: 1     },     &quot;corretor&quot;: {         &quot;correSusep&quot;: 123901034,         &quot;correCodPlataforma&quot;: &quot;&quot;,         &quot;correNomeRazao&quot;: &quot;SAP CORRETORA SA&quot;,         &quot;correCpfCnpj&quot;: &quot;12345678901&quot;,         &quot;correDtNasci&quot;: 19890325,         &quot;correCdSexo&quot;: 0,         &quot;correCdEstCivl&quot;: 1,         &quot;correProfRamoAtivi&quot;: 2,         &quot;correEmail&quot;: &quot;josecorreor@email.com&quot;,         &quot;correCelDdd&quot;: 15,         &quot;correCelNum&quot;: 123456789,         &quot;correFoneDdd&quot;: 11,         &quot;correFoneNum&quot;: 55667788,         &quot;correEnd&quot;: &quot;Rua XV de Novembro&quot;,         &quot;correEndNum&quot;: &quot;495&quot;,         &quot;correEndCompl&quot;: &quot;Ap 104&quot;,         &quot;correEndCep&quot;: 12345678,         &quot;correEndCidade&quot;: &quot;sao paulo&quot;,         &quot;correEndCdUf&quot;: 1     },     &quot;segurado&quot;: {         &quot;segNomeRazao&quot;: &quot;VICTOR&quot;,         &quot;segCpfCnpj&quot;: &quot;11166666666&quot;,         &quot;segDtNasci&quot;: &quot;19960522&quot;,         &quot;segCdSexo&quot;: 2,         &quot;segCdEstCivl&quot;: 1,         &quot;segProfRamoAtivi&quot;: 2,         &quot;segEmail&quot;: &quot;teste@algumacois.com&quot;,         &quot;segCelDdd&quot;: 11,         &quot;segCelNum&quot;: 123456789,         &quot;segFoneDdd&quot;: 21,         &quot;segFoneNum&quot;: 12345678,         &quot;segEnd&quot;: &quot;rua das quintas&quot;,         &quot;segEndNum&quot;: 77,         &quot;segEndCompl&quot;: &quot;casa 03&quot;,         &quot;segEndCep&quot;: 12345678,         &quot;segEndCidade&quot;: &quot;sao paulo&quot;,         &quot;segEndCdUf&quot;: 1,         &quot;segNumRg&quot;: 88877744410,         &quot;segUfEmissaoRg&quot;: 19900529,         &quot;segEmissorRg&quot;: &quot;SSPSP&quot;,         &quot;segCdUfRg&quot;: 1     },     &quot;veiculo&quot;: {         &quot;veiCodFipe&quot;: &quot;060001-6&quot;,         &quot;veiAno&quot;: 2006,         &quot;veiAnoFab&quot;: 2011,         &quot;veiCor&quot;: &quot;Azul&quot;,         &quot;veiIndZero&quot;: 0,         &quot;veiCdUtiliz&quot;: 1,         &quot;veiCdTipo&quot;: 1,         &quot;veiCdCombust&quot;: 3,         &quot;veiPlaca&quot;: &quot;TUR2222&quot;,         &quot;veiMunPlaca&quot;: &quot;sao paulo&quot;,         &quot;veiCdUfPlaca&quot;: 1,         &quot;veiRenav&quot;: 88715638901,         &quot;veiAnoRenav&quot;: &quot;2016&quot;,         &quot;veiChassi&quot;: &quot;88715678901234ABC&quot;,         &quot;veiIndChassiRema&quot;: 0,         &quot;veiIndLeilao&quot;: 0,         &quot;veiIndAcidentado&quot;: 0,         &quot;veiIndAlienado&quot;: 0     },     &quot;produto&quot;: {         &quot;idProduto&quot;: 1     },     &quot;proprietario&quot;: {         &quot;proprNomeRazao&quot;: &quot;JONNY777&quot;,         &quot;proprCpfCnpj&quot;: &quot;77745678901&quot;,         &quot;proprDtNasci&quot;: 19940719,         &quot;proprCdSexo&quot;: 1,         &quot;proprCdEstCivl&quot;: 1,         &quot;proprPrfoRamoAtivi&quot;: 2,         &quot;proprCdRelDepSegurado&quot;: 11,         &quot;proprdescRelDepSegurado&quot;: &quot;Primo&quot;,         &quot;proprEmail&quot;: &quot;pedro@gmail.com&quot;,         &quot;proprCelDdd&quot;: 12,         &quot;proprCelNum&quot;: 123456789,         &quot;proprFoneDdd&quot;: 81,         &quot;proprFoneNum&quot;: 12345678,         &quot;proprEnd&quot;: &quot;rua das oliveiras&quot;,         &quot;proprEndNum&quot;: 25,         &quot;proprEndCompl&quot;: &quot;proximo ao atacadao&quot;,         &quot;proprEndCep&quot;: 12345678,         &quot;proprEndCidade&quot;: &quot;sao paulo&quot;,         &quot;proprEndCdUf&quot;: 1     },     &quot;condutor&quot;: {         &quot;condutNomeRazao&quot;: &quot;BOTANA888&quot;,         &quot;condutCpfCnpj&quot;: &quot;88845678901&quot;,         &quot;condutDtNasci&quot;: 19950629,         &quot;condutCdSexo&quot;: 2,         &quot;condutCdEstCivl&quot;: 1,         &quot;condutProfRamoAtivi&quot;: 2     } }" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://www.webservice.local/gerar/cotacao" />
+          <option name="urlPath" value="/gerar/cotacao" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Cache-Control" />
+                <option name="value" value="no-cache" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{     &quot;idParceiro&quot;: 99,     &quot;nmParceiro&quot;: &quot;Seguro AUTOPRATICO&quot;,     &quot;indCondutorVeic&quot;: 0,     &quot;indProprietVeic&quot;: 0,     &quot;comissao&quot;: 10,     &quot;perfilSegurado&quot;: {         &quot;cepPernoite&quot;: 123,         &quot;garagemPernoite&quot;: 0,         &quot;cepTrabalho&quot;: 77,         &quot;garagemTrabalho&quot;: 4,         &quot;seguradoEstuda&quot;: 5,         &quot;garagemEscola&quot;: 6,         &quot;outrosMotoristasApolice&quot;: 2,         &quot;motoristaJovem&quot;: 0,         &quot;seguradoAcidenteUltAno&quot;: 0,         &quot;seguradoRoubadoUltAno&quot;: 1,         &quot;renovaApolice&quot;: 0,         &quot;renovaSeguradora&quot;: &quot;Porto Seguro&quot;,         &quot;bonusApoliceUltAno&quot;: 0,         &quot;kmPorDia&quot;: 15,         &quot;outrosCarros&quot;: 1     },     &quot;corretor&quot;: {         &quot;correSusep&quot;: 123901034,         &quot;correCodPlataforma&quot;: &quot;&quot;,         &quot;correNomeRazao&quot;: &quot;SAP CORRETORA SA&quot;,         &quot;correCpfCnpj&quot;: &quot;12345678901&quot;,         &quot;correDtNasci&quot;: 19890325,         &quot;correCdSexo&quot;: 0,         &quot;correCdEstCivl&quot;: 1,         &quot;correProfRamoAtivi&quot;: 2,         &quot;correEmail&quot;: &quot;josecorreor@email.com&quot;,         &quot;correCelDdd&quot;: 15,         &quot;correCelNum&quot;: 123456789,         &quot;correFoneDdd&quot;: 11,         &quot;correFoneNum&quot;: 55667788,         &quot;correEnd&quot;: &quot;Rua XV de Novembro&quot;,         &quot;correEndNum&quot;: &quot;495&quot;,         &quot;correEndCompl&quot;: &quot;Ap 104&quot;,         &quot;correEndCep&quot;: 12345678,         &quot;correEndCidade&quot;: &quot;sao paulo&quot;,         &quot;correEndCdUf&quot;: 1     },     &quot;segurado&quot;: {         &quot;segNomeRazao&quot;: &quot;VICTOR&quot;,         &quot;segCpfCnpj&quot;: &quot;11166666666&quot;,         &quot;segDtNasci&quot;: &quot;19960522&quot;,         &quot;segCdSexo&quot;: 2,         &quot;segCdEstCivl&quot;: 1,         &quot;segProfRamoAtivi&quot;: 2,         &quot;segEmail&quot;: &quot;teste@algumacois.com&quot;,         &quot;segCelDdd&quot;: 11,         &quot;segCelNum&quot;: 123456789,         &quot;segFoneDdd&quot;: 21,         &quot;segFoneNum&quot;: 12345678,         &quot;segEnd&quot;: &quot;rua das quintas&quot;,         &quot;segEndNum&quot;: 77,         &quot;segEndCompl&quot;: &quot;casa 03&quot;,         &quot;segEndCep&quot;: 12345678,         &quot;segEndCidade&quot;: &quot;sao paulo&quot;,         &quot;segEndCdUf&quot;: 1,         &quot;segNumRg&quot;: 88877744410,         &quot;segUfEmissaoRg&quot;: 19900529,         &quot;segEmissorRg&quot;: &quot;SSPSP&quot;,         &quot;segCdUfRg&quot;: 1     },     &quot;veiculo&quot;: {         &quot;veiCodFipe&quot;: &quot;060001-6&quot;,         &quot;veiAno&quot;: 2006,         &quot;veiAnoFab&quot;: 2011,         &quot;veiCor&quot;: &quot;Azul&quot;,         &quot;veiIndZero&quot;: 0,         &quot;veiCdUtiliz&quot;: 1,         &quot;veiCdTipo&quot;: 1,         &quot;veiCdCombust&quot;: 3,         &quot;veiPlaca&quot;: &quot;TUR2222&quot;,         &quot;veiMunPlaca&quot;: &quot;sao paulo&quot;,         &quot;veiCdUfPlaca&quot;: 1,         &quot;veiRenav&quot;: 88715638901,         &quot;veiAnoRenav&quot;: &quot;2016&quot;,         &quot;veiChassi&quot;: &quot;88715678901234ABC&quot;,         &quot;veiIndChassiRema&quot;: 0,         &quot;veiIndLeilao&quot;: 0,         &quot;veiIndAcidentado&quot;: 0,         &quot;veiIndAlienado&quot;: 0     },     &quot;produto&quot;: {         &quot;idProduto&quot;: 1     },     &quot;proprietario&quot;: {         &quot;proprNomeRazao&quot;: &quot;JONNY777&quot;,         &quot;proprCpfCnpj&quot;: &quot;77745678901&quot;,         &quot;proprDtNasci&quot;: 19940719,         &quot;proprCdSexo&quot;: 1,         &quot;proprCdEstCivl&quot;: 1,         &quot;proprPrfoRamoAtivi&quot;: 2,         &quot;proprCdRelDepSegurado&quot;: 11,         &quot;proprdescRelDepSegurado&quot;: &quot;Primo&quot;,         &quot;proprEmail&quot;: &quot;pedro@gmail.com&quot;,         &quot;proprCelDdd&quot;: 12,         &quot;proprCelNum&quot;: 123456789,         &quot;proprFoneDdd&quot;: 81,         &quot;proprFoneNum&quot;: 12345678,         &quot;proprEnd&quot;: &quot;rua das oliveiras&quot;,         &quot;proprEndNum&quot;: 25,         &quot;proprEndCompl&quot;: &quot;proximo ao atacadao&quot;,         &quot;proprEndCep&quot;: 12345678,         &quot;proprEndCidade&quot;: &quot;sao paulo&quot;,         &quot;proprEndCdUf&quot;: 1     },     &quot;condutor&quot;: {         &quot;condutNomeRazao&quot;: &quot;BOTANA888&quot;,         &quot;condutCpfCnpj&quot;: &quot;88845678901&quot;,         &quot;condutDtNasci&quot;: 19950629,         &quot;condutCdSexo&quot;: 2,         &quot;condutCdEstCivl&quot;: 1,         &quot;condutProfRamoAtivi&quot;: 2     } }" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="158326c0-4f81-4588-bf4f-593b4ab725fa" name="Default" comment="" />
+      <created>1466199104484</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1466199104484</updated>
+      <workItem from="1466199112428" duration="1305000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="1305000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="49" y="18" width="1317" height="750" extended-state="6" />
+    <editor active="false" />
+    <layout>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32978722" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5927052" sideWeight="0.5027451" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="REST Client" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5927052" sideWeight="0.4972549" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32892805" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32978722" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24981017" sideWeight="0.5051395" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2580392" sideWeight="0.4948605" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="2" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/SeguradoController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="17" column="10" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/themes/default/assets/js/autocomplete.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+          <folding>
+            <element signature="e#768#1527#0" expanded="false" />
+            <element signature="e#1567#2326#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

@@ -1,0 +1,94 @@
+
+
+
+
+.editar{position:fixed; height:100%; width:100%; background:rgba(0,0,0,0.4) center center no-repeat; left:0px; top:0px;     border: 2px; border-radius: 20px; border-color: #CCC; }
+.editar form{position:absolute; left:40%; top:45%; padding:20px; background:#fff; width:600px; height:530px; margin-left:-160px; margin-top:-220px; }
+.editar form label{display:block; margin-bottom:5px;}
+.editar form label .campo{display:block; font-size:12px;}
+.editar form label input{padding:5px; border:5px solid #CCC; width:280px;}
+.editar form .btnedit{display:block; margin:5px 0 0 0; float:left; cursor:pointer;}
+.editar form .btnclose{display:block; margin:5px 0 0 0; float:right; cursor:pointer;}
+
+.ui-autocomplete-category {
+    font-weight: bold;
+    padding: 3.2px 6.4px;
+    margin: 12.8px 0 3.2px;
+    line-height: 1.5;
+}
+
+.ui-autocomplete.ui-widget {
+    font-family: Verdana,Arial,sans-serif;
+    font-size:12px;
+}
+
+.ui-autocomplete {
+    max-height: 300px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+}
+/* IE 6 doesn't support max-height
+ * we use height instead, but this forces the menu to always be this tall
+ */
+* html .ui-autocomplete {
+    height: 300px;
+}
+
+
+.produto .ui-accordion {
+    border: none;
+
+}
+.produto .ui-accordion .ui-accordion-icons{
+    padding-left: 2.2em;
+
+}
+.produto strong {
+    font-size: 12px;
+}
+.produto .ui-accordion-header{
+    display: block;
+    cursor: pointer;
+    position: relative;
+    margin: 1px 0 0 0;
+    padding: .5em .5em .5em .7em;
+    min-height: 0;
+    font-size: 12px;
+    border: none;
+    background: none;
+
+}
+.produto  .ui-accordion-content{
+    padding: 5px 15px;
+    border-top: 0;
+    text-align: justify;
+    font-size: 10px;
+    overflow: auto;
+    border: none;
+    background-color: #eeeeee;
+}
+.produto  .ui-state-focus{
+    border: none;
+}
+.produto  .ui-state-active{
+    border: none;
+}
+.produto  .ui-state-default{
+    border: none;
+}
+.produto  .ui-corner-all {
+    border: none;
+}
+.produto  .ui-corner-top{
+    border: none;
+}
+.produto  .ui-accordion-header-active{
+    border: none;
+}
+
+
+.produto-scroll{
+    height: 300px;
+    overflow-y: scroll; 
+}
