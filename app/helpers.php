@@ -47,7 +47,7 @@ if (!function_exists('format')):
         endif;
     }
 endif;
-
+#aqui vai meu comentario
 if (!function_exists('nomeCase')):
 
     function nomeCase($string, $delimiters = array(" ", "-", ".", "'", "O'", "Mc"), $exceptions = array("de", "da", "dos", "das", "do", "I", "II", "III", "IV", "V", "VI"))
