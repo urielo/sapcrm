@@ -34,7 +34,7 @@ class Segurado extends Model
     
       public function veiculo()
     {
-        return $this->hasMany(App\Model\Veiculos);
+        return $this->hasMany('App\Model\Veiculos');
     }
 
 }

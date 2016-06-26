@@ -194,7 +194,8 @@ $(function () {
                         $('#comissao').focusout(function(){
                             console.log($.parseJSON($(value.chkid).val()));
                             var valor = $.parseJSON($(value.chkid).val());
-                            console.log(aplicaComissao(valor.vlproduto, $(this).val()))
+                            console.log(aplicaComissao(valor.vlproduto, $(this).val()));
+                            var valpr = "{"
                             $(value.precospan).text;
                         });
                     }
