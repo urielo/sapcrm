@@ -150,7 +150,7 @@ class AjaxController extends Controller
                             '<div class="col-md-12" id="divp' . $produto->idproduto . '">
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" name=produtos[] value=\'' . json_encode(['idproduto' => $produto->idproduto, 'vlproduto' => $preco->premioliquidoproduto]) . '\' id="porduto' . $produto->idproduto . '"> <strong>  ' . $produto->nomeproduto . ' - R$ <span id="preco' . $produto->idproduto . '">' . number_format($preco->premioliquidoproduto, 2, ',', '.') . '</span> </strong>
+                        <input type="checkbox" name="produtos" value=\'' . json_encode(['idproduto' => $produto->idproduto, 'vlproduto' => $preco->premioliquidoproduto]) . '\' id="porduto' . $produto->idproduto . '"> <strong>  ' . $produto->nomeproduto . ' - R$ <span id="preco' . $produto->idproduto . '">' . number_format($preco->premioliquidoproduto, 2, ',', '.') . '</span> </strong>
                     </label>
                     <div id="acordion' . $produto->idproduto . '">
                         <h6>Detalhes</h6>
@@ -170,7 +170,7 @@ class AjaxController extends Controller
             </div> ',
                             'acordion' => '#acordion' . $produto->idproduto,
                             'chkid' => '#porduto' . $produto->idproduto,
-                            'precospan' => '#preco' . $produto->idproduto 
+                            'precospan' => '#preco' . $produto->idproduto,
                             ];
                     endif;
                 elseif ($rcf):
@@ -181,7 +181,7 @@ class AjaxController extends Controller
                             '<div class="col-md-12" id="divp' . $produto->idproduto . '">
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" name=produtos[] value=\'' . json_encode(['idproduto' => $produto->idproduto, 'vlproduto' => $preco->premioliquidoproduto]) . '\' id="porduto' . $produto->idproduto . '"> <strong>  ' . $produto->nomeproduto . ' - R$ <span id="preco' . $produto->idproduto . '">' . number_format($preco->premioliquidoproduto, 2, ',', '.') . '</span> </strong>
+                        <input type="checkbox" name="produtos" value=\'' . json_encode(['idproduto' => $produto->idproduto, 'vlproduto' => $preco->premioliquidoproduto]) . '\' id="porduto' . $produto->idproduto . '"> <strong>  ' . $produto->nomeproduto . ' - R$ <span id="preco' . $produto->idproduto . '">' . number_format($preco->premioliquidoproduto, 2, ',', '.') . '</span> </strong>
                     </label>
                     <div id="acordion' . $produto->idproduto . '">
                         <h6>Detalhes</h6>
@@ -201,7 +201,7 @@ class AjaxController extends Controller
             </div> ',
                             'acordion' => '#acordion' . $produto->idproduto,
                             'chkid' => '#porduto' . $produto->idproduto,
-                            'precospan' => '#preco' . $produto->idproduto 
+                            'precospan' => '#preco' . $produto->idproduto, 
                             ];
                     endif;
                 elseif ($ass && $tipo == $produto->idtipoveiculo):
@@ -211,7 +211,7 @@ class AjaxController extends Controller
                             '<div class="col-md-12" id="divp' . $produto->idproduto . '">
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" name=produtos[] value=\'' . json_encode(['idproduto' => $produto->idproduto, 'vlproduto' => $preco->premioliquidoproduto]) . '\' id="porduto' . $produto->idproduto . '"> <strong>  ' . $produto->nomeproduto . ' - R$ <span id="preco' . $produto->idproduto . '">' . number_format($preco->premioliquidoproduto, 2, ',', '.') . '</span> </strong>
+                        <input type="checkbox" name="produtos" value=\'' . json_encode(['idproduto' => $produto->idproduto, 'vlproduto' => $preco->premioliquidoproduto]) . '\' id="porduto' . $produto->idproduto . '"> <strong>  ' . $produto->nomeproduto . ' - R$ <span id="preco' . $produto->idproduto . '">' . number_format($preco->premioliquidoproduto, 2, ',', '.') . '</span> </strong>
                     </label>
                     <div id="acordion' . $produto->idproduto . '">
                         <h6>Detalhes</h6>
@@ -231,7 +231,7 @@ class AjaxController extends Controller
             </div> ',
                             'acordion' => '#acordion' . $produto->idproduto,
                             'chkid' => '#porduto' . $produto->idproduto,
-                            'precospan' => '#preco' . $produto->idproduto 
+                            'precospan' => '#preco' . $produto->idproduto, 
                             ];
                     endif;
 

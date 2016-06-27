@@ -58,7 +58,7 @@ $(function () {
         comissao = parseInt(comissao);
         if (comissao > 0) {
             comissao = 1 - comissao / 100;
-            valor =  valor / comissao;
+            valor = valor / comissao;
             return valor.toFixed(2);
         } else {
             return valor.toFixed(2);
@@ -176,7 +176,7 @@ $(function () {
                 produtos.empty();
 //                produtos.hide();
                 var vltotal = 0;
-
+                var frist = true;
                 $.each(retorno, function (key, value) {
                     $('#c-veiculo').removeClass("col-md-12");
                     $('#c-veiculo').addClass("col-md-9");
@@ -191,32 +191,33 @@ $(function () {
                     });
 
                     if (value.chkid) {
-                        $('#comissao').focusout(function(){
-                            console.log($.parseJSON($(value.chkid).val()));
+                        $('#comissao').focusout(function () {
                             var valor = $.parseJSON($(value.chkid).val());
-                            console.log(aplicaComissao(valor.vlproduto, $(this).val()));
-                            var valpr = "{"
-                            $(value.precospan).text;
+                            var valorcomiss = aplicaComissao(valor.vlproduto, $(this).val());
+                            $(value.precospan).text(valorcomiss.replace('.', ','));
+                            if ($(value.chkid).is(":checked")) {
+                                $(value.chkid).trigger('change');
+                            }
                         });
                     }
 
                     $(value.chkid).change(function () {
-
+                        var valor = $.parseJSON($(this).val());
                         if ($(this).is(":checked")) {
-                            var valor = $.parseJSON($(this).val());
-                            vltotal += parseFloat(valor.vlproduto);
+                            vltotal += parseFloat(aplicaComissao(valor.vlproduto, $('#comissao').val()));
                             $('#valortotal').text('R$ ' + vltotal.toFixed(2).replace('.', ','));
                             panelpagamento.fadeIn();
                         } else {
-                            var valor = $.parseJSON($(this).val());
-                            vltotal -= parseFloat(valor.vlproduto);
-                            if (vltotal < 1) {
-                                panelpagamento.fadeOut();
-                            } else {
-                                $('#valortotal').text('R$ ' + vltotal.toFixed(2).replace('.', ','));
-                                panelpagamento.fadeIn();
-                            }
+                            if (vltotal !== 0) {
+                                vltotal -= parseFloat(aplicaComissao(valor.vlproduto, $('#comissao').val()));
+                                if (vltotal < 1) {
+                                    panelpagamento.fadeOut();
+                                } else {
+                                    $('#valortotal').text('R$ ' + vltotal.toFixed(2).replace('.', ','));
+                                    panelpagamento.fadeIn();
+                                }
 
+                            }
                         }
 
                         if (value.chkid == '#porduto1') {
@@ -229,6 +230,7 @@ $(function () {
                         }
                     });
                 });
+                $('#comissao').trigger('focusout');
                 panelprodutos.fadeIn('slow');
                 btnproposta.fadeIn('slow');
 
@@ -305,5 +307,7 @@ $(function () {
 
 
     });
+    
+
 });
 
