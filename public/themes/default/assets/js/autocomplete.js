@@ -14,6 +14,8 @@ $(function () {
     var dadoscartao = $('#dadoscartao');
     var juridica1 = $('#juridica1');
     var ramoatividade = $('#ramoatividade');
+    var vltotal = 0;
+    var produtosvalores = [];
 
     juridica1.hide();
     ramoatividade.hide();
@@ -164,7 +166,6 @@ $(function () {
 
     $("select[name=anom]").on('change', function () {
         var djson = $.parseJSON($("select[name=anom]").val());
-
         var dados = {comissao: $('#comissao').val(), cdfipe: $('input[name=codefipe]').val(), valor: djson.valor, ano: djson.ano, tipo: $('input[name=tipoveiculo]:checked').val()};
 
         $.ajax({
@@ -175,8 +176,6 @@ $(function () {
             success: function (retorno) {
                 produtos.empty();
 //                produtos.hide();
-                var vltotal = 0;
-                var frist = true;
                 $.each(retorno, function (key, value) {
                     $('#c-veiculo').removeClass("col-md-12");
                     $('#c-veiculo').addClass("col-md-9");
@@ -191,32 +190,23 @@ $(function () {
                     });
 
                     if (value.chkid) {
-                        $('#comissao').focusout(function () {
+                        $('#comissao').keyup(function () {
                             var valor = $.parseJSON($(value.chkid).val());
                             var valorcomiss = aplicaComissao(valor.vlproduto, $(this).val());
                             $(value.precospan).text(valorcomiss.replace('.', ','));
-                            if ($(value.chkid).is(":checked")) {
-                                $(value.chkid).trigger('change');
-                            }
+                            $('#valortotal').trigger('change');
                         });
                     }
 
                     $(value.chkid).change(function () {
                         var valor = $.parseJSON($(this).val());
                         if ($(this).is(":checked")) {
-                            vltotal += parseFloat(aplicaComissao(valor.vlproduto, $('#comissao').val()));
-                            $('#valortotal').text('R$ ' + vltotal.toFixed(2).replace('.', ','));
-                            panelpagamento.fadeIn();
+                            produtosvalores.push(valor);
+                            $('#valortotal').trigger('change');
                         } else {
                             if (vltotal !== 0) {
-                                vltotal -= parseFloat(aplicaComissao(valor.vlproduto, $('#comissao').val()));
-                                if (vltotal < 1) {
-                                    panelpagamento.fadeOut();
-                                } else {
-                                    $('#valortotal').text('R$ ' + vltotal.toFixed(2).replace('.', ','));
-                                    panelpagamento.fadeIn();
-                                }
-
+                                produtosvalores.splice($.inArray(valor, produtos2), 1);
+                                $('#valortotal').trigger('change');
                             }
                         }
 
@@ -230,6 +220,9 @@ $(function () {
                         }
                     });
                 });
+                frist = true;
+
+
                 $('#comissao').trigger('focusout');
                 panelprodutos.fadeIn('slow');
                 btnproposta.fadeIn('slow');
@@ -244,6 +237,8 @@ $(function () {
 
 
 
+
+
     $('#segcep').focusout(function () {
         var settings = {
             "async": true,
@@ -254,8 +249,7 @@ $(function () {
         }
 
         $.ajax(settings).done(function (response) {
-            console.log(response.logradouro);
-            console.log(response);
+
         });
     });
 
@@ -299,15 +293,36 @@ $(function () {
         } else if ($(this).attr('name') == 'formapagamento') {
             var values = $.parseJSON($(this).attr('value'));
             if ($(this).is(":checked") && values.idforma == 1) {
+                $('#parcelas').empty();
+                for (i = 1; i < values.maxparc + 1; i++) {
+                    $('#parcelas').append('<label><input type="radio" name="quantparcela" id="formapagamento" value="' + i + '">' + i + '</label><br>')
+                }
                 dadoscartao.fadeIn();
             } else {
+                $('#parcelas').empty();
+                for (i = 1; i < values.maxparc + 1; i++) {
+                    $('#parcelas').append('<label><input type="radio" name="quantparcela" id="formapagamento" value="' + i + '">' + i + '</label><br>')
+                }
                 dadoscartao.fadeOut('fast');
             }
         }
+    });
 
+    $('#valortotal').on('change', function () {
+        var vltotal = 0;
+        $.each(produtosvalores, function (key, value) {
+            vltotal += parseFloat(aplicaComissao(value.vlproduto, $('#comissao').val()))
+        });
+
+        if (vltotal > 0) {
+            $(this).text('R$ ' + vltotal.toFixed(2).replace('.', ','));
+            panelpagamento.fadeIn();
+        } else {
+            panelpagamento.fadeOut();
+        }
 
     });
-    
+
 
 });
 
