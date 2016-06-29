@@ -34,6 +34,13 @@ $(function () {
     panelcondutor.hide();
     panelproprietario.hide();
 
+
+
+    $.each($('#segenduf option'), function(key,value){
+
+
+    });
+
     var data = new Date();
 
     function setDateP(idinput) {
@@ -67,13 +74,36 @@ $(function () {
             return valor.toFixed(2);
         }
     };
+    function buscaCep(inputcep,inputuf,inputlogra,inputcidade) {
+        $(inputcep).focusout(function () {
+            var cep = ($(this).val()).replace('-', '')
+            var settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": "https://viacep.com.br/ws/" + cep + "/json/",
+                "method": "GET",
+                "dataType": "jsonp",
+            }
+
+            $.ajax(settings).done(function (response) {
+                $.each($(inputuf +' option'), function(key,value){
+                    if(response.uf == value.id){
+                        $(inputuf).val(value.value);
+                    }
+                });
+                $(inputlogra).val(response.logradouro);
+                $(inputcidade).val(response.localidade);
+
+            });
+        });
+    };
+    function gerarParcelas(vltotal, maxparc, parcelasemjuros, taxajuros, menorparc) {
 
 
     setDateP('input[name=segdatanasc]');
     setDateP('input[name=segrgdtemissao]');
     setDateP('input[name=segdatafund]');
 
-    function gerarParcelas(vltotal, maxparc, parcelasemjuros, taxajuros, menorparc) {
         var retorno = [];
         // var porcentj = parseFloat(taxajuros) / 100
 
@@ -82,7 +112,7 @@ $(function () {
             var juros = vltotal + (vltotal * (taxajuros / 100));
             var priparcela = 0;
             var demparcela = 0;
-            var textojuros = (i > parcelasemjuros) ? 'J.: ' + taxajuros.replace('.',',') + '%' : 'S/J';
+            var textojuros = (i > parcelasemjuros) ? 'J.: ' + taxajuros.replace('.', ',') + '%' : 'S/J';
 
 
             if (i > parcelasemjuros && juros / i < menorparc) {
@@ -108,9 +138,10 @@ $(function () {
         }
 
         return retorno;
-    }
-
-
+    };
+    
+    buscaCep('#segcep','#segenduf', '#segendlog', '#segendcidade');
+    buscaCep('#propcep','#propenduf', '#propendlog', '#propendcidade');
 
 
     $.widget("custom.marcacomplete", $.ui.autocomplete, {
@@ -190,7 +221,6 @@ $(function () {
         pergunta.fadeIn("slow");
         btnsubmit.fadeIn("slow");
         $(this).fadeOut();
-
     });
 
 
@@ -213,13 +243,12 @@ $(function () {
                 produtos.empty();
 
 
-                for(var i = $('select[name=comissao]').val() - 1; i > 0; i--){
-                    $('select[name=comissao]').append('<option value="'+i+'">'+i+'</option>')
+                for (var i = $('select[name=comissao]').val() - 1; i > -1; i--) {
+                    $('select[name=comissao]').append('<option value="' + i + '">' + i + '</option>')
                 }
 //                produtos.hide();
                 $.each(retorno, function (key, value) {
-                    $('#c-veiculo').removeClass("col-md-12");
-                    $('#c-veiculo').addClass("col-md-9");
+                    $('#c-veiculo').removeClass("col-md-12").addClass("col-md-9");
                     produtopagamento.fadeIn();
                     produtos.append(value.html);
                     $('#parcelas').hide;
@@ -281,20 +310,11 @@ $(function () {
 
     });
 
+    
 
-    $('#segcep').focusout(function () {
-        var settings = {
-            "async": true,
-            "crossDomain": true,
-            "url": "https://viacep.com.br/ws/" + $(this).val() + "/json/",
-            "method": "GET",
-            "dataType": "jsonp",
-        }
 
-        $.ajax(settings).done(function (response) {
-
-        });
-    });
+ 
+    
 
     $('input:radio').change(function () {
 
@@ -314,18 +334,26 @@ $(function () {
             }
         } else if ($(this).attr('name') == 'proptipopessoa') {
             if ($(this).is(":checked") && $(this).attr('value') == 1) {
-                $('#propripessoajuridica').hide();
-                $('#propripessoafisca').fadeIn('fast');
+                $('#propjuridica1').hide();
+                $('#propramoatividade').hide();
+                $('#propfisica1').fadeIn('fast');
+                $('#propfisica2').fadeIn('fast');
+                $('#propprofissao').fadeIn('fast');
             } else {
-                $('#propripessoafisca').hide();
-                $('#propripessoajuridica').fadeIn('fast');
+                $('#propjuridica1').fadeIn('fast');
+                $('#propramoatividade').fadeIn('fast');
+                $('#propfisica1').hide();
+                $('#propfisica2').hide();
+                $('#propprofissao').hide();
             }
         } else if ($(this).attr('name') == 'indproprietario') {
             if ($(this).is(":checked") && $(this).attr('value') == 1) {
                 panelproprietario.hide();
             } else {
-                $('#propripessoajuridica').hide();
                 panelproprietario.fadeIn('fast');
+                $('#propjuridica1').hide();
+                $('#propramoatividade').hide();
+
             }
         } else if ($(this).attr('name') == 'indcondutor') {
             if ($(this).is(":checked") && $(this).attr('value') == 1) {
@@ -337,20 +365,22 @@ $(function () {
             var values = $.parseJSON($(this).attr('value'));
             if ($(this).is(":checked") && values.idforma == 1) {
                 $('#parcelas').empty();
-                (vltotal > 0) ? $('#parcelas').fadeIn() : $('#parcelas').fadeOut();
-
+                
                 $.each(gerarParcelas(vltotal, values.maxparc, values.parcsemjuros, values.juros, menorparc), function (key, html) {
                     $('#parcelas').append(html);
                 })
-
-                dadoscartao.fadeIn();
+                if (vltotal > 0) {
+                    $('#condutor-proprietario').removeClass('col-md-12').addClass('col-md-9');
+                    dadoscartao.fadeIn('slow');
+                }
             } else {
                 $('#parcelas').empty();
-                (vltotal > 0) ? $('#parcelas').fadeIn() : $('#parcelas').fadeOut();
+                
                 $.each(gerarParcelas(vltotal, values.maxparc, values.parcsemjuros, values.juros, menorparc), function (key, html) {
                     $('#parcelas').append(html);
                 })
-                dadoscartao.fadeOut('fast');
+                $('#condutor-proprietario').removeClass('col-md-9').addClass('col-md-12');
+                dadoscartao.hide();
             }
         }
     });
