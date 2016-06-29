@@ -589,9 +589,9 @@
 
                                                     <label>
                                                         <input type="radio" name="formapagamento" id="formapagamento"
-                                                               value='{!!json_encode(["idforma"=>$forma->idformapgto, "maxparc" =>$forma->nummaxparc, "parcsemjuros"=>  $forma->numparcsemjuros, "juros"=>  $forma->taxamesjuros])!!}' {!! $frist == false ? 'checked': '' !!}>{{$forma->descformapgto}}
+                                                               value='{!!json_encode(["idforma"=>$forma->idformapgto, "maxparc" =>$forma->nummaxparc, "parcsemjuros"=>  $forma->numparcsemjuros, "juros"=>  $forma->taxamesjuros])!!}'>{{$forma->descformapgto}}
                                                     </label>
-                                                    <?$frist = true?>
+
                                                 @endforeach
 
                                             </div>
