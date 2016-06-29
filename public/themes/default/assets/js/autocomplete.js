@@ -16,6 +16,7 @@ $(function () {
     var ramoatividade = $('#ramoatividade');
     var vltotal = 0;
     var produtosvalores = [];
+    var menorparc = 0.0;
 
     juridica1.hide();
     ramoatividade.hide();
@@ -51,10 +52,10 @@ $(function () {
             weekHeader: "Sm",
             altField: idinput,
             firstDay: 1,
-            changeYear: true});
+            changeYear: true
+        });
 
-    }
-    ;
+    };
     function aplicaComissao(valor, comissao) {
         valor = parseFloat(valor);
         comissao = parseInt(comissao);
@@ -65,13 +66,49 @@ $(function () {
         } else {
             return valor.toFixed(2);
         }
-    }
-    ;
+    };
+
 
     setDateP('input[name=segdatanasc]');
     setDateP('input[name=segrgdtemissao]');
     setDateP('input[name=segdatafund]');
 
+    function gerarParcelas(vltotal, maxparc, parcelasemjuros, taxajuros, menorparc) {
+        var retorno = [];
+        // var porcentj = parseFloat(taxajuros) / 100
+
+
+        for (var i = 1; i < maxparc + 1; i++) {
+            var juros = vltotal + (vltotal * (taxajuros / 100));
+            var priparcela = 0;
+            var demparcela = 0;
+            var textojuros = (i > parcelasemjuros) ? 'J.: ' + taxajuros.replace('.',',') + '%' : 'S/J';
+
+
+            if (i > parcelasemjuros && juros / i < menorparc) {
+                priparcela = menorparc;
+                demparcela = (juros - menorparc) / (i - 1);
+            } else if (i <= parcelasemjuros && vltotal / i < menorparc) {
+                priparcela = menorparc;
+                demparcela = (vltotal - menorparc) / (i - 1);
+            } else if (i > parcelasemjuros) {
+                priparcela = juros / i;
+                demparcela = priparcela;
+            } else {
+                priparcela = vltotal / i;
+                demparcela = priparcela;
+            }
+            priparcela = priparcela.toFixed(2).replace('.', ',');
+            demparcela = demparcela.toFixed(2).replace('.', ',');
+            if (i == 1) {
+                retorno.push('<label style="font-size: 10px;"><input type="radio" name="quantparcela" id="formapagamento" value="' + i + '">' + i + 'x de R$ ' + priparcela + '</label><br>')
+            } else {
+                retorno.push('<label style="font-size: 10px;"><input type="radio" name="quantparcela" id="formapagamento" value="' + i + '">' + i + 'x 1ª de R$ ' + priparcela + ' Demais:  R$ ' + demparcela + ' ' + textojuros + '</label><br>')
+            }
+        }
+
+        return retorno;
+    }
 
 
 
@@ -83,7 +120,7 @@ $(function () {
         },
         _renderMenu: function (ul, items) {
             var that = this,
-                    currentCategory = "";
+                currentCategory = "";
             $.each(items, function (index, item) {
                 var li;
                 if (item.category != currentCategory) {
@@ -99,8 +136,6 @@ $(function () {
     });
 
 
-
-
     $('#veiculo').marcacomplete({
         delay: 0,
         source: '../modelo',
@@ -111,19 +146,19 @@ $(function () {
 
 
             $.get("../anovalor/",
-                    {cdfipe: ui.item.id},
-            // Carregamos o resultado acima para o campo modelo
-                    function (valor) {
-                        $("select[name=anom]").html(valor);
-                    }
+                {cdfipe: ui.item.id},
+                // Carregamos o resultado acima para o campo modelo
+                function (valor) {
+                    $("select[name=anom]").html(valor);
+                }
             )
 
             $.get("../anofab/",
-                    {cdfipe: ui.item.id},
-            // Carregamos o resultado acima para o campo modelo
-                    function (valor) {
-                        $("select[name=anof]").html(valor);
-                    }
+                {cdfipe: ui.item.id},
+                // Carregamos o resultado acima para o campo modelo
+                function (valor) {
+                    $("select[name=anof]").html(valor);
+                }
             )
 
         }
@@ -147,7 +182,6 @@ $(function () {
     });
 
 
-
     $('#btnvender').on('click', function () {
 
 
@@ -160,13 +194,15 @@ $(function () {
     });
 
 
-
-
-
-
     $("select[name=anom]").on('change', function () {
         var djson = $.parseJSON($("select[name=anom]").val());
-        var dados = {comissao: $('#comissao').val(), cdfipe: $('input[name=codefipe]').val(), valor: djson.valor, ano: djson.ano, tipo: $('input[name=tipoveiculo]:checked').val()};
+        var dados = {
+            comissao: $('#comissao').val(),
+            cdfipe: $('input[name=codefipe]').val(),
+            valor: djson.valor,
+            ano: djson.ano,
+            tipo: $('input[name=tipoveiculo]:checked').val()
+        };
 
         $.ajax({
             data: dados,
@@ -175,12 +211,19 @@ $(function () {
             type: 'GET',
             success: function (retorno) {
                 produtos.empty();
+                console.log();
+
+                for(var i = $('select[name=comissao]').val() - 1; i > 0; i--){
+                    $('select[name=comissao]').append('<option value="'+i+'">'+i+'</option>')
+                }
 //                produtos.hide();
                 $.each(retorno, function (key, value) {
                     $('#c-veiculo').removeClass("col-md-12");
                     $('#c-veiculo').addClass("col-md-9");
                     produtopagamento.fadeIn();
                     produtos.append(value.html);
+
+                    $('#comissao').trigger('change');
 
                     $(value.acordion).accordion({
                         heightStyle: "content",
@@ -190,11 +233,12 @@ $(function () {
                     });
 
                     if (value.chkid) {
-                        $('#comissao').keyup(function () {
+                        $('#comissao').change(function () {
                             var valor = $.parseJSON($(value.chkid).val());
                             var valorcomiss = aplicaComissao(valor.vlproduto, $(this).val());
                             $(value.precospan).text(valorcomiss.replace('.', ','));
                             $('#valortotal').trigger('change');
+
                         });
                     }
 
@@ -202,10 +246,13 @@ $(function () {
                         var valor = $.parseJSON($(this).val());
                         if ($(this).is(":checked")) {
                             produtosvalores.push(valor);
+                            menorparc += parseFloat((valor.menorparc > 0) ? valor.menorparc : 0);
                             $('#valortotal').trigger('change');
                         } else {
+                            (menorparc > 0 ) ? menorparc -= parseFloat((valor.menorparc > 0) ? valor.menorparc : 0) : menorparc;
                             if (vltotal !== 0) {
-                                produtosvalores.splice($.inArray(valor, produtos2), 1);
+
+                                produtosvalores.splice($.inArray(valor, produtosvalores), 1);
                                 $('#valortotal').trigger('change');
                             }
                         }
@@ -228,15 +275,11 @@ $(function () {
                 btnproposta.fadeIn('slow');
 
 
-
             }
 
         });
 
     });
-
-
-
 
 
     $('#segcep').focusout(function () {
@@ -294,26 +337,28 @@ $(function () {
             var values = $.parseJSON($(this).attr('value'));
             if ($(this).is(":checked") && values.idforma == 1) {
                 $('#parcelas').empty();
-                for (i = 1; i < values.maxparc + 1; i++) {
-                    $('#parcelas').append('<label><input type="radio" name="quantparcela" id="formapagamento" value="' + i + '">' + i + '</label><br>')
-                }
+
+                $.each(gerarParcelas(vltotal, values.maxparc, values.parcsemjuros, values.juros, menorparc), function (key, html) {
+                    $('#parcelas').append(html);
+                })
+
                 dadoscartao.fadeIn();
             } else {
                 $('#parcelas').empty();
-                for (i = 1; i < values.maxparc + 1; i++) {
-                    $('#parcelas').append('<label><input type="radio" name="quantparcela" id="formapagamento" value="' + i + '">' + i + '</label><br>')
-                }
+                $.each(gerarParcelas(vltotal, values.maxparc, values.parcsemjuros, values.juros, menorparc), function (key, html) {
+                    $('#parcelas').append(html);
+                })
                 dadoscartao.fadeOut('fast');
             }
         }
     });
 
     $('#valortotal').on('change', function () {
-        var vltotal = 0;
+        vltotal = 0;
         $.each(produtosvalores, function (key, value) {
             vltotal += parseFloat(aplicaComissao(value.vlproduto, $('#comissao').val()))
         });
-
+        $('input[name=formapagamento]').trigger('change');
         if (vltotal > 0) {
             $(this).text('R$ ' + vltotal.toFixed(2).replace('.', ','));
             panelpagamento.fadeIn();
