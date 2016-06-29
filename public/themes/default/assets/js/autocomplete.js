@@ -211,7 +211,7 @@ $(function () {
             type: 'GET',
             success: function (retorno) {
                 produtos.empty();
-                console.log();
+
 
                 for(var i = $('select[name=comissao]').val() - 1; i > 0; i--){
                     $('select[name=comissao]').append('<option value="'+i+'">'+i+'</option>')
@@ -222,7 +222,7 @@ $(function () {
                     $('#c-veiculo').addClass("col-md-9");
                     produtopagamento.fadeIn();
                     produtos.append(value.html);
-
+                    $('#parcelas').hide;
                     $('#comissao').trigger('change');
 
                     $(value.acordion).accordion({
@@ -337,6 +337,7 @@ $(function () {
             var values = $.parseJSON($(this).attr('value'));
             if ($(this).is(":checked") && values.idforma == 1) {
                 $('#parcelas').empty();
+                (vltotal > 0) ? $('#parcelas').fadeIn() : $('#parcelas').fadeOut();
 
                 $.each(gerarParcelas(vltotal, values.maxparc, values.parcsemjuros, values.juros, menorparc), function (key, html) {
                     $('#parcelas').append(html);
@@ -345,6 +346,7 @@ $(function () {
                 dadoscartao.fadeIn();
             } else {
                 $('#parcelas').empty();
+                (vltotal > 0) ? $('#parcelas').fadeIn() : $('#parcelas').fadeOut();
                 $.each(gerarParcelas(vltotal, values.maxparc, values.parcsemjuros, values.juros, menorparc), function (key, html) {
                     $('#parcelas').append(html);
                 })
