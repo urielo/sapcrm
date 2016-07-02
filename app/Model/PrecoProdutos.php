@@ -29,10 +29,10 @@ class PrecoProdutos extends Model
         'indobrigrastreador',
         'idcategoria',];
     public $timestamps = FALSE;
-    public $incrementing = false;
+//    public $incrementing = false;
 
     public function produto()
     {
-        return $this->belongsTo('App\Model\Produto', 'idproduto', 'idproduto');
+        return $this->belongsTo('App\Model\Produtos', 'idproduto', 'idproduto');
     }
 }

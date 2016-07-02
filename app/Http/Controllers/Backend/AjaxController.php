@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Model\Fipes;
+use App\Model\Combos;
 use App\Model\Produtos;
 use App\Model\PrecoProdutos;
 use App\Model\CategoriaFipes;
@@ -82,7 +83,7 @@ class AjaxController extends Controller
     public function anovalor(Request $request)
     {
         $anovalor = FipeAnoValor::where('codefipe', '=', $request
-                ->input('cdfipe'))
+            ->input('cdfipe'))
             ->orderBy('ano', 'ASC')
             ->get();
 
@@ -99,7 +100,7 @@ class AjaxController extends Controller
     public function anofab(Request $request)
     {
         $fipe = Fipes::where('codefipe', '=', $request
-                ->input('cdfipe'))
+            ->input('cdfipe'))
             ->get();
 
 
@@ -117,7 +118,7 @@ class AjaxController extends Controller
         endforeach;
     }
 
-    public function produtos(Request $request)
+    public function produtosmaster(Request $request)
     {
         $cdfipe = $request->input('cdfipe');
         $valor = $request->input('valor');
@@ -134,54 +135,26 @@ class AjaxController extends Controller
 //        echo '</pre>';
 
         $retorno = [];
+        $combos = [];
 
-        foreach (Produtos::orderBy('idproduto', 'ASC')->get() as $produto):
-            $roubo = $produto->idproduto == 1 ? TRUE : $produto->idproduto == 2 ? TRUE : $produto->idproduto == 19 ? TRUE : FALSE;
-            $rcf = $produto->idproduto == 3 ? TRUE : $produto->idproduto == 13 ? TRUE : $produto->idproduto == 14 ? TRUE : FALSE;
-            $ass = $produto->idproduto == 12 ? TRUE : $produto->idproduto == 4 ? TRUE : $produto->idproduto == 11 ? TRUE : FALSE;
-
+        foreach (Produtos::whereTipoproduto('master')->orderBy('idproduto', 'ASC')->get() as $produto):
+//            $roubo = $produto->idproduto == 1 ? TRUE : $produto->idproduto == 2 ? TRUE : $produto->idproduto == 19 ? TRUE : $produto->idproduto == 20 ? TRUE : FALSE;
+//            $rcf = $produto->idproduto == 3 ? TRUE : $produto->idproduto == 13 ? TRUE : $produto->idproduto == 14 ? TRUE : FALSE;
+//            $ass = $produto->idproduto == 12 ? TRUE : $produto->idproduto == 4 ? TRUE : $produto->idproduto == 15 ? TRUE : $produto->idproduto == 11 ? TRUE : FALSE;
+            foreach (Combos::whereIdprodutomaster($produto->idproduto)->get() as $combo) {
+                $combos['idproduto' . $combo->idprodutomaster][] = $combo->idprodutoopcional;
+            }
             foreach (PrecoProdutos::where('idproduto', '=', $produto->idproduto)->get() as $preco):
                 $retorno[] = ['produtos' => $produto];
-                if ($roubo && $tipo == $produto->idtipoveiculo):
+                if ($tipo == $produto->idtipoveiculo):
                     if ($valor >= $preco->vlrfipeminimo && $valor <= $preco->vlrfipemaximo && $idade <= $preco->idadeaceitamax):
 
-                        $retorno[] = [
-                            'html' =>
-                            '<div class="col-md-12" id="divp' . $produto->idproduto . '">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="produtos[]" value=\'' . json_encode(['idproduto' => $produto->idproduto, 'menorparc'=> $preco->vlrminprimparc, 'vlproduto' => $preco->premioliquidoproduto]) . '\' id="porduto' . $produto->idproduto . '"> <strong>  ' . $produto->nomeproduto . ' - R$ <span id="preco' . $produto->idproduto . '">' . number_format($preco->premioliquidoproduto, 2, ',', '.') . '</span> </strong>
-                    </label>
-                    <div id="acordion' . $produto->idproduto . '">
-                        <h6>Detalhes</h6>
-                        <div>
-                            <p>
-                                <b>Descrição: </b>' . $produto->descproduto . '.
-                                <br>
-                                <b>Caracteristaca:  </b> ' . $preco->caractproduto . '.
-                                <br>
-                                <br>
-                                <b>Exigencia Vistoria:  </b>' . ($produto->indexigenciavistoria ? 'Sim' : 'Não') . '
-                                <b>Exigencia Rastreador:  </b>' . ($preco->indobrigrastreador ? 'Sim' : 'Não') . ' 
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div> ',
-                            'acordion' => '#acordion' . $produto->idproduto,
-                            'chkid' => '#porduto' . $produto->idproduto,
-                            'precospan' => '#preco' . $produto->idproduto,
-                            ];
-                    endif;
-                elseif ($rcf):
-
-                    if ($preco->idcategoria == $categoria):
                         $retorno[] = [
                             'html' =>
                                 '<div class="col-md-12" id="divp' . $produto->idproduto . '">
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" name="produtos[]" value=\'' . json_encode(['idproduto' => $produto->idproduto, 'menorparc'=> $preco->vlrminprimparc, 'vlproduto' => $preco->premioliquidoproduto]) . '\' id="porduto' . $produto->idproduto . '"> <strong>  ' . $produto->nomeproduto . ' - R$ <span id="preco' . $produto->idproduto . '">' . number_format($preco->premioliquidoproduto, 2, ',', '.') . '</span> </strong>
+                        <input type="checkbox" name="produtos[]" value=\'' . json_encode(['idproduto' => $produto->idproduto, 'menorparc' => $preco->vlrminprimparc, 'vlproduto' => $preco->premioliquidoproduto]) . '\' id="porduto' . $produto->idproduto . '"> <strong>  ' . $produto->nomeproduto . ' - R$ <span id="preco' . $produto->idproduto . '">' . number_format($preco->premioliquidoproduto, 2, ',', '.') . '</span> </strong>
                     </label>
                     <div id="acordion' . $produto->idproduto . '">
                         <h6>Detalhes</h6>
@@ -202,16 +175,53 @@ class AjaxController extends Controller
                             'acordion' => '#acordion' . $produto->idproduto,
                             'chkid' => '#porduto' . $produto->idproduto,
                             'precospan' => '#preco' . $produto->idproduto,
+                            'divp' => '#divp' . $produto->idproduto,
+                            'idproduto' => $produto->idproduto,
+
+
                         ];
                     endif;
-                elseif ($ass && $tipo == $produto->idtipoveiculo):
+                elseif ($preco->idcategoria == $categoria):
+                    $retorno[] = [
+                        'html' =>
+                            '<div class="col-md-12" id="divp' . $produto->idproduto . '">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="produtos[]" value=\'' . json_encode(['idproduto' => $produto->idproduto, 'menorparc' => $preco->vlrminprimparc, 'vlproduto' => $preco->premioliquidoproduto]) . '\' id="porduto' . $produto->idproduto . '"> <strong>  ' . $produto->nomeproduto . ' - R$ <span id="preco' . $produto->idproduto . '">' . number_format($preco->premioliquidoproduto, 2, ',', '.') . '</span> </strong>
+                    </label>
+                    <div id="acordion' . $produto->idproduto . '">
+                        <h6>Detalhes</h6>
+                        <div>
+                            <p>
+                                <b>Descrição: </b>' . $produto->descproduto . '.
+                                <br>
+                                <b>Caracteristaca:  </b> ' . $preco->caractproduto . '.
+                                <br>
+                                <br>
+                                <b>Exigencia Vistoria:  </b>' . ($produto->indexigenciavistoria ? 'Sim' : 'Não') . '
+                                <b>Exigencia Rastreador:  </b>' . ($preco->indobrigrastreador ? 'Sim' : 'Não') . ' 
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div> ',
+                        'acordion' => '#acordion' . $produto->idproduto,
+                        'chkid' => '#porduto' . $produto->idproduto,
+                        'precospan' => '#preco' . $produto->idproduto,
+                        'divp' => '#divp' . $produto->idproduto,
+                        'idproduto' => $produto->idproduto,
+
+
+                    ];
+
+                elseif ($tipo == $produto->idtipoveiculo):
                     if ($idade >= $preco->idadeaceitamin && $idade <= $preco->idadeaceitamax):
                         $retorno[] = [
                             'html' =>
                                 '<div class="col-md-12" id="divp' . $produto->idproduto . '">
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" name="produtos[]" value=\'' . json_encode(['idproduto' => $produto->idproduto, 'menorparc'=> $preco->vlrminprimparc, 'vlproduto' => $preco->premioliquidoproduto]) . '\' id="porduto' . $produto->idproduto . '"> <strong>  ' . $produto->nomeproduto . ' - R$ <span id="preco' . $produto->idproduto . '">' . number_format($preco->premioliquidoproduto, 2, ',', '.') . '</span> </strong>
+                        <input type="checkbox" name="produtos[]" value=\'' . json_encode(['idproduto' => $produto->idproduto, 'menorparc' => $preco->vlrminprimparc, 'vlproduto' => $preco->premioliquidoproduto]) . '\' id="porduto' . $produto->idproduto . '"> <strong>  ' . $produto->nomeproduto . ' - R$ <span id="preco' . $produto->idproduto . '">' . number_format($preco->premioliquidoproduto, 2, ',', '.') . '</span> </strong>
                     </label>
                     <div id="acordion' . $produto->idproduto . '">
                         <h6>Detalhes</h6>
@@ -232,11 +242,116 @@ class AjaxController extends Controller
                             'acordion' => '#acordion' . $produto->idproduto,
                             'chkid' => '#porduto' . $produto->idproduto,
                             'precospan' => '#preco' . $produto->idproduto,
+                            'divp' => '#divp' . $produto->idproduto,
+                            'idproduto' => $produto->idproduto,
+
+
                         ];
                     endif;
 
                 endif;
 
+
+            endforeach;
+        endforeach;
+
+        return response()->json($retorno);
+    }
+
+    public function produtosopcional(Request $request)
+    {
+        $cdfipe = $request->input('cdfipe');
+        $valor = $request->input('valor');
+        $idproduto = $request->input('idproduto');
+        $idade = date('Y') - ($request->input('ano') > 1 ? $request->input('ano') : date('Y'));
+        $tipo = $request->input('tipo');
+        $categoria = CategoriaFipes::where('codefipe', '=', $cdfipe)
+            ->where('idseguradora', '=', 2)
+            ->get();
+        $categoria = $categoria[0]->idcategoria;
+
+
+        $retorno = [];
+
+
+        foreach (Combos::whereIdprodutomaster($idproduto)->get() as $combo):
+            $produto = Produtos::find($combo->idprodutoopcional);
+
+            foreach ($produto->precoproduto as $preco):
+                $preco;
+                #$retorno[] = ['produtos' => $produto];
+
+                if ($valor >= $preco->vlrfipeminimo && $tipo == $produto->idtipoveiculo && $preco->idcategoria == ($preco->idcategoria == $categoria ? $categoria : null) && $valor <= $preco->vlrfipemaximo && $idade <= $preco->idadeaceitamax):
+
+                    $retorno[] = [
+                        'html' =>
+                            '<div class="col-md-12" id="divp' . $produto->idproduto . '">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="produtos[]" value=\'' . json_encode(['idproduto' => $produto->idproduto, 'tiposeguro' => $produto->tipodeseguro, 'menorparc' => $preco->vlrminprimparc, 'vlproduto' => $preco->premioliquidoproduto]) . '\' id="porduto' . $produto->idproduto . '"> <strong>  ' . $produto->nomeproduto . ' - R$ <span id="preco' . $produto->idproduto . '">' . number_format($preco->premioliquidoproduto, 2, ',', '.') . '</span> </strong>
+                    </label>
+                    <div id="acordion' . $produto->idproduto . '">
+                        <h6>Detalhes</h6>
+                        <div>
+                            <p>
+                                <b>Descrição: </b>' . $produto->descproduto . '.
+                                <br>
+                                <b>Caracteristaca:  </b> ' . $preco->caractproduto . '.
+                                <br>
+                                <br>
+                                <b>Exigencia Vistoria:  </b>' . ($produto->indexigenciavistoria ? 'Sim' : 'Não') . '
+                                <b>Exigencia Rastreador:  </b>' . ($preco->indobrigrastreador ? 'Sim' : 'Não') . ' 
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div> ',
+                        'acordion' => '#acordion' . $produto->idproduto,
+                        'chkid' => '#porduto' . $produto->idproduto,
+                        'precospan' => '#preco' . $produto->idproduto,
+                        'idproduto' => $produto->idproduto,
+                        'tiposeguro' => $produto->tipodeseguro,
+                        'divp' => '#divp'.$produto->idproduto,
+
+
+                    ];
+
+
+                elseif ($tipo == $produto->idtipoveiculo && $preco->vlrfipeminimo == null && $preco->idcategoria == null && $idade >= $preco->idadeaceitamin && $idade <= $preco->idadeaceitamax):
+                    $retorno[] = [
+                        'html' =>
+                            '<div class="col-md-12" id="divp' . $produto->idproduto . '">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="produtos[]" value=\'' . json_encode(['idproduto' => $produto->idproduto, 'tiposeguro' => $produto->tipodeseguro, 'menorparc' => $preco->vlrminprimparc, 'vlproduto' => $preco->premioliquidoproduto]) . '\' id="porduto' . $produto->idproduto . '"> <strong>  ' . $produto->nomeproduto . ' - R$ <span id="preco' . $produto->idproduto . '">' . number_format($preco->premioliquidoproduto, 2, ',', '.') . '</span> </strong>
+                    </label>
+                    <div id="acordion' . $produto->idproduto . '">
+                        <h6>Detalhes</h6>
+                        <div>
+                            <p>
+                                <b>Descrição: </b>' . $produto->descproduto . '.
+                                <br>
+                                <b>Caracteristaca:  </b> ' . $preco->caractproduto . '.
+                                <br>
+                                <br>
+                                <b>Exigencia Vistoria:  </b>' . ($produto->indexigenciavistoria ? 'Sim' : 'Não') . '
+                                <b>Exigencia Rastreador:  </b>' . ($preco->indobrigrastreador ? 'Sim' : 'Não') . ' 
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div> ',
+                        'acordion' => '#acordion' . $produto->idproduto,
+                        'chkid' => '#porduto' . $produto->idproduto,
+                        'precospan' => '#preco' . $produto->idproduto,
+                        'idproduto' => $produto->idproduto,
+                        'tiposeguro' => $produto->tipodeseguro,
+                        'divp' => '#divp'.$produto->idproduto,
+
+
+                    ];
+
+                endif;
 
 
             endforeach;

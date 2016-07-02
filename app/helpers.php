@@ -88,7 +88,7 @@ if (!function_exists('webserviceCotar')):
         $data = json_encode(array_merge($cotacao, $perfilsegurado, $corretor, $segurado, $veiculo, $produtos, $proprietario, $condutor));
         $curl = curl_init();
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "http://www.webservice.local/gerar/cotacao",
+            CURLOPT_URL => "http://www.seguroautopratico.com.br/api/gerar/cotacao",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
@@ -108,7 +108,39 @@ if (!function_exists('webserviceCotar')):
         if ($err) {
             return "cURL Error #:" . $err;
         } else {
-            return json_decode($response, true);
+            return $response;
+        }
+    }
+endif;
+
+if (!function_exists('webserviceProposta')):
+
+    function webserviceProposta($proposta, $segurado, $veiculo, $produtos, $proprietario, $condutor, $perfilsegurado)
+    {
+        $data = json_encode(array_merge($proposta, $perfilsegurado, $segurado, $veiculo, $produtos, $proprietario, $condutor));
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "http://www.seguroautopratico.com.br/api/gerar/proposta",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => $data,
+            CURLOPT_HTTPHEADER => array(
+                "content-type: application/json",
+                "x-api-key: 000666"
+            ),
+        ));
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+        curl_close($curl);
+        if ($err) {
+            return "cURL Error #:" . $err;
+        } else {
+            return $response;
         }
     }
 endif;

@@ -34,7 +34,7 @@ class CotacaoController extends Controller
 
     public function index()
     {
-        
+
     }
 
     public function cotar(FormaPagamento $formapagamentos)
@@ -48,13 +48,12 @@ class CotacaoController extends Controller
         $orgaoemissors = $this->orgaoemissors;
 
 
-
         return view('backend.cotacao.form', compact('segurados', 'orgaoemissors', 'veiculos', 'tipos', 'ufs', 'tipoultiveics', 'estadoscivis', 'formapagamentos'));
     }
 
     public function gerar(Request $request)
     {
-        
+
         $request->all();
         $segurado = ["segurado" =>
             ["segNomeRazao" => ($request->tipopessoa == 1 ? $request->segnome : $request->segrazao),
@@ -62,20 +61,20 @@ class CotacaoController extends Controller
                 "segDtNasci" => ($request->tipopessoa == 1 ? date('Ymd', strtotime($request->segdatanasc)) : date('Ymd', strtotime($request->segdatafund))),
                 "segCdSexo" => ($request->tipopessoa == 1 ? $request->segsexo : NULL),
                 "segCdEstCivl" => ($request->tipopessoa == 1 ? $request->segestadocivil : 0),
-                "segProfRamoAtivi" => ($request->tipopessoa == 1 ? (int) $request->segcdprofissao : (int) $request->segcdramoatividade),
+                "segProfRamoAtivi" => ($request->tipopessoa == 1 ? (int)$request->segcdprofissao : (int)$request->segcdramoatividade),
                 "segEmail" => $request->segemail,
                 "segCelDdd" => $request->segdddcel,
                 "segCelNum" => $request->segnmcel,
                 "segFoneDdd" => $request->segdddfone,
                 "segFoneNum" => $request->segnmfone,
-                "segEnd" => "rua das quintas",
+                "segEnd" => $request->segendlog,
                 "segEndNum" => $request->segnmend,
                 "segEndCompl" => $request->segendcompl,
                 "segEndCep" => $request->segcep,
-                "segEndCidade" => "sao paulo",
-                "segEndCdUf" => 1,
+                "segEndCidade" => $request->segendcidade,
+                "segEndCdUf" => $request->segenduf,
                 "segNumRg" => ($request->tipopessoa == 1 ? $request->segrg : NULL),
-                "segUfEmissaoRg" => ($request->tipopessoa == 1 ? date('Ymd', strtotime((string) $request->segrgdtemissao)) : NULL),
+                "segUfEmissaoRg" => ($request->tipopessoa == 1 ? date('Ymd', strtotime((string)$request->segrgdtemissao)) : NULL),
                 "segEmissorRg" => ($request->tipopessoa == 1 ? $request->segrgoe : NULL),
                 "segCdUfRg" => ($request->tipopessoa == 1 ? $request->segrguf : NULL),]
         ];
@@ -99,34 +98,34 @@ class CotacaoController extends Controller
         ];
 
         $condutor = ["condutor" =>
-            ["condutNomeRazao" => "BOTANA888",
-                "condutCpfCnpj" => "88845678901",
-                "condutDtNasci" => 19950629,
-                "condutCdSexo" => 2,
-                "condutCdEstCivl" => 1,
-                "condutProfRamoAtivi" => 2,]
+            ["condutNomeRazao" => $request->condnome,
+                "condutCpfCnpj" => $request->condcpf,
+                "condutDtNasci" => date('Ymd', strtotime($request->conddatanasc)),
+                "condutCdSexo" => $request->condsexo,
+                "condutCdEstCivl" => $request->condestadocivil,
+                "condutProfRamoAtivi" => $request->condcdprofissao,]
         ];
 
         $proprietario = ["proprietario" =>
-            ["proprNomeRazao" => "JONNY777",
-                "proprCpfCnpj" => "77745678901",
-                "proprDtNasci" => 19940719,
-                "proprCdSexo" => 1,
-                "proprCdEstCivl" => 1,
-                "proprPrfoRamoAtivi" => 2,
+            ["proprNomeRazao" => ($request->proptipopessoa == 1 ? $request->propnome : $request->proprazao),
+                "proprCpfCnpj" => ($request->proptipopessoa == 1 ? $request->propcpf : $request->propcnpj),
+                "proprDtNasci" => ($request->proptipopessoa == 1 ? date('Ymd', strtotime($request->propdatanasc)) : date('Ymd', strtotime($request->propdatafund))),
+                "proprCdSexo" => ($request->proptipopessoa == 1 ? $request->propsexo : NULL),
+                "proprCdEstCivl" => ($request->proptipopessoa == 1 ? $request->propestadocivil : 0),
+                "proprPrfoRamoAtivi" => ($request->proptipopessoa == 1 ? (int)$request->propcdprofissao : (int)$request->propcdramoatividade),
                 "proprCdRelDepSegurado" => 11,
                 "proprdescRelDepSegurado" => "Primo",
-                "proprEmail" => "pedro@gmail.com",
-                "proprCelDdd" => 12,
-                "proprCelNum" => 123456789,
-                "proprFoneDdd" => 81,
-                "proprFoneNum" => 12345678,
-                "proprEnd" => "rua das oliveiras",
-                "proprEndNum" => 25,
-                "proprEndCompl" => "proximo ao atacadao",
-                "proprEndCep" => 12345678,
-                "proprEndCidade" => "sao paulo",
-                "proprEndCdUf" => 1,]
+                "proprEmail" => $request->propemail,
+                "proprCelDdd" => $request->propdddcel,
+                "proprCelNum" => $request->propnmcel,
+                "proprFoneDdd" => $request->propdddfone,
+                "proprFoneNum" => $request->propnmfone,
+                "proprEnd" => $request->propendlog,
+                "proprEndNum" => $request->propnmend,
+                "proprEndCompl" => $request->propendcompl,
+                "proprEndCep" => $request->propcep,
+                "proprEndCidade" => $request->propendcidade,
+                "proprEndCdUf" => $request->propenduf,]
         ];
         $anoveic = json_decode($request->anom);
         $veiculo = ["veiculo" =>
@@ -149,8 +148,8 @@ class CotacaoController extends Controller
                 "veiIndAcidentado" => $request->indacidentado,
                 "veiIndAlienado" => $request->indaliendado,]
         ];
-        echo '<pre>';
-        
+
+
         foreach ($request->produtos as $produto):
             $ids = json_decode($produto);
             $produtos["produto"][] = ["idProduto" => $ids->idproduto];
@@ -160,38 +159,54 @@ class CotacaoController extends Controller
 
         $cotacao = ["idParceiro" => 99,
             "nmParceiro" => "Seguro AUTOPRATICO",
-            "indCondutorVeic" => 0,
-            "indProprietVeic" => 0,
-            "comissao" => 10,];
+            "indCondutorVeic" => $request->indproprietario,
+            "indProprietVeic" => $request->indcondutor,
+            "comissao" => $request->comissao,];
 
-        $wscotacao = webserviceCotacao($cotacao, $corretor, $segurado, $veiculo, $produtos, $proprietario, $condutor, $perfilsegurado);
+
+        $wscotacao = json_decode(webserviceCotacao($cotacao, $corretor, $segurado, $veiculo, $produtos, $proprietario, $condutor, $perfilsegurado));
+        $formapg = json_decode($request->formapagamento);
+        $proposta = [
+            "idParceiro" => 99,
+            "nmParceiro" => "seguro auto pratico",
+            "cdCotacao" => $wscotacao->retorno->cdCotacao,
+            "cdFormaPgt" => $formapg->idforma,
+            "qtParcela" => $request->quantparcela,
+            "nmBandeira" => $request->cartaobandeira,
+            "numCartao" => $request->cartaonumero,
+            "validadeCartao" => $request->cartaovalidade,
+            "indCondutorVeic" => $request->indproprietario,
+            "indProprietVeic" => $request->indcondutor,
+        ];
+
+        $wsproposta = json_decode(webserviceProposta($proposta, $segurado, $veiculo, $produtos, $proprietario, $condutor, $perfilsegurado));
         echo '<pre>';
-        print_r($wscotacao);
+        print_r($wsproposta);
         echo '</pre>';
     }
 
     public function store()
     {
-        
+
     }
 
     public function show()
     {
-        
+
     }
 
     public function edit()
     {
-        
+
     }
 
     public function update()
     {
-        
+
     }
 
     public function destroy()
     {
-        
+
     }
 }

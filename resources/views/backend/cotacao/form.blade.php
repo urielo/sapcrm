@@ -545,14 +545,14 @@
                 <div class="col-md-3" id="produtopagamento">
                     <div class="row">
 
-                        <!--Incio - Escolha Produtos-->
+                        <!--Incio - Escolha Produtos Master-->
                         <div class="col-md-12">
 
-                            <div class="panel panel-default " id="panelprodutos">
+                            <div class="panel panel-default " id="panelprodutosmaster">
                                 <div class="panel-heading">
                                     <h2 class="panel-title" style="text-align: center;">Produtos</h2>
                                 </div>
-                                <div class="panel-body produto-scroll">
+                                <div class="panel-body">
                                     <div class="row produto" id="produtos">
 
 
@@ -561,7 +561,24 @@
                                 </div>
                             </div>
                         </div>
-                        <!--Fim- Escolha Produtos-->
+                        <!--Fim- Escolha Produtos Master-->
+                        <!--Incio - Escolha Produtos Opcional-->
+                        <div class="col-md-12">
+
+                            <div class="panel panel-default " id="panelprodutosopcional">
+                                <div class="panel-heading">
+                                    <h2 class="panel-title" style="text-align: center;">Opcionais</h2>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row produto" id="produtosopcionais">
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!--Fim- Escolha Produtos Opcional-->
                         <!--Inicio - Escolha Margem-->
                         <div class="col-md-12">
 
@@ -785,9 +802,9 @@
 
                                                 <div class="col-md-2">
                                                     <div class="form-group">
-                                                        <label for="propdatanasc">Data Fundação</label>
+                                                        <label for="propdatafund">Data Fundação</label>
                                                         <input class="form-control form-control-sm" type="text"
-                                                               name="propdatanasc" id="propdatanasc"/>
+                                                               name="propdatafund" id="propdatafund"/>
                                                     </div>
                                                 </div>
 

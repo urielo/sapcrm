@@ -12,30 +12,29 @@ Route::get('/', [
 ]);
 
 
+
+
 Route::get('/modelo', ['as' => 'modelo', 'uses' => 'Backend\AjaxController@modelo']);
 Route::get('/profissao', ['as' => 'profissao', 'uses' => 'Backend\AjaxController@profissao']);
 Route::get('/ramoatividade', ['as' => 'ramoatividade', 'uses' => 'Backend\AjaxController@ramoatividade']);
 Route::get('/anovalor', ['as' => 'anovalor', 'uses' => 'Backend\AjaxController@anovalor']);
 Route::get('/anofab', ['as' => 'anofab', 'uses' => 'Backend\AjaxController@anofab']);
-Route::get('/produtos', ['as' => 'produtos', 'uses' => 'Backend\AjaxController@produtos']);
+Route::get('/produtosmaster', ['as' => 'produtosmaster', 'uses' => 'Backend\AjaxController@produtosmaster']);
+Route::get('/produtosopcional', ['as' => 'produtosopcional', 'uses' => 'Backend\AjaxController@produtosopcional']);
 
 
 Route::group(['prefix' => 'cotacao'], function () {
 
 
     Route::post('gerar', [
-        'as' => 'cotacao.gerar', 
+        'as' => 'cotacao.gerar',
         'uses' => 'Backend\CotacaoController@gerar']);
-    
+
     Route::get('cotar', [
         'as' => 'cotacao.cotar',
         'uses' => 'Backend\CotacaoController@cotar'
     ]);
 });
-
-
-
-
 
 
 // Segurado Routes

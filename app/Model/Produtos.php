@@ -9,30 +9,42 @@ class Produtos extends Model
 
     protected $table = 'produto';
     protected $primaryKey = 'idproduto';
-    protected $fillable = ['idproduto',
-        'nomeproduto',
-        'descproduto',
-        'caractproduto',
-        'idtipoveiculo',
-        'porcentindenizfipe',
-        'vlrfipemaximo',
-        'vlrfipeminimo',
-        'qtdemaxparcelas',
-        'indtabprecofipe',
-        'indtabprecocategorianobre',
-        'numparcelsemjuros',
-        'jurosmesparcelamento',
-        'indexigenciavistoria',
-        'codstatus',
-        'idseguradora',
-        'procsusepproduto',
-        'codramoproduto',
-        'cobertura',];
+    protected $fillable =
+        [
+
+            'idproduto',
+            'nomeproduto',
+            'descproduto',
+            'caractproduto',
+            'idtipoveiculo',
+            'porcentindenizfipe',
+            'vlrfipemaximo',
+            'vlrfipeminimo',
+            'qtdemaxparcelas',
+            'indtabprecofipe',
+            'indtabprecocategorianobre',
+            'numparcelsemjuros',
+            'jurosmesparcelamento',
+            'indexigenciavistoria',
+            'codstatus',
+            'idseguradora',
+            'procsusepproduto',
+            'codramoproduto',
+            'cobertura',
+
+        ];
     public $timestamps = FALSE;
-    public $incrementing = false;
+
+//    public $incrementing = false;
+
 
     public function precoproduto()
     {
-        return $this->hasMany('App\Model\PrecoProduto', 'idproduto', 'idproduto');
+        return $this->hasMany(PrecoProdutos::class, 'idproduto', 'idproduto');
+    }
+
+    public function combos()
+    {
+        return $this->hasMany(Combos::class, 'idproduto', 'idprodutomaster');
     }
 }
