@@ -25,11 +25,6 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".sidebar-nav">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
                     <a class="navbar-brand" href="{{route('backend.dashboard')}}">Seguro AutoPratico</a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->

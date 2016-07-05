@@ -6,6 +6,30 @@
 
 @section('contentSeg')
 
+    @if(isset($message))
+        <div class="row">
+            <div class="col-md-12 col-xs-12 col-sm-12 ">
+                <div class="panel panel-danger" style="margin-top: 10px;">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">Error</h2>
+                    </div>
+                    <div class="panel-body">
+                        <div class="alert alert-danger">
+
+                                {{$message}}
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    @endif
+
+
     {!!Form::model($segurados, [ 'method' => $segurados->exixts ? 'put' : 'post', 'route' => $segurados->exixts ? ['cotacao.gerar'] : ['cotacao.gerar']  ]) !!}
 
     <div class="row">
@@ -505,7 +529,7 @@
                                                         style="font-size: 12px; padding: 0;">
                                                     @foreach($ufs::all() as $uf)
                                                         <option id="{{$uf->nm_uf}}"
-                                                                value="{{$uf->cd_uf}}" >{{$uf->nm_uf}}</option>
+                                                                value="{{$uf->cd_uf}}">{{$uf->nm_uf}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>

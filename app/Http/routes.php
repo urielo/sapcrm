@@ -13,6 +13,12 @@ Route::get('/', [
 
 
 
+//Route::get('teste', function () {
+//    echo '<pre>';
+//    print_r();
+//    echo '</pre>';
+//});
+
 
 Route::get('/modelo', ['as' => 'modelo', 'uses' => 'Backend\AjaxController@modelo']);
 Route::get('/profissao', ['as' => 'profissao', 'uses' => 'Backend\AjaxController@profissao']);
@@ -34,6 +40,12 @@ Route::group(['prefix' => 'cotacao'], function () {
         'as' => 'cotacao.cotar',
         'uses' => 'Backend\CotacaoController@cotar'
     ]);
+
+    Route::get('pdf/{idproposta}', [
+        'as' => 'cotacao.pdf',
+        'uses' => 'Backend\CotacaoController@pdf'
+    ]);
+
 });
 
 

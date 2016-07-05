@@ -22,17 +22,28 @@ $(function () {
     ramoatividade.hide();
 
     divano.hide();
-    panelpagamento.hide();
+
     dadoscartao.hide();
     btnsubmit.hide();
     btnproposta.hide();
-    pergunta.hide();
-    produtopagamento.hide();
+
+
     dadosveiculos.hide();
-    panelprodutos.hide();
-    panelsegurado.hide();
+
     panelcondutor.hide();
     panelproprietario.hide();
+    
+    if($('input[name=codefipe]').val() == ''){
+
+        produtopagamento.hide();
+        pergunta.hide();
+        panelpagamento.hide();
+        panelprodutos.hide();
+        panelsegurado.hide();
+    }else {
+        $('input[name=veiculo]').marcacomplete("search");
+        $('input[name=veiculo]').data('ui-autocomplete')._trigger('select', 'autocompleteselect', {item:{value:$(this).val()}});
+    }
 
 
     function setDateP(idinput) {

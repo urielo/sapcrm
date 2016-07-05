@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use Illuminate\Support\Facades\Mail;
 use App\Console\Commands\CotacaoCommand;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -13,8 +14,11 @@ use App\Model\Uf;
 use App\Model\TipoUtilizacaoVeic;
 use App\Model\EstadosCivis;
 use App\Model\Cotacoes;
+use App\Model\Propostas;
 use App\Model\OrgaoEmissors;
 use App\Model\FormaPagamento;
+use App\Http\Requests\CotacaoRequest;
+use Illuminate\Support\Facades\Redirect;
 
 class CotacaoController extends Controller
 {
@@ -51,8 +55,10 @@ class CotacaoController extends Controller
         return view('backend.cotacao.form', compact('segurados', 'orgaoemissors', 'veiculos', 'tipos', 'ufs', 'tipoultiveics', 'estadoscivis', 'formapagamentos'));
     }
 
-    public function gerar(Request $request)
+    public function gerar(CotacaoRequest $request)
     {
+
+       
 
         $request->all();
         $segurado = ["segurado" =>
@@ -160,8 +166,9 @@ class CotacaoController extends Controller
 
         $wscotacao = json_decode(webserviceCotacao($cotacao, $corretor, $segurado, $veiculo, $produtos, $proprietario, $condutor, $perfilsegurado));
 
-        if($wscotacao->cdretorno != '000'){
-            
+        if ($wscotacao->cdretorno != '000') {
+            return back()->withInput()->with(['message'=>'cotacao - '.json_encode($wscotacao)]);
+            return back()->withInput();
         }
 
         $formapg = json_decode($request->formapagamento);
@@ -179,11 +186,62 @@ class CotacaoController extends Controller
         ];
 
         $wsproposta = json_decode(webserviceProposta($proposta, $segurado, $veiculo, $produtos, $proprietario, $condutor, $perfilsegurado));
-        echo '<pre>';
-        print_r($wsproposta);
-        echo '</pre>';
+        
+        
+        if ($wsproposta->cdretorno != '000') {
+            
+            return back()->withInput()->with(['message'=>'Proposta - '.json_encode($wscotacao)]);
+        }else{
+            Propostas::find($wsproposta->retorno->idproposta)->update(['dtvalidade'=>date('Y-m-d', strtotime( "-32 day" ))]);
+            return view('backend.cotacao.sucesso', ['message' => 'Cotação realizada com sucesso!']);
+        }
     }
 
+    public function pdf($idproposta)
+    {
+        $curl = curl_init();
+
+        $url['producao'] = "http://www.seguroautopratico.com.br/api/gerar/pdf";
+        $url['debuga'] = "http://www.webservice.local/gerar/pdf";
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => $url['producao'],
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => "{\n    \"idParceiro\": 99,\n    \"nmParceiro\": \"Seguro AutoPratico\",\n    \"idProposta\": {$idproposta}\n}",
+            CURLOPT_HTTPHEADER => array(
+                "cache-control: no-cache",
+                "content-type: application/json",
+                "postman-token: baa0f845-adf2-40ef-3a66-806648b4b7fd",
+                "x-api-key: 000666"
+            ),
+        ));
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        if ($err) {
+            echo "cURL Error #:" . $err;
+        } else {
+            $pdf = json_decode($response, true);
+
+            header("Content-type: application/pdf");
+            header("Content-Disposition: inline; filename=\"proposta_N{$idproposta}.pdf\";");
+            echo base64_decode($pdf['base64']);
+        }
+    }
+
+    public function sendEmail()
+    {
+//        Mail::
+
+    }
     public function store()
     {
 
