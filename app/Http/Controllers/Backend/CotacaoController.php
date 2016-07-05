@@ -78,7 +78,6 @@ class CotacaoController extends Controller
                 "segEmissorRg" => ($request->tipopessoa == 1 ? $request->segrgoe : NULL),
                 "segCdUfRg" => ($request->tipopessoa == 1 ? $request->segrguf : NULL),]
         ];
-
         $perfilsegurado = ["perfilSegurado" =>
             ["cepPernoite" => null,
                 "garagemPernoite" => NULL,
@@ -96,7 +95,6 @@ class CotacaoController extends Controller
                 "kmPorDia" => NULL,
                 "outrosCarros" => NULL,]
         ];
-
         $condutor = ["condutor" =>
             ["condutNomeRazao" => $request->condnome,
                 "condutCpfCnpj" => $request->condcpf,
@@ -105,7 +103,6 @@ class CotacaoController extends Controller
                 "condutCdEstCivl" => $request->condestadocivil,
                 "condutProfRamoAtivi" => $request->condcdprofissao,]
         ];
-
         $proprietario = ["proprietario" =>
             ["proprNomeRazao" => ($request->proptipopessoa == 1 ? $request->propnome : $request->proprazao),
                 "proprCpfCnpj" => ($request->proptipopessoa == 1 ? $request->propcpf : $request->propcnpj),
@@ -148,14 +145,12 @@ class CotacaoController extends Controller
                 "veiIndAcidentado" => $request->indacidentado,
                 "veiIndAlienado" => $request->indaliendado,]
         ];
-
+        $corretor = ["corretor" => ["correCpfCnpj" => Auth::user()->corretor->corrcpfcnpj]];
 
         foreach ($request->produtos as $produto):
             $ids = json_decode($produto);
             $produtos["produto"][] = ["idProduto" => $ids->idproduto];
         endforeach;
-
-        $corretor = ["corretor" => ["correCpfCnpj" => Auth::user()->corretor->corrcpfcnpj]];
 
         $cotacao = ["idParceiro" => 99,
             "nmParceiro" => "Seguro AUTOPRATICO",
@@ -163,8 +158,12 @@ class CotacaoController extends Controller
             "indProprietVeic" => $request->indcondutor,
             "comissao" => $request->comissao,];
 
-
         $wscotacao = json_decode(webserviceCotacao($cotacao, $corretor, $segurado, $veiculo, $produtos, $proprietario, $condutor, $perfilsegurado));
+
+        if($wscotacao->cdretorno != '000'){
+            
+        }
+
         $formapg = json_decode($request->formapagamento);
         $proposta = [
             "idParceiro" => 99,
