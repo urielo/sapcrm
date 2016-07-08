@@ -26,7 +26,7 @@ class Propostas extends Model
 
     public function cotacao()
     {
-        return $this->hasOne('App\Model\Cotacoes', 'idcotacao', 'idcotacao');
+        return $this->belongsTo('App\Model\Cotacoes', 'idcotacao', 'idcotacao');
     }
 
    

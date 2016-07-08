@@ -31,8 +31,9 @@ class Segurado extends Model
         "dtupdate",
     ];
     public $timestamps = FALSE;
-    
-      public function veiculo()
+    public $incrementing = false;
+
+    public function veiculo()
     {
         return $this->hasMany('App\Model\Veiculos');
     }

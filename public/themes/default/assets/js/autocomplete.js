@@ -13,37 +13,27 @@ $(function () {
     var panelpagamento = $('#panelpagamento');
     var dadoscartao = $('#dadoscartao');
     var juridica1 = $('#juridica1');
+    var diverror = $('#diverror');
     var ramoatividade = $('#ramoatividade');
     var vltotal = 0;
     var produtosvalores = [];
     var menorparc = 0.0;
 
+    produtopagamento.hide();
+    diverror.hide();
+    pergunta.hide();
+    panelpagamento.hide();
+    panelprodutos.hide();
+    panelsegurado.hide();
     juridica1.hide();
     ramoatividade.hide();
-
     divano.hide();
-
     dadoscartao.hide();
     btnsubmit.hide();
     btnproposta.hide();
-
-
     dadosveiculos.hide();
-
     panelcondutor.hide();
     panelproprietario.hide();
-    
-    if($('input[name=codefipe]').val() == ''){
-
-        produtopagamento.hide();
-        pergunta.hide();
-        panelpagamento.hide();
-        panelprodutos.hide();
-        panelsegurado.hide();
-    }else {
-        $('input[name=veiculo]').marcacomplete("search");
-        $('input[name=veiculo]').data('ui-autocomplete')._trigger('select', 'autocompleteselect', {item:{value:$(this).val()}});
-    }
 
 
     function setDateP(idinput) {
@@ -482,6 +472,45 @@ $(function () {
             panelpagamento.fadeOut();
         }
 
+    });
+
+    $('#formcotacao').submit(function () {
+
+        $.ajax({
+            type: 'POST',
+            url: 'gerar',
+            data: $(this).serialize(),
+            success: function (retorno) {
+
+                if (retorno.sucesso) {
+
+                    $('#allbody').html(retorno.html)
+                } else {
+
+                    $.each(retorno.message, function (key, value) {
+                        if (key != 'cdretorno' && key != 'status') {
+
+
+                            if ($.isPlainObject(value)) {
+                                $.each(value, function (key2, value2) {
+                                    $('#messageerror').text(value2);
+                                })
+                            } else {
+                                $('#messageerror').text(value);
+                            }
+                        }
+                    })
+                    diverror.show();
+
+                }
+
+            },
+            error: function (error) {
+                // $('#allbody').html(error.responseText);
+                console.log(error);
+            }
+        });
+        return false;
     });
 
 

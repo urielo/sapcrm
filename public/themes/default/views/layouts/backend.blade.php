@@ -34,7 +34,7 @@
                             <a href="{{route('segurado.index')}}" class="dropdown-toggle" data-toggle="dropdown">Vendas<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span><span class="caret"></span></a>
                             <ul class="dropdown-menu forAnimate" role="menu">
                                 <li><a href="{{route('cotacao.cotar')}}">Cotar</a></li>
-                                <li><a href="{{route('segurado.index')}}">Cotações</a></li>
+                                <li><a href="{{route('vendas.negociacoes')}}">Negociações</a></li>
 
                             </ul>
                         </li>
@@ -64,7 +64,7 @@
             </div>
         </nav>
 
-        <div class="container-fluid">
+        <div class="container-fluid" id="allbody">
             <div class="row row-offcanvas row-offcanvas-left">
                 @yield('content')
             </div>

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Console\Commands\CotacaoCommand;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\Validation\Validator;
 use App\Http\Requests;
 use App\Model\Segurado;
 use App\Model\TipoVeiculos;
@@ -23,7 +24,7 @@ use Illuminate\Support\Facades\Redirect;
 class CotacaoController extends Controller
 {
 
-    public function __construct(OrgaoEmissors $orgaoemissors, EstadosCivis $estadoscivis, Segurado $segurados, Veiculos $veiculos, TipoVeiculos $tipos, Uf $ufs, TipoUtilizacaoVeic $tipoultiveics)
+    public function __construct(Cotacoes $cotacoes,Propostas $propostas ,OrgaoEmissors $orgaoemissors, EstadosCivis $estadoscivis, Segurado $segurados, Veiculos $veiculos, TipoVeiculos $tipos, Uf $ufs, TipoUtilizacaoVeic $tipoultiveics)
     {
         $this->tipos = $tipos;
         $this->segurado = $segurados;
@@ -32,6 +33,8 @@ class CotacaoController extends Controller
         $this->tipoultiveics = $tipoultiveics;
         $this->estadoscivis = $estadoscivis;
         $this->orgaoemissors = $orgaoemissors;
+        $this->propostas = $propostas;
+        $this->cotacoes= $cotacoes;
 
         parent::__construct();
     }
@@ -39,6 +42,13 @@ class CotacaoController extends Controller
     public function index()
     {
 
+    }
+    
+    public function negociacoes()
+    {
+        $cotacoes = $this->cotacoes->whereIdcorretor(Auth::user()->corretor->idcorretor)->paginate(10);
+        
+        return view('backend.cotacao.negociacoes', compact('cotacoes'));
     }
 
     public function cotar(FormaPagamento $formapagamentos)
@@ -58,9 +68,9 @@ class CotacaoController extends Controller
     public function gerar(CotacaoRequest $request)
     {
 
-       
 
-        $request->all();
+
+//        return view('backend.cotacao.sucesso', ['message' => 'Cotação realizada com sucesso!']);
         $segurado = ["segurado" =>
             ["segNomeRazao" => ($request->tipopessoa == 1 ? $request->segnome : $request->segrazao),
                 "segCpfCnpj" => ($request->tipopessoa == 1 ? $request->segcpf : $request->segcnpj),
@@ -167,8 +177,11 @@ class CotacaoController extends Controller
         $wscotacao = json_decode(webserviceCotacao($cotacao, $corretor, $segurado, $veiculo, $produtos, $proprietario, $condutor, $perfilsegurado));
 
         if ($wscotacao->cdretorno != '000') {
-            return back()->withInput()->with(['message'=>'cotacao - '.json_encode($wscotacao)]);
-            return back()->withInput();
+            return response()->json([
+                'sucesso' => false,
+                'message' => $wscotacao,
+            ]);
+
         }
 
         $formapg = json_decode($request->formapagamento);
@@ -189,12 +202,22 @@ class CotacaoController extends Controller
         
         
         if ($wsproposta->cdretorno != '000') {
-            
-            return back()->withInput()->with(['message'=>'Proposta - '.json_encode($wscotacao)]);
+            return response()->json([
+                'sucesso' => false,
+                'message' => $wsproposta,
+            ]);
         }else{
-            Propostas::find($wsproposta->retorno->idproposta)->update(['dtvalidade'=>date('Y-m-d', strtotime( "-32 day" ))]);
-            return view('backend.cotacao.sucesso', ['message' => 'Cotação realizada com sucesso!']);
+            Propostas::find($wsproposta->retorno->idproposta)->update(['dtvalidade'=>date('Y-m-d', strtotime('-45 day'))]);
+            return response()->json([
+                'sucesso' => true,
+                'html' => (string)view('backend.cotacao.sucesso', [
+                    'message' => 'Operação realizada com sucesso!',
+                    'idproposta'=>$wsproposta->retorno->idproposta,
+                    
+                ]),
+            ]);
         }
+        
     }
 
     public function pdf($idproposta)

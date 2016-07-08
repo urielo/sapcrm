@@ -11,13 +11,19 @@ Route::get('/', [
     'uses' => 'Backend\DashboardController@index'
 ]);
 
+use App\Model\Cotacoes;
 
+Route::get('teste', function () {
 
-//Route::get('teste', function () {
-//    echo '<pre>';
-//    print_r();
-//    echo '</pre>';
-//});
+    foreach (Cotacoes::whereIdcorretor(20)->paginate(10) as $proposta) {
+        echo '<pre>';
+
+        if ($proposta->proposta) {
+            print_r($proposta->segurado->clicpfcnpj);
+        }
+        echo '</pre>';
+    }
+});
 
 
 Route::get('/modelo', ['as' => 'modelo', 'uses' => 'Backend\AjaxController@modelo']);
@@ -29,12 +35,16 @@ Route::get('/produtosmaster', ['as' => 'produtosmaster', 'uses' => 'Backend\Ajax
 Route::get('/produtosopcional', ['as' => 'produtosopcional', 'uses' => 'Backend\AjaxController@produtosopcional']);
 
 
-Route::group(['prefix' => 'cotacao'], function () {
+Route::group(['prefix' => 'vendas'], function () {
 
 
     Route::post('gerar', [
         'as' => 'cotacao.gerar',
         'uses' => 'Backend\CotacaoController@gerar']);
+
+    Route::get('negociacoes', [
+        'as' => 'vendas.negociacoes',
+        'uses' => 'Backend\CotacaoController@negociacoes']);
 
     Route::get('cotar', [
         'as' => 'cotacao.cotar',

@@ -31,15 +31,20 @@ class Cotacoes extends Model
     
     public function corretor()
     {
-        
+        return $this->belongsTo('App\Model\Corretores','idcorretor','idcorretor');
     }
     public function segurado()
     {
-        
+        return $this->belongsTo('App\Model\Segurado','clicpfcnpj','clicpfcnpj');
     }
     public function parceiro()
     {
-        
+        return $this->belongsTo('App\Model\Parceiros','idparceiro','idparceiro');
+    }
+
+    public function proposta()
+    {
+        return $this->hasOne('App\Model\Propostas','idcotacao','idcotacao');
     }
 
 }

@@ -8,7 +8,7 @@
 
 
 <div class="col-xs-12 col-sm-12 ">
-    <div class="panel panel-default" style="margin-top: 10px;">
+    <div class="panel panel-@yield('panelcolor')" style="margin-top: 10px;">
         <div class="panel-heading">
             <h2 class="panel-title">@yield('heading')</h2>
         </div>
