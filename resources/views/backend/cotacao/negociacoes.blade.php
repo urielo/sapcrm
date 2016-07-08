@@ -21,7 +21,7 @@
                 </thead>
                 <tbody>
                 @foreach ($cotacoes as $cotacao)
-                    @if($cotacao->proposta)
+                    @if(is_object($cotacao->proposta))
                         <tr>
                             <td><a href="#" class="">{{$cotacao->proposta->idproposta}}</a></td>
                             <td><a href="#" class="">{!! format('cpfcnpj', $cotacao->segurado->clicpfcnpj) !!}</a></td>
@@ -50,7 +50,7 @@
                 @endforeach
                 </tbody>
             </table>
-            {{--<center>{{$cotacoes->render()}}</center>--}}
+            <center>{{$cotacoes->render()}}</center>
         </div>
 
     </div>

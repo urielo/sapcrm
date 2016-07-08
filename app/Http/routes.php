@@ -12,14 +12,17 @@ Route::get('/', [
 ]);
 
 use App\Model\Cotacoes;
+use App\Model\Propostas;
 
 Route::get('teste', function () {
 
-    foreach (Cotacoes::whereIdcorretor(20)->paginate(10) as $proposta) {
+
+    
+    foreach (Cotacoes::all() as $proposta) {
         echo '<pre>';
 
         if ($proposta->proposta) {
-            print_r($proposta->segurado->clicpfcnpj);
+            print_r($proposta->idcorretor);
         }
         echo '</pre>';
     }

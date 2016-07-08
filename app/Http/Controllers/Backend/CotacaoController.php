@@ -46,8 +46,9 @@ class CotacaoController extends Controller
     
     public function negociacoes()
     {
-        $cotacoes = $this->cotacoes->whereIdcorretor(Auth::user()->corretor->idcorretor)->paginate(10);
-        
+        $cotacoes = $this->cotacoes->has('proposta')->whereIdcorretor(Auth::user()->corretor->idcorretor)->paginate(10);
+//        $cotacoes = $this->cotacoes->paginate(10);
+
         return view('backend.cotacao.negociacoes', compact('cotacoes'));
     }
 
