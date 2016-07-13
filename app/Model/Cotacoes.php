@@ -46,5 +46,12 @@ class Cotacoes extends Model
     {
         return $this->hasOne('App\Model\Propostas','idcotacao','idcotacao');
     }
+    
+    public function produtos()
+    {
+        return $this->hasMany('App\Model\CotacaoProdutos','idcotacao','idcotacao');
+    }
+    
+    
 
 }

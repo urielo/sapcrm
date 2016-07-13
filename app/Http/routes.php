@@ -65,6 +65,19 @@ Route::group(['prefix' => 'vendas'], function () {
 
 });
 
+Route::group(['prefix' => 'gestao'], function () {
+
+
+
+
+    Route::get('apolices', [
+        'as' => 'gestao.apolices',
+        'uses' => 'Backend\GestaoController@apolices']);
+
+   
+
+});
+
 
 // Segurado Routes
 Route::group(['prefix' => 'segurado'], function () {

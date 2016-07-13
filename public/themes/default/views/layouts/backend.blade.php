@@ -39,10 +39,18 @@
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Seguradora<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span><span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Seguradora<span style="font-size:16px;" class="pull-left hidden-xs showopacity glyphicon glyphicon-user"></span><span class="caret"></span></a>
                             <ul class="dropdown-menu forAnimate" role="menu">
                                 <li><a href="#">Nobre</a></li>
                                 <li><a href="#">Usebens</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gestão<span style="font-size:16px;" class="pull-left hidden-xs showopacity glyphicon glyphicon-list-alt"></span><span class="caret"></span></a>
+                            <ul class="dropdown-menu forAnimate" role="menu">
+                                <li><a href="{{route('gestao.apolices')}}">Apolices</a></li>
+                                <li><a href="#">Cobrança</a></li>
 
                             </ul>
                         </li>

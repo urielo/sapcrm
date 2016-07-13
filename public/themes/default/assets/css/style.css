@@ -92,3 +92,11 @@
     height: 250px;
     overflow-y: scroll; 
 }
+.apolice table th{
+    text-align: center;
+    font-size: 13px;
+}
+.apolice table tbody td{
+    vertical-align:middle;
+    text-align: center;
+}
