@@ -88,7 +88,7 @@ class AjaxController extends Controller
             ->get();
 
 
-        echo '<option selected>Ano - Valor - Combus</option>';
+        echo '<option selected value="0">Ano - Valor - Combus</option>';
         foreach ($anovalor as $value):
 
 

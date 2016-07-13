@@ -10,6 +10,7 @@ use Illuminate\Contracts\Validation\Validator;
 use App\Http\Requests;
 use App\Model\Segurado;
 use App\Model\TipoVeiculos;
+use App\Model\FipeAnoValor;
 use App\Model\Veiculos;
 use App\Model\Uf;
 use App\Model\TipoUtilizacaoVeic;
@@ -24,7 +25,7 @@ use Illuminate\Support\Facades\Redirect;
 class CotacaoController extends Controller
 {
 
-    public function __construct(Cotacoes $cotacoes,Propostas $propostas ,OrgaoEmissors $orgaoemissors, EstadosCivis $estadoscivis, Segurado $segurados, Veiculos $veiculos, TipoVeiculos $tipos, Uf $ufs, TipoUtilizacaoVeic $tipoultiveics)
+    public function __construct(Cotacoes $cotacoes, Propostas $propostas, OrgaoEmissors $orgaoemissors, EstadosCivis $estadoscivis, Segurado $segurados, Veiculos $veiculos, TipoVeiculos $tipos, Uf $ufs, TipoUtilizacaoVeic $tipoultiveics)
     {
         $this->tipos = $tipos;
         $this->segurado = $segurados;
@@ -34,7 +35,7 @@ class CotacaoController extends Controller
         $this->estadoscivis = $estadoscivis;
         $this->orgaoemissors = $orgaoemissors;
         $this->propostas = $propostas;
-        $this->cotacoes= $cotacoes;
+        $this->cotacoes = $cotacoes;
 
         parent::__construct();
     }
@@ -43,13 +44,31 @@ class CotacaoController extends Controller
     {
 
     }
-    
+
     public function negociacoes()
     {
         $cotacoes = $this->cotacoes->has('proposta')->whereIdcorretor(Auth::user()->corretor->idcorretor)->paginate(10);
-//        $cotacoes = $this->cotacoes->paginate(10);
+
 
         return view('backend.cotacao.negociacoes', compact('cotacoes'));
+    }
+
+    public function negociar($idcotacao, FormaPagamento $formapagamentos)
+    {
+        $veiculos = $this->veiculo;
+        $segurados = $this->segurado;
+        $tipos = $this->tipos;
+        $ufs = $this->ufs;
+        $tipoultiveics = $this->tipoultiveics;
+        $estadoscivis = $this->estadoscivis;
+        $orgaoemissors = $this->orgaoemissors;
+
+        $cotacao = Cotacoes::find($idcotacao);
+        $anovalor = FipeAnoValor::class;
+
+
+        return view('backend.cotacao.formnegociar', compact('anovalor', 'cotacao','segurados', 'orgaoemissors', 'veiculos', 'tipos', 'ufs', 'tipoultiveics', 'estadoscivis', 'formapagamentos'));
+
     }
 
     public function cotar(FormaPagamento $formapagamentos)
@@ -68,7 +87,6 @@ class CotacaoController extends Controller
 
     public function gerar(CotacaoRequest $request)
     {
-
 
 
 //        return view('backend.cotacao.sucesso', ['message' => 'Cotação realizada com sucesso!']);
@@ -200,25 +218,25 @@ class CotacaoController extends Controller
         ];
 
         $wsproposta = json_decode(webserviceProposta($proposta, $segurado, $veiculo, $produtos, $proprietario, $condutor, $perfilsegurado));
-        
-        
+
+
         if ($wsproposta->cdretorno != '000') {
             return response()->json([
                 'sucesso' => false,
                 'message' => $wsproposta,
             ]);
-        }else{
-            Propostas::find($wsproposta->retorno->idproposta)->update(['dtvalidade'=>date('Y-m-d', strtotime('-45 day'))]);
+        } else {
+            Propostas::find($wsproposta->retorno->idproposta)->update(['dtvalidade' => date('Y-m-d', strtotime('-45 day'))]);
             return response()->json([
                 'sucesso' => true,
                 'html' => (string)view('backend.cotacao.sucesso', [
                     'message' => 'Operação realizada com sucesso!',
-                    'idproposta'=>$wsproposta->retorno->idproposta,
-                    
+                    'idproposta' => $wsproposta->retorno->idproposta,
+
                 ]),
             ]);
         }
-        
+
     }
 
     public function pdf($idproposta)
@@ -266,6 +284,7 @@ class CotacaoController extends Controller
 //        Mail::
 
     }
+
     public function store()
     {
 

@@ -49,6 +49,10 @@ Route::group(['prefix' => 'vendas'], function () {
         'as' => 'vendas.negociacoes',
         'uses' => 'Backend\CotacaoController@negociacoes']);
 
+    Route::get('negociar/{idcotacao}', [
+        'as' => 'vendas.negociar',
+        'uses' => 'Backend\CotacaoController@negociar']);
+
     Route::get('cotar', [
         'as' => 'cotacao.cotar',
         'uses' => 'Backend\CotacaoController@cotar'

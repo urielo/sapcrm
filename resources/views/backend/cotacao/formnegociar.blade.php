@@ -1,7 +1,7 @@
 @extends('layouts.cotacao')
 
-@section('panelcolor','default')
-@section('heading', 'Cotar')
+@section('panelcolor','success')
+@section('heading', 'Negociar')
 
 
 @section('contentSeg')
@@ -56,11 +56,13 @@
                                             <div class="form-group">
                                                 <label for="veiculo">Codigo Fipe - Veiculo</label>
                                                 <div class="input-group">
-                                                    <span class="input-group-addon" id="codefip-text">000000-0</span>
+                                                    <span class="input-group-addon"
+                                                          id="codefip-text">{{$cotacao->veiculo->veiccodfipe}}</span>
                                                     <input class="form-control form-control-sm" type="text"
-                                                           name="veiculo" aria-describedby="basic-addon1" id="veiculo"/>
+                                                           name="veiculo" aria-describedby="basic-addon1" id="veiculo" value="{{$cotacao->veiculo->fipe->modelo . " (".$cotacao->veiculo->fipe->preiodo.")"}}"/>
                                                 </div>
-                                                <input type="hidden" name="codefipe" id="codefip-value" value=""/>
+                                                <input type="hidden" name="codefipe" id="codefip-value"
+                                                       value="{{$cotacao->veiculo->veiccodfipe}}"/>
                                             </div>
                                         </div>
 
@@ -68,7 +70,7 @@
                                             <div class="form-group">
                                                 <label for="anom">Ano Modelo - Combustivel - Valor</label>
                                                 <select name="anom" id="anom" class="form-control form-control-sm">
-
+                                                    {!! '<option value=\'' . json_encode(['ano' => $cotacao->veiculo->veicano, 'combus' => $cotacao->veiculo->veictipocombus, 'valor' =>$anovalor::where('codefipe',$cotacao->veiculo->veiccodfipe)->where('ano',$cotacao->veiculo->veicano)->where('idcombustivel',$cotacao->veiculo->veictipocombus)->first()->valor]) . '\'>' . $cotacao->veiculo->veicano . ' - ' . ($cotacao->veiculo->veictipocombus == 1 ? 'Gasolina' : ($cotacao->veiculo->veictipocombus == 2 ? 'Alcool' : 'Disel')) . ' - R$ ' . number_format($anovalor::where('codefipe',$cotacao->veiculo->veiccodfipe)->where('ano',$cotacao->veiculo->veicano)->where('idcombustivel',$cotacao->veiculo->veictipocombus)->first()->valor, 2, ',', '.') . '</option>' !!}
                                                 </select>
                                             </div>
                                         </div>
@@ -1173,7 +1175,10 @@
     </div>
 
 
+    <div class="btn-group">
+        <button type="button" class="btn btn-primary" id="teste">Testar</button>
 
+    </div>
 
 
     {!!Form::close()!!}

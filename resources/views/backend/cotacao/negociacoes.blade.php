@@ -34,7 +34,7 @@
                                         <a href="#" class="">
                                             <button type="button" class="btn btn-danger btn-xs">Anular</button>
                                         </a>
-                                        <a href="#" class="">
+                                        <a href="{{route('vendas.negociar', $cotacao->idcotacao)}}" class="">
                                             <button type="button" class="btn btn-primary btn-xs">Negociar</button>
                                         </a>
                                         <a href="#" class="">

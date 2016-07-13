@@ -125,13 +125,42 @@ $(function () {
             demparcela = demparcela.toFixed(2).replace('.', ',');
             if (i == 1) {
                 retorno.push('<label style="font-size: 10px;"><input type="radio" name="quantparcela" id="formapagamento" value="' + i + '">' + i + 'x de R$ ' + priparcela + '</label><br>')
-            } else {
+            } else if (demparcela > 0) {
                 retorno.push('<label style="font-size: 10px;"><input type="radio" name="quantparcela" id="formapagamento" value="' + i + '">' + i + 'x 1ª de R$ ' + priparcela + ' Demais:  R$ ' + demparcela + ' ' + textojuros + '</label><br>')
             }
         }
 
         return retorno;
     };
+    function geturl() {
+        var url = location.href;
+        url = url.split('/');
+        url = url[0] + '//' + url[2] + '/';
+        return url;
+    }
+
+    function reusltAutoComplete(cdfipe) {
+        $('#codefip-value').val(cdfipe);
+        $('#codefip-text').text(cdfipe);
+        divano.fadeIn("slow");
+
+        $.get(geturl() + "anovalor/",
+            {cdfipe: cdfipe},
+            // Carregamos o resultado acima para o campo modelo
+            function (valor) {
+                $("select[name=anom]").html(valor);
+            }
+        )
+
+        $.get(geturl() + "anofab/",
+            {cdfipe: cdfipe},
+            // Carregamos o resultado acima para o campo modelo
+            function (valor) {
+                $("select[name=anof]").html(valor);
+            }
+        )
+
+    }
 
     buscaCep('#segcep', '#segenduf', '#segendlog', '#segendcidade');
     buscaCep('#propcep', '#propenduf', '#propendlog', '#propendcidade');
@@ -165,36 +194,19 @@ $(function () {
 
 
     $('#veiculo').marcacomplete({
+
         delay: 0,
-        source: '../modelo',
+        source: geturl() + 'modelo',
         select: function (event, ui) {
-            $('#codefip-value').val(ui.item.id);
-            $('#codefip-text').text(ui.item.id);
-            divano.fadeIn("slow");
+            reusltAutoComplete(ui.item.id);
 
-
-            $.get("../anovalor/",
-                {cdfipe: ui.item.id},
-                // Carregamos o resultado acima para o campo modelo
-                function (valor) {
-                    $("select[name=anom]").html(valor);
-                }
-            )
-
-            $.get("../anofab/",
-                {cdfipe: ui.item.id},
-                // Carregamos o resultado acima para o campo modelo
-                function (valor) {
-                    $("select[name=anof]").html(valor);
-                }
-            )
 
         }
     });
 
     $('#segprofissao').autocomplete({
         delay: 0,
-        source: '../profissao',
+        source: geturl() + 'profissao',
         select: function (event, ui) {
             $('#segcdprofissao').val(ui.item.id);
 
@@ -202,7 +214,7 @@ $(function () {
     });
     $('#segramoatividade').autocomplete({
         delay: 0,
-        source: '../ramoatividade',
+        source: geturl() + 'ramoatividade',
         select: function (event, ui) {
             $('#segcdramoatividade').val(ui.item.id);
 
@@ -222,7 +234,20 @@ $(function () {
 
 
     $("select[name=anom]").on('change', function () {
-        var djson = $.parseJSON($("select[name=anom]").val());
+
+
+        if ($("select[name=anom]").val() == 0) {
+            // alert($(this).val());
+            $.each($("#anom option"), function (key, value) {
+                if (value.value == '{"ano":2003,"combus":1,"valor":"12024"}') {
+
+                    $("#anom").val(value.value)
+                }
+            });
+        } else {
+
+            var djson = $.parseJSON($("select[name=anom]").val());
+        }
         var dados = {
             comissao: $('#comissao').val(),
             cdfipe: $('input[name=codefipe]').val(),
@@ -235,7 +260,7 @@ $(function () {
 
         $.ajax({
             data: dados,
-            url: '../produtosmaster',
+            url: geturl() + 'produtosmaster',
             dataType: "json",
             type: 'GET',
             success: function (retorno) {
@@ -283,7 +308,7 @@ $(function () {
                                 dados.idproduto = valor.idproduto;
                                 $.ajax({
                                     data: dados,
-                                    url: '../produtosopcional',
+                                    url: geturl() + 'produtosopcional',
                                     dataType: "json",
                                     type: 'GET',
                                     success: function (retorno2) {
@@ -511,6 +536,24 @@ $(function () {
             }
         });
         return false;
+    });
+
+    $('#teste').click(function () {
+
+        // $('#codefip-value').val();
+        reusltAutoComplete($('#codefip-value').val());
+
+        $('#anom').delay(3000).trigger('change');
+
+        // var val = parseJSON('{"ano":2003,"combus":1,"valor":"12024"}');
+
+
+
+        // $('#veiculo').val();
+        // $('#veiculo').trigger('keydown');
+        // $('#veiculo').data('ui-autocomplete').trigger('select', 'autocompleteselect', {item:{value:$(this).val()}});
+
+
     });
 
 

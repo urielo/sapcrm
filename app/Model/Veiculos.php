@@ -39,4 +39,9 @@ class Veiculos extends Model
     {
         return $this->belongsTo('App\Model\Segurado');
     }
+
+    public function fipe()
+    {
+        return $this->belongsTo('App\Model\Fipes','veiccodfipe', 'codefipe');
+    }
 }
