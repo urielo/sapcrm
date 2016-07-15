@@ -125,7 +125,7 @@ $(function () {
             demparcela = demparcela.toFixed(2).replace('.', ',');
             if (i == 1) {
                 retorno.push('<label style="font-size: 10px;"><input type="radio" name="quantparcela" id="formapagamento" value="' + i + '">' + i + 'x de R$ ' + priparcela + '</label><br>')
-            } else if (demparcela > 0) {
+            } else {
                 retorno.push('<label style="font-size: 10px;"><input type="radio" name="quantparcela" id="formapagamento" value="' + i + '">' + i + 'x 1ª de R$ ' + priparcela + ' Demais:  R$ ' + demparcela + ' ' + textojuros + '</label><br>')
             }
         }
@@ -531,8 +531,8 @@ $(function () {
 
             },
             error: function (error) {
-                // $('#allbody').html(error.responseText);
-                console.log(error);
+                $('#allbody').html(error);
+                // console.log(error);
             }
         });
         return false;
@@ -548,12 +548,20 @@ $(function () {
         // var val = parseJSON('{"ano":2003,"combus":1,"valor":"12024"}');
 
 
-
         // $('#veiculo').val();
         // $('#veiculo').trigger('keydown');
         // $('#veiculo').data('ui-autocomplete').trigger('select', 'autocompleteselect', {item:{value:$(this).val()}});
 
 
+    });
+
+    $(':button').click(function () {
+
+        if ($(this).attr('id') == 'erro') {
+            var idmsg = '#' + $(this).attr('message')
+            $('#msgdeerro').text($(idmsg).val())
+            console.log()
+        }
     });
 
 

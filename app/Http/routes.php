@@ -73,6 +73,9 @@ Route::group(['prefix' => 'gestao'], function () {
     Route::get('apolices', [
         'as' => 'gestao.apolices',
         'uses' => 'Backend\GestaoController@apolices']);
+Route::get('apolices/emitir/{idproposta}', [
+        'as' => 'apolices.emitir',
+        'uses' => 'Backend\GestaoController@emitir']);
 
    
 

@@ -151,12 +151,97 @@ if (!function_exists('aplicaComissao')):
     {
         if ($comissao > 0):
             $comissao = 1 - $comissao / 100;
-            return (float) number_format($valor / $comissao, 2, '.', '');
+            return (float)number_format($valor / $comissao, 2, '.', '');
         else:
-            return (float) number_format($valor, 2, '.', '');
+            return (float)number_format($valor, 2, '.', '');
         endif;
     }
 
 
- 
 endif;
+
+if (!function_exists('gerarXml')):
+
+    function gerarXml($servico, $config, $proposta)
+
+    {
+        $tipopessoa = (strlen($proposta->cotacao->veiculo->clicpfcnpj) > 11 ? 2 : 1);
+        switch ($servico):
+
+            case "cotacao":
+                $xml = '<i4proerp><cotacao_auto_configuravel id_revenda = "' . $config->id_revenda . '"';
+                $xml .= ' nm_usuario = "' . $config->nm_usuario . '"';
+                $xml .= ' cd_tipo_pessoa = "' . $tipopessoa . '"';
+                $xml .= ' nr_cpf_cnpj_cliente = "' . $proposta->cotacao->veiculo->clicpfcnpj . '"';
+                $xml .= ' nr_cep = "' . $proposta->cotacao->segurado->clicep . '"';
+                $xml .= ' cd_fipe = "' . $proposta->cotacao->veiculo->veiccodfipe . '"';
+                $xml .= ' nr_ano_auto = "' . $proposta->cotacao->veiculo->veicano . '"';
+                $xml .= ' dv_auto_zero = "' . $proposta->cotacao->veiculo->veicautozero . '"';
+                $xml .= ' id_auto_combustivel = "' . $proposta->cotacao->veiculo->veictipocombus . '"';
+                $xml .= ' cd_categoria_tarifaria = "' . $proposta->cotacao->veiculo->categoria . '"';
+                $xml .= ' cd_produto = "' . $config->cd_produto . '"';
+                $xml .= ' nr_mes_periodo_vigencia = "' . $config->mes_periodo_virgencia . '" /></i4proerp>';
+                break;
+            case "proposta":
+                $xml = '<i4proerp><proposta_auto_configuravel id_revenda = "' . $config->id_revenda . '"';
+                $xml .= ' nm_usuario = "' . $config->nm_usuario . '"';
+                $xml .= ' nr_cotacao_i4pro = "' . $proposta->cotacaoseguradora->id_cotacao_seguradora . '"';
+                $xml .= ' nm_pessoa = "' . $proposta->cotacao->segurado->clinomerazao . '"';
+                ($tipopessoa == 1 ? $xml .= ' id_sexo = "' . $proposta->cotacao->segurado->clicdsexo . '"'  : null);
+                ($tipopessoa == 1 ? $xml .= ' id_estado_civil = "' . $proposta->cotacao->segurado->clicdestadocivil . '"' : null);
+                $xml .= ' dt_nascimento = "' . $proposta->cotacao->segurado->clidtnasc . '"';
+                ($tipopessoa == 1 ? $xml .= ' nm_resp1 = "' . $config->nm_resp1_gov . '"'  : null);
+                ($tipopessoa == 1 ? $xml .= ' nm_resp2 = "' . $config->nm_resp2_gov . '"'  : null);
+                $xml .= ' nr_ddd_res = "' . $proposta->cotacao->segurado->clidddfone . '"';
+                $xml .= ' nm_fone_res = "' . $proposta->cotacao->segurado->clinmfone . '"';
+                $xml .= ' nr_ddd_cel = "' . $proposta->cotacao->segurado->clidddcel . '"';
+                $xml .= ' nm_fone_cel = "' . $proposta->cotacao->segurado->clinmcel . '"';
+                $xml .= ' nm_email = "' . $proposta->cotacao->segurado->cliemail . '"';
+                $xml .= ' nm_endereco = "' . $proposta->cotacao->segurado->clinmend . '"';
+                $xml .= ' nr_endereco = "' . $proposta->cotacao->segurado->clinumero . '"';
+                $xml .= ' nm_complemento = "' . $proposta->cotacao->segurado->cliendcomplet . '"';
+                $xml .= ' nm_cidade = "' . $proposta->cotacao->segurado->clinmcidade . '"';
+                $xml .= ' cd_uf = "' . $proposta->cotacao->segurado->clicduf . '"';
+                $xml .= ($tipopessoa == 1 ? ' cd_profissao = "'  : ' id_ramo_atividade = "') . $proposta->cotacao->segurado->clicdprofiramoatividade . '"';
+                $xml .= ' nm_placa = "' . $proposta->cotacao->veiculo->veicplaca . '"';
+                $xml .= ' nm_chassis = "' . $proposta->cotacao->veiculo->veicchassi . '"';
+                $xml .= ' dv_segurado_proprietario = "' . ($proposta->cotacao->veiculo->propcpfcnpj == $proposta->cotacao->veiculo->clicpfcnpj ? 1 : 0) . '"';
+                $xml .= ' id_auto_utilizacao = "' . $proposta->cotacao->veiculo->veiccdutilizaco . '"';
+                $xml .= ' cd_forma_pagamento_pparcela = "' . $config->cd_forma_pagamento . '"';
+                $xml .= ' id_produto_parc_premio = "' . $config->id_produto_parcela_premio . '" /></i4proerp>';
+                break;
+            case "venda":
+                $xml = '<i4proerp><venda_auto_configuravel id_revenda = "'.$config->id_revenda .'"';
+                $xml .= ' nm_usuario = "'. $config->nm_usuario .'"';
+                $xml .= ' nr_cotacao_i4pro = "'.$proposta->cotacaoseguradora->id_cotacao_seguradora.'"';
+                $xml .= ' id_proposta = "'. $proposta->propostaseguradora->id_proposta_seguradora .'"';
+                $xml .= ' dt_instala_rastreador = "'.date("Ymd").'"';
+                $xml .= ' dt_ativa_rastreador = "'.date("Ymd").'"';
+                $xml .= ' dt_inicio_vig_comodato = "'.date("Ymd").'"';
+                $xml .= ' dt_fim_vig_comodato = "'. date('Ymd', strtotime('+1 year')).'"  /></i4proerp>';
+                break;
+            default:
+                $xml = false;
+
+        endswitch;
+
+        return $xml;
+    }
+
+endif;
+
+if (!function_exists('Getcall')):
+
+    function Getcall($SoapClient, $servico, $xml)
+    {
+        $result = $SoapClient->__soapCall('Executar', array(
+            'Executar' => array(
+                'Servico' => $servico,
+                'conteudoXML' => $xml
+            )));
+        return $result->ExecutarResult;
+    }
+
+endif;
+
+

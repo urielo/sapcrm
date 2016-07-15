@@ -22,7 +22,7 @@
                 <tbody>
                 @foreach ($cotacoes as $cotacao)
                     @if(is_object($cotacao->proposta))
-                        <tr>
+                        <tr {!! date('d/m/Y', strtotime($cotacao->proposta->dtvalidade)) > date('d/m/Y') ? 'class="danger"': '' !!}>
                             <td><a href="#" class="">{{$cotacao->proposta->idproposta}}</a></td>
                             <td><a href="#" class="">{!! format('cpfcnpj', $cotacao->segurado->clicpfcnpj) !!}</a></td>
                             <td>{!! nomeCase($cotacao->segurado->clinomerazao) !!}</td>
@@ -37,9 +37,11 @@
                                         <a href="{{route('vendas.negociar', $cotacao->idcotacao)}}" class="">
                                             <button type="button" class="btn btn-primary btn-xs">Negociar</button>
                                         </a>
-                                        <a href="#" class="">
-                                            <button type="button" class="btn btn-success btn-xs">Efetivar</button>
-                                        </a>
+                                        @if( date('d/m/Y', strtotime($cotacao->proposta->dtvalidade)) < date('d/m/Y') )
+                                            <a href="#" class="">
+                                                <button type="button" class="btn btn-success btn-xs">Efetivar</button>
+                                            </a>
+                                        @endif
                                     </div>
                                 </center>
                             </td>

@@ -47,7 +47,10 @@ class CotacaoController extends Controller
 
     public function negociacoes()
     {
-        $cotacoes = $this->cotacoes->has('proposta')->whereIdcorretor(Auth::user()->corretor->idcorretor)->paginate(10);
+        $cotacoes = $this->cotacoes->has('proposta')
+            ->whereIdcorretor(Auth::user()->corretor->idcorretor)
+            ->orderBy('idcotacao','desc')
+            ->paginate(10);
 
 
         return view('backend.cotacao.negociacoes', compact('cotacoes'));
@@ -90,10 +93,10 @@ class CotacaoController extends Controller
 
 
 //        return view('backend.cotacao.sucesso', ['message' => 'Cotação realizada com sucesso!']);
-        $segurado = ["segurado" =>
+        return $segurado = ["segurado" =>
             ["segNomeRazao" => ($request->tipopessoa == 1 ? $request->segnome : $request->segrazao),
                 "segCpfCnpj" => ($request->tipopessoa == 1 ? $request->segcpf : $request->segcnpj),
-                "segDtNasci" => ($request->tipopessoa == 1 ? date('Ymd', strtotime($request->segdatanasc)) : date('Ymd', strtotime($request->segdatafund))),
+                "segDtNasci" => ($request->tipopessoa == 1 ? date('Ymd', strtotime(str_replace('/','-',$request->segdatanasc))) : date('Ymd', strtotime(str_replace('/','-',$request->segdatafund)))),
                 "segCdSexo" => ($request->tipopessoa == 1 ? $request->segsexo : NULL),
                 "segCdEstCivl" => ($request->tipopessoa == 1 ? $request->segestadocivil : 0),
                 "segProfRamoAtivi" => ($request->tipopessoa == 1 ? (int)$request->segcdprofissao : (int)$request->segcdramoatividade),

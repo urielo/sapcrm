@@ -29,6 +29,23 @@ class Propostas extends Model
         return $this->belongsTo('App\Model\Cotacoes', 'idcotacao', 'idcotacao');
     }
 
+    public function cotacaoseguradora()
+    {
+        return $this->hasOne('App\Model\CotacoesSeguradora', 'id_proposta_sap', 'idproposta');
+    }
+
+    public function propostaseguradora()
+    {
+        return $this->hasOne('App\Model\PropostasSeguradora', 'id_proposta_sap', 'idproposta');
+    }
+    
+    public function apoliceseguradora()
+    {
+        return $this->hasOne('App\Model\ApolicesSeguradora', 'id_proposta_sap', 'idproposta');
+    }
+    
+    
+
    
 
 

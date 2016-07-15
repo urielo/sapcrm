@@ -31,7 +31,7 @@
                 <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-2">
                     <ul class="nav navbar-nav">
                         <li class="dropdown">
-                            <a href="{{route('segurado.index')}}" class="dropdown-toggle" data-toggle="dropdown">Vendas<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span><span class="caret"></span></a>
+                            <a href="{{route('segurado.index')}}" class="dropdown-toggle" data-toggle="dropdown">Vendas<span style="font-size:16px;" class="pull-left hidden-xs showopacity glyphicon glyphicon glyphicon-shopping-cart"></span><span class="caret"></span></a>
                             <ul class="dropdown-menu forAnimate" role="menu">
                                 <li><a href="{{route('cotacao.cotar')}}">Cotar</a></li>
                                 <li><a href="{{route('vendas.negociacoes')}}">Negociações</a></li>
@@ -55,7 +55,7 @@
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-cog"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <span class="caret"></span><span style="font-size:16px;" class="pull-left hidden-xs showopacity glyphicon glyphicon-cog"></span></a>
                             <ul class="dropdown-menu forAnimate" role="menu">
                                 <li><a href="{{route('backend.upload')}}">Upload</a></li>
 
