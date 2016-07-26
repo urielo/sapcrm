@@ -41,6 +41,7 @@ $app->singleton(
     App\Exceptions\Handler::class
 );
 
+$app->register(Artisaninweb\SoapWrapper\ServiceProvider::class);
 /*
 |--------------------------------------------------------------------------
 | Return The Application

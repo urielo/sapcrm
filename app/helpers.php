@@ -176,7 +176,7 @@ if (!function_exists('gerarXml')):
                 $xml .= ' nr_cep = "' . $proposta->cotacao->segurado->clicep . '"';
                 $xml .= ' cd_fipe = "' . $proposta->cotacao->veiculo->veiccodfipe . '"';
                 $xml .= ' nr_ano_auto = "' . $proposta->cotacao->veiculo->veicano . '"';
-                $xml .= ' dv_auto_zero = "' . $proposta->cotacao->veiculo->veicautozero . '"';
+                $xml .= ' dv_auto_zero = "' . ($proposta->cotacao->veiculo->veicautozero == 0 ? 2 : 1) . '"';
                 $xml .= ' id_auto_combustivel = "' . $proposta->cotacao->veiculo->veictipocombus . '"';
                 $xml .= ' cd_categoria_tarifaria = "' . $proposta->cotacao->veiculo->categoria . '"';
                 $xml .= ' cd_produto = "' . $config->cd_produto . '"';
@@ -233,6 +233,20 @@ endif;
 if (!function_exists('Getcall')):
 
     function Getcall($SoapClient, $servico, $xml)
+    {
+        $result = $SoapClient->__soapCall('Executar', array(
+            'Executar' => array(
+                'Servico' => $servico,
+                'conteudoXML' => $xml
+            )));
+        return $result->ExecutarResult;
+    }
+
+endif;
+
+if (!function_exists('GetCallNobre')):
+
+    function GetCallNobre($seguradora, $SoapClient, $servico, $xml)
     {
         $result = $SoapClient->__soapCall('Executar', array(
             'Executar' => array(

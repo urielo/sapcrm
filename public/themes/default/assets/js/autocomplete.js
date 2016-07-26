@@ -561,6 +561,10 @@ $(function () {
             var idmsg = '#' + $(this).attr('message')
             $('#msgdeerro').text($(idmsg).val())
             console.log()
+        }else if ($(this).attr('id') == 'xml') {
+            var idmsg = '#' + $(this).attr('message')
+            $('#msgdeerro').text($(idmsg).val())
+            console.log()
         }
     });
 

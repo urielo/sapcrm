@@ -51,6 +51,17 @@
                                             </button>
                                             <input type="hidden" id="erro{{$cotacao->proposta->idproposta}}"
                                                    value="Proposta:{{$cotacao->proposta->idproposta}} {{$cotacao->proposta->cotacaoseguradora->nm_retorno_seguradora}}">
+                                            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
+                                                    data-target=".modal-error"
+                                                    message="xml{{$cotacao->proposta->idproposta}}" id="xml">XML
+                                            </button>
+                                            <input type="hidden" id="xml{{$cotacao->proposta->idproposta}}"
+                                                   value="{{$cotacao->proposta->cotacaoseguradora->xml_saida}}">
+
+                                            <a href="{{route('apolices.emitir', $cotacao->proposta->idproposta)}}"
+                                               class="">
+                                                <button type="button" class="btn btn-success btn-sm">Emitir</button>
+                                            </a>
                                         </div>
                                     @elseif($cotacao->proposta->cotacaoseguradora && $cotacao->proposta->cotacaoseguradora->cd_retorno_seguradora != 0)
                                         <div class="btn-group">
@@ -61,6 +72,18 @@
                                             </button>
                                             <input type="hidden" id="erro{{$cotacao->proposta->idproposta}}"
                                                    value="Proposta:{{$cotacao->proposta->idproposta}}  {{$cotacao->proposta->cotacaoseguradora->nm_retorno_seguradora}}">
+
+                                            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
+                                                    data-target=".modal-error"
+                                                    message="xml{{$cotacao->proposta->idproposta}}" id="xml">XML
+                                            </button>
+                                            <input type="hidden" id="xml{{$cotacao->proposta->idproposta}}"
+                                                   value="{{$cotacao->proposta->cotacaoseguradora->xml_saida}}">
+
+                                            <a href="{{route('apolices.emitir', $cotacao->proposta->idproposta)}}"
+                                               class="">
+                                                <button type="button" class="btn btn-success btn-sm">Emitir</button>
+                                            </a>
                                         </div>
                                     @else
                                         <div class="btn-group">
@@ -73,7 +96,7 @@
 
 
                                 @elseif($cotacao->proposta->apoliceseguradora->cd_retorno_seguradora == 0)
-                                    <a href="#"> <span class="glyphicon glyphicon-save-file"></span> PDF - Apolice </a>
+                                    <a href="{{route('apolices.pdf', $cotacao->proposta->idproposta)}}" target="_blank"> <span class="glyphicon glyphicon-save-file"></span> PDF - Apolice </a>
                                 @endif
 
                             </td>
@@ -95,10 +118,10 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <h4 class="modal-title" >Descrição do Erro</h4>
+                        <h4 class="modal-title">Descrição do Erro</h4>
                     </div>
                     <div class="modal-body danger">
-                        <p id="msgdeerro"> </p>
+                        <p id="msgdeerro"></p>
                     </div>
                 </div>
             </div>

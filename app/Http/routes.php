@@ -11,21 +11,31 @@ Route::get('/', [
     'uses' => 'Backend\DashboardController@index'
 ]);
 
-use App\Model\Cotacoes;
-use App\Model\Propostas;
+use Artisaninweb\SoapWrapper\Facades\SoapWrapper;
 
 Route::get('teste', function () {
 
+    $SoapClient = new \SoapClient('http://ws.nobre.com.br/AutoService.svc?wsdl');
 
-    
-    foreach (Cotacoes::all() as $proposta) {
-        echo '<pre>';
+    $xmlvar = new \SoapVar('<Authorization>ABHeZhJudALhqLktqAZbUwNkAGk1SIm6PAh42SM2B/IXonOONjfL0F8GbZD7dGIXNuhetELem7NNJyyq5cQo6Q==</Authorization>', 147);
 
-        if ($proposta->proposta) {
-            print_r($proposta->idcorretor);
-        }
-        echo '</pre>';
-    }
+    $header = new  \SoapHeader('http://ws.nobre.com.br/', 'Authorization', $xmlvar);
+    $SoapClient->__setSoapHeaders($header);
+
+
+
+//    $result = $SoapClient->__soapCall('Ping',[]);
+
+        $getvehicle = $SoapClient->GetVehicle([
+            'promoCode' => 'SKY-PROTECTION-3164-P50',
+            'fipeCode' => '114357-5',
+        ]);
+
+//    set_error_handler('var_dump', 0); // Never called because of empty mask.
+//    @trigger_error("");
+//    restore_error_handler();
+
+    return var_dump($getvehicle);
 });
 
 
@@ -68,16 +78,17 @@ Route::group(['prefix' => 'vendas'], function () {
 Route::group(['prefix' => 'gestao'], function () {
 
 
-
-
     Route::get('apolices', [
         'as' => 'gestao.apolices',
         'uses' => 'Backend\GestaoController@apolices']);
-Route::get('apolices/emitir/{idproposta}', [
+    Route::get('apolices/emitir/{idproposta}', [
         'as' => 'apolices.emitir',
         'uses' => 'Backend\GestaoController@emitir']);
+    
+    Route::get('apolices/pdf/{idproposta}', [
+        'as' => 'apolices.pdf',
+        'uses' => 'Backend\GestaoController@apolicepdf']);
 
-   
 
 });
 

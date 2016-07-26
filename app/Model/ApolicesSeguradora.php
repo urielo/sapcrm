@@ -22,7 +22,7 @@ class ApolicesSeguradora extends Model
         'cd_retorno_seguradora',
         'nm_retorno_seguradora',
         'dt_criacao',
-        'di_update',
+        'dt_update',
         'xml_saida',
         'xml_retorno',
         'id_apolice_seguradora',
