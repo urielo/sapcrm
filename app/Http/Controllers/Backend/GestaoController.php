@@ -283,7 +283,14 @@ class GestaoController extends Controller
      */
     public function cancelar(Request $request)
     {
-        return back();
+        $proposta = Propostas::find($request->idproposta);
+        $proposta->idmotivo = $request->motivo;
+        $proposta->idstatus = $request->status;
+        $proposta->save();
+        $proposta->cotacao->idstatus = $request->status;
+        $proposta->cotacao->save();
+
+        return Redirect::back()->with('sucesso','Operação relaizada com sucesso!!');
     }
     
 

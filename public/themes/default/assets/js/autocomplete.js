@@ -555,17 +555,17 @@ $(function () {
 
     });
 
-    $(':button').click(function () {
+    $(':button').on('click', function () {
 
         if ($(this).attr('id') == 'erro') {
             var idmsg = '#' + $(this).attr('message')
             $('#msgdeerro').text($(idmsg).val())
 
-        }else if ($(this).attr('id') == 'xml') {
+        } else if ($(this).attr('id') == 'xml') {
             var idmsg = '#' + $(this).attr('message')
             $('#msgdeerro').text($(idmsg).val())
 
-        }else if ($(this).attr('id') == 'cancelar') {
+        } else if ($(this).attr('id') == 'cancelar') {
 
             $.ajax({
                 url: $(this).attr('href'),
@@ -577,16 +577,17 @@ $(function () {
 
             });
 
+        } else if ($(this).attr('id') == 'fechasecesso') {
 
-
+            $('#sucesso').hide();
         }
 
     });
 
     $('a').click(function () {
-        
-        if($(this).attr('id') == 'linksegurado'){
-            
+
+        if ($(this).attr('id') == 'linksegurado') {
+
             $.ajax({
                 url: $(this).attr('href'),
                 type: 'GET',

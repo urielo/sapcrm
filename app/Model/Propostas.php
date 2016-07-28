@@ -16,10 +16,11 @@ class Propostas extends Model
         'quantparc',
         'dtvalidade',
         'dtcreate',
-        'codstatus',
+        'idstatus',
         'nmbandeira',
         'numcartao',
         'validadecartao',
+        'idmotivo',
 
     ];
     public $timestamps = FALSE;

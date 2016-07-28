@@ -21,6 +21,17 @@
                 </div>
             </div>
 
+            @if(Session::has('sucesso'))
+                <div class="alert alert-info" id="sucesso">
+                    <button type="button" class="close" aria-label="Close" id="fechasecesso">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    {{Session::get('sucesso')}}
+                </div>
+            @endif
+
+
+
 
             @yield('contentSeg')
 

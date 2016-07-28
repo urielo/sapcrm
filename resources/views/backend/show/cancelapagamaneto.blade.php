@@ -9,18 +9,35 @@
 </div>
 <div class="modal-body">
     <div class="container-fluid">
+        <div class="row">
+            <div class="radio">
+                <div class="col-md-4 col-md-offset-2">
+                    <label>
+                        {!! Form::radio('status', 13) !!}
+                        Renegociação
+                    </label>
+                </div>
+                <div class="col-md-4">
+                    <label>
+                        {!! Form::radio('status', 12, true) !!}
+                        Cancelamento
+                    </label>
+                </div>
+            </div>
+        </div>
+
         {!! Form::hidden('idproposta',$proposta->idproposta) !!}
 
         <div class="form-group">
-          {!! Form::label('motivo', 'Motivo') !!}
+            {!! Form::label('motivo', 'Motivo') !!}
 
-            {!! Form::select('motivo', $motivos->lists('nm_uf','cd_uf')->toArray(), null, ['class' => 'form-control form-control-sm']) !!}
+            {!! Form::select('motivo', $motivos->lists('descrição', 'id')->toArray(), null, ['class' => 'form-control form-control-sm']) !!}
             {{--<select name="anom" id="anom" class="">--}}
 
             {{--</select>--}}
         </div>
     </div>
-    </div>
+</div>
 
 </div>
 <div class="modal-footer">

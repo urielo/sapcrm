@@ -11,7 +11,7 @@ use App\Http\Requests\CotacaoRequest;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests;
 use App\Model\Segurado;
-use App\Model\Uf;
+use App\Model\Motivos;
 use App\Model\Veiculos;
 use App\Model\Cotacoes;
 use App\Model\Propostas;
@@ -42,7 +42,7 @@ class ShowsController extends Controller
         $proposta = new \stdClass();
         $proposta->idproposta = $idproposta;
         $motivos = ['1'=>'Nao gostou','2'=>'Nao Conseguiu pagar', '3'=>'Problemas com cartão'];
-        $motivos = Uf::all();
+        $motivos = Motivos::all();
 
         return view('backend.show.cancelapagamaneto',compact('proposta','motivos'));
     }
