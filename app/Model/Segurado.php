@@ -38,4 +38,29 @@ class Segurado extends Model
         return $this->hasMany('App\Model\Veiculos');
     }
 
+    /**
+     * @return string
+     */
+    public function estadocivil()
+    {
+        return $this->hasOne('App\Model\EstadosCivis', 'idestadocivil', 'clicdestadocivil');
+    }
+
+    public function profissao()
+    {
+        return $this->hasOne('App\Model\Profissoes', 'id_ocupacao', 'clicdprofiramoatividade');
+
+    }
+
+
+    public function ramosatividade()
+    {
+        return $this->hasOne('App\Model\RamoAtividades', 'id_ramo_atividade', 'clicdprofiramoatividade');
+
+    }
+    public function uf()
+    {
+        return $this->hasOne('App\Model\Uf', 'cd_uf', 'clicduf');
+
+    }
 }

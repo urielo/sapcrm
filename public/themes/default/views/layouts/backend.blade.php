@@ -49,8 +49,8 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gestão<span style="font-size:16px;" class="pull-left hidden-xs showopacity glyphicon glyphicon-list-alt"></span><span class="caret"></span></a>
                             <ul class="dropdown-menu forAnimate" role="menu">
+                                <li><a href="{{route('gestao.cobranca')}}">Cobrança</a></li>
                                 <li><a href="{{route('gestao.apolices')}}">Apolices</a></li>
-                                <li><a href="#">Cobrança</a></li>
 
                             </ul>
                         </li>

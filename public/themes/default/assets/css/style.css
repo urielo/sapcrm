@@ -90,7 +90,7 @@
 
 .produto-scroll{
     height: 250px;
-    overflow-y: scroll; 
+    overflow-y: scroll;
 }
 .apolice table th{
     text-align: center;
@@ -99,4 +99,7 @@
 .apolice table tbody td{
     vertical-align:middle;
     text-align: center;
+
+
 }
+

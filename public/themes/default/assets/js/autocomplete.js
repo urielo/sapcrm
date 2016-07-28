@@ -560,12 +560,44 @@ $(function () {
         if ($(this).attr('id') == 'erro') {
             var idmsg = '#' + $(this).attr('message')
             $('#msgdeerro').text($(idmsg).val())
-            console.log()
+
         }else if ($(this).attr('id') == 'xml') {
             var idmsg = '#' + $(this).attr('message')
             $('#msgdeerro').text($(idmsg).val())
-            console.log()
+
+        }else if ($(this).attr('id') == 'cancelar') {
+
+            $.ajax({
+                url: $(this).attr('href'),
+                type: 'GET',
+                success: function (retorno) {
+                    $('.modal-content').html(retorno);
+
+                }
+
+            });
+
+
+
         }
+
+    });
+
+    $('a').click(function () {
+        
+        if($(this).attr('id') == 'linksegurado'){
+            
+            $.ajax({
+                url: $(this).attr('href'),
+                type: 'GET',
+                success: function (retorno) {
+                    $('.modal-content').html(retorno);
+                    return false;
+                }
+
+            });
+        }
+
     });
 
 

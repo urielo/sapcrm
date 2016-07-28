@@ -81,6 +81,7 @@ Route::group(['prefix' => 'gestao'], function () {
     Route::get('apolices', [
         'as' => 'gestao.apolices',
         'uses' => 'Backend\GestaoController@apolices']);
+    
     Route::get('apolices/emitir/{idproposta}', [
         'as' => 'apolices.emitir',
         'uses' => 'Backend\GestaoController@emitir']);
@@ -89,7 +90,28 @@ Route::group(['prefix' => 'gestao'], function () {
         'as' => 'apolices.pdf',
         'uses' => 'Backend\GestaoController@apolicepdf']);
 
+    Route::get('cobranca', [
+        'as' => 'gestao.cobranca',
+        'uses' => 'Backend\GestaoController@cobranca']); 
+    
+    Route::post('cancela', [
+        'as' => 'gestao.cancela',
+        'uses' => 'Backend\GestaoController@cancelar']);
 
+
+});
+
+Route::group(['prefix'=>'show'], function (){
+    
+    Route::get('segurado/{cpfcnpj}', [
+        'as' => 'show.segurado',
+        'uses' => 'Backend\ShowsController@segurado']);
+
+    Route::get('cancela/{idproposta}', [
+        'as' => 'show.cancelaproposta',
+        'uses' => 'Backend\ShowsController@cancela']);
+    
+    
 });
 
 

@@ -264,5 +264,28 @@ class GestaoController extends Controller
 
     }
 
+    /**
+     * @return Cotacoes
+     */
+    public function cobranca()
+    {
+        $propostas = $this->propostas
+            ->whereIdstatus(10)
+            ->orderBy('idproposta', 'asc')
+            ->paginate(10);
+
+
+        return view('backend.gestao.cobranca', compact('propostas'));
+    }
+
+    /**
+     * @return Cotacoes
+     */
+    public function cancelar(Request $request)
+    {
+        return back();
+    }
+    
+
 
 }
