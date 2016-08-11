@@ -32,12 +32,22 @@ if (!function_exists('format')):
                         $mask = "%s%s%s%s%s-%s%s%s%s";
                     endif;
                     break;
+                case 'cartao':
+
+                    if(strlen($string) != 16){
+                       return  $string;
+                    }
+                    $mask = "%s%s%s%s %s%s%s%s %s%s%s%s %s%s%s%s";
+                    break;  
                 case 'cep':
                     $mask = "%s%s%s%s%s-%s%s%s";
                     break;
                 case 'placa':
                     $string = strtoupper($string);
                     $mask = "%s%s%s-%s%s%s%s";
+                    break;
+                case 'real':
+                    return number_format($string,2,',','.');
                     break;
                 default :
                     return 'tipo invalida';
@@ -254,6 +264,30 @@ if (!function_exists('GetCallNobre')):
                 'conteudoXML' => $xml
             )));
         return $result->ExecutarResult;
+    }
+
+endif;
+
+if (!function_exists('getDateFormat')):
+
+    function getDateFormat($date, $type = null)
+    {
+        switch ($type){
+
+            case 'valcartao':
+                $validade = '01-'.str_replace('/',"-",$date);
+                return date('Ym',strtotime($validade));
+                break;
+            case 'nascimento':
+                $validade = str_replace('/',"-",$date);
+                return date('Ymd',strtotime($validade));
+            default:
+               return $validade = str_replace('/',"-",$date);
+
+        }
+            
+        
+
     }
 
 endif;

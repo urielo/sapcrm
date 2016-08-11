@@ -28,6 +28,13 @@
                     </button>
                     {{Session::get('sucesso')}}
                 </div>
+            @elseif(Session::has('error'))
+                <div class="alert alert-danger" id="sucesso">
+                    <button type="button" class="close" aria-label="Close" id="fechasecesso">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    {{Session::get('error')}}
+                </div>
             @endif
 
 

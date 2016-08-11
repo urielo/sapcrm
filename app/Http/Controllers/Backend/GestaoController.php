@@ -10,7 +10,7 @@ use Illuminate\Contracts\Validation\Validator;
 use App\Http\Requests;
 use App\Model\Segurado;
 use App\Model\TipoVeiculos;
-use App\Model\FipeAnoValor;
+use App\Model\Cobranca;
 use App\Model\Veiculos;
 use App\Model\Uf;
 use App\Model\TipoUtilizacaoVeic;
@@ -23,6 +23,7 @@ use App\Model\CotacoesSeguradora;
 use App\Model\PropostasSeguradora;
 use App\Model\ApolicesSeguradora;
 use App\Model\FormaPagamento;
+use App\Model\Cartoes;
 use App\Http\Requests\CotacaoRequest;
 use Illuminate\Support\Facades\Redirect;
 
@@ -52,7 +53,7 @@ class GestaoController extends Controller
     public function apolices()
     {
         $cotacoes = $this->cotacoes->has('proposta')
-            ->whereIdcorretor(Auth::user()->corretor->idcorretor)
+            ->whereIdstatus(15)
             ->orderBy('idcotacao', 'desc')
             ->paginate(5);
 
@@ -65,14 +66,13 @@ class GestaoController extends Controller
         $config = ConfigSeguradora::find(3);
         $proposta = Propostas::find($idproposta);
         $proposta->cotacao->veiculo->categoria = 10;
-        
-        
+
 
 //        return $proposta->cotacao->veiculo;
 
         $SoapClient = new \SoapClient('http://www.usebens.com.br/homologacao/webservice/i4prowebservice.asmx?wsdl');
 
-    
+
         if (!$proposta->cotacaoseguradora) {
             $response = Getcall($SoapClient, 'GerarCotacaoAutoConfiguravel', gerarXml('cotacao', $config, $proposta));
 
@@ -234,28 +234,27 @@ class GestaoController extends Controller
     public function apolicepdf($idproposta)
     {
         $proposta = Propostas::find($idproposta);
-        
+
         $proposta->cotacao->veiculo->veicplaca;
 
-        
+
         $id_endosso = $proposta->apoliceseguradora->id_endosso_seguradora;
-        $tipo = 793 ;
+        $tipo = 793;
 
         $client = new \SoapClient('http://usebens.com.br/i4pro/webservice/i4prowebservice.asmx?wsdl');//http://www.usebens.com.br/homologacao/webservice/i4prowebservice.asmx?wsdl
 
         $function = 'Executar';
 
-        $arguments= array('Executar' => array(
-            'Servico'   => 'RelatórioPDF' ,
-            'conteudoXML'      => "<i4proerp><obter_relatorio_pdf id_relatorio  ='$tipo' cd_empresa  ='80' id_endosso  ='$id_endosso'> </obter_relatorio_pdf></i4proerp>"
+        $arguments = array('Executar' => array(
+            'Servico' => 'RelatórioPDF',
+            'conteudoXML' => "<i4proerp><obter_relatorio_pdf id_relatorio  ='$tipo' cd_empresa  ='80' id_endosso  ='$id_endosso'> </obter_relatorio_pdf></i4proerp>"
 
         ));
         #$options = array('location' => 'http://usebens.com.br/i4pro/webservice/i4prowebservice.asmx');//http://www.usebens.com.br/homologacao/webservice/i4prowebservice.asmx
         $options = array('location' => 'http://www.usebens.com.br/homologacao/webservice/i4prowebservice.asmx');//http://www.usebens.com.br/homologacao/webservice/i4prowebservice.asmx
         $result = $client->__soapCall($function, $arguments, $options);
-        $str_pdf_base64 =  $result->ExecutarResult ;
-        $tempfile = 'apolice-'.$proposta->cotacao->veiculo->veicplaca .'.pdf';
-
+        $str_pdf_base64 = $result->ExecutarResult;
+        $tempfile = 'apolice-' . $proposta->cotacao->veiculo->veicplaca . '.pdf';
 
 
         header("Content-Type: application/pdf");
@@ -267,6 +266,7 @@ class GestaoController extends Controller
     /**
      * @return Cotacoes
      */
+
     public function cobranca()
     {
         $propostas = $this->propostas
@@ -276,6 +276,17 @@ class GestaoController extends Controller
 
 
         return view('backend.gestao.cobranca', compact('propostas'));
+    }
+
+    public function aprovacao()
+    {
+        $propostas = Cobranca::distinct()->select('idproposta')
+            ->whereIdstatus(14)
+            ->orderBy('idproposta', 'asc')
+            ->paginate(10);
+
+
+        return view('backend.gestao.aprovacao', compact('propostas'));
     }
 
     /**
@@ -290,9 +301,118 @@ class GestaoController extends Controller
         $proposta->cotacao->idstatus = $request->status;
         $proposta->cotacao->save();
 
-        return Redirect::back()->with('sucesso','Operação relaizada com sucesso!!');
+        return Redirect::back()->with('sucesso', 'Operação relaizada com sucesso!!');
     }
-    
+
+
+    public function salvarpagamento(Request $request)
+    {
+
+        $numero = str_replace(' ', '', $request->nnmcartao);
+        $proposta = Propostas::find($request->idproposta);
+
+
+        if ($proposta->idformapg == 1) {
+
+            $cartao = Cartoes::where('numero', $numero)
+                ->where('cvv', $request->cvvcartao)
+                ->where('validade', getDateFormat($request->valcartao, 'valcartao'))
+                ->first();
+
+            $dados = [
+                'vlcartao' => $proposta->premiototal,
+                'idstatus' => 14,
+                'parcelas' => $proposta->quantparc
+            ];
+
+
+            if ($cartao) {
+                $dados['idcartao'] = $cartao->id;
+            } else {
+                $cartao = new Cartoes([
+                    'nome' => strtoupper($request->nomecartao),
+                    'bandeira' => $request->bandeiracartao,
+                    'numero' => $numero,
+                    'validade' => getDateFormat($request->valcartao, 'valcartao'),
+                    'cvv' => $request->cvvcartao,
+                ]);
+
+                $cartao->save();
+
+                $dados['idcartao'] = $cartao->id;
+            }
+
+
+        } else {
+
+            $dados = [
+                'dtvencimento' => getDateFormat($request->dataprimeira, 'nascimento'),
+                'idstatus' => 14,
+                'diasdemais' => $request->datademais,
+            ];
+
+
+        }
+
+        $cobranca = new Cobranca($dados);
+
+        $proposta->cobranca()->save($cobranca);
+
+
+        $proposta->idstatus = 14;
+        $proposta->save();
+
+        return Redirect::back()->with('sucesso', 'Operação relaizada com sucesso!!');
+    }
+
+    public function recusapagamento($idproposta)
+    {
+
+        $proposta = Propostas::find($idproposta);
+
+        foreach ($proposta->cobranca as $cobranca) {
+
+            if ($cobranca->idstatus == 14) {
+
+                $cobranca->idstatus = 20;
+                $cobranca->save();
+            }
+        }
+
+
+        return Redirect::back()->with('sucesso', 'Operação relaizada com sucesso!!');
+    }
+
+    public function confirmapagamento(Request $request)
+    {
+
+        $proposta = Propostas::find($request->idproposta);
+
+        foreach ($proposta->cobranca as $cobranca):
+            if ($cobranca->idstatus == 14) {
+
+                if ($proposta->idformapg == 1) {
+                    $cobranca->numpagamento = $request->cvrecibocartao;
+
+                } else {
+                    $cobranca->numpagamento = $request->numboleto;
+                    $cobranca->operadora = $request->numboleto;
+                }
+
+                $cobranca->dtpagamento = getDateFormat($request->datapgto,'nascimento');
+                $cobranca->idstatus = 15;
+                $cobranca->save();
+            }
+
+        endforeach;
+
+        $proposta->idstatus = 15;
+        $proposta->cotacao->idstatus = 15;
+        $proposta->cotacao->save();
+        $proposta->save();
+
+        return Redirect::back()->with('sucesso', 'Operação relaizada com sucesso!!');
+    }
 
 
 }

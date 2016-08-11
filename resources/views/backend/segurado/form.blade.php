@@ -331,7 +331,7 @@
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="segdatanasc">Data Nascimento</label>
-                                    <input class="form-control form-control-sm" type="text" name="segdatanasc" id="segdatanasc" />
+                                    <input class="form-control form-control-sm" type="text" data="nascimento" name="segdatanasc" id="segdatanasc" />
                                 </div>
                             </div>
 
@@ -365,7 +365,7 @@
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="segcpf">CPF</label>
-                                    <input class="form-control form-control-sm" type="text" name="segcpf" id="segcpf" />
+                                    <input class="form-control form-control-sm" tipo="cpf" type="text" name="segcpf" id="segcpf" />
                                 </div>
                             </div>
 
@@ -401,7 +401,7 @@
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="segrgdtemissao">Data Emissão</label>
-                                    <input class="form-control form-control-sm" type="text" name="segrgdtemissao" id="segrgdtemissao" />
+                                    <input class="form-control form-control-sm" type="text" name="segrgdtemissao" data="emissao" id="segrgdtemissao" />
                                 </div>
                             </div>                           
                         </div>
@@ -690,7 +690,7 @@
                                     <div class="col-md-2">
                                         <div class="form-group">
                                             <label for="propcpf">CPF</label>
-                                            <input class="form-control form-control-sm" type="text" name="propcpf" id="propcpf" />
+                                            <input class="form-control form-control-sm" type="text" tipo='cpf' name="propcpf" id="propcpf" />
                                         </div>
                                     </div>
 
@@ -726,7 +726,7 @@
                                     <div class="col-md-2">
                                         <div class="form-group">
                                             <label for="proprgdtemissao">Data Emissão</label>
-                                            <input class="form-control form-control-sm" type="text" name="proprgdtemissao" id="proprgdtemissao" />
+                                            <input class="form-control form-control-sm" type="text" iden="emissao" name="proprgdtemissao" id="proprgdtemissao" />
                                         </div>
                                     </div>                           
                                 </div>
@@ -817,7 +817,7 @@
                                     <div class="col-md-2">
                                         <div class="form-group">
                                             <label for="propdatanasc">Data Fundação</label>
-                                            <input class="form-control form-control-sm" type="text" name="propdatanasc" id="propdatanasc" />
+                                            <input class="form-control form-control-sm" type="text" iden="nascimento" name="propdatanasc" id="propdatanasc" />
                                         </div>
                                     </div>
 
@@ -966,7 +966,7 @@
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="condcpf">CPF</label>
-                                    <input class="form-control form-control-sm" type="text" name="condcpf" id="condcpf" />
+                                    <input class="form-control form-control-sm" type="text" tipo='cpf' name="condcpf" id="condcpf" />
                                 </div>
                             </div>
 

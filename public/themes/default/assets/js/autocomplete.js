@@ -555,6 +555,7 @@ $(function () {
 
     });
 
+
     $(':button').on('click', function () {
 
         if ($(this).attr('id') == 'erro') {
@@ -566,6 +567,18 @@ $(function () {
             $('#msgdeerro').text($(idmsg).val())
 
         } else if ($(this).attr('id') == 'cancelar') {
+
+            $.ajax({
+                url: $(this).attr('href'),
+                type: 'GET',
+                success: function (retorno) {
+                    $('.modal-content').html(retorno);
+
+                }
+
+            });
+
+        } else if ($(this).attr('id') == 'pagar') {
 
             $.ajax({
                 url: $(this).attr('href'),
@@ -600,7 +613,17 @@ $(function () {
         }
 
     });
-
+    // $('input:text').on('keydown', function () {
+    //
+    //     if ($(this).attr('id') == 'dataprimeira') {
+    //
+    //         console.log($(this).attr('value'))
+    //
+    //         // if ($(this).attr('value').length == 2) {
+    //         //
+    //         // }
+    //     }
+    // });
 
 });
 

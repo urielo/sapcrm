@@ -21,6 +21,9 @@ class Propostas extends Model
         'numcartao',
         'validadecartao',
         'idmotivo',
+        'premiototal',
+        'primeiraparc',
+        'demaisparc',
 
     ];
     public $timestamps = FALSE;
@@ -34,16 +37,25 @@ class Propostas extends Model
     {
         return $this->hasOne('App\Model\CotacoesSeguradora', 'id_proposta_sap', 'idproposta');
     }
+    public function formapg()
+    {
+        return $this->hasOne('App\Model\FormaPagamento', 'idformapgto', 'idformapg');
+    }
 
     public function propostaseguradora()
     {
         return $this->hasOne('App\Model\PropostasSeguradora', 'id_proposta_sap', 'idproposta');
+    }
+    public function cobranca()
+    {
+        return $this->hasMany('App\Model\Cobranca', 'idproposta', 'idproposta');
     }
     
     public function apoliceseguradora()
     {
         return $this->hasOne('App\Model\ApolicesSeguradora', 'id_proposta_sap', 'idproposta');
     }
+    
     
     
 

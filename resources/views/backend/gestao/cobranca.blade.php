@@ -38,6 +38,7 @@
 
                                     <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
                                             data-target=".modal-show"
+                                            href="{{route('show.pagamento',$proposta->idproposta)}}"
                                             id="pagar">Efetuar Pagamento
                                     </button>
 

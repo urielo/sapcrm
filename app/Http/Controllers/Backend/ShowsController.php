@@ -47,5 +47,20 @@ class ShowsController extends Controller
         return view('backend.show.cancelapagamaneto',compact('proposta','motivos'));
     }
 
+    public function pagar($idproposta)
+    {
+        $proposta = Propostas::find($idproposta);
+
+        return view('backend.show.efetuapagamento',compact('proposta'));
+
+    }
+
+    public function confirmapgto($idproposta)
+    {
+        $proposta = Propostas::find($idproposta);
+
+        return view('backend.show.confirmapagamento', compact('proposta'));
+
+    }
 
 }

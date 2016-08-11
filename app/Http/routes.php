@@ -11,31 +11,20 @@ Route::get('/', [
     'uses' => 'Backend\DashboardController@index'
 ]);
 
-use Artisaninweb\SoapWrapper\Facades\SoapWrapper;
+use Illuminate\Support\Facades\Mail;
+use Khill\Lavacharts\Lavacharts;
 
 Route::get('teste', function () {
 
-    $SoapClient = new \SoapClient('http://ws.nobre.com.br/AutoService.svc?wsdl');
+//    $data = ['nome'=> 'uriel'];
+//
+//    Mail::send('welcome', $data, function ($message) {
+//        $message->from('uriel@skyprotection.com.br', 'Uriel');
+//
+//        $message->to('uriel@seguroautopratico.com.br');
+//    });
 
-    $xmlvar = new \SoapVar('<Authorization>ABHeZhJudALhqLktqAZbUwNkAGk1SIm6PAh42SM2B/IXonOONjfL0F8GbZD7dGIXNuhetELem7NNJyyq5cQo6Q==</Authorization>', 147);
 
-    $header = new  \SoapHeader('http://ws.nobre.com.br/', 'Authorization', $xmlvar);
-    $SoapClient->__setSoapHeaders($header);
-
-
-
-//    $result = $SoapClient->__soapCall('Ping',[]);
-
-        $getvehicle = $SoapClient->GetVehicle([
-            'promoCode' => 'SKY-PROTECTION-3164-P50',
-            'fipeCode' => '114357-5',
-        ]);
-
-//    set_error_handler('var_dump', 0); // Never called because of empty mask.
-//    @trigger_error("");
-//    restore_error_handler();
-
-    return var_dump($getvehicle);
 });
 
 
@@ -81,28 +70,43 @@ Route::group(['prefix' => 'gestao'], function () {
     Route::get('apolices', [
         'as' => 'gestao.apolices',
         'uses' => 'Backend\GestaoController@apolices']);
-    
+
+    Route::get('aprovacao', [
+        'as' => 'gestao.aprovacao',
+        'uses' => 'Backend\GestaoController@aprovacao']);
+
     Route::get('apolices/emitir/{idproposta}', [
         'as' => 'apolices.emitir',
         'uses' => 'Backend\GestaoController@emitir']);
-    
+
     Route::get('apolices/pdf/{idproposta}', [
         'as' => 'apolices.pdf',
         'uses' => 'Backend\GestaoController@apolicepdf']);
 
     Route::get('cobranca', [
         'as' => 'gestao.cobranca',
-        'uses' => 'Backend\GestaoController@cobranca']); 
-    
+        'uses' => 'Backend\GestaoController@cobranca']);
+    Route::get('pagamento/recusar/{idproposta}', [
+        'as' => 'gestao.recusar',
+        'uses' => 'Backend\GestaoController@recusapagamento']);
+
     Route::post('cancela', [
         'as' => 'gestao.cancela',
         'uses' => 'Backend\GestaoController@cancelar']);
 
+    Route::post('pagar', [
+        'as' => 'gestao.salvarpga',
+        'uses' => 'Backend\GestaoController@salvarpagamento']);
+    
+    Route::post('confirmapg', [
+        'as' => 'gestao.confirmapg',
+        'uses' => 'Backend\GestaoController@confirmapagamento']);
+
 
 });
 
-Route::group(['prefix'=>'show'], function (){
-    
+Route::group(['prefix' => 'show'], function () {
+
     Route::get('segurado/{cpfcnpj}', [
         'as' => 'show.segurado',
         'uses' => 'Backend\ShowsController@segurado']);
@@ -110,8 +114,17 @@ Route::group(['prefix'=>'show'], function (){
     Route::get('cancela/{idproposta}', [
         'as' => 'show.cancelaproposta',
         'uses' => 'Backend\ShowsController@cancela']);
+
+    Route::get('pagar/{idproposta}', [
+        'as' => 'show.pagamento',
+        'uses' => 'Backend\ShowsController@pagar']);
+
+    Route::get('pagar/confirmar/{idproposta}', [
+        'as' => 'show.confirmapgto',
+        'uses' => 'Backend\ShowsController@confirmapgto']);
+
     
-    
+
 });
 
 

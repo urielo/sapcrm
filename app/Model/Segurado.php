@@ -63,4 +63,10 @@ class Segurado extends Model
         return $this->hasOne('App\Model\Uf', 'cd_uf', 'clicduf');
 
     }
+
+    public function cartoes()
+    {
+        return $this->hasMany('App\Model\Cartoes', 'clicpfcnpj', 'clicpfcnpj');
+
+    }
 }

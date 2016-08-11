@@ -1,99 +1,717 @@
 $(function () {
+    var produtos = $('#produtos');
+    var panelprodutos = $('#panelprodutos');
+    var divano = $('#divano');
+    var dadosveiculos = $('#dadosveiculos');
+    var btnproposta = $('#btnproposta');
+    var panelsegurado = $('#panelsegurado');
+    var panelproprietario = $('#panelproprietario');
+    var panelcondutor = $('#panelcondutor');
+    var pergunta = $('#pergunta');
+    var produtopagamento = $('#produtopagamento');
+    var btnsubmit = $('#btnsubmit');
+    var panelpagamento = $('#panelpagamento');
+    var dadoscartao = $('#dadoscartao');
+    var juridica1 = $('#juridica1');
+    var diverror = $('#diverror');
+    var ramoatividade = $('#ramoatividade');
+    var vltotal = 0;
+    var produtosvalores = [];
+    var menorparc = 0.0;
 
-    $('#slide-submenu').on('click', function () {
-        $(this).closest('.list-group').fadeOut('slide', function () {
-            $('.mini-submenu').fadeIn();
+    produtopagamento.hide();
+    diverror.hide();
+    pergunta.hide();
+    panelpagamento.hide();
+    panelprodutos.hide();
+    panelsegurado.hide();
+    juridica1.hide();
+    ramoatividade.hide();
+    divano.hide();
+    dadoscartao.hide();
+    btnsubmit.hide();
+    btnproposta.hide();
+    dadosveiculos.hide();
+    panelcondutor.hide();
+    panelproprietario.hide();
+
+
+    function setDateP(idinput) {
+        var d = new Date();
+
+        console.log($(idinput).attr('data'))
+        // if ($(idinput).attr('data')) {
+        // }
+
+        return $(idinput).datepicker({
+
+            format: "dd/mm/yyyy",
+            maxViewMode: 0,
+            clearBtn: true,
+            language: "pt-BR",
+            orientation: "auto",
+            toggleActive: true,
+            defaultViewDate: {year: d.getFullYear() - 18, month: d.getMonth(), day: d.getDay() - 1}
+
+        });
+
+    };
+
+    $('#valcartao').on('click', function () {
+        $('#valcartao').datepicker({
+            format: "mm/yyyy",
+            startView: 1,
+            language: "pt-BR",
+        });
+    });
+
+    function aplicaComissao(valor, comissao) {
+        valor = parseFloat(valor);
+        comissao = parseInt(comissao);
+        if (comissao > 0) {
+            comissao = 1 - comissao / 100;
+            valor = valor / comissao;
+            return valor.toFixed(2);
+        } else {
+            return valor.toFixed(2);
+        }
+    };
+    function buscaCep(inputcep, inputuf, inputlogra, inputcidade) {
+        $(inputcep).focusout(function () {
+            var cep = ($(this).val()).replace('-', '')
+            var settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": "https://viacep.com.br/ws/" + cep + "/json/",
+                "method": "GET",
+                "dataType": "jsonp",
+            }
+
+            $.ajax(settings).done(function (response) {
+                $.each($(inputuf + ' option'), function (key, value) {
+                    if (response.uf == value.id) {
+                        $(inputuf).val(value.value);
+                    }
+                });
+                $(inputlogra).val(response.logradouro);
+                $(inputcidade).val(response.localidade);
+
+            });
+        });
+    };
+    function gerarParcelas(vltotal, maxparc, parcelasemjuros, taxajuros, menorparc) {
+
+
+        setDateP('input[name=segdatanasc]');
+        setDateP('input[name=segrgdtemissao]');
+        setDateP('input[name=segdatafund]');
+
+        var retorno = [];
+        // var porcentj = parseFloat(taxajuros) / 100
+
+
+        for (var i = 1; i < maxparc + 1; i++) {
+            var juros = vltotal + (vltotal * (taxajuros / 100));
+            var priparcela = 0;
+            var demparcela = 0;
+            var textojuros = (i > parcelasemjuros) ? 'J.: ' + taxajuros.replace('.', ',') + '%' : 'S/J';
+
+
+            if (i > parcelasemjuros && juros / i < menorparc) {
+                priparcela = menorparc;
+                demparcela = (juros - menorparc) / (i - 1);
+            } else if (i <= parcelasemjuros && vltotal / i < menorparc) {
+                priparcela = menorparc;
+                demparcela = (vltotal - menorparc) / (i - 1);
+            } else if (i > parcelasemjuros) {
+                priparcela = juros / i;
+                demparcela = priparcela;
+            } else {
+                priparcela = vltotal / i;
+                demparcela = priparcela;
+            }
+            priparcela = priparcela.toFixed(2).replace('.', ',');
+            demparcela = demparcela.toFixed(2).replace('.', ',');
+            if (i == 1) {
+                retorno.push('<label style="font-size: 10px;"><input type="radio" name="quantparcela" id="formapagamento" value="' + i + '">' + i + 'x de R$ ' + priparcela + '</label><br>')
+            } else {
+                retorno.push('<label style="font-size: 10px;"><input type="radio" name="quantparcela" id="formapagamento" value="' + i + '">' + i + 'x 1ª de R$ ' + priparcela + ' Demais:  R$ ' + demparcela + ' ' + textojuros + '</label><br>')
+            }
+        }
+
+        return retorno;
+    };
+    function geturl() {
+        var url = location.href;
+        url = url.split('/');
+        url = url[0] + '//' + url[2] + '/';
+        return url;
+    }
+
+    function reusltAutoComplete(cdfipe) {
+        $('#codefip-value').val(cdfipe);
+        $('#codefip-text').text(cdfipe);
+        divano.fadeIn("slow");
+
+        $.get(geturl() + "anovalor/",
+            {cdfipe: cdfipe},
+            // Carregamos o resultado acima para o campo modelo
+            function (valor) {
+                $("select[name=anom]").html(valor);
+            }
+        )
+
+        $.get(geturl() + "anofab/",
+            {cdfipe: cdfipe},
+            // Carregamos o resultado acima para o campo modelo
+            function (valor) {
+                $("select[name=anof]").html(valor);
+            }
+        )
+
+    }
+
+    buscaCep('#segcep', '#segenduf', '#segendlog', '#segendcidade');
+    buscaCep('#propcep', '#propenduf', '#propendlog', '#propendcidade');
+
+
+    $.widget("custom.marcacomplete", $.ui.autocomplete, {
+        _create: function () {
+            this._super();
+            this.widget().menu("option", "items", "> :not(.ui-autocomplete-category)");
+        },
+        _renderMenu: function (ul, items) {
+            var that = this,
+                currentCategory = "";
+            $.each(items, function (index, item) {
+                var li;
+                if (item.category != currentCategory) {
+                    ul.append("<li class='ui-autocomplete-category'>" + item.category + "</li>");
+                    currentCategory = item.category;
+                }
+                li = that._renderItemData(ul, item);
+                if (item.category) {
+                    li.attr("aria-label", item.category + " : " + item.label);
+                }
+            });
+        }
+    });
+
+    for (var i = $('select[name=comissao]').val() - 1; i > -1; i--) {
+        $('select[name=comissao]').append('<option value="' + i + '">' + i + '</option>')
+    }
+
+
+    $('#veiculo').marcacomplete({
+
+        delay: 0,
+        source: geturl() + 'modelo',
+        select: function (event, ui) {
+            reusltAutoComplete(ui.item.id);
+
+
+        }
+    });
+
+    $('#segprofissao').autocomplete({
+        delay: 0,
+        source: geturl() + 'profissao',
+        select: function (event, ui) {
+            $('#segcdprofissao').val(ui.item.id);
+
+        }
+    });
+    $('#segramoatividade').autocomplete({
+        delay: 0,
+        source: geturl() + 'ramoatividade',
+        select: function (event, ui) {
+            $('#segcdramoatividade').val(ui.item.id);
+
+        }
+    });
+
+
+    $('#btnvender').on('click', function () {
+
+
+        dadosveiculos.fadeIn("slow");
+        panelsegurado.fadeIn("slow");
+        pergunta.fadeIn("slow");
+        btnsubmit.fadeIn("slow");
+        $(this).fadeOut();
+    });
+
+
+    $("select[name=anom]").on('change', function () {
+
+
+        if ($("select[name=anom]").val() == 0) {
+            // alert($(this).val());
+            $.each($("#anom option"), function (key, value) {
+                if (value.value == '{"ano":2003,"combus":1,"valor":"12024"}') {
+
+                    $("#anom").val(value.value)
+                }
+            });
+        } else {
+
+            var djson = $.parseJSON($("select[name=anom]").val());
+        }
+        var dados = {
+            comissao: $('#comissao').val(),
+            cdfipe: $('input[name=codefipe]').val(),
+            valor: djson.valor,
+            ano: djson.ano,
+            tipo: $('input[name=tipoveiculo]:checked').val()
+        };
+        $('#panelprodutosopcional').hide();
+        $('#produtosopcionais').empty();
+
+        $.ajax({
+            data: dados,
+            url: geturl() + 'produtosmaster',
+            dataType: "json",
+            type: 'GET',
+            success: function (retorno) {
+                produtos.empty();
+                $('#c-veiculo').removeClass("col-md-12").addClass("col-md-9");
+                produtopagamento.fadeIn();
+                var frist = true;
+                $.each(retorno, function (key, value) {
+                    produtos.append(value.html);
+
+
+                    $(value.acordion).accordion({
+                        heightStyle: "content",
+                        active: true,
+                        collapsible: true,
+                        header: 'h6'
+                    });
+
+                    if (value.chkid) {
+
+
+                        $('#comissao').change(function () {
+                            var valor = $.parseJSON($(value.chkid).val());
+                            var valorcomiss = aplicaComissao(valor.vlproduto, $(this).val());
+                            $(value.precospan).text(valorcomiss.replace('.', ','));
+                            $('#valortotal').trigger('change');
+                        });
+
+
+                        $(value.chkid).change(function () {
+                            var valor = $.parseJSON($(this).val());
+                            if ($(this).is(":checked")) {
+                                $.each(retorno, function (key, idsdiv) {
+                                    if (idsdiv.chkid && idsdiv.chkid != value.chkid) {
+                                        $(idsdiv.chkid).attr('disabled', 'disabled');
+                                        $(idsdiv.divp).hide();
+                                    }
+                                })
+                                produtosvalores.push(valor);
+                                menorparc += parseFloat((valor.menorparc > 0) ? valor.menorparc : 0);
+                                $('#valortotal').trigger('change');
+
+                                /*Buscando Produtos Opcionais*/
+
+                                dados.idproduto = valor.idproduto;
+                                $.ajax({
+                                    data: dados,
+                                    url: geturl() + 'produtosopcional',
+                                    dataType: "json",
+                                    type: 'GET',
+                                    success: function (retorno2) {
+                                        // $('#produtosopcionais').empty();
+                                        $.each(retorno2, function (key, opcionais) {
+                                            $('#produtosopcionais').append(opcionais.html);
+                                            $('#panelprodutosopcional').show();
+                                            $(opcionais.acordion).accordion({
+                                                heightStyle: "content",
+                                                active: true,
+                                                collapsible: true,
+                                                header: 'h6'
+                                            });
+
+                                            if (opcionais.chkid) {
+                                                $('#comissao').change(function () {
+
+                                                    if ($(opcionais.chkid).val()) {
+                                                        var valor = $.parseJSON($(opcionais.chkid).val());
+                                                        var valorcomiss = aplicaComissao(valor.vlproduto, $(this).val());
+                                                        $(opcionais.precospan).text(valorcomiss.replace('.', ','));
+                                                        $('#valortotal').trigger('change');
+                                                    }
+
+                                                });
+                                            }
+
+                                            $(opcionais.chkid).change(function () {
+                                                var valor = $.parseJSON($(this).val());
+                                                if ($(this).is(":checked")) {
+                                                    $.each(retorno2, function (key, idsdiv) {
+                                                        if (idsdiv.chkid && idsdiv.chkid != opcionais.chkid && valor.tiposeguro == idsdiv.tiposeguro) {
+                                                            $(idsdiv.chkid).attr('disabled', 'disabled');
+                                                            $(idsdiv.divp).hide();
+
+                                                        }
+                                                    })
+                                                    produtosvalores.push(valor);
+                                                    menorparc += parseFloat((valor.menorparc > 0) ? valor.menorparc : 0);
+                                                    $('#valortotal').trigger('change');
+
+
+                                                } else {
+                                                    $.each(retorno2, function (key, idsdiv) {
+                                                        if (idsdiv.chkid) {
+                                                            $(idsdiv.chkid).removeAttr('disabled').fadeIn();
+                                                            $(idsdiv.divp).fadeIn();
+                                                        }
+                                                    });
+
+                                                    (menorparc > 0 ) ? menorparc -= parseFloat((valor.menorparc > 0) ? valor.menorparc : 0) : menorparc;
+                                                    if (vltotal !== 0) {
+                                                        produtosvalores.splice($.inArray(valor, produtosvalores), 1);
+                                                        $('#valortotal').trigger('change');
+                                                    }
+                                                }
+
+
+                                            });
+                                        });
+
+                                        $('#comissao').trigger('change');
+                                        $('#panelprodutosopcional').fadeIn('fast');
+
+
+                                    }
+
+                                })
+
+                            } else {
+                                $('#panelprodutosopcional').hide();
+                                $('#produtosopcionais').empty();
+                                $.each(retorno, function (key, idsdiv) {
+                                    if (idsdiv.chkid) {
+                                        $(idsdiv.chkid).removeAttr('disabled').fadeIn();
+                                        $(idsdiv.divp).fadeIn();
+                                    }
+                                });
+
+                                (menorparc > 0) ? menorparc -= parseFloat((valor.menorparc > 0) ? valor.menorparc : 0) : menorparc;
+                                if (vltotal !== 0) {
+                                    produtosvalores.splice($.inArray(valor, produtosvalores), 1);
+                                    produtosvalores = [];
+                                    $('#valortotal').trigger('change');
+                                }
+                            }
+
+
+                        });
+
+                    }
+                });
+
+
+                $('#comissao').trigger('change');
+                panelprodutos.fadeIn('slow');
+                btnproposta.fadeIn('slow');
+
+
+            }
+
         });
 
     });
 
-    $('.mini-submenu').on('click', function () {
-        $(this).next('.list-group').toggle('slide');
-        $('.mini-submenu').hide();
-    })
-})
 
-//
-$(document).on('change', '.btn-file :file', function () {
-    var input = $(this),
-            numFiles = input.get(0).files ? input.get(0).files.length : 1,
-            label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-    input.trigger('fileselect', [numFiles, label]);
-});
+    $('input:radio').change(function () {
 
-$(document).ready(function () {
-    $('.btn-file :file').on('fileselect', function (event, numFiles, label) {
+        if ($(this).attr('name') == 'tipopessoa') {
+            if ($(this).is(":checked") && $(this).attr('value') == 1) {
+                juridica1.hide();
+                ramoatividade.hide();
+                $('#fisica1').fadeIn('fast');
+                $('#fisica2').fadeIn('fast');
+                $('#profissao').fadeIn('fast');
+            } else {
+                juridica1.fadeIn('fast');
+                ramoatividade.fadeIn('fast');
+                $('#fisica1').hide();
+                $('#fisica2').hide();
+                $('#profissao').hide();
+            }
+        } else if ($(this).attr('name') == 'proptipopessoa') {
+            if ($(this).is(":checked") && $(this).attr('value') == 1) {
+                $('#propjuridica1').hide();
+                $('#propramoatividade').hide();
+                $('#propfisica1').fadeIn('fast');
+                $('#propfisica2').fadeIn('fast');
+                $('#propprofissao').fadeIn('fast');
+            } else {
+                $('#propjuridica1').fadeIn('fast');
+                $('#propramoatividade').fadeIn('fast');
+                $('#propfisica1').hide();
+                $('#propfisica2').hide();
+                $('#propprofissao').hide();
+            }
+        } else if ($(this).attr('name') == 'indproprietario') {
+            if ($(this).is(":checked") && $(this).attr('value') == 1) {
+                panelproprietario.hide();
+            } else {
+                panelproprietario.fadeIn('fast');
+                $('#propjuridica1').hide();
+                $('#propramoatividade').hide();
 
-        var input = $(this).parents('.input-group').find(':text'),
-                log = numFiles > 1 ? numFiles + ' files selected' : label;
+            }
+        } else if ($(this).attr('name') == 'indcondutor') {
+            if ($(this).is(":checked") && $(this).attr('value') == 1) {
+                panelcondutor.hide();
+            } else {
+                panelcondutor.fadeIn('fast');
+            }
+        } else if ($(this).attr('name') == 'formapagamento') {
+            var values = $.parseJSON($(this).attr('value'));
+            if ($(this).is(":checked") && values.idforma == 1) {
+                $('#parcelas').empty();
 
-        if (input.length) {
-            input.val(log);
+                $.each(gerarParcelas(vltotal, values.maxparc, values.parcsemjuros, values.juros, menorparc), function (key, html) {
+                    $('#parcelas').append(html);
+                })
+                if (vltotal > 0) {
+                    $('#condutor-proprietario').removeClass('col-md-12').addClass('col-md-9');
+                    dadoscartao.fadeIn('slow');
+                }
+            } else {
+                $('#parcelas').empty();
+
+                $.each(gerarParcelas(vltotal, values.maxparc, values.parcsemjuros, values.juros, menorparc), function (key, html) {
+                    $('#parcelas').append(html);
+                })
+                $('#condutor-proprietario').removeClass('col-md-9').addClass('col-md-12');
+                dadoscartao.hide();
+            }
+        }
+    });
+
+    $('#valortotal').on('change', function () {
+        vltotal = 0;
+        $.each(produtosvalores, function (key, value) {
+            vltotal += parseFloat(aplicaComissao(value.vlproduto, $('#comissao').val()))
+        });
+        $('input[name=formapagamento]').trigger('change');
+        if (vltotal > 0) {
+            $(this).text('R$ ' + vltotal.toFixed(2).replace('.', ','));
+            panelpagamento.fadeIn();
         } else {
-            if (log)
-                alert(log);
+            panelpagamento.fadeOut();
         }
 
     });
-});
 
-!function (e) {
-    var t = function (t, n) {
-        this.$element = e(t), this.type = this.$element.data("uploadtype") || (this.$element.find(".thumbnail").length > 0 ? "image" : "file"), this.$input = this.$element.find(":file");
-        if (this.$input.length === 0)
-            return;
-        this.name = this.$input.attr("name") || n.name, this.$hidden = this.$element.find('input[type=hidden][name="' + this.name + '"]'), this.$hidden.length === 0 && (this.$hidden = e('<input type="hidden" />'), this.$element.prepend(this.$hidden)), this.$preview = this.$element.find(".fileupload-preview");
-        var r = this.$preview.css("height");
-        this.$preview.css("display") != "inline" && r != "0px" && r != "none" && this.$preview.css("line-height", r), this.original = {exists: this.$element.hasClass("fileupload-exists"), preview: this.$preview.html(), hiddenVal: this.$hidden.val()}, this.$remove = this.$element.find('[data-dismiss="fileupload"]'), this.$element.find('[data-trigger="fileupload"]').on("click.fileupload", e.proxy(this.trigger, this)), this.listen()
-    };
-    t.prototype = {listen: function () {
-            this.$input.on("change.fileupload", e.proxy(this.change, this)), e(this.$input[0].form).on("reset.fileupload", e.proxy(this.reset, this)), this.$remove && this.$remove.on("click.fileupload", e.proxy(this.clear, this))
-        }, change: function (e, t) {
-            if (t === "clear")
-                return;
-            var n = e.target.files !== undefined ? e.target.files[0] : e.target.value ? {name: e.target.value.replace(/^.+\\/, "")} : null;
-            if (!n) {
-                this.clear();
-                return
+    $('#formcotacao').submit(function () {
+
+        $.ajax({
+            type: 'POST',
+            url: 'gerar',
+            data: $(this).serialize(),
+            success: function (retorno) {
+
+                if (retorno.sucesso) {
+
+                    $('#allbody').html(retorno.html)
+                } else {
+
+                    $.each(retorno.message, function (key, value) {
+                        if (key != 'cdretorno' && key != 'status') {
+
+
+                            if ($.isPlainObject(value)) {
+                                $.each(value, function (key2, value2) {
+                                    $('#messageerror').text(value2);
+                                })
+                            } else {
+                                $('#messageerror').text(value);
+                            }
+                        }
+                    })
+                    diverror.show();
+
+                }
+
+            },
+            error: function (error) {
+                $('#allbody').html(error);
+                // console.log(error);
             }
-            this.$hidden.val(""), this.$hidden.attr("name", ""), this.$input.attr("name", this.name);
-            if (this.type === "image" && this.$preview.length > 0 && (typeof n.type != "undefined" ? n.type.match("image.*") : n.name.match(/\.(gif|png|jpe?g)$/i)) && typeof FileReader != "undefined") {
-                var r = new FileReader, i = this.$preview, s = this.$element;
-                r.onload = function (e) {
-                    i.html('<img src="' + e.target.result + '" ' + (i.css("max-height") != "none" ? 'style="max-height: ' + i.css("max-height") + ';"' : "") + " />"), s.addClass("fileupload-exists").removeClass("fileupload-new")
-                }, r.readAsDataURL(n)
-            } else
-                this.$preview.text(n.name), this.$element.addClass("fileupload-exists").removeClass("fileupload-new")
-        }, clear: function (e) {
-            this.$hidden.val(""), this.$hidden.attr("name", this.name), this.$input.attr("name", "");
-            if (navigator.userAgent.match(/msie/i)) {
-                var t = this.$input.clone(!0);
-                this.$input.after(t), this.$input.remove(), this.$input = t
-            } else
-                this.$input.val("");
-            this.$preview.html(""), this.$element.addClass("fileupload-new").removeClass("fileupload-exists"), e && (this.$input.trigger("change", ["clear"]), e.preventDefault())
-        }, reset: function (e) {
-            this.clear(), this.$hidden.val(this.original.hiddenVal), this.$preview.html(this.original.preview), this.original.exists ? this.$element.addClass("fileupload-exists").removeClass("fileupload-new") : this.$element.addClass("fileupload-new").removeClass("fileupload-exists")
-        }, trigger: function (e) {
-            this.$input.trigger("click"), e.preventDefault()
-        }}, e.fn.fileupload = function (n) {
-        return this.each(function () {
-            var r = e(this), i = r.data("fileupload");
-            i || r.data("fileupload", i = new t(this, n)), typeof n == "string" && i[n]()
-        })
-    }, e.fn.fileupload.Constructor = t, e(document).on("click.fileupload.data-api", '[data-provides="fileupload"]', function (t) {
-        var n = e(this);
-        if (n.data("fileupload"))
-            return;
-        n.fileupload(n.data());
-        var r = e(t.target).closest('[data-dismiss="fileupload"],[data-trigger="fileupload"]');
-        r.length > 0 && (r.trigger("click.fileupload"), t.preventDefault())
+        });
+        return false;
+    });
+
+    $('#teste').click(function () {
+
+        // $('#codefip-value').val();
+        reusltAutoComplete($('#codefip-value').val());
+
+        $('#anom').delay(3000).trigger('change');
+
+        // var val = parseJSON('{"ano":2003,"combus":1,"valor":"12024"}');
+
+
+        // $('#veiculo').val();
+        // $('#veiculo').trigger('keydown');
+        // $('#veiculo').data('ui-autocomplete').trigger('select', 'autocompleteselect', {item:{value:$(this).val()}});
+
+
+    });
+
+
+    $(':button').on('click', function () {
+
+        if ($(this).attr('id') == 'erro') {
+            var idmsg = '#' + $(this).attr('message')
+            $('#msgdeerro').text($(idmsg).val())
+
+        } else if ($(this).attr('id') == 'xml') {
+            var idmsg = '#' + $(this).attr('message')
+            $('#msgdeerro').text($(idmsg).val())
+
+        } else if ($(this).attr('id') == 'cancelar') {
+
+            $.ajax({
+                url: $(this).attr('href'),
+                type: 'GET',
+                success: function (retorno) {
+                    $('.modal-content').html(retorno);
+
+                }
+
+            });
+
+        } else if ($(this).attr('id') == 'pagar') {
+
+            $.ajax({
+                url: $(this).attr('href'),
+                type: 'GET',
+                success: function (retorno) {
+                    $('.modal-content').html(retorno);
+
+                    $('.modal-content').on('mouseover', function () {
+                        var d = new Date();
+                        $('#nnmcartao').mask('9999 9999 9999 9999');
+                        $('#cvvcartao').mask('999');
+
+
+                        $('#valcartao').datepicker({
+                            format: "mm/yyyy",
+                            startView: 1,
+                            startDate: "-",
+                            minViewMode: 1,
+                            language: "pt-BR",
+                            autoclose: true,
+                            defaultViewDate: {year: d.getFullYear(), month: d.getMonth()}
+                        });
+                        $('#dataprimeira').datepicker({
+                            format: "dd/mm/yyyy",
+                            startView: 0,
+                            language: "pt-BR",
+                            startDate: "-",
+                            autoclose: true,
+                            defaultViewDate: {year: d.getFullYear(), month: d.getMonth(), day: d.getDay()}
+                        });
+                        $('#datademais').datepicker({
+                            format: "dd",
+                            language: "pt-BR",
+                            autoclose: true,
+                            defaultViewDate: {year: d.getFullYear(), month: d.getMonth(), day: d.getDay()}
+                        });
+                    })
+                }
+
+            });
+
+        } else if ($(this).attr('id') == 'comfirmapgto') {
+
+            $.ajax({
+                url: $(this).attr('href'),
+                type: 'GET',
+                success: function (retorno) {
+                    $('.modal-content').html(retorno);
+
+                    $('.modal-content').on('mouseover', function () {
+                        var d = new Date();
+
+
+                        $('#datapgto').datepicker({
+                            format: "dd/mm/yyyy",
+                            startView: 0,
+                            language: "pt-BR",
+                            startDate: "-",
+                            autoclose: true,
+                            defaultViewDate: {year: d.getFullYear(), month: d.getMonth(), day: d.getDay()}
+                        });
+
+                    })
+
+                    
+                }
+
+            });
+
+        } else if ($(this).attr('id') == 'fechasecesso') {
+
+            $('#sucesso').hide();
+        }
+
+    });
+
+
+    $('a').click(function () {
+
+        if ($(this).attr('id') == 'linksegurado') {
+
+            $.ajax({
+                url: $(this).attr('href'),
+                type: 'GET',
+                success: function (retorno) {
+                    $('.modal-content').html(retorno);
+
+
+                    return false;
+                }
+
+            });
+        }
+
+    });
+
+
+    $(':input').on('focusin', function () {
+
+        if ($(this).attr('id').substr(-3) == 'cpf') {
+            var id = '#' + $(this).attr('id');
+            $(this).attr('placeholder', '999.999.999-00');
+            $(id).mask('999.999.999-99');
+
+        } else if ($(this).attr('id').substr(-4) == 'cnpj') {
+            var id = '#' + $(this).attr('id');
+            $(this).attr('placeholder', '99.999.999/9999-00');
+            $(id).mask('99.999.999/9999-00');
+
+        }
     })
-}(window.jQuery)
 
 
-$(document).ready(function() {
-  $('[data-toggle=offcanvas]').click(function() {
-    $('.row-offcanvas').toggleClass('active');
-  });
+    // $('input:text').on('keydown', function () {
+    //
+    //     if ($(this).attr('id') == 'dataprimeira') {
+    //
+    //         console.log($(this).attr('value'))
+    //
+    //         // if ($(this).attr('value').length == 2) {
+    //         //
+    //         // }
+    //     }
+    // });
+
 });
+
