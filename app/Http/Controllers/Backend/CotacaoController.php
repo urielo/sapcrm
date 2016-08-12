@@ -21,6 +21,7 @@ use App\Model\OrgaoEmissors;
 use App\Model\FormaPagamento;
 use App\Http\Requests\CotacaoRequest;
 use Illuminate\Support\Facades\Redirect;
+use phpDocumentor\Reflection\Types\Null_;
 
 class CotacaoController extends Controller
 {
@@ -93,26 +94,26 @@ class CotacaoController extends Controller
 
 
 //        return view('backend.cotacao.sucesso', ['message' => 'Cotação realizada com sucesso!']);
-        return $segurado = ["segurado" =>
+        $segurado = ["segurado" =>
             ["segNomeRazao" => ($request->tipopessoa == 1 ? $request->segnome : $request->segrazao),
-                "segCpfCnpj" => ($request->tipopessoa == 1 ? $request->segcpf : $request->segcnpj),
-                "segDtNasci" => ($request->tipopessoa == 1 ? date('Ymd', strtotime(str_replace('/','-',$request->segdatanasc))) : date('Ymd', strtotime(str_replace('/','-',$request->segdatafund)))),
+                "segCpfCnpj" => ($request->tipopessoa == 1 ? getDataReady($request->segcpf): getDataReady($request->segcnpj)),
+                "segDtNasci" => ($request->tipopessoa == 1 ? getDateFormat($request->segdatanasc,'nascimento') : getDateFormat($request->segdatafund,'nascimento')),
                 "segCdSexo" => ($request->tipopessoa == 1 ? $request->segsexo : NULL),
                 "segCdEstCivl" => ($request->tipopessoa == 1 ? $request->segestadocivil : 0),
                 "segProfRamoAtivi" => ($request->tipopessoa == 1 ? (int)$request->segcdprofissao : (int)$request->segcdramoatividade),
                 "segEmail" => $request->segemail,
-                "segCelDdd" => $request->segdddcel,
-                "segCelNum" => $request->segnmcel,
-                "segFoneDdd" => $request->segdddfone,
-                "segFoneNum" => $request->segnmfone,
+                "segCelDdd" =>getDataReady($request->segdddcel),
+                "segCelNum" => getDataReady($request->segnmcel),
+                "segFoneDdd" => getDataReady($request->segdddfone),
+                "segFoneNum" => getDataReady($request->segnmfone),
                 "segEnd" => $request->segendlog,
                 "segEndNum" => $request->segnmend,
                 "segEndCompl" => $request->segendcompl,
-                "segEndCep" => $request->segcep,
+                "segEndCep" => getDataReady($request->segcep),
                 "segEndCidade" => $request->segendcidade,
                 "segEndCdUf" => $request->segenduf,
                 "segNumRg" => ($request->tipopessoa == 1 ? $request->segrg : NULL),
-                "segUfEmissaoRg" => ($request->tipopessoa == 1 ? date('Ymd', strtotime((string)$request->segrgdtemissao)) : NULL),
+                "segUfEmissaoRg" => ($request->tipopessoa == 1 ? getDateFormat($request->segrgdtemissao,'nascimento'): Null ),
                 "segEmissorRg" => ($request->tipopessoa == 1 ? $request->segrgoe : NULL),
                 "segCdUfRg" => ($request->tipopessoa == 1 ? $request->segrguf : NULL),]
         ];
@@ -135,30 +136,30 @@ class CotacaoController extends Controller
         ];
         $condutor = ["condutor" =>
             ["condutNomeRazao" => $request->condnome,
-                "condutCpfCnpj" => $request->condcpf,
-                "condutDtNasci" => date('Ymd', strtotime($request->conddatanasc)),
+                "condutCpfCnpj" => getDataReady($request->condcpf),
+                "condutDtNasci" => getDateFormat($request->conddatanasc,'nascimento'),
                 "condutCdSexo" => $request->condsexo,
                 "condutCdEstCivl" => $request->condestadocivil,
                 "condutProfRamoAtivi" => $request->condcdprofissao,]
         ];
         $proprietario = ["proprietario" =>
             ["proprNomeRazao" => ($request->proptipopessoa == 1 ? $request->propnome : $request->proprazao),
-                "proprCpfCnpj" => ($request->proptipopessoa == 1 ? $request->propcpf : $request->propcnpj),
-                "proprDtNasci" => ($request->proptipopessoa == 1 ? date('Ymd', strtotime($request->propdatanasc)) : date('Ymd', strtotime($request->propdatafund))),
+                "proprCpfCnpj" => ($request->proptipopessoa == 1 ? getDataReady($request->propcpf) : getDataReady($request->propcnpj)),
+                "proprDtNasci" => ($request->proptipopessoa == 1 ? getDateFormat($request->propdatanasc,'nascimento'): getDateFormat($request->propdatafund,'nascimento') ),
                 "proprCdSexo" => ($request->proptipopessoa == 1 ? $request->propsexo : NULL),
                 "proprCdEstCivl" => ($request->proptipopessoa == 1 ? $request->propestadocivil : 0),
                 "proprPrfoRamoAtivi" => ($request->proptipopessoa == 1 ? (int)$request->propcdprofissao : (int)$request->propcdramoatividade),
                 "proprCdRelDepSegurado" => 11,
                 "proprdescRelDepSegurado" => "Primo",
                 "proprEmail" => $request->propemail,
-                "proprCelDdd" => $request->propdddcel,
-                "proprCelNum" => $request->propnmcel,
-                "proprFoneDdd" => $request->propdddfone,
-                "proprFoneNum" => $request->propnmfone,
+                "proprCelDdd" => getDataReady($request->propdddcel),
+                "proprCelNum" => getDataReady($request->propnmcel),
+                "proprFoneDdd" => getDataReady($request->propdddfone),
+                "proprFoneNum" => getDataReady($request->propnmfone),
                 "proprEnd" => $request->propendlog,
                 "proprEndNum" => $request->propnmend,
                 "proprEndCompl" => $request->propendcompl,
-                "proprEndCep" => $request->propcep,
+                "proprEndCep" => getDataReady($request->propcep),
                 "proprEndCidade" => $request->propendcidade,
                 "proprEndCdUf" => $request->propenduf,]
         ];
@@ -172,7 +173,7 @@ class CotacaoController extends Controller
                 "veiCdUtiliz" => $request->veicultilizacao,
                 "veiCdTipo" => $request->tipoveiculo,
                 "veiCdCombust" => $anoveic->combus,
-                "veiPlaca" => $request->placa,
+                "veiPlaca" => getDataReady($request->placa),
                 "veiMunPlaca" => $request->munplaca,
                 "veiCdUfPlaca" => $request->placauf,
                 "veiRenav" => $request->renavan,
@@ -196,6 +197,10 @@ class CotacaoController extends Controller
             "indProprietVeic" => $request->indcondutor,
             "comissao" => $request->comissao,];
 
+//        return json_encode(array_merge($cotacao, $corretor, $segurado, $veiculo, $produtos, $proprietario, $condutor, $perfilsegurado));
+//
+//        return webserviceCotacao($cotacao, $corretor, $segurado, $veiculo, $produtos, $proprietario, $condutor, $perfilsegurado);
+        
         $wscotacao = json_decode(webserviceCotacao($cotacao, $corretor, $segurado, $veiculo, $produtos, $proprietario, $condutor, $perfilsegurado));
 
         if ($wscotacao->cdretorno != '000') {
@@ -214,8 +219,8 @@ class CotacaoController extends Controller
             "cdFormaPgt" => $formapg->idforma,
             "qtParcela" => $request->quantparcela,
             "nmBandeira" => $request->cartaobandeira,
-            "numCartao" => $request->cartaonumero,
-            "validadeCartao" => $request->cartaovalidade,
+            "numCartao" => getDataReady($request->cartaonumero),
+            "validadeCartao" => getDateFormat($request->cartaovalidade,'valcartao'),
             "indCondutorVeic" => $request->indproprietario,
             "indProprietVeic" => $request->indcondutor,
         ];

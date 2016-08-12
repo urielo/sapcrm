@@ -36,34 +36,58 @@ $(function () {
     panelproprietario.hide();
 
 
-    function setDateP(idinput) {
+    function setDateP(idinput, tipo) {
         var d = new Date();
 
-        console.log($(idinput).attr('data'))
-        // if ($(idinput).attr('data')) {
-        // }
+        if (tipo == 'nascimento') {
 
-        return $(idinput).datepicker({
+            return $(idinput).datepicker({
 
-            format: "dd/mm/yyyy",
-            maxViewMode: 0,
-            clearBtn: true,
-            language: "pt-BR",
-            orientation: "auto",
-            toggleActive: true,
-            defaultViewDate: {year: d.getFullYear() - 18, month: d.getMonth(), day: d.getDay() - 1}
+                format: "dd/mm/yyyy",
+                maxViewMode: 0,
+                clearBtn: true,
+                endDate: "-Infinity",
+                language: "pt-BR",
+                orientation: "auto",
+                toggleActive: true,
+                defaultViewDate: {year: d.getFullYear() - 18, month: d.getMonth(), day: d.getDay() - 1}
 
-        });
+            });
+        } else if (tipo == 'pagamento') {
+
+            return $(idinput).datepicker({
+                format: "dd/mm/yyyy",
+                startView: 0,
+                language: "pt-BR",
+                startDate: "-",
+                autoclose: true,
+                defaultViewDate: {year: d.getFullYear(), month: d.getMonth(), day: d.getDay()}
+            });
+        } else if (tipo == 'valcartao') {
+
+            return $(idinput).datepicker({
+                format: "mm/yyyy",
+                startView: 1,
+                startDate: "-",
+                minViewMode: 1,
+                language: "pt-BR",
+                autoclose: true,
+                defaultViewDate: {year: d.getFullYear(), month: d.getMonth()}
+            });
+        } else {
+            return $(idinput).datepicker({
+                format: "dd/mm/yyyy",
+                clearBtn: true,
+                language: "pt-BR",
+                orientation: "auto",
+                toggleActive: true
+                });
+        }
+
 
     };
 
-    $('#valcartao').on('click', function () {
-        $('#valcartao').datepicker({
-            format: "mm/yyyy",
-            startView: 1,
-            language: "pt-BR",
-        });
-    });
+
 
     function aplicaComissao(valor, comissao) {
         valor = parseFloat(valor);
@@ -101,10 +125,6 @@ $(function () {
     };
     function gerarParcelas(vltotal, maxparc, parcelasemjuros, taxajuros, menorparc) {
 
-
-        setDateP('input[name=segdatanasc]');
-        setDateP('input[name=segrgdtemissao]');
-        setDateP('input[name=segdatafund]');
 
         var retorno = [];
         // var porcentj = parseFloat(taxajuros) / 100
@@ -652,7 +672,7 @@ $(function () {
 
                     })
 
-                    
+
                 }
 
             });
@@ -685,33 +705,77 @@ $(function () {
     });
 
 
-    $(':input').on('focusin', function () {
 
-        if ($(this).attr('id').substr(-3) == 'cpf') {
-            var id = '#' + $(this).attr('id');
-            $(this).attr('placeholder', '999.999.999-00');
-            $(id).mask('999.999.999-99');
+    $('body').on('mouseover', function () {
 
-        } else if ($(this).attr('id').substr(-4) == 'cnpj') {
-            var id = '#' + $(this).attr('id');
-            $(this).attr('placeholder', '99.999.999/9999-00');
-            $(id).mask('99.999.999/9999-00');
+        $(':input').each(function () {
 
-        }
-    })
+            if ($(this).attr('tipoinput') == 'cpf') {
+                $(this).attr('placeholder', '999.999.999-00');
+                $(this).mask('999.999.999-99');
+            } else if ($(this).attr('tipoinput') == 'cnpj') {
+                $(this).attr('placeholder', '99.999.999/9999-00');
+                $(this).mask('99.999.999/9999-00');
+            } else if ($(this).attr('tipoinput') == "chassi") {
+                $(this).attr('placeholder', '9AAAA99AA99999999');
+                $(this).mask('XXXXXXXXXXXXXXXXX', {'translation': {X: {pattern: /[A-Za-z0-9]/}}})
+                $(this).keyup(function () {
+                    $(this).val($(this).val().toUpperCase())
+                })
+            } else if ($(this).attr('tipoinput') == "placa") {
+                $(this).attr('placeholder', 'AAA-9999');
+                $(this).mask('AAA-9999')
+                $(this).keyup(function () {
+                    $(this).val($(this).val().toUpperCase())
+                })
+            } else if ($(this).attr('tipoinput') == "ddd") {
 
+                $(this).attr('placeholder', '(99)');
+                $(this).mask('(99)')
 
-    // $('input:text').on('keydown', function () {
-    //
-    //     if ($(this).attr('id') == 'dataprimeira') {
-    //
-    //         console.log($(this).attr('value'))
-    //
-    //         // if ($(this).attr('value').length == 2) {
-    //         //
-    //         // }
-    //     }
-    // });
+            } else if ($(this).attr('tipoinput') == "cel") {
+
+                $(this).attr('placeholder', '99999-9999');
+                $(this).mask('99999-9999')
+
+            } else if ($(this).attr('tipoinput') == "fone") {
+
+                $(this).attr('placeholder', '9999-9999');
+                $(this).mask('9999-9999')
+
+            } else if ($(this).attr('tipoinput') == "data-nascimento") {
+
+                $(this).attr('placeholder', 'DD/MM/YYYY');
+                setDateP('#'+$(this).attr('id'),'nascimento')
+                $(this).mask('99/99/9999')
+            } else if ($(this).attr('tipoinput') == "data-normal") {
+
+                $(this).attr('placeholder', 'DD/MM/YYYY');
+                setDateP('#'+$(this).attr('id'), null)
+                $(this).mask('99/99/9999')
+
+            } else if ($(this).attr('tipoinput') == "data-validade-cartao") {
+
+                $(this).attr('placeholder', 'DD/MM/YYYY');
+                setDateP('#'+$(this).attr('id'), 'valcartao')
+                $(this).mask('99/99/9999')
+            } else if ($(this).attr('tipoinput') == "cep") {
+
+                $(this).attr('placeholder', '00000-000');
+                $(this).mask('99999-999')
+            } else if ($(this).attr('tipoinput') == "renavan") {
+
+                $(this).attr('placeholder', '00000000000');
+                $(this).mask('99999999999')
+            } else if ($(this).attr('tipoinput') == "num-cartao") {
+
+                $(this).attr('placeholder', '0000 0000 0000 0000');
+                $(this).mask('9999 9999 9999 9999')
+            }
+            // console.log($(this).attr('data'));
+        })
+    });
+
 
 });
 

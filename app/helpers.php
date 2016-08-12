@@ -34,11 +34,11 @@ if (!function_exists('format')):
                     break;
                 case 'cartao':
 
-                    if(strlen($string) != 16){
-                       return  $string;
+                    if (strlen($string) != 16) {
+                        return $string;
                     }
                     $mask = "%s%s%s%s %s%s%s%s %s%s%s%s %s%s%s%s";
-                    break;  
+                    break;
                 case 'cep':
                     $mask = "%s%s%s%s%s-%s%s%s";
                     break;
@@ -47,7 +47,7 @@ if (!function_exists('format')):
                     $mask = "%s%s%s-%s%s%s%s";
                     break;
                 case 'real':
-                    return number_format($string,2,',','.');
+                    return number_format($string, 2, ',', '.');
                     break;
                 default :
                     return 'tipo invalida';
@@ -197,11 +197,11 @@ if (!function_exists('gerarXml')):
                 $xml .= ' nm_usuario = "' . $config->nm_usuario . '"';
                 $xml .= ' nr_cotacao_i4pro = "' . $proposta->cotacaoseguradora->id_cotacao_seguradora . '"';
                 $xml .= ' nm_pessoa = "' . $proposta->cotacao->segurado->clinomerazao . '"';
-                ($tipopessoa == 1 ? $xml .= ' id_sexo = "' . $proposta->cotacao->segurado->clicdsexo . '"'  : null);
+                ($tipopessoa == 1 ? $xml .= ' id_sexo = "' . $proposta->cotacao->segurado->clicdsexo . '"' : null);
                 ($tipopessoa == 1 ? $xml .= ' id_estado_civil = "' . $proposta->cotacao->segurado->clicdestadocivil . '"' : null);
                 $xml .= ' dt_nascimento = "' . $proposta->cotacao->segurado->clidtnasc . '"';
-                ($tipopessoa == 1 ? $xml .= ' nm_resp1 = "' . $config->nm_resp1_gov . '"'  : null);
-                ($tipopessoa == 1 ? $xml .= ' nm_resp2 = "' . $config->nm_resp2_gov . '"'  : null);
+                ($tipopessoa == 1 ? $xml .= ' nm_resp1 = "' . $config->nm_resp1_gov . '"' : null);
+                ($tipopessoa == 1 ? $xml .= ' nm_resp2 = "' . $config->nm_resp2_gov . '"' : null);
                 $xml .= ' nr_ddd_res = "' . $proposta->cotacao->segurado->clidddfone . '"';
                 $xml .= ' nm_fone_res = "' . $proposta->cotacao->segurado->clinmfone . '"';
                 $xml .= ' nr_ddd_cel = "' . $proposta->cotacao->segurado->clidddcel . '"';
@@ -212,7 +212,7 @@ if (!function_exists('gerarXml')):
                 $xml .= ' nm_complemento = "' . $proposta->cotacao->segurado->cliendcomplet . '"';
                 $xml .= ' nm_cidade = "' . $proposta->cotacao->segurado->clinmcidade . '"';
                 $xml .= ' cd_uf = "' . $proposta->cotacao->segurado->clicduf . '"';
-                $xml .= ($tipopessoa == 1 ? ' cd_profissao = "'  : ' id_ramo_atividade = "') . $proposta->cotacao->segurado->clicdprofiramoatividade . '"';
+                $xml .= ($tipopessoa == 1 ? ' cd_profissao = "' : ' id_ramo_atividade = "') . $proposta->cotacao->segurado->clicdprofiramoatividade . '"';
                 $xml .= ' nm_placa = "' . $proposta->cotacao->veiculo->veicplaca . '"';
                 $xml .= ' nm_chassis = "' . $proposta->cotacao->veiculo->veicchassi . '"';
                 $xml .= ' dv_segurado_proprietario = "' . ($proposta->cotacao->veiculo->propcpfcnpj == $proposta->cotacao->veiculo->clicpfcnpj ? 1 : 0) . '"';
@@ -221,14 +221,14 @@ if (!function_exists('gerarXml')):
                 $xml .= ' id_produto_parc_premio = "' . $config->id_produto_parcela_premio . '" /></i4proerp>';
                 break;
             case "venda":
-                $xml = '<i4proerp><venda_auto_configuravel id_revenda = "'.$config->id_revenda .'"';
-                $xml .= ' nm_usuario = "'. $config->nm_usuario .'"';
-                $xml .= ' nr_cotacao_i4pro = "'.$proposta->cotacaoseguradora->id_cotacao_seguradora.'"';
-                $xml .= ' id_proposta = "'. $proposta->propostaseguradora->id_proposta_seguradora .'"';
-                $xml .= ' dt_instala_rastreador = "'.date("Ymd").'"';
-                $xml .= ' dt_ativa_rastreador = "'.date("Ymd").'"';
-                $xml .= ' dt_inicio_vig_comodato = "'.date("Ymd").'"';
-                $xml .= ' dt_fim_vig_comodato = "'. date('Ymd', strtotime('+1 year')).'"  /></i4proerp>';
+                $xml = '<i4proerp><venda_auto_configuravel id_revenda = "' . $config->id_revenda . '"';
+                $xml .= ' nm_usuario = "' . $config->nm_usuario . '"';
+                $xml .= ' nr_cotacao_i4pro = "' . $proposta->cotacaoseguradora->id_cotacao_seguradora . '"';
+                $xml .= ' id_proposta = "' . $proposta->propostaseguradora->id_proposta_seguradora . '"';
+                $xml .= ' dt_instala_rastreador = "' . date("Ymd") . '"';
+                $xml .= ' dt_ativa_rastreador = "' . date("Ymd") . '"';
+                $xml .= ' dt_inicio_vig_comodato = "' . date("Ymd") . '"';
+                $xml .= ' dt_fim_vig_comodato = "' . date('Ymd', strtotime('+1 year')) . '"  /></i4proerp>';
                 break;
             default:
                 $xml = false;
@@ -272,21 +272,42 @@ if (!function_exists('getDateFormat')):
 
     function getDateFormat($date, $type = null)
     {
-        switch ($type){
+        switch ($type) {
 
             case 'valcartao':
-                $validade = '01-'.str_replace('/',"-",$date);
-                return date('Ym',strtotime($validade));
+                $validade = '01-' . str_replace('/', "-", $date);
+                return date('Ym', strtotime($validade));
                 break;
             case 'nascimento':
-                $validade = str_replace('/',"-",$date);
-                return date('Ymd',strtotime($validade));
+                $validade = str_replace('/', "-", $date);
+                return date('Ymd', strtotime($validade));
             default:
-               return $validade = str_replace('/',"-",$date);
+                return $validade = str_replace('/', "-", $date);
 
         }
-            
-        
+
+
+    }
+
+endif;
+
+if (!function_exists('getDataReady')):
+
+    function getDataReady($data)
+    {
+        $search = [
+            '/',
+            '.',
+            '-',
+            ',',
+            '\\',
+            '(',
+            ')',
+            ' ',
+        ];
+
+        return str_replace($search, '', $data);
+
 
     }
 

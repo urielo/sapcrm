@@ -57,7 +57,7 @@
                                                 <label for="veiculo">Codigo Fipe - Veiculo</label>
                                                 <div class="input-group">
                                                     <span class="input-group-addon" id="codefip-text">000000-0</span>
-                                                    <input class="form-control form-control-sm" type="text"
+                                                    <input class="form-control form-control-sm"  type="text"
                                                            name="veiculo" aria-describedby="basic-addon1" id="veiculo"/>
                                                 </div>
                                                 <input type="hidden" name="codefipe" id="codefip-value" value=""/>
@@ -92,7 +92,7 @@
                                                     <div class="form-group">
                                                         <label for="placa">Placa</label>
                                                         <input class="form-control form-control-sm" type="text"
-                                                               name="placa" id="placa"/>
+                                                               tipoinput="placa" name="placa" id="placa"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
@@ -127,7 +127,7 @@
                                                             </label>
                                                             <label>
                                                                 <input type="radio" name="indautozero" id="indautozero"
-                                                                       value="0">
+                                                                       value="0" checked>
                                                                 Não
                                                             </label>
                                                         </div>
@@ -140,7 +140,7 @@
                                                     <div class="form-group">
                                                         <label for="renavan">Renavan</label>
                                                         <input class="form-control form-control-sm" type="text"
-                                                               name="renavan" id="renavan"/>
+                                                               tipoinput="renavan" name="renavan" id="renavan"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2 ">
@@ -157,7 +157,7 @@
                                                 <div class="col-md-3 ">
                                                     <div class="form-group">
                                                         <label for="chassi">Chassi </label>
-                                                        <input class="form-control form-control-sm" type="text"
+                                                        <input class="form-control form-control-sm" tipoinput="chassi" type="text"
                                                                name="chassi" id="chassi"/>
                                                     </div>
                                                 </div>
@@ -302,7 +302,7 @@
                                             <div class="form-group">
                                                 <label for="segdatanasc">Data Nascimento</label>
                                                 <input class="form-control form-control-sm" type="text" value=""
-                                                       name="segdatanasc" id="segdatanasc"/>
+                                                       tipoinput="data-nascimento" name="segdatanasc" id="segdatanasc"/>
                                             </div>
                                         </div>
 
@@ -350,7 +350,7 @@
                                             <div class="form-group">
                                                 <label for="segdatafund">Data Fundação</label>
                                                 <input class="form-control form-control-sm" type="text"
-                                                       name="segdatafund" id="segdatafund"/>
+                                                       tipoinput="data-normal" name="segdatafund" id="segdatafund"/>
                                             </div>
                                         </div>
 
@@ -358,7 +358,7 @@
                                             <div class="form-group">
                                                 <label for="segcnpj">CNPJ</label>
                                                 <input class="form-control form-control-sm" type="text" name="segcnpj"
-                                                       id="segcnpj"/>
+                                                       tipoinput="cnpj" id="segcnpj"/>
 
                                             </div>
                                         </div>
@@ -371,7 +371,7 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="segcpf">CPF</label>
-                                                <input class="form-control form-control-sm" type="text" name="segcpf"
+                                                <input class="form-control form-control-sm" tipoinput="cpf" type="text" name="segcpf"
                                                        id="segcpf"/>
                                             </div>
                                         </div>
@@ -380,7 +380,8 @@
                                             <div class="form-group">
                                                 <label for="segrg">RG</label>
                                                 <input class="form-control form-control-sm" type="text" name="segrg"
-                                                       id="segrg"/>
+                                                       tipoinput="rg"
+                                                id="segrg"/>
                                             </div>
                                         </div>
 
@@ -413,7 +414,7 @@
                                             <div class="form-group">
                                                 <label for="segrgdtemissao">Data Emissão</label>
                                                 <input class="form-control form-control-sm" type="text"
-                                                       name="segrgdtemissao" id="segrgdtemissao"/>
+                                                       tipoinput="data-normal" name="segrgdtemissao" id="segrgdtemissao"/>
                                             </div>
                                         </div>
                                     </div>
@@ -424,14 +425,14 @@
                                             <div class="form-group">
                                                 <label for="segdddcel">DDD</label>
                                                 <input type="text" name="segdddcel" id="segdddcel"
-                                                       class="form-control form-control-sm" value=""/>
+                                                       tipoinput="ddd" class="form-control form-control-sm" value=""/>
                                             </div>
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="segnmcel">Celular</label>
                                                 <input class="form-control form-control-sm" type="text" name="segnmcel"
-                                                       id="segnmcel"/>
+                                                       tipoinput="cel" id="segnmcel"/>
                                             </div>
                                         </div>
 
@@ -439,20 +440,20 @@
                                             <div class="form-group">
                                                 <label for="segdddfone">DDD</label>
                                                 <input type="text" name="segdddfone" id="segdddfone"
-                                                       class="form-control form-control-sm" value=""/>
+                                                       tipoinput="ddd" class="form-control form-control-sm" value=""/>
                                             </div>
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="segnmfone">Fone</label>
                                                 <input class="form-control form-control-sm" type="text" name="segnmfone"
-                                                       id="segnmfone"/>
+                                                       tipoinput="fone" id="segnmfone"/>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="segemail">Email</label>
-                                                <input class="form-control form-control-sm" type="email" name="segemail"
+                                                <input class="form-control form-control-sm" placeholder="email@email.com" type="email" name="segemail"
                                                        id="segemail"/>
                                             </div>
                                         </div>
@@ -464,7 +465,7 @@
                                             <div class="form-group">
                                                 <label for="segcep">CEP</label>
                                                 <input type="text" name="segcep" id="segcep"
-                                                       class="form-control form-control-sm" value=""/>
+                                                       tipoinput="cep" class="form-control form-control-sm" value=""/>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
@@ -760,7 +761,7 @@
                                                     <div class="form-group">
                                                         <label for="propdatanasc">Data Nascimento</label>
                                                         <input class="form-control form-control-sm" type="text"
-                                                               name="propdatanasc" id="propdatanasc"/>
+                                                               tipoinput="data-nascimento" name="propdatanasc" id="propdatanasc"/>
                                                     </div>
                                                 </div>
 
@@ -806,7 +807,7 @@
                                                     <div class="form-group">
                                                         <label for="propdatafund">Data Fundação</label>
                                                         <input class="form-control form-control-sm" type="text"
-                                                               name="propdatafund" id="propdatafund"/>
+                                                               tipoinput="data-normal" name="propdatafund" id="propdatafund"/>
                                                     </div>
                                                 </div>
 
@@ -814,7 +815,7 @@
                                                     <div class="form-group">
                                                         <label for="propcnpj">CNPJ</label>
                                                         <input class="form-control form-control-sm" type="text"
-                                                               name="propcnpj"
+                                                               tipoinput="cnpj" name="propcnpj"
                                                                id="propcnpj"/>
                                                     </div>
                                                 </div>
@@ -826,7 +827,7 @@
                                                 <div class="col-md-2">
                                                     <div class="form-group">
                                                         <label for="propcpf">CPF</label>
-                                                        <input class="form-control form-control-sm" type="text"
+                                                        <input class="form-control form-control-sm" type="text" tipoinput="cpf"
                                                                name="propcpf"
                                                                id="propcpf"/>
                                                     </div>
@@ -836,7 +837,7 @@
                                                     <div class="form-group">
                                                         <label for="proprg">RG</label>
                                                         <input class="form-control form-control-sm" type="text"
-                                                               name="proprg"
+                                                               tipoinput="rg" name="proprg"
                                                                id="proprg"/>
                                                     </div>
                                                 </div>
@@ -873,6 +874,7 @@
                                                     <div class="form-group">
                                                         <label for="proprgdtemissao">Data Emissão</label>
                                                         <input class="form-control form-control-sm" type="text"
+                                                               tipoinput="data-normal"
                                                                name="proprgdtemissao" id="proprgdtemissao"/>
                                                     </div>
                                                 </div>
@@ -884,14 +886,14 @@
                                                     <div class="form-group">
                                                         <label for="propdddcel">DDD</label>
                                                         <input type="text" name="propdddcel" id="propdddcel"
-                                                               class="form-control form-control-sm" value=""/>
+                                                               tipoinput="DDD" class="form-control form-control-sm" value=""/>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                     <div class="form-group">
                                                         <label for="propnmcel">Celular</label>
                                                         <input class="form-control form-control-sm" type="text"
-                                                               name="propnmcel"
+                                                               tipoinput="cel" name="propnmcel"
                                                                id="propnmcel"/>
                                                     </div>
                                                 </div>
@@ -900,6 +902,7 @@
                                                     <div class="form-group">
                                                         <label for="propdddfone">DDD</label>
                                                         <input type="text" name="propdddfone" id="propdddfone"
+                                                               tipoinput="ddd"
                                                                class="form-control form-control-sm" value=""/>
                                                     </div>
                                                 </div>
@@ -907,6 +910,7 @@
                                                     <div class="form-group">
                                                         <label for="propnmfone">Fone</label>
                                                         <input class="form-control form-control-sm" type="text"
+                                                               tipoinput="fone"
                                                                name="propnmfone" id="propnmfone"/>
                                                     </div>
                                                 </div>
@@ -914,7 +918,7 @@
                                                     <div class="form-group">
                                                         <label for="propemail">Email</label>
                                                         <input class="form-control form-control-sm" type="email"
-                                                               name="propemail" id="propemail"/>
+                                                          placeholder="email@email.com"     name="propemail" id="propemail"/>
                                                     </div>
                                                 </div>
 
@@ -925,7 +929,7 @@
                                                     <div class="form-group">
                                                         <label for="propcep">CEP</label>
                                                         <input type="text" name="propcep" id="propcep"
-                                                               class="form-control form-control-sm" value=""/>
+                                                               tipoinput="cep" class="form-control form-control-sm" value=""/>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
@@ -1036,7 +1040,7 @@
                                             <div class="form-group">
                                                 <label for="conddatanasc">Data Nascimento</label>
                                                 <input class="form-control form-control-sm" type="text"
-                                                       name="conddatanasc"
+                                                       tipoinput="data-nascimento" name="conddatanasc"
                                                        id="conddatanasc"/>
                                             </div>
                                         </div>
@@ -1074,7 +1078,7 @@
                                             <div class="form-group">
                                                 <label for="condcpf">CPF</label>
                                                 <input class="form-control form-control-sm" type="text" name="condcpf"
-                                                       id="condcpf"/>
+                                                       tipoinput="cpf" id="condcpf"/>
                                             </div>
                                         </div>
 
@@ -1117,7 +1121,7 @@
                                     <div class="form-group">
                                         <label for="cartaonumero">Nº Cartão</label>
                                         <input class="form-control form-control-sm" type="text"
-                                               name="cartaonumero" id="cartaonumero"/>
+                                               tipoinput="num-cartao" name="cartaonumero" id="cartaonumero"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="cartaobandeira">Bandeira Cartão</label>
@@ -1132,7 +1136,7 @@
                                     <div class="form-group">
                                         <label for="cartaovalidade">Data Validade</label>
                                         <input class="form-control form-control-sm" type="text"
-                                               name="cartaovalidade" id="cartaovalidade"/>
+                                               tipoinput="data-validade-cartao" name="cartaovalidade" id="cartaovalidade"/>
                                     </div>
 
                                 </div>

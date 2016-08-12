@@ -54,7 +54,7 @@
                                     <label for="veiculo">Codigo Fipe - Veiculo</label>
                                     <div class="input-group">
                                         <span class="input-group-addon" id="codefip-text">000000-0</span>
-                                        <input class="form-control form-control-sm" type="text" name="veiculo" aria-describedby="basic-addon1" id="veiculo" />
+                                        <input class="form-control form-control-sm" type="text" data="veic" name="veiculo" aria-describedby="basic-addon1" id="veiculo" />
                                     </div>
                                     <input type="hidden" name="codefipe" id="codefip-value" value=""/>
                                 </div>
@@ -63,7 +63,7 @@
                             <div class="col-md-4 " id="divano">
                                 <div class="form-group">
                                     <label for="anom" >Ano Modelo - Combustivel - Valor</label>
-                                    <select name="anom" id="anom" class="form-control form-control-sm">
+                                    <select name="anom"  id="anom" class="form-control form-control-sm">
 
                                     </select>
                                 </div>
