@@ -137,7 +137,7 @@ class AjaxController extends Controller
         $retorno = [];
         $combos = [];
 
-        foreach (Produtos::whereTipoproduto('master')->orderBy('idproduto', 'ASC')->get() as $produto):
+        foreach (Produtos::whereTipoproduto('master')->whereCodstatus('1')->orderBy('idproduto', 'ASC')->get() as $produto):
 //            $roubo = $produto->idproduto == 1 ? TRUE : $produto->idproduto == 2 ? TRUE : $produto->idproduto == 19 ? TRUE : $produto->idproduto == 20 ? TRUE : FALSE;
 //            $rcf = $produto->idproduto == 3 ? TRUE : $produto->idproduto == 13 ? TRUE : $produto->idproduto == 14 ? TRUE : FALSE;
 //            $ass = $produto->idproduto == 12 ? TRUE : $produto->idproduto == 4 ? TRUE : $produto->idproduto == 15 ? TRUE : $produto->idproduto == 11 ? TRUE : FALSE;

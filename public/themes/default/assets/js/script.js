@@ -35,6 +35,26 @@ $(function () {
     panelcondutor.hide();
     panelproprietario.hide();
 
+    function setAnofab() {
+        var anom = $.parseJSON($('select[name=anom]').val());
+                $('#anof').empty();
+
+        for (var i = anom.ano ; i >= anom.ano - 1; i--) {
+            $('#anof').append('<option value="' + i + '">' + i + '</option>')
+        }
+        // return console.log(anom.ano)
+    }
+
+    function setAnoRenav() {
+        var anof = $('#anof').val()
+        $('#anorenav').empty();
+        var d = new Date();
+
+        for (var i = d.getFullYear() ; i >= anof; i--) {
+            $('#anorenav').append('<option value="' + i + '">' + i + '</option>')
+        }
+
+            }
 
     function setDateP(idinput, tipo) {
         var d = new Date();
@@ -181,13 +201,15 @@ $(function () {
             }
         )
 
-        $.get(geturl() + "anofab/",
-            {cdfipe: cdfipe},
-            // Carregamos o resultado acima para o campo modelo
-            function (valor) {
-                $("select[name=anof]").html(valor);
-            }
-        )
+        // $.get(geturl() + "anofab/",
+        //     {cdfipe: cdfipe},
+        //     // Carregamos o resultado acima para o campo modelo
+        //     function (valor) {
+        //         $("select[name=anof]").html(valor);
+        //     }
+        // )
+
+
 
     }
 
@@ -259,11 +281,17 @@ $(function () {
         pergunta.fadeIn("slow");
         btnsubmit.fadeIn("slow");
         $(this).fadeOut();
+
+        setAnofab()
+        setAnoRenav()
+
+
     });
 
 
     $("select[name=anom]").on('change', function () {
-
+        setAnofab()
+        setAnoRenav()
 
         if ($("select[name=anom]").val() == 0) {
             // alert($(this).val());
