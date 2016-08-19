@@ -857,14 +857,13 @@ $(function () {
                     var value = $(this).val();
                     if (!validate_cpf($(this).val()) && value.length > 0) {
                         ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
-                        $(this).after(menssageError('CNPJ: Invalido', idmsg))
+                        $(this).after(menssageError('CPF: Invalido', idmsg))
                         $(this).focus();
                     } else if (validate_cpf($(this).val())) {
                         ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
                         value = value.replace('.', '');
                         value = value.replace('.', '');
                         value = value.replace('-', '');
-                        // console.log(value);
                         var dados = {'cpfcnpj': value, 'elemento': pessoa, 'tipo': $('#tipopessoa').val()}
 
                         $.ajax({
@@ -911,6 +910,40 @@ $(function () {
                         ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
                         $(this).after(menssageError('CNPJ: Invalido', idmsg))
                         $(this).focus();
+                    } else if(validate_cnpj($(this).val())) {
+                        ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
+                        ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
+                        value = value.replace('.', '');
+                        value = value.replace('.', '');
+                        value = value.replace('-', '');
+                        value = value.replace('/', '');
+
+                        var dados = {'cpfcnpj': value, 'elemento': pessoa, 'tipo': $('#tipopessoa').val()}
+
+                        $.ajax({
+                            data: dados,
+                            url: geturl() + 'complete',
+                            dataType: "json",
+                            type: 'GET',
+                            success: function (retorno) {
+                                if (retorno.status) {
+
+                                    $.each(retorno, function (key, value) {
+
+                                        $('#' + key).val(value)
+                                        $('#' + key).trigger('focusout')
+
+                                    })
+                                } else {
+                                    return false
+                                }
+
+                            },
+                            error: function (retorno) {
+                                console.log(retorno);
+                                console.log('error');
+                            }
+                        });
                     } else {
                         ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
                     }
