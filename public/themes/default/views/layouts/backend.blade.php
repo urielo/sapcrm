@@ -83,6 +83,8 @@
         <script src="{{ theme('js/bootstrap.min.js') }}"></script>
         <script src="{{ theme('js/jquery-ui.js') }}"></script>
         <script src="{{ theme('js/bootstrap-datepicker.js') }}"></script>
+        <script src="{{ theme('js/bootstrap-validation.min.js') }}"></script>
+        <script src="{{ theme('js/cpfcpnj-validator.js') }}"></script>
         <script src="{{ theme('js/locales/datepicker-ptbr.js') }}"></script>
         {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.2/locales/bootstrap-datepicker.pt-BR.min.js" charset="UTF-8"></script>--}}
 

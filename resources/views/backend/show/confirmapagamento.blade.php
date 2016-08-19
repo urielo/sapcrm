@@ -120,7 +120,7 @@
 
                             {!! Form::text('datapgto',
                             '',
-                            ['class'=> 'form-control form-control-sm', 'placeholder'=> 'DD/MM/YYYY', 'id'=>"datapgto"]) !!}
+                            ['class'=> 'form-control form-control-sm', 'tipoinput'=>'data-pagamento-boleto','placeholder'=> 'DD/MM/YYYY', 'id'=>"datapgto"]) !!}
 
                         </div>
                     </div>

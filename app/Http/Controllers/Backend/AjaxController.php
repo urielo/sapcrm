@@ -12,6 +12,9 @@ use App\Model\CategoriaFipes;
 use App\Model\FipeAnoValor;
 use App\Model\Profissoes;
 use App\Model\RamoAtividades;
+use App\Model\Segurado;
+use App\Model\Veiculos;
+
 
 class AjaxController extends Controller
 {
@@ -311,7 +314,7 @@ class AjaxController extends Controller
                         'precospan' => '#preco' . $produto->idproduto,
                         'idproduto' => $produto->idproduto,
                         'tiposeguro' => $produto->tipodeseguro,
-                        'divp' => '#divp'.$produto->idproduto,
+                        'divp' => '#divp' . $produto->idproduto,
 
 
                     ];
@@ -346,7 +349,7 @@ class AjaxController extends Controller
                         'precospan' => '#preco' . $produto->idproduto,
                         'idproduto' => $produto->idproduto,
                         'tiposeguro' => $produto->tipodeseguro,
-                        'divp' => '#divp'.$produto->idproduto,
+                        'divp' => '#divp' . $produto->idproduto,
 
 
                     ];
@@ -358,5 +361,64 @@ class AjaxController extends Controller
         endforeach;
 
         return response()->json($retorno);
+    }
+
+    public function setMiddleware($middleware)
+    {
+        $this->middleware = $middleware;
+    }
+
+    public function inputscomplete(Request $request)
+    {
+
+        $retorno = new \stdClass();
+
+        switch ($request->elemento) {
+
+            case 'segurado':
+                $segurado = Segurado::find(getDataReady($request->cpfcnpj));
+
+                if ($segurado) {
+
+                    ($request->tipo == 1 ? $retorno->segnome = nomeCase($segurado->clinomerazao) : $retorno->segrazao = nomeCase($segurado->clinomerazao));
+                    ($request->tipo == 1 ? $retorno->segdatanasc = date('d/m/Y', strtotime($segurado->clidtnasc)) : $retorno->segdatafund = date('d/m/Y', strtotime($segurado->clidtnasc)));
+                    ($request->tipo == 1 ? $retorno->segsexo = $segurado->clicdsexo : '');
+                    ($request->tipo == 1 ? $retorno->segestadocivil = $segurado->clicdestadocivil : '');
+                    ($request->tipo == 1 ? $retorno->segrg = $segurado->clinumrg : '');
+                    ($request->tipo == 1 ? $retorno->segrgoe = $segurado->cliemissorrg : '');
+                    ($request->tipo == 1 ? $retorno->segrguf = $segurado->clicdufemissaorg : '');
+                    ($request->tipo == 1 ? (empty($segurado->clidtemissaorg) ? '' : $retorno->segrgdtemissao = date('d/m/Y', strtotime($segurado->clidtemissaorg))) : '');
+                    ($request->tipo == 1 ? $retorno->segcdprofissao = $segurado->clicdprofiramoatividade : $retorno->segcdramoatividade = $segurado->clicdprofiramoatividade);
+                    ($request->tipo == 1 ? $retorno->segprofissao = $segurado->profissao->nm_ocupacao : $retorno->segramoatividade = $segurado->ramosatividade->nome_atividade);
+                    $retorno->segdddcel = $segurado->clidddcel;
+                    $retorno->segnmcel = format('fone', $segurado->clinmcel);
+                    $retorno->segdddfone = $segurado->clidddfone;
+                    $retorno->segnmfone = format('fone', $segurado->clinmfone);
+                    $retorno->segemail = $segurado->cliemail;
+                    $retorno->segcep = format('cep', $segurado->clicep);
+                    $retorno->segendlog = $segurado->clinmend;
+                    $retorno->segnmend = $segurado->clinumero;
+                    $retorno->segendcompl = $segurado->cliendcomplet;
+                    $retorno->segendcidade = $segurado->clinmcidade;
+                    $retorno->segenduf = $segurado->clicduf;
+                    $retorno->status = true;
+
+                } else {
+                    $retorno->status = false;
+                }
+                break;
+
+            case 'veiculo':
+                $veiculo = Veiculos::where('veicplaca','ilike','%'.$request->placa.'%')->first();
+                return response()->json($veiculo);
+                break;
+            default:
+
+                $retorno->status = false;
+        }
+
+
+        return response()->json($retorno);
+
     }
 }

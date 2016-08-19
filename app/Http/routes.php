@@ -35,6 +35,7 @@ Route::get('/anovalor', ['as' => 'anovalor', 'uses' => 'Backend\AjaxController@a
 Route::get('/anofab', ['as' => 'anofab', 'uses' => 'Backend\AjaxController@anofab']);
 Route::get('/produtosmaster', ['as' => 'produtosmaster', 'uses' => 'Backend\AjaxController@produtosmaster']);
 Route::get('/produtosopcional', ['as' => 'produtosopcional', 'uses' => 'Backend\AjaxController@produtosopcional']);
+Route::get('/complete', ['as' => 'seguradoauto', 'uses' => 'Backend\AjaxController@inputscomplete']);
 
 
 Route::group(['prefix' => 'vendas'], function () {
