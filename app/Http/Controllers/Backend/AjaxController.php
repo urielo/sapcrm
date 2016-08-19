@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Model\Fipes;
+use App\Model\Contingencia;
 use App\Model\Combos;
 use App\Model\Produtos;
 use App\Model\PrecoProdutos;
@@ -137,6 +138,7 @@ class AjaxController extends Controller
 //        var_dump();
 //        echo '</pre>';
 
+        $fipe = Fipes::find($cdfipe);
         $retorno = [];
         $combos = [];
 
@@ -152,9 +154,15 @@ class AjaxController extends Controller
                 if ($tipo == $produto->idtipoveiculo):
                     if ($valor >= $preco->vlrfipeminimo && $valor <= $preco->vlrfipemaximo && $idade <= $preco->idadeaceitamax):
 
-                        $retorno[] = [
-                            'html' =>
-                                '<div class="col-md-12" id="divp' . $produto->idproduto . '">
+                        if ($fipe->idstatus == 23) {
+                            $vlcont = Contingencia::where('idseguradora',$produto->idseguradora)->first();
+                            if($vlcont){
+                                $preco->premioliquidoproduto = $preco->premioliquidoproduto + $vlcont->valor;
+                            }
+
+                            $retorno[] = [
+                                'html' =>
+                                    '<div class="col-md-12" id="divp' . $produto->idproduto . '">
                 <div class="checkbox">
                     <label>
                         <input type="checkbox" name="produtos[]" value=\'' . json_encode(['idproduto' => $produto->idproduto, 'menorparc' => $preco->vlrminprimparc, 'vlproduto' => $preco->premioliquidoproduto]) . '\' id="porduto' . $produto->idproduto . '"> <strong>  ' . $produto->nomeproduto . ' - R$ <span id="preco' . $produto->idproduto . '">' . number_format($preco->premioliquidoproduto, 2, ',', '.') . '</span> </strong>
@@ -175,14 +183,51 @@ class AjaxController extends Controller
                     </div>
                 </div>
             </div> ',
-                            'acordion' => '#acordion' . $produto->idproduto,
-                            'chkid' => '#porduto' . $produto->idproduto,
-                            'precospan' => '#preco' . $produto->idproduto,
-                            'divp' => '#divp' . $produto->idproduto,
-                            'idproduto' => $produto->idproduto,
+                                'acordion' => '#acordion' . $produto->idproduto,
+                                'chkid' => '#porduto' . $produto->idproduto,
+                                'precospan' => '#preco' . $produto->idproduto,
+                                'divp' => '#divp' . $produto->idproduto,
+                                'idproduto' => $produto->idproduto,
 
 
-                        ];
+                            ];
+                        } elseif($fipe->idstatus == 22 && $produto->idseguradora == 1){
+
+                        } else {
+                            $retorno[] = [
+                                'html' =>
+                                    '<div class="col-md-12" id="divp' . $produto->idproduto . '">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="produtos[]" value=\'' . json_encode(['idproduto' => $produto->idproduto, 'menorparc' => $preco->vlrminprimparc, 'vlproduto' => $preco->premioliquidoproduto]) . '\' id="porduto' . $produto->idproduto . '"> <strong>  ' . $produto->nomeproduto . ' - R$ <span id="preco' . $produto->idproduto . '">' . number_format($preco->premioliquidoproduto, 2, ',', '.') . '</span> </strong>
+                    </label>
+                    <div id="acordion' . $produto->idproduto . '">
+                        <h6>Detalhes</h6>
+                        <div>
+                            <p>
+                                <b>Descrição: </b>' . $produto->descproduto . '.
+                                <br>
+                                <b>Caracteristaca:  </b> ' . $preco->caractproduto . '.
+                                <br>
+                                <br>
+                                <b>Exigencia Vistoria:  </b>' . ($produto->indexigenciavistoria ? 'Sim' : 'Não') . '
+                                <b>Exigencia Rastreador:  </b>' . ($preco->indobrigrastreador ? 'Sim' : 'Não') . ' 
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div> ',
+                                'acordion' => '#acordion' . $produto->idproduto,
+                                'chkid' => '#porduto' . $produto->idproduto,
+                                'precospan' => '#preco' . $produto->idproduto,
+                                'divp' => '#divp' . $produto->idproduto,
+                                'idproduto' => $produto->idproduto,
+
+
+                            ];
+                        }
+
+                        
                     endif;
                 elseif ($preco->idcategoria == $categoria):
                     $retorno[] = [
@@ -409,7 +454,7 @@ class AjaxController extends Controller
                 break;
 
             case 'veiculo':
-                $veiculo = Veiculos::where('veicplaca','ilike','%'.$request->placa.'%')->first();
+                $veiculo = Veiculos::where('veicplaca', 'ilike', '%' . $request->placa . '%')->first();
                 return response()->json($veiculo);
                 break;
             default:

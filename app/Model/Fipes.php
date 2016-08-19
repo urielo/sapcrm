@@ -9,7 +9,7 @@ class Fipes extends Model
 
     protected $table = 'fipe';
     protected $primaryKey = 'codefipe';
-    protected $fillable = ["marca", "codefipe", "modelo"];
+    protected $fillable = ["marca", "codefipe", "modelo",'idstatus'];
     public $incrementing = false;
 
     public function anovalor()
