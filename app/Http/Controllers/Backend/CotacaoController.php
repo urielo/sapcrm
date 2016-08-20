@@ -78,7 +78,7 @@ class CotacaoController extends Controller
     public function cotar(FormaPagamento $formapagamentos)
     {
         $veiculos = $this->veiculo;
-
+        $segurados = $this->segurado;
         $tipos = $this->tipos;
         $ufs = $this->ufs;
         $tipoultiveics = $this->tipoultiveics;
@@ -86,7 +86,7 @@ class CotacaoController extends Controller
         $orgaoemissors = $this->orgaoemissors;
 
 
-        return view('backend.cotacao.form', compact('orgaoemissors', 'veiculos', 'tipos', 'ufs', 'tipoultiveics', 'estadoscivis', 'formapagamentos'));
+        return view('backend.cotacao.form', compact('segurados', 'orgaoemissors', 'veiculos', 'tipos', 'ufs', 'tipoultiveics', 'estadoscivis', 'formapagamentos'));
     }
 
     public function gerar(CotacaoRequest $request)
