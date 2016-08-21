@@ -2,6 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="158326c0-4f81-4588-bf4f-593b4ab725fa" name="Default" comment="Alterações nos viwes e criacoes de novos models">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Model/Permission.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Model/Role.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/config/entrust.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/config/excel.php" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/database/migrations/2016_08_20_151648_entrust_setup_tables.php" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/database/migrations/2016_04_29_131503_create_fipe_models_table.php" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/database/migrations/2016_05_03_150556_create_apolice_seguradoras_table.php" afterPath="" />
@@ -36,147 +40,7 @@
     <favorites_list name="sap.local" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="AuthController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="915">
-              <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="cobranca.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/backend/gestao/cobranca.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-420">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="efetuapagamento.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/backend/show/efetuapagamento.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1410">
-              <caret line="94" column="54" selection-start-line="94" selection-start-column="45" selection-end-line="94" selection-end-column="54" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="confirmapagamento.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/backend/show/confirmapagamento.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1830">
-              <caret line="122" column="71" selection-start-line="122" selection-start-column="71" selection-end-line="122" selection-end-column="107" />
-              <folding>
-                <marker date="1471635508277" expanded="true" signature="2373:2573" ph="..." />
-                <marker date="1471635508277" expanded="true" signature="2385:2571" ph="..." />
-                <marker date="1471635508277" expanded="true" signature="2844:3020" ph="..." />
-                <marker date="1471635508277" expanded="true" signature="2856:3018" ph="..." />
-                <marker date="1471635508277" expanded="true" signature="3977:4169" ph="..." />
-                <marker date="1471635508277" expanded="true" signature="3989:4167" ph="..." />
-                <marker date="1471635508277" expanded="true" signature="4435:4616" ph="..." />
-                <marker date="1471635508277" expanded="true" signature="4447:4614" ph="..." />
-                <marker date="1471635508277" expanded="true" signature="4886:5099" ph="..." />
-                <marker date="1471635508277" expanded="true" signature="4898:5097" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AuthenticatesUsers.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/Auth/AuthenticatesUsers.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="419">
-              <caret line="137" column="6" selection-start-line="137" selection-start-column="6" selection-end-line="137" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PasswordController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/PasswordController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="17" column="7" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ResetsPasswords.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/Auth/ResetsPasswords.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="300" column="19" selection-start-line="300" selection-start-column="19" selection-end-line="300" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="aprovacao.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/backend/gestao/aprovacao.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="213">
-              <caret line="55" column="60" selection-start-line="55" selection-start-column="60" selection-end-line="55" selection-end-column="60" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="2016_08_20_151648_entrust_setup_tables.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/migrations/2016_08_20_151648_entrust_setup_tables.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="37" column="40" selection-start-line="37" selection-start-column="40" selection-end-line="37" selection-end-column="40" />
-              <folding>
-                <element signature="e#6#51#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="script.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/themes/default/assets/js/script.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="784" column="27" selection-start-line="784" selection-start-column="27" selection-end-line="784" selection-end-column="27" />
-              <folding>
-                <element signature="e#1156#1439#0" expanded="false" />
-                <element signature="e#1468#1721#0" expanded="false" />
-                <element signature="e#1760#3253#0" expanded="false" />
-                <element signature="e#3302#3593#0" expanded="false" />
-                <element signature="e#3661#4432#0" expanded="false" />
-                <element signature="e#4518#6139#0" expanded="false" />
-                <element signature="e#7013#8192#0" expanded="false" />
-                <element signature="e#8225#9329#0" expanded="false" />
-                <element signature="e#9531#10319#0" expanded="false" />
-                <element signature="e#9562#9688#0" expanded="false" />
-                <element signature="e#10391#10488#0" expanded="false" />
-                <element signature="e#10523#10681#0" expanded="false" />
-                <element signature="e#10721#10886#0" expanded="false" />
-                <element signature="e#10929#11102#0" expanded="false" />
-                <element signature="e#11151#11454#0" expanded="false" />
-                <element signature="e#11511#20036#0" expanded="false" />
-                <element signature="e#20081#22960#0" expanded="false" />
-                <element signature="e#23010#23456#0" expanded="false" />
-                <element signature="e#23501#24693#0" expanded="false" />
-                <element signature="e#24731#25160#0" expanded="false" />
-                <element signature="e#28770#29107#0" expanded="false" />
-                <element signature="e#29280#38384#0" expanded="false" />
-                <marker date="1471804019853" expanded="true" signature="5675:5691" ph="..." />
-                <marker date="1471804019853" expanded="true" signature="5886:5902" ph="..." />
-                <marker date="1471804019853" expanded="true" signature="28621:28699" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -360,18 +224,12 @@
               <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="sap.local" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sap.local" />
+              <option name="myItemId" value="views" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
+              <option name="myItemId" value="auth" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -385,33 +243,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Http" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sap.local" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sap.local" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Http" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
+              <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -426,44 +258,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Http" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Backend" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sap.local" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sap.local" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Http" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Auth" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -644,12 +438,12 @@
       <workItem from="1471373589725" duration="1487000" />
       <workItem from="1471377343615" duration="979000" />
       <workItem from="1471529283615" duration="43989000" />
-      <workItem from="1471716253370" duration="14530000" />
+      <workItem from="1471716253370" duration="14706000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="405590000" />
+    <option name="totallyTimeSpent" value="405766000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -662,7 +456,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1366" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24981017" sideWeight="0.5051395" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31495467" sideWeight="0.4948605" order="0" side_tool="false" content_ui="combo" />
@@ -672,7 +466,7 @@
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32568806" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24941176" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25613496" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25613496" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297546" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1072,66 +866,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2016_08_20_151648_entrust_setup_tables.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="37" column="40" selection-start-line="37" selection-start-column="40" selection-end-line="37" selection-end-column="40" />
-          <folding>
-            <element signature="e#6#51#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="915">
-          <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/themes/default/assets/js/script.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="784" column="27" selection-start-line="784" selection-start-column="27" selection-end-line="784" selection-end-column="27" />
-          <folding>
-            <element signature="e#1156#1439#0" expanded="false" />
-            <element signature="e#1468#1721#0" expanded="false" />
-            <element signature="e#1760#3253#0" expanded="false" />
-            <element signature="e#3302#3593#0" expanded="false" />
-            <element signature="e#3661#4432#0" expanded="false" />
-            <element signature="e#4518#6139#0" expanded="false" />
-            <element signature="e#7013#8192#0" expanded="false" />
-            <element signature="e#8225#9329#0" expanded="false" />
-            <element signature="e#9531#10319#0" expanded="false" />
-            <element signature="e#9562#9688#0" expanded="false" />
-            <element signature="e#10391#10488#0" expanded="false" />
-            <element signature="e#10523#10681#0" expanded="false" />
-            <element signature="e#10721#10886#0" expanded="false" />
-            <element signature="e#10929#11102#0" expanded="false" />
-            <element signature="e#11151#11454#0" expanded="false" />
-            <element signature="e#11511#20036#0" expanded="false" />
-            <element signature="e#20081#22960#0" expanded="false" />
-            <element signature="e#23010#23456#0" expanded="false" />
-            <element signature="e#23501#24693#0" expanded="false" />
-            <element signature="e#24731#25160#0" expanded="false" />
-            <element signature="e#28770#29107#0" expanded="false" />
-            <element signature="e#29280#38384#0" expanded="false" />
-            <marker date="1471804019853" expanded="true" signature="5675:5691" ph="..." />
-            <marker date="1471804019853" expanded="true" signature="5886:5902" ph="..." />
-            <marker date="1471804019853" expanded="true" signature="28621:28699" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/gestao/aprovacao.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="55" column="60" selection-start-line="55" selection-start-column="60" selection-end-line="55" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/SeguradoController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-120">
@@ -1140,9 +874,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/Auth/ResetsPasswords.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="735">
+          <caret line="290" column="6" selection-start-line="290" selection-start-column="6" selection-end-line="290" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/backend/show/efetuapagamento.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1410">
+        <state relative-caret-position="420">
           <caret line="94" column="54" selection-start-line="94" selection-start-column="45" selection-end-line="94" selection-end-column="54" />
           <folding />
         </state>
@@ -1152,6 +894,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-420">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="915">
+          <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1191,11 +941,55 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/Auth/ResetsPasswords.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/gestao/aprovacao.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="300" column="19" selection-start-line="300" selection-start-column="19" selection-end-line="300" selection-end-column="19" />
+        <state relative-caret-position="213">
+          <caret line="55" column="60" selection-start-line="55" selection-start-column="60" selection-end-line="55" selection-end-column="60" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2016_08_20_151648_entrust_setup_tables.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="37" column="40" selection-start-line="37" selection-start-column="40" selection-end-line="37" selection-end-column="40" />
+          <folding>
+            <element signature="e#6#51#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/themes/default/assets/js/script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="784" column="27" selection-start-line="784" selection-start-column="27" selection-end-line="784" selection-end-column="27" />
+          <folding>
+            <element signature="e#1156#1439#0" expanded="false" />
+            <element signature="e#1468#1721#0" expanded="false" />
+            <element signature="e#1760#3253#0" expanded="false" />
+            <element signature="e#3302#3593#0" expanded="false" />
+            <element signature="e#3661#4432#0" expanded="false" />
+            <element signature="e#4518#6139#0" expanded="false" />
+            <element signature="e#7013#8192#0" expanded="false" />
+            <element signature="e#8225#9329#0" expanded="false" />
+            <element signature="e#9531#10319#0" expanded="false" />
+            <element signature="e#9562#9688#0" expanded="false" />
+            <element signature="e#10391#10488#0" expanded="false" />
+            <element signature="e#10523#10681#0" expanded="false" />
+            <element signature="e#10721#10886#0" expanded="false" />
+            <element signature="e#10929#11102#0" expanded="false" />
+            <element signature="e#11151#11454#0" expanded="false" />
+            <element signature="e#11511#20036#0" expanded="false" />
+            <element signature="e#20081#22960#0" expanded="false" />
+            <element signature="e#23010#23456#0" expanded="false" />
+            <element signature="e#23501#24693#0" expanded="false" />
+            <element signature="e#24731#25160#0" expanded="false" />
+            <element signature="e#28770#29107#0" expanded="false" />
+            <element signature="e#29280#38384#0" expanded="false" />
+            <marker date="1471804019853" expanded="true" signature="5675:5691" ph="..." />
+            <marker date="1471804019853" expanded="true" signature="5886:5902" ph="..." />
+            <marker date="1471804019853" expanded="true" signature="28621:28699" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
