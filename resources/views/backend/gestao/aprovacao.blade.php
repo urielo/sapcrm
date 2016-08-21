@@ -51,13 +51,11 @@
                         </div>
 
                         <div class="btn-group" role="group">
-
-                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                    data-target=".modal-show"
-                                    href="{{route('gestao.recusar',$proposta->proposta->idproposta)}}"
-                                    id="recusar">Recusar
-                            </button>
-
+                            <a href="{{route('gestao.recusar',$proposta->proposta->idproposta)}}">
+                                <button type="button" class="btn btn-danger btn-sm"
+                                        id="recusar">Recusar
+                                </button>
+                            </a>
 
                         </div>
 

@@ -183,7 +183,7 @@ $(function () {
     function geturl() {
         var url = location.href;
         url = url.split('/');
-        url = url[0] + '//' + url[2] + '/';
+        url = url[0] + '//' + url[2] + '/' +'ajax' + '/'    ;
         return url;
     }
 

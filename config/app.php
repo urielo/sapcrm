@@ -159,7 +159,8 @@ return [
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Artisaninweb\SoapWrapper\ServiceProvider::class,
-        Khill\Lavacharts\Laravel\LavachartsServiceProvider::class
+        Khill\Lavacharts\Laravel\LavachartsServiceProvider::class,
+        Zizaco\Entrust\EntrustServiceProvider::class,
 
     ],
 
@@ -210,7 +211,8 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Lavacharts' =>  Khill\Lavacharts\Laravel\LavachartsServiceProvider::class,
-        'SoapWrapper' => Artisaninweb\SoapWrapper\Facades\SoapWrapper::class
+        'SoapWrapper' => Artisaninweb\SoapWrapper\Facades\SoapWrapper::class,
+        'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
 
     ],
 

@@ -26,16 +26,18 @@ Route::get('teste', function () {
 
 
 });
+Route::group(['prefix' => 'ajax'], function () {
 
+    Route::get('/modelo', ['as' => 'modelo', 'uses' => 'Backend\AjaxController@modelo']);
+    Route::get('/profissao', ['as' => 'profissao', 'uses' => 'Backend\AjaxController@profissao']);
+    Route::get('/ramoatividade', ['as' => 'ramoatividade', 'uses' => 'Backend\AjaxController@ramoatividade']);
+    Route::get('/anovalor', ['as' => 'anovalor', 'uses' => 'Backend\AjaxController@anovalor']);
+    Route::get('/anofab', ['as' => 'anofab', 'uses' => 'Backend\AjaxController@anofab']);
+    Route::get('/produtosmaster', ['as' => 'produtosmaster', 'uses' => 'Backend\AjaxController@produtosmaster']);
+    Route::get('/produtosopcional', ['as' => 'produtosopcional', 'uses' => 'Backend\AjaxController@produtosopcional']);
+    Route::get('/complete', ['as' => 'seguradoauto', 'uses' => 'Backend\AjaxController@inputscomplete']);
 
-Route::get('/modelo', ['as' => 'modelo', 'uses' => 'Backend\AjaxController@modelo']);
-Route::get('/profissao', ['as' => 'profissao', 'uses' => 'Backend\AjaxController@profissao']);
-Route::get('/ramoatividade', ['as' => 'ramoatividade', 'uses' => 'Backend\AjaxController@ramoatividade']);
-Route::get('/anovalor', ['as' => 'anovalor', 'uses' => 'Backend\AjaxController@anovalor']);
-Route::get('/anofab', ['as' => 'anofab', 'uses' => 'Backend\AjaxController@anofab']);
-Route::get('/produtosmaster', ['as' => 'produtosmaster', 'uses' => 'Backend\AjaxController@produtosmaster']);
-Route::get('/produtosopcional', ['as' => 'produtosopcional', 'uses' => 'Backend\AjaxController@produtosopcional']);
-Route::get('/complete', ['as' => 'seguradoauto', 'uses' => 'Backend\AjaxController@inputscomplete']);
+});
 
 
 Route::group(['prefix' => 'vendas'], function () {
@@ -98,7 +100,7 @@ Route::group(['prefix' => 'gestao'], function () {
     Route::post('pagar', [
         'as' => 'gestao.salvarpga',
         'uses' => 'Backend\GestaoController@salvarpagamento']);
-    
+
     Route::post('confirmapg', [
         'as' => 'gestao.confirmapg',
         'uses' => 'Backend\GestaoController@confirmapagamento']);
@@ -124,7 +126,6 @@ Route::group(['prefix' => 'show'], function () {
         'as' => 'show.confirmapgto',
         'uses' => 'Backend\ShowsController@confirmapgto']);
 
-    
 
 });
 
