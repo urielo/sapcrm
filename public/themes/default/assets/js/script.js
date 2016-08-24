@@ -107,6 +107,12 @@ $(function () {
 
     };
 
+    if ($('input[name=tipocadastro]')) {
+        $('input[name=tipocadastro]')
+
+
+    }
+
 
     function aplicaComissao(valor, comissao) {
         valor = parseFloat(valor);
@@ -183,7 +189,7 @@ $(function () {
     function geturl() {
         var url = location.href;
         url = url.split('/');
-        url = url[0] + '//' + url[2] + '/' +'ajax' + '/'    ;
+        url = url[0] + '//' + url[2] + '/' + 'ajax' + '/';
         return url;
     }
 
@@ -199,14 +205,6 @@ $(function () {
                 $("select[name=anom]").html(valor);
             }
         )
-
-        // $.get(geturl() + "anofab/",
-        //     {cdfipe: cdfipe},
-        //     // Carregamos o resultado acima para o campo modelo
-        //     function (valor) {
-        //         $("select[name=anof]").html(valor);
-        //     }
-        // )
 
 
     }
@@ -313,6 +311,7 @@ $(function () {
 
     buscaCep('#segcep', '#segenduf', '#segendlog', '#segendcidade');
     buscaCep('#propcep', '#propenduf', '#propendlog', '#propendcidade');
+    buscaCep('#cep', '#uf', '#logradouro', '#cidade');
 
 
     $.widget("custom.marcacomplete", $.ui.autocomplete, {
@@ -821,12 +820,13 @@ $(function () {
 
     $('a').click(function () {
 
-        if ($(this).attr('id') == 'linksegurado') {
-
+        if ($(this).attr('id') == 'showinfo') {
+            $('.modal-content').empty()
             $.ajax({
                 url: $(this).attr('href'),
                 type: 'GET',
                 success: function (retorno) {
+
                     $('.modal-content').html(retorno);
 
 
@@ -910,7 +910,7 @@ $(function () {
                         ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
                         $(this).after(menssageError('CNPJ: Invalido', idmsg))
                         $(this).focus();
-                    } else if(validate_cnpj($(this).val())) {
+                    } else if (validate_cnpj($(this).val())) {
                         ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
                         ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
                         value = value.replace('.', '');
@@ -950,6 +950,67 @@ $(function () {
                 });
 
                 $(this).removeAttr('stats')
+            } else if ($(this).attr('tipoinput') == 'cpfcnpj' && $(this).attr('stats')) {
+                $(this).attr('placeholder', 'CPF ou CNPJ');
+                $(this).mask('999.999.999-999');
+
+                $(this).keyup(function () {
+                    var val = $(this).val();
+
+                    $(this).unmask();
+                    if (val.length < 15) {
+                        $(this).mask('999.999.999-999');
+
+
+                    } else {
+                        $(this).mask('99.999.999/9999-00');
+                    }
+                })
+
+                // $(this).focusout(function () {
+                //    
+                //
+                //     console.log($(this).cleanVal())
+                // })
+
+                var idmsg = 'msg-' + $(this).attr('id');
+                $(this).focusout(function () {
+                    $(this).trigger('keyup')
+                    var value = $(this).cleanVal();
+
+
+                    if (value.length > 11) {
+                        if (!validate_cnpj($(this).val()) && value.length > 0) {
+                            ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
+                            $(this).after(menssageError('CNPJ: Invalido', idmsg))
+                            $(this).focus();
+                            return false;
+                        } else if (validate_cnpj($(this).val())) {
+                            ($('#' + idmsg) ? $('#' + idmsg).remove() : '');
+
+
+                        } else {
+                            ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
+                        }
+                    } else {
+                        if (!validate_cpf($(this).val()) && value.length > 0) {
+                            ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
+                            $(this).after(menssageError('CPF: Invalido', idmsg))
+                            $(this).focus();
+                            return false
+                        } else if (validate_cnpj($(this).val())) {
+                            ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
+
+
+                        } else {
+                            ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
+                        }
+                    }
+
+
+                });
+
+                $(this).removeAttr('stats')
             } else if ($(this).attr('tipoinput') == "chassi" && $(this).attr('stats')) {
                 $(this).attr('placeholder', '9AAAA99AA99999999');
                 $(this).mask('XXXXXXXXXXXXXXXXX', {'translation': {X: {pattern: /[A-Za-z0-9]/}}})
@@ -967,35 +1028,7 @@ $(function () {
 
                 $(this).focusout(function () {
                     $(this).val($(this).val().toUpperCase())
-                    // var value = $(this).val();
-                    // value = value.replace('-', '');
-                    //
-                    // var dados = {'placa': value, 'elemento': 'veiculo'}
-                    //
-                    // $.ajax({
-                    //     data: dados,
-                    //     url: geturl() + 'complete',
-                    //     dataType: "json",
-                    //     type: 'GET',
-                    //     success: function (retorno) {
-                    //         if (retorno.status) {
-                    //
-                    //             $.each(retorno, function (key, value) {
-                    //
-                    //                 $('#' + key).val(value)
-                    //                 $('#' + key).trigger('focusout')
-                    //
-                    //             })
-                    //         } else {
-                    //             return false
-                    //         }
-                    //
-                    //     },
-                    //     error: function (retorno) {
-                    //         console.log(retorno);
-                    //         console.log('error');
-                    //     }
-                    // });
+
                 })
 
                 $(this).removeAttr('stats')
@@ -1047,12 +1080,94 @@ $(function () {
                 $(this).attr('placeholder', '0000 0000 0000 0000');
                 $(this).mask('9999 9999 9999 9999')
                 $(this).removeAttr('stats')
+            } else if ($(this).attr('name') == 'tipocadastro') {
+                $(this).change(function () {
+
+
+                    if ($(this).val() == 1) {
+                        $.ajax({
+                            data: dados,
+                            url: geturl() + 'corretorform',
+                            dataType: "json",
+                            type: 'GET',
+                            success: function (retorno) {
+                                $('#forms-tipocadastro').empty()
+                                $('#forms-tipocadastro').html(retorno)
+
+                            }
+
+                        });
+
+                    } else {
+                        $.ajax({
+                            data: dados,
+                            url: geturl() + 'vendedorform',
+                            dataType: "json",
+                            type: 'GET',
+                            success: function (retorno) {
+                                $('#forms-tipocadastro').empty()
+                                $('#forms-tipocadastro').html(retorno)
+
+                            }
+
+                        });
+                    }
+                })
+
             }
             // console.log($(this).attr('data'));
         })
 
 
     });
+
+    $('#cpfcnpj').focusout(function () {
+
+        var value = $(this).cleanVal();
+        var dados = {'cpfcnpj': value}
+
+        $.ajax({
+            data: dados,
+            url: geturl() + 'getcorretor',
+            dataType: "json",
+            type: 'GET',
+            success: function (retorno) {
+                if (retorno.status) {
+
+                    $.each(retorno, function (key, value) {
+
+                        $('div.form-group').each(function () {
+                            if ($(this).children('input').attr('name') == 'nomerazao' && key == 'nomerazao') {
+
+                                $('#' + key).prop('disabled', true);
+                                $('#cpfcnpj').after('<input type="hidden" name="cpfcnpj" value="'+$('#cpfcnpj').val()+'">')
+                                $('#nome').focus();
+                                $('#cpfcnpj').prop('disabled', true);
+                                $('#' + key).val(value)
+                                $('<div class="alert alert-success col-md-6 col-md-offset-3"><samll>Corretaor(a) já cadastrado, preencha só os dados do usuário</samll></div>').insertAfter($(this))
+                            } else if ($(this).children('input').attr('name') != 'nomerazao' && $(this).children('input').attr('name') == key) {
+                                $(this).remove()
+                            } else if ($(this).children('input').attr('name') != 'nomerazao' && $(this).children('select').attr('name') == key) {
+                                $(this).remove()
+                            }
+                        })
+
+                    })
+                } else {
+                    return false
+
+                }
+
+            }
+
+        });
+
+        if ($(this).val() > 1) {
+
+
+        }
+    })
+
 
 });
 

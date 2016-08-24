@@ -19,7 +19,7 @@ class User extends Authenticatable
     
     
     protected $fillable = [
-        'nome', 'email', 'password','idstatus','idtipousuario'
+        'nome', 'email', 'password','idstatus','idcorretor'
     ];
     
     /**
@@ -33,6 +33,6 @@ class User extends Authenticatable
     
     public function corretor()
     {
-        return $this->hasOne('App\Model\Corretores','idcorretor','idcorretor');
+        return $this->belongsTo('App\Model\Corretores','idcorretor','idcorretor');
     }
 }

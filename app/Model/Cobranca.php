@@ -22,6 +22,7 @@ class Cobranca extends Model
         'idcartao',
         'vlcartao',
         'parcelas',
+        'usuario_id',
 
     ];
 

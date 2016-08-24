@@ -23,11 +23,13 @@
                 @foreach ($propostas as $proposta)
 
                         <tr>
-                            <td><a href="#" class="">{{$proposta->idproposta}}</a></td>
+                            <td><a href="{{route('show.proposta',$proposta->idproposta)}}" class=""  data-toggle="modal"
+                                   data-target=".modal-show"
+                                   id="showinfo">{{$proposta->idproposta}}</a></td>
                             <td><a href="{{route('show.segurado',$proposta->cotacao->segurado->clicpfcnpj)}}" class=""
                                    data-toggle="modal"
                                    data-target=".modal-show"
-                                   id="linksegurado">{!! nomeCase($proposta->cotacao->segurado->clinomerazao) !!}</a></td>
+                                   id="showinfo">{!! nomeCase($proposta->cotacao->segurado->clinomerazao) !!}</a></td>
                             <td><a href="#" class="">{!! nomeCase($proposta->cotacao->corretor->corrnomerazao) !!}</a></td>
                             <td><a href="#" class="">{!! format('placa',$proposta->cotacao->veiculo->veicplaca) !!}</a></td>
                             <td>{!! date('d/m/Y', strtotime($proposta->dtvalidade)) !!}</td>

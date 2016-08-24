@@ -24,6 +24,7 @@ class Propostas extends Model
         'premiototal',
         'primeiraparc',
         'demaisparc',
+        'usuario_id',
 
     ];
     public $timestamps = FALSE;

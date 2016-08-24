@@ -21,6 +21,7 @@ class Cotacoes extends Model
         'dtvalidade',
         'dtcreate',
         'dtupdate',
+        'usuario_id',
     ];
     public $timestamps = FALSE;
     

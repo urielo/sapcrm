@@ -31,12 +31,21 @@ class Corretores extends Model
         'idstatus',
         'corrcomissaopadrao',
         'idcorretor',
-        'idparceiro'
+        'idparceiro',
+        'corrcomissaomin'
     ];
     public $timestamps = FALSE;
 
     public function cotacoes()
     {
         return $this->hasMany('App\Model\Cotacoes', 'idcorretor','idcorretor');
+    }
+    public function parceiro()
+    {
+        return $this->belongsTo('App\Model\Parceiros', 'idparceiro','idparceiro');
+    }
+    public function usuarios()
+    {
+        return $this->hasMany('App\User', 'idcorretor','idcorretor');
     }
 }

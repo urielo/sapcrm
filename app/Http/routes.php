@@ -13,8 +13,33 @@ Route::get('/', [
 
 use Illuminate\Support\Facades\Mail;
 use Khill\Lavacharts\Lavacharts;
+use App\User;
+use App\Model\Role;
+use App\Model\Corretores;
+
+use App\Model\Logs;
 
 Route::get('teste', function () {
+    $corretor = Corretores::whereCorrcpfcnpj('092660857467')->first();
+
+if($corretor){
+    return 'tem corretor';
+} else{
+    return 'nao tem corretor';
+}
+
+//    $role = Role::find(3);
+//    $user =  User::create([
+//        'nome' => 'joao',
+//        'email' => 'brito@email.com',
+//        'idstatus' => 2,
+//        'password' => bcrypt(1234456),
+//    ]);
+//
+//    $user->attachRole($role);
+//
+//    return $user;
+
 
 //    $data = ['nome'=> 'uriel'];
 //
@@ -23,6 +48,8 @@ Route::get('teste', function () {
 //
 //        $message->to('uriel@seguroautopratico.com.br');
 //    });
+
+
 
 
 });
@@ -36,6 +63,11 @@ Route::group(['prefix' => 'ajax'], function () {
     Route::get('/produtosmaster', ['as' => 'produtosmaster', 'uses' => 'Backend\AjaxController@produtosmaster']);
     Route::get('/produtosopcional', ['as' => 'produtosopcional', 'uses' => 'Backend\AjaxController@produtosopcional']);
     Route::get('/complete', ['as' => 'seguradoauto', 'uses' => 'Backend\AjaxController@inputscomplete']);
+    
+    
+    Route::get('/getcorretor', ['as' => 'corretor.form', 'uses' => 'Auth\AuthController@getCorretor']);
+    
+    
 
 });
 
@@ -44,10 +76,13 @@ Route::group(['prefix' => 'vendas'], function () {
 
 
     Route::post('gerar', [
+        'middleware' => ['permission:vendas-cotacao-gerar'],
         'as' => 'cotacao.gerar',
         'uses' => 'Backend\CotacaoController@gerar']);
 
     Route::get('negociacoes', [
+
+        'middleware' => ['permission:vendas-negociacoes'],
         'as' => 'vendas.negociacoes',
         'uses' => 'Backend\CotacaoController@negociacoes']);
 
@@ -114,6 +149,10 @@ Route::group(['prefix' => 'show'], function () {
         'as' => 'show.segurado',
         'uses' => 'Backend\ShowsController@segurado']);
 
+    Route::get('proposta/{idproposta}', [
+        'as' => 'show.proposta',
+        'uses' => 'Backend\ShowsController@proposta']);
+
     Route::get('cancela/{idproposta}', [
         'as' => 'show.cancelaproposta',
         'uses' => 'Backend\ShowsController@cancela']);
@@ -130,45 +169,8 @@ Route::group(['prefix' => 'show'], function () {
 });
 
 
-// Segurado Routes
-Route::group(['prefix' => 'segurado'], function () {
-    # Route::resource('/cont', 'Backend\SeguradoController');
 
-    Route::get('/{segurado}/show', [
-        'as' => 'segurado.show',
-        'uses' => 'Backend\SeguradoController@show'
-    ]);
 
-    Route::get('/cadastro', [
-        'as' => 'segurado.cadastro',
-        'uses' => 'Backend\SeguradoController@create'
-    ]);
-
-    Route::post('/cadastro', [
-        'as' => 'segurado.store',
-        'uses' => 'Backend\SeguradoController@store'
-    ]);
-
-    Route::put('/cadastro', [
-        'as' => 'segurado.edit',
-        'uses' => 'Backend\SeguradoController@edit'
-    ]);
-
-    Route::get('/', [
-        'as' => 'segurado.index',
-        'uses' => 'Backend\SeguradoController@index'
-    ]);
-
-//    Route::get('/cadastro',[
-//    'as'=>'segurado.cadastro', 
-//    'uses' => 'Backend\SeguradoController@create'
-//    ]);
-
-    Route::post('/', [
-        'as' => 'backend.segurado',
-        'uses' => 'Backend\SeguradoController@store'
-    ]);
-});
 Route::group(['prefix' => 'upload'], function () {
     Route::resource('/', 'Backend\Config\UploadController');
 
@@ -191,3 +193,5 @@ Route::group(['prefix' => 'upload'], function () {
 //Route::get('/', function () {
 //    return view('welcome');
 //});
+
+

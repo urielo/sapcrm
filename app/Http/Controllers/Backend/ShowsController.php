@@ -62,5 +62,12 @@ class ShowsController extends Controller
         return view('backend.show.confirmapagamento', compact('proposta'));
 
     }
+    public function proposta($idproposta)
+    {
+        $proposta = Propostas::find($idproposta);
+
+        return view('backend.show.proposta', compact('proposta'));
+
+    }
 
 }

@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'failed' => 'As informações de login não foram encontradas.',
+    'failed' => 'As informações de login não foram encontradas ou sua conta está inativa.',
     'throttle' => 'Muitas tentativas de login. Por favor tente novamente em :seconds segundos.',
 
 ];
