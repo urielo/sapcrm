@@ -61,6 +61,7 @@ class AuthController extends Controller
 
         $data['cpfcnpj']= getDataReady($data['cpfcnpj']);
 
+
         $corretor = Corretores::whereCorrcpfcnpj($data['cpfcnpj'])->first();
 
         if($corretor){
@@ -71,6 +72,11 @@ class AuthController extends Controller
                 'cpfcnpj' => 'required|min:11|max:14',
             ]);
         } else{
+
+            $data['telfixo']= getDataReady($data['telfixo']);
+            $data['cel']= getDataReady($data['cel']);
+            $data['cep']= getDataReady($data['cep']);
+
             return Validator::make($data, [
                 'nome' => 'required|max:255',
                 'email' => 'required|email|max:255|unique:usuarios',
@@ -78,16 +84,16 @@ class AuthController extends Controller
                 'cpfcnpj' => 'required|min:11|max:14',
                 'nomerazao' => 'required|',
                 'susep' => 'alpha_num',
-                'dddfixo'=>'required|alpha_num',
-                'telfixo'=>'required|alpha_num',
-                'dddcel'=>'alpha_num',
-                'cel'=>'alpha_num',
+                'dddfixo'=>'required|integer',
+                'telfixo'=>'required|integer',
+                'dddcel'=>'integer',
+                'cel'=>'integer',
                 'corretora-email'=>'required|email',
-                'cep'=>'required|alpha_num',
+                'cep'=>'required',
                 'logradouro'=>'required|',
                 'endnumero'=>'required|',
                 'cidade'=>'required|',
-                'comissao'=>'required|alpha_num|integer',
+                'comissao'=>'required|integer',
 
             ]);
         }

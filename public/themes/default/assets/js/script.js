@@ -952,60 +952,63 @@ $(function () {
                 $(this).removeAttr('stats')
             } else if ($(this).attr('tipoinput') == 'cpfcnpj' && $(this).attr('stats')) {
                 $(this).attr('placeholder', 'CPF ou CNPJ');
-                $(this).mask('999.999.999-999');
+                // $(this).mask('99.999.999/9999-00');
 
                 $(this).keyup(function () {
                     var val = $(this).val();
 
                     $(this).unmask();
-                    if (val.length < 15) {
+
+                    if (val.length < 15 && val.length > 3) {
+                        $(this).unmask();
                         $(this).mask('999.999.999-999');
-
-
                     } else {
+                        $(this).unmask();
                         $(this).mask('99.999.999/9999-00');
                     }
+
                 })
 
-                // $(this).focusout(function () {
-                //    
-                //
-                //     console.log($(this).cleanVal())
-                // })
 
                 var idmsg = 'msg-' + $(this).attr('id');
                 $(this).focusout(function () {
                     $(this).trigger('keyup')
-                    var value = $(this).cleanVal();
+                    var val = $(this).val();
+
+                    if (val.length > 2) {
+
+                        var value = $(this).cleanVal();
+                        if (value.length > 11) {
+                            if (!validate_cnpj($(this).val()) && value.length > 0) {
+                                ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
+                                $(this).after(menssageError('CNPJ: Invalido', idmsg))
+                                $(this).focus();
+                                return false;
+                            } else if (validate_cnpj($(this).val())) {
+                                ($('#' + idmsg) ? $('#' + idmsg).remove() : '');
 
 
-                    if (value.length > 11) {
-                        if (!validate_cnpj($(this).val()) && value.length > 0) {
-                            ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
-                            $(this).after(menssageError('CNPJ: Invalido', idmsg))
-                            $(this).focus();
-                            return false;
-                        } else if (validate_cnpj($(this).val())) {
-                            ($('#' + idmsg) ? $('#' + idmsg).remove() : '');
-
-
+                            } else {
+                                ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
+                            }
                         } else {
-                            ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
-                        }
-                    } else {
-                        if (!validate_cpf($(this).val()) && value.length > 0) {
-                            ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
-                            $(this).after(menssageError('CPF: Invalido', idmsg))
-                            $(this).focus();
-                            return false
-                        } else if (validate_cnpj($(this).val())) {
-                            ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
+                            if (!validate_cpf($(this).val()) && value.length > 0) {
+                                ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
+                                $(this).after(menssageError('CPF: Invalido', idmsg))
+                                $(this).focus();
+                                return false
+                            } else if (validate_cnpj($(this).val())) {
+                                ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
 
 
-                        } else {
-                            ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
+                            } else {
+                                ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
+                            }
                         }
                     }
+
+
+
 
 
                 });
@@ -1122,50 +1125,51 @@ $(function () {
     });
 
     $('#cpfcnpj').focusout(function () {
+        var val = $(this).val();
+        $(this).trigger('keyup');
+        if (val.length > 11) {
 
-        var value = $(this).cleanVal();
-        var dados = {'cpfcnpj': value}
+            var value = $(this).cleanVal();
+            var dados = {'cpfcnpj': value}
 
-        $.ajax({
-            data: dados,
-            url: geturl() + 'getcorretor',
-            dataType: "json",
-            type: 'GET',
-            success: function (retorno) {
-                if (retorno.status) {
+            $.ajax({
+                data: dados,
+                url: geturl() + 'getcorretor',
+                dataType: "json",
+                type: 'GET',
+                success: function (retorno) {
+                    if (retorno.status) {
 
-                    $.each(retorno, function (key, value) {
+                        $.each(retorno, function (key, value) {
 
-                        $('div.form-group').each(function () {
-                            if ($(this).children('input').attr('name') == 'nomerazao' && key == 'nomerazao') {
+                            $('div.form-group').each(function () {
+                                if ($(this).children('input').attr('name') == 'nomerazao' && key == 'nomerazao') {
 
-                                $('#' + key).prop('disabled', true);
-                                $('#cpfcnpj').after('<input type="hidden" name="cpfcnpj" value="'+$('#cpfcnpj').val()+'">')
-                                $('#nome').focus();
-                                $('#cpfcnpj').prop('disabled', true);
-                                $('#' + key).val(value)
-                                $('<div class="alert alert-success col-md-6 col-md-offset-3"><samll>Corretaor(a) já cadastrado, preencha só os dados do usuário</samll></div>').insertAfter($(this))
-                            } else if ($(this).children('input').attr('name') != 'nomerazao' && $(this).children('input').attr('name') == key) {
-                                $(this).remove()
-                            } else if ($(this).children('input').attr('name') != 'nomerazao' && $(this).children('select').attr('name') == key) {
-                                $(this).remove()
-                            }
+                                    $('#' + key).prop('disabled', true);
+                                    $('#cpfcnpj').after('<input type="hidden" name="cpfcnpj" value="' + $('#cpfcnpj').val() + '">')
+                                    $('#nome').focus();
+                                    $('#cpfcnpj').prop('disabled', true);
+                                    $('#' + key).val(value)
+                                    $('<div class="alert alert-success col-md-6 col-md-offset-3"><samll>Corretaor(a) já cadastrado, preencha só os dados do usuário</samll></div>').insertAfter($(this))
+                                } else if ($(this).children('input').attr('name') != 'nomerazao' && $(this).children('input').attr('name') == key) {
+                                    $(this).remove()
+                                } else if ($(this).children('input').attr('name') != 'nomerazao' && $(this).children('select').attr('name') == key) {
+                                    $(this).remove()
+                                }
+                            })
+
                         })
+                    } else {
+                        return false
 
-                    })
-                } else {
-                    return false
+                    }
 
                 }
 
-            }
-
-        });
-
-        if ($(this).val() > 1) {
-
-
+            });
         }
+
+
     })
 
 
