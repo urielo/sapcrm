@@ -22,14 +22,14 @@ $(function () {
     produtopagamento.hide();
     diverror.hide();
     pergunta.hide();
-    panelpagamento.hide();
-    panelprodutos.hide();
     panelsegurado.hide();
     juridica1.hide();
     ramoatividade.hide();
     divano.hide();
     dadoscartao.hide();
     btnsubmit.hide();
+    panelpagamento.hide();
+    panelprodutos.hide();
     btnproposta.hide();
     dadosveiculos.hide();
     panelcondutor.hide();
@@ -180,7 +180,8 @@ $(function () {
             if (i == 1) {
                 retorno.push('<label style="font-size: 10px;"><input type="radio" name="quantparcela" id="formapagamento" value="' + i + '">' + i + 'x de R$ ' + priparcela + '</label><br>')
             } else {
-                retorno.push('<label style="font-size: 10px;"><input type="radio" name="quantparcela" id="formapagamento" value="' + i + '">' + i + 'x 1ª de R$ ' + priparcela + ' Demais:  R$ ' + demparcela + ' ' + textojuros + '</label><br>')
+                var ii = i -1;
+                retorno.push('<label style="font-size: 10px;"><input type="radio" name="quantparcela" id="formapagamento" value="' + i + '">' + i + 'x (1x de R$ ' + priparcela + ' e '+ ii +'x de  R$ ' + demparcela + ' ' + textojuros + ') </label><br>')
             }
         }
 
@@ -346,6 +347,19 @@ $(function () {
         delay: 0,
         source: geturl() + 'modelo',
         select: function (event, ui) {
+
+            $('input:checkbox').each(function () {
+                if ($(this).attr('name') == 'produtos[]' && $(this).is(':checked')) {
+                    $(this).removeAttr('checked')
+                    $(this).trigger('change')
+
+                }
+            })
+            produtos.empty();
+            btnproposta.hide();
+            panelprodutos.hide();
+            // produtosvalores = [];
+            // $('#valortotal').trigger('change');
             reusltAutoComplete(ui.item.id);
 
 
@@ -371,26 +385,50 @@ $(function () {
 
 
     $('#btnvender').on('click', function () {
+        var cc = 0;
+        $('input:checkbox').each(function () {
+            if ($(this).attr('name') == 'produtos[]' && $(this).is(':checked') && cc == 0) {
+                dadosveiculos.fadeIn("slow");
+                panelsegurado.fadeIn("slow");
+                pergunta.fadeIn("slow");
+                btnsubmit.fadeIn("slow");
 
+                setAnofab()
+                setAnoRenav()
 
-        dadosveiculos.fadeIn("slow");
-        panelsegurado.fadeIn("slow");
-        pergunta.fadeIn("slow");
-        btnsubmit.fadeIn("slow");
-        $(this).fadeOut();
+                $('#placa').focus();
 
-        setAnofab()
-        setAnoRenav()
+                $('body').animate({scrollTop: 0}, "slow")
+                cc = cc + 1;
 
-        $('#placa').focus();
+            }
+        })
 
-        $('body').animate({scrollTop: 0}, "slow")
+        if(cc == 0){
+            alert('Escolha um produto antes de proseguir')
+        } else {
+            $('#veiculo').prop('disabled', true)
+            $('#veiculo').after("<input type='hidden' name='anom' value='"+$("select[name=anom]").val()+"'>")
+            $("select[name=anom]").prop('disabled', true);
+            $('#rowtipoveiculo').hide();
+            $(this).fadeOut();
+        }
+
+    return false;
     });
 
 
     $("select[name=anom]").on('change', function () {
         setAnofab()
         setAnoRenav()
+
+        $('input:checkbox').each(function () {
+            if ($(this).attr('name') == 'produtos[]' && $(this).is(':checked')) {
+                $(this).removeAttr('checked')
+                $(this).trigger('change')
+
+            }
+        })
 
         if ($("select[name=anom]").val() == 0) {
             // alert($(this).val());
@@ -1006,9 +1044,6 @@ $(function () {
                             }
                         }
                     }
-
-
-
 
 
                 });

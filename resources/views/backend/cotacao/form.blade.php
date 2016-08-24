@@ -23,7 +23,7 @@
                                 </div>
                                 <div class="panel-body">
                                     <div class="form-group">
-                                        <div class="row">
+                                        <div class="row" id="rowtipoveiculo">
 
                                             <div class="col-md-2 col-lg-offset-1">
                                                 <div class="radio">
