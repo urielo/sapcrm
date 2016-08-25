@@ -7,12 +7,12 @@
 
 
 
-<div class="col-xs-12 col-sm-12 ">
+<div class="col-xs-12 col-sm-12 " >
     <div class="panel panel-@yield('panelcolor')" style="margin-top: 10px;">
         <div class="panel-heading">
             <h2 class="panel-title" style="text-align: center;">@yield('heading')</h2>
         </div>
-        <div class="panel-body" >
+        <div class="panel-body"  style="height: 450px; overflow-x: auto;">
 
             <div class="alert alert-danger" id="diverror">
                 <strong>Erro: </strong>
@@ -46,7 +46,7 @@
         </div>
     </div>
 
-    <div class="horizont-center">
+    <div class="horizont-center" style=" margin-top: 0; padding-top: 0">
         @yield('pagination')
     </div>
 

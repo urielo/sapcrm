@@ -5,8 +5,7 @@
 @section('heading')
 
     <div class="form-group row" style="margin: 0px ">
-        <div class="col-md-2 col-md-offset-2">Apolices</div>
-
+        <div class="col-md-2 col-md-offset-4"> Apolices</div>
         <div class="col-md-3 pull-right">
             {!! Form::text('search',null,['class'=>'search form-control','placeholder'=>'Search']) !!}
         </div>
@@ -14,16 +13,16 @@
 @stop
 @section('contentSeg')
 
-    <div class="col-md-12 apolice">
+    <div class="col-md-12 col-xs-12 apolice">
         <div class="table-responsive">
-            <table class="table results">
+            <table class="table table-hover table-condensed results">
                 <thead>
                 <tr class="row">
                     <th>PROPOSTA</th>
                     <th>CPF/CNPJ</th>
-                    <th>PRODUTOS</th>
+                    <th class="hidden-xs">PRODUTOS</th>
                     <th>VEICULO</th>
-                    <th>VALIDADE</th>
+                    <th class="hidden-xs">VALIDADE</th>
                     <th></th>
 
 
@@ -36,10 +35,10 @@
                 @foreach ($cotacoes as $cotacao)
                     @if(is_object($cotacao->proposta))
                         <tr class="row {!!date('d/m/Y', strtotime($cotacao->proposta->dtvalidade)) > date('d/m/Y') ? 'danger"': ''!!}">
-                            <td ><a href="#">{{$cotacao->proposta->idproposta}}</a></td>
-                            <td ><a
+                            <td><a href="#">{{$cotacao->proposta->idproposta}}</a></td>
+                            <td><a
                                         href="#">{!! format('cpfcnpj', $cotacao->segurado->clicpfcnpj) !!}</a></td>
-                            <td >
+                            <td class="hidden-xs">
                                 {{--<button class="btn btn-success btn-xs">ver</button>--}}
                                 <div>
                                     @foreach($cotacao->produtos as $produto)
@@ -53,11 +52,11 @@
                                 </div>
 
                             </td>
-                            <td ><a href="#"
-                                    class="">{!! format('placa',$cotacao->veiculo->veicplaca) !!}</a>
+                            <td><a href="#"
+                                   class="">{!! format('placa',$cotacao->veiculo->veicplaca) !!}</a>
                             </td>
-                            <td >{!! date('d/m/Y', strtotime($cotacao->proposta->dtvalidade)) !!}</td>
-                            <td >
+                            <td class="hidden-xs">{!! date('d/m/Y', strtotime($cotacao->proposta->dtvalidade)) !!}</td>
+                            <td>
 
 
                                 @if(!$cotacao->proposta->apoliceseguradora)
@@ -128,7 +127,6 @@
                 @endforeach
                 </tbody>
             </table>
-            <center>{{$cotacoes->render()}}</center>
         </div>
 
         <div class="modal fade modal-error" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
@@ -150,4 +148,10 @@
     </div>
 
 
+
+
+@stop
+
+@section('pagination')
+    {{$cotacoes->render()}}
 @stop

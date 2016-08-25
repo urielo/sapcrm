@@ -4,20 +4,21 @@
 @section('panelcolor','info')
 @section('heading')
 
-    <div class="form-group row" style="margin: 0px ">
-        <div class="col-md-2 col-md-offset-2">Usuários</div>
+    <div class="form-group form-group-sm row" style="vertical-align: middle;">
+        <div class="col-md-2 col-md-offset-3">Usuários</div>
 
         <div class="col-md-3 pull-right">
-            {!! Form::text('search',null,['class'=>'search form-control','placeholder'=>'Search', 'id'=>'buscaruser']) !!}
+            {!! Form::text('search',null,['class'=>'search form-control ','placeholder'=>'Search', 'id'=>'buscaruser']) !!}
         </div>
     </div>
 
 @stop
+
 @section('contentSeg')
 
     <div class="col-md-12 apolice table-responsive">
         <div class="table">
-            <table class="table table-xs table-hover  results" style="text-align: center; padding-top: 0; padding-bottom: 0;">
+            <table class="table table-xs table-hover table-condensed results" style="text-align: center; padding-top: 0; padding-bottom: 0;">
                 <thead>
                 <tr >
                     <th>Usuário</th>
@@ -43,7 +44,7 @@
                             {!! nomeCase($usuario->corretor->corrnomerazao) !!}
 
                         </td>
-                        <td class="{{($usuario->idstatus == 1 ? 'alert-success' : 'alert-danger' )}}">{{$usuario->status->descricao}}
+                        <td class="{{($usuario->idstatus == 1 ? 'bg-success' : 'bg-danger' )}}">{{$usuario->status->descricao}}
 
                         </td>
                         <td>
@@ -68,10 +69,12 @@
                 @endforeach
                 </tbody>
             </table>
-            <center>{{$usuarios->render()}}</center>
+
         </div>
 
+    </div>
+@stop
 
-
-
+@section('pagination')
+            {{$usuarios->render()}}
 @stop
