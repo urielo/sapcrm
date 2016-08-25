@@ -2,6 +2,9 @@
 
 use Illuminate\Database\Seeder;
 
+use App\Model\Role;
+use App\Model\Permission;
+
 class PermissionsRolesTableSeeder extends Seeder
 {
     /**
@@ -11,6 +14,10 @@ class PermissionsRolesTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $role = Role::find(1);
+
+        $permission = Permission::all();
+
+        $role->attachPermissions($permission);
     }
 }

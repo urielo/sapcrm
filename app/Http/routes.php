@@ -87,15 +87,18 @@ Route::group(['prefix' => 'vendas'], function () {
         'uses' => 'Backend\CotacaoController@negociacoes']);
 
     Route::get('negociar/{idcotacao}', [
+        'middleware' => ['permission:vendas-negociacoes-negociar'],
         'as' => 'vendas.negociar',
         'uses' => 'Backend\CotacaoController@negociar']);
 
     Route::get('cotar', [
+        'middleware' => ['permission:vendas-cotacao'],
         'as' => 'cotacao.cotar',
         'uses' => 'Backend\CotacaoController@cotar'
     ]);
 
     Route::get('pdf/{idproposta}', [
+        'middleware' => ['permission:vendas-cotacao-pdf'],
         'as' => 'cotacao.pdf',
         'uses' => 'Backend\CotacaoController@pdf'
     ]);
@@ -106,37 +109,46 @@ Route::group(['prefix' => 'gestao'], function () {
 
 
     Route::get('apolices', [
+        'middleware' => ['permission:gesta-apolice'],
         'as' => 'gestao.apolices',
         'uses' => 'Backend\GestaoController@apolices']);
 
     Route::get('aprovacao', [
+        'middleware' => ['permission:gesta-aprovacao'],
         'as' => 'gestao.aprovacao',
         'uses' => 'Backend\GestaoController@aprovacao']);
 
     Route::get('apolices/emitir/{idproposta}', [
+        'middleware' => ['permission:gestao-cobranca'],
         'as' => 'apolices.emitir',
         'uses' => 'Backend\GestaoController@emitir']);
 
     Route::get('apolices/pdf/{idproposta}', [
+        'middleware' => ['permission:gestao-apolice-emitir'],
         'as' => 'apolices.pdf',
         'uses' => 'Backend\GestaoController@apolicepdf']);
 
     Route::get('cobranca', [
+        'middleware' => ['permission:gestao-apolice-pdf'],
         'as' => 'gestao.cobranca',
         'uses' => 'Backend\GestaoController@cobranca']);
     Route::get('pagamento/recusar/{idproposta}', [
+        'middleware' => ['permission:gestao-aprovacao-recusar'],
         'as' => 'gestao.recusar',
         'uses' => 'Backend\GestaoController@recusapagamento']);
 
     Route::post('cancela', [
+        'middleware' => ['permission:gestao-cobranca-cancelar'],
         'as' => 'gestao.cancela',
         'uses' => 'Backend\GestaoController@cancelar']);
 
     Route::post('pagar', [
+        'middleware' => ['permission:gestao-cobranca-salvapagamento'],
         'as' => 'gestao.salvarpga',
         'uses' => 'Backend\GestaoController@salvarpagamento']);
 
     Route::post('confirmapg', [
+        'middleware' => ['permission:gestao-aprovacao-comfirma'],
         'as' => 'gestao.confirmapg',
         'uses' => 'Backend\GestaoController@confirmapagamento']);
 
@@ -146,22 +158,28 @@ Route::group(['prefix' => 'gestao'], function () {
 Route::group(['prefix' => 'show'], function () {
 
     Route::get('segurado/{cpfcnpj}', [
+        'middleware' => ['permission:segurado-show'],
         'as' => 'show.segurado',
         'uses' => 'Backend\ShowsController@segurado']);
 
     Route::get('proposta/{idproposta}', [
+        'middleware' => ['permission:show-proposta'],
         'as' => 'show.proposta',
         'uses' => 'Backend\ShowsController@proposta']);
 
     Route::get('cancela/{idproposta}', [
+
+        'middleware' => ['permission:gestao-cobranca-cancelar'],
         'as' => 'show.cancelaproposta',
         'uses' => 'Backend\ShowsController@cancela']);
 
     Route::get('pagar/{idproposta}', [
+        'middleware' => ['permission:gestao-cobranca-salvapagamento'],
         'as' => 'show.pagamento',
         'uses' => 'Backend\ShowsController@pagar']);
 
     Route::get('pagar/confirmar/{idproposta}', [
+        'middleware' => ['permission:gestao-aprovacao-comfirma'],
         'as' => 'show.confirmapgto',
         'uses' => 'Backend\ShowsController@confirmapgto']);
 

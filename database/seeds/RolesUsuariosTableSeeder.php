@@ -2,6 +2,9 @@
 
 use Illuminate\Database\Seeder;
 
+use App\User;
+use App\Model\Role;
+
 class RolesUsuariosTableSeeder extends Seeder
 {
     /**
@@ -11,6 +14,10 @@ class RolesUsuariosTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $user = User::find(1);
+
+        $role = Role::find(1);
+
+        $user->attachRole($role);
     }
 }

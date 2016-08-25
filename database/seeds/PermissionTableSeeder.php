@@ -98,6 +98,12 @@ class PermissionTableSeeder extends Seeder
                 'description' => '',
 
             ],
+            [
+                'name' => 'show-proposta',
+                'display_name' => '',
+                'description' => '',
+
+            ],
 
         ]);
 
