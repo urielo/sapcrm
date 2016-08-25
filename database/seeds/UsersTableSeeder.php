@@ -19,7 +19,6 @@ class UsersTableSeeder extends Seeder
                 'nome'=>'admin',
                 'email'=>'suporte@seguroautopratico.com.br',
                 'password'=>  bcrypt('adminsap'),
-                'idtipousuario'=>1,
                 'idstatus'=>1,
                 
             ],
@@ -27,7 +26,6 @@ class UsersTableSeeder extends Seeder
                 'nome'=>'uriel',
                 'email'=>'uriel@seguroautopratico.com.br',
                 'password'=>  bcrypt('09266087467'),
-                'idtipousuario'=>1,
                 'idstatus'=>1,
 
             ],

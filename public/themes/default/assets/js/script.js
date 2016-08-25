@@ -83,6 +83,15 @@ $(function () {
                 autoclose: true,
                 defaultViewDate: {year: d.getFullYear(), month: d.getMonth(), day: d.getDay()}
             });
+        } else if (tipo == 'pagamento-boleto') {
+
+            return $(idinput).datepicker({
+                format: "dd/mm/yyyy",
+                startView: 0,
+                language: "pt-BR",
+                autoclose: true,
+                defaultViewDate: {year: d.getFullYear(), month: d.getMonth(), day: d.getDay()}
+            });
         } else if (tipo == 'valcartao') {
 
             return $(idinput).datepicker({
@@ -100,6 +109,7 @@ $(function () {
                 clearBtn: true,
                 language: "pt-BR",
                 orientation: "auto",
+                autoclose: true,
                 toggleActive: true
             });
         }
@@ -148,7 +158,7 @@ $(function () {
             });
         });
     };
-    function gerarParcelas(vltotal, maxparc, parcelasemjuros, taxajuros, menorparc) {
+    function gerarParcelas(vltotal, maxparc, parcelasemjuros, taxajuros, menorparc,formapg) {
 
 
         var retorno = [];
@@ -160,12 +170,13 @@ $(function () {
             var priparcela = 0;
             var demparcela = 0;
             var textojuros = (i > parcelasemjuros) ? 'J.: ' + taxajuros.replace('.', ',') + '%' : 'S/J';
+            var textojuroc = (i > parcelasemjuros) ? 'Juros: ' + taxajuros.replace('.', ',') + '%' : 'Sem juros';
 
 
-            if (i > parcelasemjuros && juros / i < menorparc) {
+            if (i > parcelasemjuros && juros / i < menorparc && formapg == 2) {
                 priparcela = menorparc;
                 demparcela = (juros - menorparc) / (i - 1);
-            } else if (i <= parcelasemjuros && vltotal / i < menorparc) {
+            } else if (i <= parcelasemjuros && vltotal / i < menorparc && formapg == 2) {
                 priparcela = menorparc;
                 demparcela = (vltotal - menorparc) / (i - 1);
             } else if (i > parcelasemjuros) {
@@ -178,7 +189,9 @@ $(function () {
             priparcela = priparcela.toFixed(2).replace('.', ',');
             demparcela = demparcela.toFixed(2).replace('.', ',');
             if (i == 1) {
-                retorno.push('<label style="font-size: 10px;"><input type="radio" name="quantparcela" id="formapagamento" value="' + i + '">' + i + 'x de R$ ' + priparcela + '</label><br>')
+                retorno.push('<label style="font-size: 10px;"><input type="radio" name="quantparcela" id="formapagamento" value="' + i + '">' + i + 'x de R$ ' + priparcela + ' (' + textojuroc +') </label><br>')
+            } else if (formapg == 1) {
+                retorno.push('<label style="font-size: 10px;"><input type="radio" name="quantparcela" id="formapagamento" value="' + i + '">' + i + 'x de R$ ' + priparcela + ' (' + textojuroc +') </label><br>')
             } else {
                 var ii = i -1;
                 retorno.push('<label style="font-size: 10px;"><input type="radio" name="quantparcela" id="formapagamento" value="' + i + '">' + i + 'x (1x de R$ ' + priparcela + ' e '+ ii +'x de  R$ ' + demparcela + ' ' + textojuros + ') </label><br>')
@@ -659,7 +672,7 @@ $(function () {
             if ($(this).is(":checked") && values.idforma == 1) {
                 $('#parcelas').empty();
 
-                $.each(gerarParcelas(vltotal, values.maxparc, values.parcsemjuros, values.juros, menorparc), function (key, html) {
+                $.each(gerarParcelas(vltotal, values.maxparc, values.parcsemjuros, values.juros, menorparc, values.idforma), function (key, html) {
                     $('#parcelas').append(html);
                 })
                 if (vltotal > 0) {
@@ -669,7 +682,7 @@ $(function () {
             } else {
                 $('#parcelas').empty();
 
-                $.each(gerarParcelas(vltotal, values.maxparc, values.parcsemjuros, values.juros, menorparc), function (key, html) {
+                $.each(gerarParcelas(vltotal, values.maxparc, values.parcsemjuros, values.juros, menorparc,values.idforma), function (key, html) {
                     $('#parcelas').append(html);
                 })
                 $('#condutor-proprietario').removeClass('col-md-9').addClass('col-md-12');
@@ -824,17 +837,26 @@ $(function () {
                     $('.modal-content').html(retorno);
 
                     $('.modal-content').on('mouseover', function () {
-                        var d = new Date();
 
+                        $(':input').each(function () {
 
-                        $('#datapgto').datepicker({
-                            format: "dd/mm/yyyy",
-                            startView: 0,
-                            language: "pt-BR",
-                            startDate: "-",
-                            autoclose: true,
-                            defaultViewDate: {year: d.getFullYear(), month: d.getMonth(), day: d.getDay()}
-                        });
+                            if ($(this).attr('tipoinput') == "data-pagamento-boleto") {
+
+                                $(this).attr('placeholder', 'DD/MM/YYYY');
+                                setDateP('#' + $(this).attr('id'), 'pagamento-boleto')
+                                $(this).mask('99/99/9999')
+
+                            }
+                        })
+
+                        // $('#datapgto').datepicker({
+                        //     format: "dd/mm/yyyy",
+                        //     startView: 0,
+                        //     language: "pt-BR",
+                        //     startDate: "-",
+                        //     autoclose: true,
+                        //     defaultViewDate: {year: d.getFullYear(), month: d.getMonth(), day: d.getDay()}
+                        // });
 
                     })
 
@@ -1097,11 +1119,19 @@ $(function () {
                 setDateP('#' + $(this).attr('id'), null)
                 $(this).mask('99/99/9999')
                 $(this).removeAttr('stats')
+
+            } else if ($(this).attr('tipoinput') == "data-pagamento-boleto" && $(this).attr('stats')) {
+
+                $(this).attr('placeholder', 'DD/MM/YYYY');
+                setDateP('#' + $(this).attr('id'), 'pagamento-boleto')
+                $(this).mask('99/99/9999')
+                $(this).removeAttr('stats')
+
             } else if ($(this).attr('tipoinput') == "data-validade-cartao" && $(this).attr('stats')) {
 
                 $(this).attr('placeholder', 'MM/YYYY');
                 setDateP('#' + $(this).attr('id'), 'valcartao')
-                $(this).mask('99/99/9999')
+                $(this).mask('99/9999')
                 $(this).removeAttr('stats')
             } else if ($(this).attr('tipoinput') == "cep" && $(this).attr('stats')) {
 
@@ -1118,40 +1148,6 @@ $(function () {
                 $(this).attr('placeholder', '0000 0000 0000 0000');
                 $(this).mask('9999 9999 9999 9999')
                 $(this).removeAttr('stats')
-            } else if ($(this).attr('name') == 'tipocadastro') {
-                $(this).change(function () {
-
-
-                    if ($(this).val() == 1) {
-                        $.ajax({
-                            data: dados,
-                            url: geturl() + 'corretorform',
-                            dataType: "json",
-                            type: 'GET',
-                            success: function (retorno) {
-                                $('#forms-tipocadastro').empty()
-                                $('#forms-tipocadastro').html(retorno)
-
-                            }
-
-                        });
-
-                    } else {
-                        $.ajax({
-                            data: dados,
-                            url: geturl() + 'vendedorform',
-                            dataType: "json",
-                            type: 'GET',
-                            success: function (retorno) {
-                                $('#forms-tipocadastro').empty()
-                                $('#forms-tipocadastro').html(retorno)
-
-                            }
-
-                        });
-                    }
-                })
-
             }
             // console.log($(this).attr('data'));
         })

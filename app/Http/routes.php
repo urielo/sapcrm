@@ -53,6 +53,8 @@ if($corretor){
 
 
 });
+
+
 Route::group(['prefix' => 'ajax'], function () {
 
     Route::get('/modelo', ['as' => 'modelo', 'uses' => 'Backend\AjaxController@modelo']);
@@ -63,8 +65,6 @@ Route::group(['prefix' => 'ajax'], function () {
     Route::get('/produtosmaster', ['as' => 'produtosmaster', 'uses' => 'Backend\AjaxController@produtosmaster']);
     Route::get('/produtosopcional', ['as' => 'produtosopcional', 'uses' => 'Backend\AjaxController@produtosopcional']);
     Route::get('/complete', ['as' => 'seguradoauto', 'uses' => 'Backend\AjaxController@inputscomplete']);
-    
-    
     Route::get('/getcorretor', ['as' => 'corretor.form', 'uses' => 'Auth\AuthController@getCorretor']);
     
     

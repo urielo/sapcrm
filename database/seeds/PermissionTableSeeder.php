@@ -104,6 +104,30 @@ class PermissionTableSeeder extends Seeder
                 'description' => '',
 
             ],
+            [
+                'name' => 'segurado-show',
+                'display_name' => '',
+                'description' => '',
+
+            ],
+            [
+                'name' => 'menu-vendas',
+                'display_name' => '',
+                'description' => '',
+
+            ],
+            [
+                'name' => 'menu-gestao',
+                'display_name' => '',
+                'description' => '',
+
+            ],
+            [
+                'name' => 'menu-config',
+                'display_name' => '',
+                'description' => '',
+
+            ],
 
         ]);
 

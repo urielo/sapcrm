@@ -50,7 +50,7 @@ class CotacaoController extends Controller
     {
         $cotacoes = $this->cotacoes->has('proposta')
             ->whereIdcorretor(Auth::user()->corretor->idcorretor)
-            ->orderBy('idcotacao','desc')
+            ->orderBy('idcotacao', 'desc')
             ->paginate(10);
 
 
@@ -71,7 +71,7 @@ class CotacaoController extends Controller
         $anovalor = FipeAnoValor::class;
 
 
-        return view('backend.cotacao.formnegociar', compact('anovalor', 'cotacao','segurados', 'orgaoemissors', 'veiculos', 'tipos', 'ufs', 'tipoultiveics', 'estadoscivis', 'formapagamentos'));
+        return view('backend.cotacao.formnegociar', compact('anovalor', 'cotacao', 'segurados', 'orgaoemissors', 'veiculos', 'tipos', 'ufs', 'tipoultiveics', 'estadoscivis', 'formapagamentos'));
 
     }
 
@@ -96,13 +96,13 @@ class CotacaoController extends Controller
 //        return view('backend.cotacao.sucesso', ['message' => 'Cotação realizada com sucesso!']);
         $segurado = ["segurado" =>
             ["segNomeRazao" => ($request->tipopessoa == 1 ? $request->segnome : $request->segrazao),
-                "segCpfCnpj" => ($request->tipopessoa == 1 ? getDataReady($request->segcpf): getDataReady($request->segcnpj)),
-                "segDtNasci" => ($request->tipopessoa == 1 ? getDateFormat($request->segdatanasc,'nascimento') : getDateFormat($request->segdatafund,'nascimento')),
+                "segCpfCnpj" => ($request->tipopessoa == 1 ? getDataReady($request->segcpf) : getDataReady($request->segcnpj)),
+                "segDtNasci" => ($request->tipopessoa == 1 ? getDateFormat($request->segdatanasc, 'nascimento') : getDateFormat($request->segdatafund, 'nascimento')),
                 "segCdSexo" => ($request->tipopessoa == 1 ? $request->segsexo : NULL),
                 "segCdEstCivl" => ($request->tipopessoa == 1 ? $request->segestadocivil : 0),
                 "segProfRamoAtivi" => ($request->tipopessoa == 1 ? (int)$request->segcdprofissao : (int)$request->segcdramoatividade),
                 "segEmail" => $request->segemail,
-                "segCelDdd" =>getDataReady($request->segdddcel),
+                "segCelDdd" => getDataReady($request->segdddcel),
                 "segCelNum" => getDataReady($request->segnmcel),
                 "segFoneDdd" => getDataReady($request->segdddfone),
                 "segFoneNum" => getDataReady($request->segnmfone),
@@ -113,7 +113,7 @@ class CotacaoController extends Controller
                 "segEndCidade" => $request->segendcidade,
                 "segEndCdUf" => $request->segenduf,
                 "segNumRg" => ($request->tipopessoa == 1 ? $request->segrg : NULL),
-                "segUfEmissaoRg" => ($request->tipopessoa == 1 ? getDateFormat($request->segrgdtemissao,'nascimento'): Null ),
+                "segDtEmissaoRg" => ($request->tipopessoa == 1 ? getDateFormat($request->segrgdtemissao, 'nascimento') : Null),
                 "segEmissorRg" => ($request->tipopessoa == 1 ? $request->segrgoe : NULL),
                 "segCdUfRg" => ($request->tipopessoa == 1 ? $request->segrguf : NULL),]
         ];
@@ -137,7 +137,7 @@ class CotacaoController extends Controller
         $condutor = ["condutor" =>
             ["condutNomeRazao" => $request->condnome,
                 "condutCpfCnpj" => getDataReady($request->condcpf),
-                "condutDtNasci" => getDateFormat($request->conddatanasc,'nascimento'),
+                "condutDtNasci" => getDateFormat($request->conddatanasc, 'nascimento'),
                 "condutCdSexo" => $request->condsexo,
                 "condutCdEstCivl" => $request->condestadocivil,
                 "condutProfRamoAtivi" => $request->condcdprofissao,]
@@ -145,7 +145,7 @@ class CotacaoController extends Controller
         $proprietario = ["proprietario" =>
             ["proprNomeRazao" => ($request->proptipopessoa == 1 ? $request->propnome : $request->proprazao),
                 "proprCpfCnpj" => ($request->proptipopessoa == 1 ? getDataReady($request->propcpf) : getDataReady($request->propcnpj)),
-                "proprDtNasci" => ($request->proptipopessoa == 1 ? getDateFormat($request->propdatanasc,'nascimento'): getDateFormat($request->propdatafund,'nascimento') ),
+                "proprDtNasci" => ($request->proptipopessoa == 1 ? getDateFormat($request->propdatanasc, 'nascimento') : getDateFormat($request->propdatafund, 'nascimento')),
                 "proprCdSexo" => ($request->proptipopessoa == 1 ? $request->propsexo : NULL),
                 "proprCdEstCivl" => ($request->proptipopessoa == 1 ? $request->propestadocivil : 0),
                 "proprPrfoRamoAtivi" => ($request->proptipopessoa == 1 ? (int)$request->propcdprofissao : (int)$request->propcdramoatividade),
@@ -200,7 +200,7 @@ class CotacaoController extends Controller
 //        return json_encode(array_merge($cotacao, $corretor, $segurado, $veiculo, $produtos, $proprietario, $condutor, $perfilsegurado));
 //
 //     return webserviceCotacao($cotacao, $corretor, $segurado, $veiculo, $produtos, $proprietario, $condutor, $perfilsegurado);
-        
+
         $wscotacao = json_decode(webserviceCotacao($cotacao, $corretor, $segurado, $veiculo, $produtos, $proprietario, $condutor, $perfilsegurado));
 
         if ($wscotacao->cdretorno != '000') {
@@ -212,18 +212,33 @@ class CotacaoController extends Controller
         }
 
         $formapg = json_decode($request->formapagamento);
-        $proposta = [
-            "idParceiro" => 99,
-            "nmParceiro" => "seguro auto pratico",
-            "cdCotacao" => $wscotacao->retorno->cdCotacao,
-            "cdFormaPgt" => $formapg->idforma,
-            "qtParcela" => $request->quantparcela,
-            "nmBandeira" => $request->cartaobandeira,
-            "numCartao" => getDataReady($request->cartaonumero),
-            "validadeCartao" => getDateFormat($request->cartaovalidade,'valcartao'),
-            "indCondutorVeic" => $request->indproprietario,
-            "indProprietVeic" => $request->indcondutor,
-        ];
+
+        if ($formapg->idforma == 1) {
+            $proposta = [
+                "idParceiro" => 99,
+                "nmParceiro" => "seguro auto pratico",
+                "cdCotacao" => $wscotacao->retorno->cdCotacao,
+                "cdFormaPgt" => $formapg->idforma,
+                "qtParcela" => $request->quantparcela,
+                "nmBandeira" => $request->cartaobandeira,
+                "numCartao" => getDataReady($request->cartaonumero),
+                "validadeCartao" => getDateFormat($request->cartaovalidade, 'valcartao'),
+                "titularCartao" => $request->cartaonome,
+                "indCondutorVeic" => $request->indproprietario,
+                "indProprietVeic" => $request->indcondutor,
+            ];
+        } else {
+
+            $proposta = [
+                "idParceiro" => 99,
+                "nmParceiro" => "seguro auto pratico",
+                "cdCotacao" => $wscotacao->retorno->cdCotacao,
+                "cdFormaPgt" => $formapg->idforma,
+                "qtParcela" => $request->quantparcela,
+                "indCondutorVeic" => $request->indproprietario,
+                "indProprietVeic" => $request->indcondutor,
+            ];
+        }
 
         $wsproposta = json_decode(webserviceProposta($proposta, $segurado, $veiculo, $produtos, $proprietario, $condutor, $perfilsegurado));
 

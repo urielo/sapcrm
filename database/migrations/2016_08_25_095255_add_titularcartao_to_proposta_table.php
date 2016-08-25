@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddCorrcomissaominToCorretorTable extends Migration
+class AddTitularcartaoToPropostaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,8 @@ class AddCorrcomissaominToCorretorTable extends Migration
      */
     public function up()
     {
-        Schema::table('corretor', function (Blueprint $table) {
-            $table->float('corrcomissaomin')->nullable();
+        Schema::table('proposta', function (Blueprint $table) {
+            $table->string('titularcartao')->nullable();
         });
     }
 
@@ -24,8 +24,8 @@ class AddCorrcomissaominToCorretorTable extends Migration
      */
     public function down()
     {
-        Schema::table('corretor', function (Blueprint $table) {
-            $table->dropColumn('corrcomissaomin');
+        Schema::table('proposta', function (Blueprint $table) {
+            $table->dropColumn('titularcartao');
         });
     }
 }

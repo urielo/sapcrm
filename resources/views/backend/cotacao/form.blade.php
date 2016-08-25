@@ -177,7 +177,7 @@
                                                         <select name="veicultilizacao" id="veicultilizacao"
                                                                 class="form-control form-control-sm"
                                                                 style="font-size: 12px; padding: 0;">
-                                                            @foreach($tipoultiveics::all() as $tipoulti)
+                                                            @foreach($tipoultiveics::orderBy('idutilveiculo', 'ASC')->get() as $tipoulti)
                                                                 <option value="{{$tipoulti->idutilveiculo}}"
                                                                         style="font-size: 12px;">{{$tipoulti->descutilveiculo}}</option>
                                                             @endforeach
@@ -1148,7 +1148,7 @@
                                                tipoinput="num-cartao" stats="1" name="cartaonumero" id="cartaonumero"/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="cartaonumero">Nome Cartão</label>
+                                        <label for="cartaonumero">Titular do Cartão</label>
                                         <input class="form-control form-control-sm" type="text"
                                                placeholder="Nome proprietario do cartão" name="cartaonome"
                                                id="cartaonome"/>
