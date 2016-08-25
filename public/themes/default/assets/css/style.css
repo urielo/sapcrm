@@ -103,3 +103,69 @@
 
 }
 
+.results tr[visible='false'],
+.no-result{
+    display:none;
+}
+
+.results tr[visible='true']{
+    display:table-row;
+}
+
+.counter{
+    padding:8px;
+    color:#ccc;
+}
+
+/*.scrolltable table {*/
+    /*width: 100%;*/
+/*}*/
+
+/*.scrolltable thead, tbody, tr, td, th { display: block; }*/
+
+/*.scrolltable tr:after {*/
+    /*content: ' ';*/
+    /*display: block;*/
+    /*visibility: hidden;*/
+    /*clear: both;*/
+/*}*/
+
+/*.scrolltable thead th {*/
+    /*height: 30px;*/
+
+    /*!*text-align: left;*!*/
+/*}*/
+
+/*.scrolltable tbody {*/
+    /*height: 300px;*/
+    /*overflow-y: auto;*/
+/*}*/
+
+/*.scrolltable thead {*/
+    /*!* fallback *!*/
+/*}*/
+
+
+/*.scrolltable tbody td, thead th {*/
+    /*width: 16%;*/
+    /*float: left;*/
+/*}*/
+
+
+.table-fixed  thead {
+    width: 97%;
+}
+.table-fixed tbody {
+    height: 350px;
+    overflow-y: auto;
+    width: 100%;
+}
+
+.table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
+    display: block;
+}
+
+.table-fixed tbody td, .table-fixed thead > tr> th {
+    float: left;
+    border-bottom-width: 0;
+}

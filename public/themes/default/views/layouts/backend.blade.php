@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Seguro Auto Pratico</title>
     <link rel="stylesheet" href="{{ theme('css/backend.css') }}">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
+
+
     <link rel="stylesheet" href="{{ theme('css/jquery-ui.min.css') }}">
     <link rel="stylesheet" href="{{ theme('css/datepicker.css') }}">
     <link rel="stylesheet" href="{{ theme('css/sidebar.css') }}">
@@ -59,7 +67,9 @@
                                 class="caret"></span></a>
                     <ul class="dropdown-menu forAnimate" role="menu">
                         <li><a href="{{route('gestao.cobranca')}}">Cobrança</a></li>
+
                         <li><a href="{{route('gestao.aprovacao')}}">Aprovação</a></li>
+
                         <li><a href="{{route('gestao.apolices')}}">Apolices</a></li>
 
                     </ul>
@@ -72,7 +82,13 @@
                                 style="font-size:16px;"
                                 class="pull-left hidden-xs showopacity glyphicon glyphicon-cog"></span></a>
                     <ul class="dropdown-menu forAnimate" role="menu">
+
+                        @permission('usuarios-gestao')
+                        <li><a href="{{route('usuarios.gestao')}}">Usuários</a></li>
+                        @endpermission
+
                         <li><a href="{{route('backend.upload')}}">Upload</a></li>
+
 
                     </ul>
                 </li>
@@ -94,7 +110,10 @@
     </div>
 </div>
 <script src="{{ theme('js/jquery.js') }}"></script>
-<script src="{{ theme('js/bootstrap.min.js') }}"></script>
+{{--<script src="{{ theme('js/bootstrap.min.js') }}"></script>--}}
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
 <script src="{{ theme('js/jquery-ui.js') }}"></script>
 <script src="{{ theme('js/bootstrap-datepicker.js') }}"></script>
 <script src="{{ theme('js/bootstrap-validation.min.js') }}"></script>

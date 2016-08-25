@@ -55,7 +55,7 @@ class GestaoController extends Controller
         $cotacoes = $this->cotacoes->has('proposta')
             ->whereIdstatus(15)
             ->orderBy('idcotacao', 'desc')
-            ->paginate(5);
+            ->paginate(10);
 
 
         return view('backend.gestao.apolices', compact('cotacoes'));

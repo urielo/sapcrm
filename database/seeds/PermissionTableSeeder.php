@@ -127,6 +127,11 @@ class PermissionTableSeeder extends Seeder
                 'display_name' => '',
                 'description' => '',
 
+            ],[
+                'name' => 'usuarios-gestao',
+                'display_name' => '',
+                'description' => '',
+
             ],
 
         ]);

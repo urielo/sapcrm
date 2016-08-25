@@ -35,4 +35,8 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Model\Corretores','idcorretor','idcorretor');
     }
+    public function status()
+    {
+        return $this->hasOne('App\Model\Status','id','idstatus');
+    }
 }

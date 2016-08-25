@@ -621,6 +621,7 @@
                                                                 style="padding: 0;">
                                                             <option value="{{Auth::user()->corretor->corrcomissaopadrao}}"
                                                                     selected>{{Auth::user()->corretor->corrcomissaopadrao}}</option>
+                                                            <option value="{{Auth::user()->corretor->corrcomissaomin}}">{{Auth::user()->corretor->corrcomissaomin}}</option>
                                                         </select>
                                                         <span class="input-group-addon" id="porcentsimbol">%</span>
                                                     </div>

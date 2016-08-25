@@ -20,13 +20,9 @@ use App\Model\Corretores;
 use App\Model\Logs;
 
 Route::get('teste', function () {
-    $corretor = Corretores::whereCorrcpfcnpj('092660857467')->first();
-
-if($corretor){
-    return 'tem corretor';
-} else{
-    return 'nao tem corretor';
-}
+//    $user = User::find(1);
+//
+//    $
 
 //    $role = Role::find(3);
 //    $user =  User::create([
@@ -50,8 +46,6 @@ if($corretor){
 //    });
 
 
-
-
 });
 
 
@@ -66,11 +60,28 @@ Route::group(['prefix' => 'ajax'], function () {
     Route::get('/produtosopcional', ['as' => 'produtosopcional', 'uses' => 'Backend\AjaxController@produtosopcional']);
     Route::get('/complete', ['as' => 'seguradoauto', 'uses' => 'Backend\AjaxController@inputscomplete']);
     Route::get('/getcorretor', ['as' => 'corretor.form', 'uses' => 'Auth\AuthController@getCorretor']);
-    
-    
+
 
 });
 
+Route::group(['prefix' => 'usuario'], function () {
+
+    Route::get('/gestao', [
+
+            'middleware' => ['permission:usuarios-gestao'],
+            'as' => 'usuarios.gestao',
+            'uses' => 'Backend\UserController@index'
+        ]
+    );
+    
+    Route::get('/alterstatus/{iduser}', [
+            'middleware' => ['permission:usuarios-gestao'],
+            'as' => 'usuarios.alterstatus',
+            'uses' => 'Backend\UserController@alterStatus'
+        ]
+    );
+
+});
 
 Route::group(['prefix' => 'vendas'], function () {
 
@@ -185,8 +196,6 @@ Route::group(['prefix' => 'show'], function () {
 
 
 });
-
-
 
 
 Route::group(['prefix' => 'upload'], function () {
