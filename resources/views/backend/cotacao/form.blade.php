@@ -21,8 +21,8 @@
                                 <div class="panel-heading">
                                     <h2 class="panel-title" style="text-align: center;">Dados do Veiculo</h2>
                                 </div>
-                                <div class="panel-body">
-                                    <div class="form-group">
+                                <div class="panel-body" >
+                                    <div class="form-group form-group-sm">
                                         <div class="row" id="rowtipoveiculo">
 
                                             <div class="col-md-2 col-lg-offset-1">
@@ -53,8 +53,8 @@
 
 
                                         <div class="col-md-8">
-                                            <div class="form-group">
-                                                <label for="veiculo">Codigo Fipe - Veiculo</label>
+                                            <div class="form-group form-group-sm">
+                                                <label for="veiculo" class="label label-primary">Codigo Fipe - Veiculo</label>
                                                 <div class="input-group">
                                                     <span class="input-group-addon" id="codefip-text">000000-0</span>
                                                     <input class="form-control form-control-sm form-control-danger"
@@ -66,7 +66,7 @@
                                         </div>
 
                                         <div class="col-md-4 " id="divano">
-                                            <div class="form-group">
+                                            <div class="form-group form-group-sm">
                                                 <label for="anom">Ano Modelo - Combustivel - Valor</label>
                                                 <select name="anom" id="anom" class="form-control form-control-sm">
 
@@ -81,7 +81,7 @@
 
                                             <div class="row">
                                                 <div class="col-md-2 ">
-                                                    <div class="form-group">
+                                                    <div class="form-group form-group-sm">
                                                         <label for="anof">Fabricação</label>
                                                         <select name="anof" id="anof"
                                                                 class="form-control form-control-sm">
@@ -90,21 +90,21 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2 ">
-                                                    <div class="form-group">
+                                                    <div class="form-group form-group-sm">
                                                         <label for="placa">Placa</label>
                                                         <input class="form-control form-control-sm" type="text"
                                                                tipoinput="placa" stats="1" name="placa" id="placa"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
-                                                    <div class="form-group">
+                                                    <div class="form-group form-group-sm">
                                                         <label for="munplaca">Município </label>
                                                         <input class="form-control form-control-sm" type="text"
                                                                name="munplaca" id="placa"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-1">
-                                                    <div class="form-group">
+                                                    <div class="form-group form-group-sm">
                                                         <label for="placauf">UF</label>
                                                         <select name="placauf" id="placauf"
                                                                 class="form-control form-control-sm"
@@ -117,7 +117,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group">
+                                                <div class="form-group form-group-sm">
                                                     <div class="col-md-3">
                                                         <div class="radio" style="margin-top: 15%;">
                                                             <b>Auto 0KM? </b>
@@ -138,7 +138,7 @@
 
                                             <div class="row">
                                                 <div class="col-md-3 ">
-                                                    <div class="form-group">
+                                                    <div class="form-group form-group-sm">
                                                         <label for="renavan">Renavan</label>
                                                         <input class="form-control form-control-sm" type="text"
                                                                tipoinput="renavan" stats="1" name="renavan"
@@ -146,7 +146,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2 ">
-                                                    <div class="form-group">
+                                                    <div class="form-group form-group-sm">
                                                         <label for="anorenav">Ano Renavan</label>
                                                         <select name="anorenav" id="anorenav"
                                                                 class="form-control form-control-sm">
@@ -157,7 +157,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3 ">
-                                                    <div class="form-group">
+                                                    <div class="form-group form-group-sm">
                                                         <label for="chassi">Chassi </label>
                                                         <input class="form-control form-control-sm" stats="1"
                                                                tipoinput="chassi" type="text"
@@ -165,14 +165,14 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2 ">
-                                                    <div class="form-group">
+                                                    <div class="form-group form-group-sm">
                                                         <label for="veiccor">Cor</label>
                                                         <input class="form-control form-control-sm" type="veiccor"
                                                                name="veiccor" id="chassi"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
-                                                    <div class="form-group">
+                                                    <div class="form-group form-group-sm">
                                                         <label for="veicultilizacao">Ultilização</label>
                                                         <select name="veicultilizacao" id="veicultilizacao"
                                                                 class="form-control form-control-sm"
@@ -186,7 +186,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="form-group">
+                                            <div class="form-group form-group-sm">
                                                 <div class="row">
 
                                                     <div class="col-md-3">
@@ -269,7 +269,7 @@
                         </div>
                         <div class="panel-body">
 
-                            <div class="form-group">
+                            <div class="form-group form-group-sm">
                                 <div class="row">
                                     <div class="col-md-4 col-lg-offset-4">
                                         <div class="radio">
@@ -293,7 +293,7 @@
 
                                     <div class="row" id="fisica1">
                                         <div class="col-md-2">
-                                            <div class="form-group">
+                                            <div class="form-group form-group-sm">
                                                 <label for="segcpf">CPF</label>
                                                 <input class="form-control form-control-sm" stats="1" tipoinput="cpf"
                                                        type="text" pessoa="segurado" data-msg="#msg-segcpf"
@@ -303,7 +303,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-5">
-                                            <div class="form-group">
+                                            <div class="form-group form-group-sm">
                                                 <label for="segnome">Nome Completo </label>
                                                 <input class="form-control form-control-sm" type="text" name="segnome"
                                                        id="segnome"/>
@@ -311,7 +311,7 @@
                                         </div>
 
                                         <div class="col-md-2">
-                                            <div class="form-group">
+                                            <div class="form-group form-group-sm">
                                                 <label for="segdatanasc">Data Nascimento</label>
                                                 <input class="form-control form-control-sm" type="text" value=""
                                                        tipoinput="data-nascimento" stats="1" name="segdatanasc"
@@ -320,7 +320,7 @@
                                         </div>
 
                                         <div class="col-md-2">
-                                            <div class="form-group">
+                                            <div class="form-group form-group-sm">
                                                 <label for="segsexo">Sexo</label>
                                                 <select name="segsexo" id="segsexo"
                                                         class="form-control form-control-sm">
@@ -337,7 +337,7 @@
 
                                     <div class="row" id="juridica1">
                                         <div class="col-md-3">
-                                            <div class="form-group">
+                                            <div class="form-group form-group-sm">
                                                 <label for="segcnpj">CNPJ</label>
                                                 <input class="form-control form-control-sm" type="text" name="segcnpj"
                                                        stats="1" pessoa="segurado" tipoinput="cnpj" id="segcnpj"/>
@@ -345,7 +345,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-5">
-                                            <div class="form-group">
+                                            <div class="form-group form-group-sm">
                                                 <label for="segrazao">Razão Social </label>
                                                 <input class="form-control form-control-sm" type="text" name="segrazao"
                                                        id="segrazao"/>
@@ -353,7 +353,7 @@
                                         </div>
 
                                         <div class="col-md-2">
-                                            <div class="form-group">
+                                            <div class="form-group form-group-sm">
                                                 <label for="segdatafund">Data Fundação</label>
                                                 <input class="form-control form-control-sm" type="text"
                                                        tipoinput="data-normal" stats="1" name="segdatafund"
@@ -368,7 +368,7 @@
                                     <div class="row" id="fisica2">
 
                                         <div class="col-md-2">
-                                            <div class="form-group">
+                                            <div class="form-group form-group-sm">
                                                 <label for="segestadocivil">Estado Civil</label>
                                                 <select name="segestadocivil" id="segestadocivil"
                                                         class="form-control form-control-sm">
@@ -383,7 +383,7 @@
                                         </div>
 
                                         <div class="col-md-2">
-                                            <div class="form-group">
+                                            <div class="form-group form-group-sm">
                                                 <label for="segrg">RG</label>
                                                 <input class="form-control form-control-sm" type="text" name="segrg"
                                                        stats="1" tipoinput="rg"
@@ -392,7 +392,7 @@
                                         </div>
 
                                         <div class="col-md-4">
-                                            <div class="form-group">
+                                            <div class="form-group form-group-sm">
                                                 <label for="segrgoe">Orgão Emissor</label>
                                                 <select name="segrgoe" id="segrgoe"
                                                         class="form-control form-control-sm">
@@ -404,7 +404,7 @@
                                         </div>
 
                                         <div class="col-md-1">
-                                            <div class="form-group">
+                                            <div class="form-group form-group-sm">
                                                 <label for="segrguf">UF</label>
                                                 <select name="segrguf" id="segrguf" class="form-control form-control-sm"
                                                         style="font-size: 12px; padding: 0;">
@@ -417,7 +417,7 @@
                                         </div>
 
                                         <div class="col-md-2">
-                                            <div class="form-group">
+                                            <div class="form-group form-group-sm">
                                                 <label for="segrgdtemissao">Data Emissão</label>
                                                 <input class="form-control form-control-sm" type="text"
                                                        stats="1" tipoinput="data-normal" name="segrgdtemissao"
@@ -429,7 +429,7 @@
                                     <div class="row">
 
                                         <div class="col-md-1">
-                                            <div class="form-group">
+                                            <div class="form-group form-group-sm">
                                                 <label for="segdddcel">DDD</label>
                                                 <input type="text" name="segdddcel" id="segdddcel"
                                                        stats="1" tipoinput="ddd" class="form-control form-control-sm"
@@ -437,7 +437,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-2">
-                                            <div class="form-group">
+                                            <div class="form-group form-group-sm">
                                                 <label for="segnmcel">Celular</label>
                                                 <input class="form-control form-control-sm" type="text" name="segnmcel"
                                                        stats="1" tipoinput="cel" id="segnmcel"/>
@@ -445,7 +445,7 @@
                                         </div>
 
                                         <div class="col-md-1">
-                                            <div class="form-group">
+                                            <div class="form-group form-group-sm">
                                                 <label for="segdddfone">DDD</label>
                                                 <input type="text" name="segdddfone" id="segdddfone"
                                                        stats="1" tipoinput="ddd" class="form-control form-control-sm"
@@ -453,14 +453,14 @@
                                             </div>
                                         </div>
                                         <div class="col-md-2">
-                                            <div class="form-group">
+                                            <div class="form-group form-group-sm">
                                                 <label for="segnmfone">Fone</label>
                                                 <input class="form-control form-control-sm" type="text" name="segnmfone"
                                                        stats="1" tipoinput="fone" id="segnmfone"/>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <div class="form-group">
+                                            <div class="form-group form-group-sm">
                                                 <label for="segemail">Email</label>
                                                 <input class="form-control form-control-sm"
                                                        placeholder="email@email.com" type="email" name="segemail"
@@ -472,7 +472,7 @@
                                     <div class="row">
 
                                         <div class="col-md-2">
-                                            <div class="form-group">
+                                            <div class="form-group form-group-sm">
                                                 <label for="segcep">CEP</label>
                                                 <input type="text" name="segcep" id="segcep"
                                                        stats="1" tipoinput="cep" class="form-control form-control-sm"
@@ -480,14 +480,14 @@
                                             </div>
                                         </div>
                                         <div class="col-md-5">
-                                            <div class="form-group">
+                                            <div class="form-group form-group-sm">
                                                 <label for="segendlog">Logradouro</label>
                                                 <input type="text" name="segendlog" id="segendlog"
                                                        class="form-control form-control-sm" value=""/>
                                             </div>
                                         </div>
                                         <div class="col-md-2">
-                                            <div class="form-group">
+                                            <div class="form-group form-group-sm">
                                                 <label for="segnmend">Numero</label>
                                                 <input class="form-control form-control-sm" type="text" name="segnmend"
                                                        id="segnmend"/>
@@ -497,7 +497,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <div class="form-group">
+                                            <div class="form-group form-group-sm">
                                                 <label for="segendcompl">Complemento</label>
                                                 <input type="text" name="segendcompl" id="segendcompl"
                                                        class="form-control form-control-sm" value=""/>
@@ -505,7 +505,7 @@
                                         </div>
 
                                         <div class="col-md-4">
-                                            <div class="form-group">
+                                            <div class="form-group form-group-sm">
                                                 <label for="segendcidade">Cidade</label>
                                                 <input type="text" name="segendcidade" id="segendcidade"
                                                        class="form-control form-control-sm" value=""/>
@@ -513,7 +513,7 @@
                                         </div>
 
                                         <div class="col-md-1">
-                                            <div class="form-group">
+                                            <div class="form-group form-group-sm">
                                                 <label for="segrguf">UF</label>
                                                 <select name="segenduf" id="segenduf"
                                                         title="Escolha o estado"
@@ -530,7 +530,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4" id="profissao">
-                                            <div class="form-group">
+                                            <div class="form-group form-group-sm">
                                                 <label for="segprofissao">Profissao</label>
                                                 <input type="text" name="segprofissao" id="segprofissao"
                                                        class="form-control form-control-sm" value=""/>
@@ -539,7 +539,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4" id="ramoatividade">
-                                            <div class="form-group">
+                                            <div class="form-group form-group-sm">
                                                 <label for="segramoatividade">Ramo Atividade</label>
                                                 <input type="text" name="segramoatividade" id="segramoatividade"
                                                        class="form-control form-control-sm" value=""/>
@@ -611,7 +611,7 @@
                                             <p class="form-control-static" style="font-weight: bold;">Margem:</p>
 
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group form-group-sm">
                                             <div class="col-md-5">
                                                 <div class="form-inline">
                                                     <div class="input-group">
@@ -695,7 +695,7 @@
                 <div class="col-md-12" id="condutor-proprietario">
 
                     <div class="row" id="pergunta">
-                        <div class="form-group">
+                        <div class="form-group form-group-sm">
 
                             <div class="col-md-4 col-md-offset-2">
                                 <div class="radio">
@@ -737,7 +737,7 @@
                                 </div>
                                 <div class="panel-body">
 
-                                    <div class="form-group">
+                                    <div class="form-group form-group-sm">
                                         <div class="row">
                                             <div class="col-md-4 col-lg-offset-4">
                                                 <div class="radio">
@@ -765,7 +765,7 @@
                                             <div class="row" id="propfisica1">
 
                                                 <div class="col-md-5">
-                                                    <div class="form-group">
+                                                    <div class="form-group form-group-sm">
                                                         <label for="propnome">Nome Completo </label>
                                                         <input class="form-control form-control-sm" type="text"
                                                                name="propnome"
@@ -774,7 +774,7 @@
                                                 </div>
 
                                                 <div class="col-md-2">
-                                                    <div class="form-group">
+                                                    <div class="form-group form-group-sm">
                                                         <label for="propdatanasc">Data Nascimento</label>
                                                         <input class="form-control form-control-sm" type="text"
                                                                stats="1" tipoinput="data-nascimento" name="propdatanasc"
@@ -783,7 +783,7 @@
                                                 </div>
 
                                                 <div class="col-md-2">
-                                                    <div class="form-group">
+                                                    <div class="form-group form-group-sm">
                                                         <label for="propsexo">Sexo</label>
                                                         <select name="propsexo" id="propsexo"
                                                                 class="form-control form-control-sm">
@@ -796,7 +796,7 @@
                                                 </div>
 
                                                 <div class="col-md-2">
-                                                    <div class="form-group">
+                                                    <div class="form-group form-group-sm">
                                                         <label for="propestadocivil">Estado Civil</label>
                                                         <select name="propestadocivil" id="propestadocivil"
                                                                 class="form-control form-control-sm">
@@ -812,7 +812,7 @@
                                             <div class="row" id="propjuridica1">
 
                                                 <div class="col-md-5">
-                                                    <div class="form-group">
+                                                    <div class="form-group form-group-sm">
                                                         <label for="proprazao">Razão Social </label>
                                                         <input class="form-control form-control-sm" type="text"
                                                                name="proprazao"
@@ -821,7 +821,7 @@
                                                 </div>
 
                                                 <div class="col-md-2">
-                                                    <div class="form-group">
+                                                    <div class="form-group form-group-sm">
                                                         <label for="propdatafund">Data Fundação</label>
                                                         <input class="form-control form-control-sm" type="text"
                                                                stats="1" tipoinput="data-normal" name="propdatafund"
@@ -830,7 +830,7 @@
                                                 </div>
 
                                                 <div class="col-md-3">
-                                                    <div class="form-group">
+                                                    <div class="form-group form-group-sm">
                                                         <label for="propcnpj">CNPJ</label>
                                                         <input class="form-control form-control-sm" type="text"
                                                                stats="1" pessoa="proprietario" tipoinput="cnpj"
@@ -844,7 +844,7 @@
                                             <div class="row" id="propfisica2">
 
                                                 <div class="col-md-2">
-                                                    <div class="form-group">
+                                                    <div class="form-group form-group-sm">
                                                         <label for="propcpf">CPF</label>
                                                         <input class="form-control form-control-sm"
                                                                pessoa="proprietario" type="text"
@@ -856,7 +856,7 @@
                                                 </div>
 
                                                 <div class="col-md-2">
-                                                    <div class="form-group">
+                                                    <div class="form-group form-group-sm">
                                                         <label for="proprg">RG</label>
                                                         <input class="form-control form-control-sm" type="text"
                                                                tipoinput="rg" stats="1" name="proprg"
@@ -865,7 +865,7 @@
                                                 </div>
 
                                                 <div class="col-md-4">
-                                                    <div class="form-group">
+                                                    <div class="form-group form-group-sm">
                                                         <label for="proprgoe">Orgão Emissor</label>
                                                         <select name="proprgoe" id="proprgoe"
                                                                 class="form-control form-control-sm"
@@ -879,7 +879,7 @@
                                                 </div>
 
                                                 <div class="col-md-1">
-                                                    <div class="form-group">
+                                                    <div class="form-group form-group-sm">
                                                         <label for="proprguf">UF</label>
                                                         <select name="proprguf" id="proprguf"
                                                                 class="form-control form-control-sm"
@@ -893,7 +893,7 @@
                                                 </div>
 
                                                 <div class="col-md-2">
-                                                    <div class="form-group">
+                                                    <div class="form-group form-group-sm">
                                                         <label for="proprgdtemissao">Data Emissão</label>
                                                         <input class="form-control form-control-sm" type="text"
                                                                tipoinput="data-normal"
@@ -905,7 +905,7 @@
                                             <div class="row">
 
                                                 <div class="col-md-1">
-                                                    <div class="form-group">
+                                                    <div class="form-group form-group-sm">
                                                         <label for="propdddcel">DDD</label>
                                                         <input type="text" name="propdddcel" id="propdddcel"
                                                                tipoinput="DDD" stats="1"
@@ -913,7 +913,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
-                                                    <div class="form-group">
+                                                    <div class="form-group form-group-sm">
                                                         <label for="propnmcel">Celular</label>
                                                         <input class="form-control form-control-sm" type="text"
                                                                tipoinput="cel" stats="1" name="propnmcel"
@@ -922,7 +922,7 @@
                                                 </div>
 
                                                 <div class="col-md-1">
-                                                    <div class="form-group">
+                                                    <div class="form-group form-group-sm">
                                                         <label for="propdddfone">DDD</label>
                                                         <input type="text" name="propdddfone" id="propdddfone"
                                                                tipoinput="ddd" stats="1"
@@ -930,7 +930,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
-                                                    <div class="form-group">
+                                                    <div class="form-group form-group-sm">
                                                         <label for="propnmfone">Fone</label>
                                                         <input class="form-control form-control-sm" type="text"
                                                                tipoinput="fone" stats="1"
@@ -938,7 +938,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <div class="form-group">
+                                                    <div class="form-group form-group-sm">
                                                         <label for="propemail">Email</label>
                                                         <input class="form-control form-control-sm" type="email"
                                                                placeholder="email@email.com" name="propemail"
@@ -950,7 +950,7 @@
                                             <div class="row">
 
                                                 <div class="col-md-2">
-                                                    <div class="form-group">
+                                                    <div class="form-group form-group-sm">
                                                         <label for="propcep">CEP</label>
                                                         <input type="text" name="propcep" id="propcep"
                                                                tipoinput="cep" stats="1"
@@ -958,14 +958,14 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
-                                                    <div class="form-group">
+                                                    <div class="form-group form-group-sm">
                                                         <label for="propendlog">Logradouro</label>
                                                         <input type="text" name="propendlog" id="propendlog"
                                                                class="form-control form-control-sm" value=""/>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-1">
-                                                    <div class="form-group">
+                                                    <div class="form-group form-group-sm">
                                                         <label for="propnmend">Numero</label>
                                                         <input class="form-control form-control-sm" type="text"
                                                                name="propnmend"
@@ -974,7 +974,7 @@
                                                 </div>
 
                                                 <div class="col-md-3">
-                                                    <div class="form-group">
+                                                    <div class="form-group form-group-sm">
                                                         <label for="propendcompl">Complemento</label>
                                                         <input type="text" name="propendcompl" id="propendcompl"
                                                                class="form-control form-control-sm" value=""/>
@@ -983,7 +983,7 @@
 
 
                                                 <div class="col-md-2">
-                                                    <div class="form-group">
+                                                    <div class="form-group form-group-sm">
                                                         <label for="propendcidade">Cidade</label>
                                                         <input type="text" name="propendcidade" id="propendcidade"
                                                                class="form-control form-control-sm" value=""/>
@@ -991,7 +991,7 @@
                                                 </div>
 
                                                 <div class="col-md-1">
-                                                    <div class="form-group">
+                                                    <div class="form-group form-group-sm">
                                                         <label for="propenduf">UF</label>
                                                         <select name="propenduf" id="propenduf"
                                                                 title="Escolha o estado"
@@ -1006,7 +1006,7 @@
                                                 </div>
 
                                                 <div class="col-md-5" id="propprofissao">
-                                                    <div class="form-group">
+                                                    <div class="form-group form-group-sm">
                                                         <label for="propprofissao">Profissao</label>
                                                         <input type="text" name="propprofissao" id="propprofissao"
                                                                class="form-control form-control-sm" value=""/>
@@ -1016,7 +1016,7 @@
                                                 </div>
 
                                                 <div class="col-md-5" id="propramoatividade">
-                                                    <div class="form-group">
+                                                    <div class="form-group form-group-sm">
                                                         <label for="propramoatividade">Ramo Atividade</label>
                                                         <input type="text" name="propramoatividade"
                                                                id="propramoatividade"
@@ -1054,7 +1054,7 @@
                                     <div class="row">
 
                                         <div class="col-md-5">
-                                            <div class="form-group">
+                                            <div class="form-group form-group-sm">
                                                 <label for="condnome">Nome Completo </label>
                                                 <input class="form-control form-control-sm" type="text" name="condnome"
                                                        id="condnome"/>
@@ -1062,7 +1062,7 @@
                                         </div>
 
                                         <div class="col-md-2">
-                                            <div class="form-group">
+                                            <div class="form-group form-group-sm">
                                                 <label for="conddatanasc">Data Nascimento</label>
                                                 <input class="form-control form-control-sm" type="text"
                                                        tipoinput="data-nascimento" stats="1" name="conddatanasc"
@@ -1071,7 +1071,7 @@
                                         </div>
 
                                         <div class="col-md-2">
-                                            <div class="form-group">
+                                            <div class="form-group form-group-sm">
                                                 <label for="condsexo">Sexo</label>
                                                 <select name="condsexo" id="condsexo"
                                                         class="form-control form-control-sm">
@@ -1084,7 +1084,7 @@
                                         </div>
 
                                         <div class="col-md-2">
-                                            <div class="form-group">
+                                            <div class="form-group form-group-sm">
                                                 <label for="condestadocivil">Estado Civil</label>
                                                 <select name="condestadocivil" id="condestadocivil"
                                                         class="form-control form-control-sm">
@@ -1100,7 +1100,7 @@
                                     <div class="row">
 
                                         <div class="col-md-2">
-                                            <div class="form-group">
+                                            <div class="form-group form-group-sm">
                                                 <label for="condcpf">CPF</label>
                                                 <input class="form-control form-control-sm" type="text" name="condcpf"
                                                        tipoinput="cpf" pessoa="condutor" stats="3" id="condcpf"/>
@@ -1108,7 +1108,7 @@
                                         </div>
 
                                         <div class="col-md-5">
-                                            <div class="form-group">
+                                            <div class="form-group form-group-sm">
                                                 <label for="condprofissao">Profissao</label>
                                                 <input type="text" name="condprofissao" id="condprofissao"
                                                        class="form-control form-control-sm" value=""/>
@@ -1143,18 +1143,18 @@
                                 <div class="col-md-12">
 
 
-                                    <div class="form-group">
+                                    <div class="form-group form-group-sm">
                                         <label for="cartaonumero">Nº Cartão</label>
                                         <input class="form-control form-control-sm" type="text"
                                                tipoinput="num-cartao" stats="1" name="cartaonumero" id="cartaonumero"/>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group form-group-sm">
                                         <label for="cartaonumero">Titular do Cartão</label>
                                         <input class="form-control form-control-sm" type="text"
                                                placeholder="Nome proprietario do cartão" name="cartaonome"
                                                id="cartaonome"/>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group form-group-sm">
                                         <label for="cartaobandeira">Bandeira Cartão</label>
                                         <select name="cartaobandeira" id="cartaobandeira"
                                                 class="form-control form-control-sm">
@@ -1164,7 +1164,7 @@
 
                                         </select>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group form-group-sm">
                                         <label for="cartaovalidade">Data Validade</label>
                                         <input class="form-control form-control-sm" type="text"
                                                tipoinput="data-validade-cartao" stats="1" name="cartaovalidade"
@@ -1187,13 +1187,13 @@
             <div class="row produto" id="btnproposta">
 
                 <div class="col-md-12">
-                    <div class="form-group" style="float: right;">
+                    <div class="form-group form-group-sm" style="float: right;">
                         <label for="btnvender">
                             <button type="button" class="btn btn-primary" style="float: right;" id="btnvender">Vender
                             </button>
                         </label>
                     </div>
-                    <div class="form-group" style="float: right;">
+                    <div class="form-group form-group-sm" style="float: right;">
                         <label for="btnsubmit">
                             <button type="submit" class="btn btn-primary" style="float: right;" id="btnsubmit">Enviar
                             </button>

@@ -35,6 +35,11 @@ $(function () {
     panelcondutor.hide();
     panelproprietario.hide();
 
+    $('#body-panel').height($(window).height() - 170);
+    $(window).resize(function () {
+        $('#body-panel').height($(window).height() - 170);
+    })
+
     function setAnofab() {
         var anom = $.parseJSON($('select[name=anom]').val());
         $('#anof').empty();

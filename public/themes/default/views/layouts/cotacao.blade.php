@@ -12,7 +12,7 @@
         <div class="panel-heading">
             <h2 class="panel-title" style="text-align: center;">@yield('heading')</h2>
         </div>
-        <div class="panel-body"  style="height: 450px; overflow-x: auto;">
+        <div class="panel-body"  style="height: 450px; overflow-x: auto;" id="body-panel">
 
             <div class="alert alert-danger" id="diverror">
                 <strong>Erro: </strong>
