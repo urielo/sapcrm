@@ -258,14 +258,14 @@
                                         <strong id="valortotal">
 
                                         </strong>
-                                        <div class="radio">         
+                                        <div class="btn-group" data-toggle="buttons">
                                             @foreach($formapagamentos::all() as $forma)
-                                            
-                                            <label >
-                                                <input type="radio" name="formapagamento" id="formapagamento" value="{{$forma->idformapgto}}">$forma->idformapgto->descformapgto
-                                            </label>
+                                                <label class="btn btn-primary">
+                                                    <input type="radio" name="formapagamento" id="formapagamento"
+                                                           value='{!!json_encode(["idforma"=>$forma->idformapgto, "maxparc" =>$forma->nummaxparc, "parcsemjuros"=>  $forma->numparcsemjuros, "juros"=>  $forma->taxamesjuros])!!}'
+                                                           checked>{{$forma->descformapgto}}
+                                                </label>
                                             @endforeach
-
                                         </div>
                                     </div>
                                 </div>

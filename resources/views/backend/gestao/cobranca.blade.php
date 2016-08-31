@@ -5,9 +5,9 @@
 @section('heading','Cobrança')
 @section('contentSeg')
 
-    <div class="col-md-12 apolice table-responsive"">
+    <div class="col-md-12 apolice table-responsive">
         <div class="table">
-            <table class="table table-sm">
+            <table class="table table-hover table-condensed">
                 <thead>
                 <tr>
                     <th>Nº PROPOSTA</th>
@@ -38,7 +38,7 @@
 
                                 <div class="btn-group" role="group">
 
-                                    <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
+                                    <button type="button" class="btn btn-success btn-xs" data-toggle="modal"
                                             data-target=".modal-show"
                                             href="{{route('show.pagamento',$proposta->idproposta)}}"
                                             id="pagar">Efetuar Pagamento
@@ -49,7 +49,7 @@
 
                                 <div class="btn-group" role="group">
 
-                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                    <button type="button" class="btn btn-danger btn-xs" data-toggle="modal"
                                             data-target=".modal-show"
                                             href="{{route('show.cancelaproposta',$proposta->idproposta)}}"
                                             id="cancelar">Cancelar

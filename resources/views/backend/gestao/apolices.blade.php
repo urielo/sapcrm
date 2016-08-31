@@ -43,7 +43,7 @@
                                 <div>
                                     @foreach($cotacao->produtos as $produto)
                                         {{$produto->produto->nomeproduto }}
-                                        @if($cotacao->produtos->count() > 1))
+                                        @if($cotacao->produtos->count() > 1)
                                         <br>
                                         @endif
 

@@ -9,15 +9,16 @@
 
 
 
+    <link rel="stylesheet" href="{{ theme('css/jquery-ui.min.css') }}">
     <link rel="stylesheet" href="{{ theme('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ theme('css/bootstrap-theme.min.css') }}">
-    <link rel="stylesheet" href="{{ theme('css/jquery-ui.min.css') }}">
     <link rel="stylesheet" href="{{ theme('css/datepicker.css') }}">
+    <link rel="stylesheet" href="{{ theme('datatables/datatables.min.css') }}">
     <link rel="stylesheet" href="{{ theme('css/sidebar.css') }}">
+    <link rel="stylesheet" href="{{ theme('css/style.css') }}">
 
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-    @section('style')
-    @show
+    {{--<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">--}}
+
 </head>
 
 <body>
@@ -114,10 +115,9 @@
 <script src="{{ theme('js/bootstrap-validation.min.js') }}"></script>
 <script src="{{ theme('js/cpfcpnj-validator.js') }}"></script>
 <script src="{{ theme('js/locales/datepicker-ptbr.js') }}"></script>
-{{--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.2/locales/bootstrap-datepicker.pt-BR.min.js" charset="UTF-8"></script>--}}
-
-<script src="{{ theme('js/script.js') }}"></script>
+<script src="{{ theme('datatables/datatables.min.js') }}"></script>
 <script src="{{ theme('js/maskedinput.min.js') }}"></script>
+<script src="{{ theme('js/script.js') }}"></script>
 
 <footer class="footer navbar-fixed-bottom">
     <div class="container-fluid">

@@ -35,10 +35,56 @@ $(function () {
     panelcondutor.hide();
     panelproprietario.hide();
 
-    $('#body-panel').height($(window).height() - 170);
-    $(window).resize(function () {
-        $('#body-panel').height($(window).height() - 170);
+
+    $(document).ajaxStart(function () {
+        $('body').prepend('<div class="bgloading" id="loading"></div>')
+        $('.modal-content').prepend('<div class="bgloading" id="loading"></div>')
     })
+
+    $(document).ajaxStop(function () {
+        $('body').removeClass('bgloading')
+        $('.bgloading').remove()
+    });
+
+
+
+    $('#body-panel').height($(window).height() - 200);
+    var ttable = $(window).height() - 335;
+    $(window).resize(function () {
+        $('#body-panel').height($(window).height() - 200);
+        ttable = $(window).height() - 335;
+    })
+
+
+    $('#table-user').dataTable({
+        language: {
+            sEmptyTable: "Nenhum registro encontrado",
+            sInfo: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+            sInfoEmpty: "Mostrando 0 até 0 de 0 registros",
+            sInfoFiltered: "(Filtrados de _MAX_ registros)",
+            sInfoPostFix: "",
+            sInfoThousands: ".",
+            sLengthMenu: "_MENU_ resultados por página",
+            sLoadingRecords: "Carregando...",
+            sProcessing: "Processando...",
+            sZeroRecords: "Nenhum registro encontrado",
+            sSearch: "Pesquisar",
+            oPaginate: {
+                sNext: "Próximo",
+                sPrevious: "Anterior",
+                sFirst: "Primeiro",
+                sLast: "Último"
+            },
+            oAria: {
+                sSortAscending: ": Ordenar colunas de forma ascendente",
+                sSortDescending: ": Ordenar colunas de forma descendente"
+            }
+        },
+        "scrollY":        ttable,
+        "scrollCollapse": true,
+
+    })
+
 
     function setAnofab() {
         var anom = $.parseJSON($('select[name=anom]').val());
@@ -163,7 +209,7 @@ $(function () {
             });
         });
     };
-    function gerarParcelas(vltotal, maxparc, parcelasemjuros, taxajuros, menorparc,formapg) {
+    function gerarParcelas(vltotal, maxparc, parcelasemjuros, taxajuros, menorparc, formapg) {
 
 
         var retorno = [];
@@ -194,12 +240,12 @@ $(function () {
             priparcela = priparcela.toFixed(2).replace('.', ',');
             demparcela = demparcela.toFixed(2).replace('.', ',');
             if (i == 1) {
-                retorno.push('<label style="font-size: 10px;"><input type="radio" name="quantparcela" id="formapagamento" value="' + i + '">' + i + 'x de R$ ' + priparcela + ' (' + textojuroc +') </label><br>')
+                retorno.push('<label style="font-size: 10px;"><input type="radio" name="quantparcela" id="formapagamento" value="' + i + '">' + i + 'x de R$ ' + priparcela + ' (' + textojuroc + ') </label><br>')
             } else if (formapg == 1) {
-                retorno.push('<label style="font-size: 10px;"><input type="radio" name="quantparcela" id="formapagamento" value="' + i + '">' + i + 'x de R$ ' + priparcela + ' (' + textojuroc +') </label><br>')
+                retorno.push('<label style="font-size: 10px;"><input type="radio" name="quantparcela" id="formapagamento" value="' + i + '">' + i + 'x de R$ ' + priparcela + ' (' + textojuroc + ') </label><br>')
             } else {
-                var ii = i -1;
-                retorno.push('<label style="font-size: 10px;"><input type="radio" name="quantparcela" id="formapagamento" value="' + i + '">' + i + 'x (1x de R$ ' + priparcela + ' e '+ ii +'x de  R$ ' + demparcela + ' ' + textojuros + ') </label><br>')
+                var ii = i - 1;
+                retorno.push('<label style="font-size: 10px;"><input type="radio" name="quantparcela" id="formapagamento" value="' + i + '">' + i + 'x (1x de R$ ' + priparcela + ' e ' + ii + 'x de  R$ ' + demparcela + ' ' + textojuros + ') </label><br>')
             }
         }
 
@@ -425,17 +471,17 @@ $(function () {
             }
         })
 
-        if(cc == 0){
+        if (cc == 0) {
             alert('Escolha um produto antes de proseguir')
         } else {
             $('#veiculo').prop('disabled', true)
-            $('#veiculo').after("<input type='hidden' name='anom' value='"+$("select[name=anom]").val()+"'>")
+            $('#veiculo').after("<input type='hidden' name='anom' value='" + $("select[name=anom]").val() + "'>")
             $("select[name=anom]").prop('disabled', true);
             $('#rowtipoveiculo').hide();
             $(this).fadeOut();
         }
 
-    return false;
+        return false;
     });
 
 
@@ -690,7 +736,7 @@ $(function () {
             } else {
                 $('#parcelas').empty();
 
-                $.each(gerarParcelas(vltotal, values.maxparc, values.parcsemjuros, values.juros, menorparc,values.idforma), function (key, html) {
+                $.each(gerarParcelas(vltotal, values.maxparc, values.parcsemjuros, values.juros, menorparc, values.idforma), function (key, html) {
                     $('#parcelas').append(html);
                 })
                 $('#condutor-proprietario').removeClass('col-md-9').addClass('col-md-12');
@@ -1212,7 +1258,6 @@ $(function () {
     })
 
 
-
 //    search table function
 
     $(".search").keyup(function () {
@@ -1220,24 +1265,29 @@ $(function () {
         var listItem = $('.results tbody').children('tr');
         var searchSplit = searchTerm.replace(/ /g, "'):containsi('")
 
-        $.extend($.expr[':'], {'containsi': function(elem, i, match, array){
-            return (elem.textContent || elem.innerText || '').toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
-        }
+        $.extend($.expr[':'], {
+            'containsi': function (elem, i, match, array) {
+                return (elem.textContent || elem.innerText || '').toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
+            }
         });
 
-        $(".results tbody tr").not(":containsi('" + searchSplit + "')").each(function(e){
-            $(this).attr('visible','false');
+        $(".results tbody tr").not(":containsi('" + searchSplit + "')").each(function (e) {
+            $(this).attr('visible', 'false');
         });
 
-        $(".results tbody tr:containsi('" + searchSplit + "')").each(function(e){
-            $(this).attr('visible','true');
+        $(".results tbody tr:containsi('" + searchSplit + "')").each(function (e) {
+            $(this).attr('visible', 'true');
         });
 
         var jobCount = $('.results tbody tr[visible="true"]').length;
         $('.counter').text(jobCount + ' item');
 
-        if(jobCount == '0') {$('.no-result').show();}
-        else {$('.no-result').hide();}
+        if (jobCount == '0') {
+            $('.no-result').show();
+        }
+        else {
+            $('.no-result').hide();
+        }
     });
 });
 

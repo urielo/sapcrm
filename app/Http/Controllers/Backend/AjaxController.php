@@ -25,6 +25,7 @@ class AjaxController extends Controller
 
         $like = $request->input('term');
         $fipe = Fipes::where('modelo', 'ilike', "%{$like}%")
+            ->Orwhere('marca', 'ilike', "%{$like}%")
             ->take(100)
             ->orderBy('marca', 'ASC')
             ->orderBy('modelo', 'ASC')

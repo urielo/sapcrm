@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Validation\Validator;
 use App\Http\Requests;
+use App\Http\Controllers\Backend\Controller;
+use App\Http\Requests\CotacaoRequest;
+use Illuminate\Support\Facades\Redirect;
+
+
 use App\Model\Segurado;
 use App\Model\TipoVeiculos;
 use App\Model\Cobranca;
@@ -24,8 +29,7 @@ use App\Model\PropostasSeguradora;
 use App\Model\ApolicesSeguradora;
 use App\Model\FormaPagamento;
 use App\Model\Cartoes;
-use App\Http\Requests\CotacaoRequest;
-use Illuminate\Support\Facades\Redirect;
+
 
 class GestaoController extends Controller
 {

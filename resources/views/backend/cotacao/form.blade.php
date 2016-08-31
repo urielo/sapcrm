@@ -562,17 +562,14 @@
 
                 <div class="col-md-3 col-xs-3" id="produtopagamento">
                     <div class="row">
-
                         <!--Incio - Escolha Produtos Master-->
                         <div class="col-md-12 col-xs-12">
-
                             <div class="panel panel-default " id="panelprodutosmaster">
                                 <div class="panel-heading">
                                     <h2 class="panel-title" style="text-align: center;">Produtos</h2>
                                 </div>
                                 <div class="panel-body">
                                     <div class="row produto" id="produtos">
-
 
                                     </div>
 
@@ -582,40 +579,29 @@
                         <!--Fim- Escolha Produtos Master-->
                         <!--Incio - Escolha Produtos Opcional-->
                         <div class="col-md-12 col-xs-12">
-
                             <div class="panel panel-default " id="panelprodutosopcional">
                                 <div class="panel-heading">
                                     <h2 class="panel-title" style="text-align: center;">Opcionais</h2>
                                 </div>
                                 <div class="panel-body">
                                     <div class="row produto" id="produtosopcionais">
-
-
                                     </div>
-
                                 </div>
                             </div>
                         </div>
                         <!--Fim- Escolha Produtos Opcional-->
                         <!--Inicio - Escolha Margem-->
                         <div class="col-md-12 col-xs-12">
-
                             <div class="panel panel-default " id="panelmargem">
-
                                 <div class="panel-body">
                                     <div class="row">
-
-
                                         <div class="col-md-3 col-xs-3 col-md-offset col-xs-offset-2">
-
                                             <p class="form-control-static" style="font-weight: bold;">Margem:</p>
-
                                         </div>
                                         <div class="form-group form-group-sm">
                                             <div class="col-md-5 col-xs-5">
                                                 <div class="form-inline">
                                                     <div class="input-group">
-
                                                         <select name="comissao" id="comissao"
                                                                 class="selectpicker form-control form-control-sm"
                                                                 style="padding: 0;">
@@ -626,19 +612,15 @@
                                                         <span class="input-group-addon" id="porcentsimbol">%</span>
                                                     </div>
                                                 </div>
-
                                             </div>
                                         </div>
-
                                     </div>
-
-
                                 </div>
                             </div>
-
-
                         </div>
                         <!--Fim- Escolha Margem-->
+
+
                         <!--Inicio - Escolha Forma Pagamento-->
                         <div class="col-md-12 col-xs-12">
 
@@ -652,17 +634,14 @@
                                             <strong>Total: </strong><strong id="valortotal">
 
                                             </strong>
-                                            <div class="radio">
+                                            <div class="btn-group" data-toggle="buttons">
                                                 @foreach($formapagamentos::all() as $forma)
-
-                                                    <label>
+                                                    <label class="btn btn-primary">
                                                         <input type="radio" name="formapagamento" id="formapagamento"
                                                                value='{!!json_encode(["idforma"=>$forma->idformapgto, "maxparc" =>$forma->nummaxparc, "parcsemjuros"=>  $forma->numparcsemjuros, "juros"=>  $forma->taxamesjuros])!!}'
                                                                checked>{{$forma->descformapgto}}
                                                     </label>
-
                                                 @endforeach
-
                                             </div>
                                             <div id="parcelas">
                                                 <label class="label label-default">
@@ -681,8 +660,6 @@
 
                                 </div>
                             </div>
-
-
                         </div>
                         <!--Fim- Escolha Forma Pagamento-->
 

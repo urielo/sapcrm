@@ -319,3 +319,17 @@ body {
     float: left;
     border-bottom-width: 0;
 }
+
+
+.bgloading {
+    display: block;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: .5;
+    background: rgba(0, 0, 0, .48) url('../images/gear.gif') 50% 50% no-repeat;
+    /*overflow: hidden;*/
+}

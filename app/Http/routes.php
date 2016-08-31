@@ -64,13 +64,20 @@ Route::group(['prefix' => 'ajax'], function () {
 
 });
 
-Route::group(['prefix' => 'usuario'], function () {
+Route::group(['prefix' => 'usuario', 'middleware' => 'auth'], function () {
 
     Route::get('/gestao', [
 
             'middleware' => ['permission:usuarios-gestao'],
             'as' => 'usuarios.gestao',
             'uses' => 'Backend\UserController@index'
+        ]
+    );
+    Route::get('search/{searchterm?}', [
+
+            'middleware' => ['permission:usuarios-gestao'],
+            'as' => 'usuarios.search',
+            'uses' => 'Backend\UserController@search'
         ]
     );
     
@@ -83,7 +90,7 @@ Route::group(['prefix' => 'usuario'], function () {
 
 });
 
-Route::group(['prefix' => 'vendas'], function () {
+Route::group(['prefix' => 'vendas', 'middleware' => 'auth'], function () {
 
 
     Route::post('gerar', [
@@ -116,7 +123,7 @@ Route::group(['prefix' => 'vendas'], function () {
 
 });
 
-Route::group(['prefix' => 'gestao'], function () {
+Route::group(['prefix' => 'gestao', 'middleware' => 'auth'], function () {
 
 
     Route::get('apolices', [
@@ -166,7 +173,7 @@ Route::group(['prefix' => 'gestao'], function () {
 
 });
 
-Route::group(['prefix' => 'show'], function () {
+Route::group(['prefix' => 'show', 'middleware' => 'auth'], function () {
 
     Route::get('segurado/{cpfcnpj}', [
         'middleware' => ['permission:segurado-show'],
@@ -198,7 +205,7 @@ Route::group(['prefix' => 'show'], function () {
 });
 
 
-Route::group(['prefix' => 'upload'], function () {
+Route::group(['prefix' => 'upload', 'middleware' => 'auth'], function () {
     Route::resource('/', 'Backend\Config\UploadController');
 
     Route::get('/', [
