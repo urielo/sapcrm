@@ -59,7 +59,7 @@ class GestaoController extends Controller
         $cotacoes = $this->cotacoes->has('proposta')
             ->whereIdstatus(15)
             ->orderBy('idcotacao', 'desc')
-            ->paginate(10);
+            ->get();
 
 
         return view('backend.gestao.apolices', compact('cotacoes'));
@@ -276,7 +276,7 @@ class GestaoController extends Controller
         $propostas = $this->propostas
             ->whereIdstatus(10)
             ->orderBy('idproposta', 'asc')
-            ->paginate(10);
+            ->get();
 
 
         return view('backend.gestao.cobranca', compact('propostas'));
@@ -287,7 +287,7 @@ class GestaoController extends Controller
         $propostas = Cobranca::distinct()->select('idproposta')
             ->whereIdstatus(14)
             ->orderBy('idproposta', 'asc')
-            ->paginate(10);
+            ->get();
 
 
         return view('backend.gestao.aprovacao', compact('propostas'));

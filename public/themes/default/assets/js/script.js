@@ -47,16 +47,15 @@ $(function () {
     });
 
 
-
-    $('#body-panel').height($(window).height() - 200);
-    var ttable = $(window).height() - 335;
+    $('#body-panel').height($(window).height() - 165);
+    var ttable = $(window).height() - 300;
     $(window).resize(function () {
-        $('#body-panel').height($(window).height() - 200);
-        ttable = $(window).height() - 335;
+        $('#body-panel').height($(window).height() - 165);
+        ttable = $(window).height() - 300;
     })
 
 
-    $('#table-user').dataTable({
+    $('.table-datatable').dataTable({
         language: {
             sEmptyTable: "Nenhum registro encontrado",
             sInfo: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
@@ -80,7 +79,7 @@ $(function () {
                 sSortDescending: ": Ordenar colunas de forma descendente"
             }
         },
-        "scrollY":        ttable,
+        "scrollY": ttable,
         "scrollCollapse": true,
 
     })
@@ -1260,34 +1259,5 @@ $(function () {
 
 //    search table function
 
-    $(".search").keyup(function () {
-        var searchTerm = $(".search").val();
-        var listItem = $('.results tbody').children('tr');
-        var searchSplit = searchTerm.replace(/ /g, "'):containsi('")
-
-        $.extend($.expr[':'], {
-            'containsi': function (elem, i, match, array) {
-                return (elem.textContent || elem.innerText || '').toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
-            }
-        });
-
-        $(".results tbody tr").not(":containsi('" + searchSplit + "')").each(function (e) {
-            $(this).attr('visible', 'false');
-        });
-
-        $(".results tbody tr:containsi('" + searchSplit + "')").each(function (e) {
-            $(this).attr('visible', 'true');
-        });
-
-        var jobCount = $('.results tbody tr[visible="true"]').length;
-        $('.counter').text(jobCount + ' item');
-
-        if (jobCount == '0') {
-            $('.no-result').show();
-        }
-        else {
-            $('.no-result').hide();
-        }
-    });
 });
 

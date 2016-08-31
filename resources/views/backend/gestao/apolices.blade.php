@@ -2,39 +2,27 @@
 
 
 @section('panelcolor','success')
-@section('heading')
+@section('heading','Apolices')
 
-    <div class="form-group row" style="margin: 0px ">
-        <div class="col-md-2 col-md-offset-4"> Apolices</div>
-        <div class="col-md-3 pull-right">
-            {!! Form::text('search',null,['class'=>'search form-control','placeholder'=>'Search']) !!}
-        </div>
-    </div>
-@stop
 @section('contentSeg')
 
     <div class="col-md-12 col-xs-12 apolice">
         <div class="table-responsive">
-            <table class="table table-hover table-condensed results">
+            <table class="table table-hover table-condensed table-datatable">
                 <thead>
-                <tr class="row">
-                    <th>PROPOSTA</th>
+                <tr >
+                    <th>#PROPOSTA</th>
                     <th>CPF/CNPJ</th>
                     <th class="hidden-xs">PRODUTOS</th>
                     <th>VEICULO</th>
                     <th class="hidden-xs">VALIDADE</th>
                     <th></th>
 
-
-                </tr>
-                <tr class="warning no-result">
-                    <td colspan="4"><i class="fa fa-warning"></i> Dados não encontrado</td>
-                </tr>
                 </thead>
                 <tbody>
                 @foreach ($cotacoes as $cotacao)
                     @if(is_object($cotacao->proposta))
-                        <tr class="row {!!date('d/m/Y', strtotime($cotacao->proposta->dtvalidade)) > date('d/m/Y') ? 'danger"': ''!!}">
+                        <tr class="{!!date('d/m/Y', strtotime($cotacao->proposta->dtvalidade)) > date('d/m/Y') ? 'danger"': ''!!}">
                             <td><a href="#">{{$cotacao->proposta->idproposta}}</a></td>
                             <td><a
                                         href="#">{!! format('cpfcnpj', $cotacao->segurado->clicpfcnpj) !!}</a></td>
@@ -152,6 +140,3 @@
 
 @stop
 
-@section('pagination')
-    {{$cotacoes->render()}}
-@stop
