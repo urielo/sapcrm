@@ -87,6 +87,18 @@ Route::group(['prefix' => 'usuario', 'middleware' => 'auth'], function () {
             'uses' => 'Backend\UserController@alterStatus'
         ]
     );
+    Route::get('/tipos/{iduser}', [
+            'middleware' => ['permission:usuarios-gestao'],
+            'as' => 'usuarios.tipos',
+            'uses' => 'Backend\UserController@tipos'
+        ]
+    );
+    Route::post('/alteratipos', [
+            'middleware' => ['permission:usuarios-gestao'],
+            'as' => 'usuarios.alteratipos',
+            'uses' => 'Backend\UserController@alteratipos'
+        ]
+    );
 
 });
 

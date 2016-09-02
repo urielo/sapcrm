@@ -16,4 +16,9 @@ class Fipes extends Model
     {
         return $this->hasMany('App\Model\FipeAnoValor', 'codefipe', 'codefipe');
     }
+    
+    public function status(){
+        return $this->belongsTo('App\Model\Status','idstatus','id');
+            
+    }
 }

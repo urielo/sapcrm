@@ -819,7 +819,21 @@ $(function () {
 
     $(':button').on('click', function () {
 
-        if ($(this).attr('id') == 'erro') {
+        if ($(this).attr('id') == 'showinfo') {
+            $('.modal-content').empty()
+            $.ajax({
+                url: $(this).attr('href'),
+                type: 'GET',
+                success: function (retorno) {
+
+                    $('.modal-content').html(retorno);
+
+
+                    return false;
+                }
+
+            });
+        }else if ($(this).attr('id') == 'erro') {
             var idmsg = '#' + $(this).attr('message')
             $('#msgdeerro').text($(idmsg).val())
 

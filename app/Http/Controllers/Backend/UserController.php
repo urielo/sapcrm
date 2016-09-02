@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
-
+use App\Model\Role;
 use App\Http\Requests;
 use App\Http\Controllers\Backend\Controller;
 use Illuminate\Support\Facades\Redirect;
@@ -44,5 +44,16 @@ class UserController extends Controller
         $user->save();
 
         return Redirect::back()->with('sucesso', 'Operação relaizada com sucesso!! Usuário(a): ' . nomeCase($user->nome) . ' foi ' . ($user->idstatus == 1 ? ' ativado(a)' : ' desativado(a)'));
+    }
+
+    /**
+     * @param array $middleware
+     */
+    public function tipos($iduser)
+    {
+        $usuario = User::find($iduser);
+        $roles = Role::all();
+        
+        return view('backend.show.showtipos', compact('usuario', 'roles'));
     }
 }

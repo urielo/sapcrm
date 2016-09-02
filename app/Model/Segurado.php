@@ -29,6 +29,10 @@ class Segurado extends Model
         "idstatus",
         "dtcreate",
         "dtupdate",
+        'clinumrg',
+        'clidtemissaorg',
+        'clicdufemissaorg',
+        'cliemissorrg',
     ];
     public $timestamps = FALSE;
     public $incrementing = false;
@@ -43,30 +47,31 @@ class Segurado extends Model
      */
     public function estadocivil()
     {
-        return $this->hasOne('App\Model\EstadosCivis', 'idestadocivil', 'clicdestadocivil');
+        return $this->belongsTo('App\Model\EstadosCivis', 'clicdestadocivil', 'idestadocivil');
     }
 
     public function profissao()
     {
-        return $this->hasOne('App\Model\Profissoes', 'id_ocupacao', 'clicdprofiramoatividade');
+        return $this->belongsTo('App\Model\Profissoes', 'clicdprofiramoatividade' , 'id_ocupacao');
 
     }
 
 
     public function ramosatividade()
     {
-        return $this->hasOne('App\Model\RamoAtividades', 'id_ramo_atividade', 'clicdprofiramoatividade');
+        return $this->belongsTo('App\Model\RamoAtividades', 'clicdprofiramoatividade', 'id_ramo_atividade');
 
     }
     public function uf()
     {
-        return $this->hasOne('App\Model\Uf', 'cd_uf', 'clicduf');
+        return $this->belongsTo('App\Model\Uf', 'clicduf', 'cd_uf');
 
     }
-
-    public function cartoes()
+    
+    public function rguf()
     {
-        return $this->hasMany('App\Model\Cartoes', 'clicpfcnpj', 'clicpfcnpj');
+        return $this->belongsTo('App\Model\Uf', 'clicdufemissaorg', 'cd_uf');
 
     }
+
 }

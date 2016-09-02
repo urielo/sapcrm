@@ -53,6 +53,10 @@ class Cotacoes extends Model
         return $this->hasMany('App\Model\CotacaoProdutos','idcotacao','idcotacao');
     }
     
+    public function status(){
+        return $this->belongsTo('App\Model\Status','idstatus','id');
+
+    }
     
 
 }

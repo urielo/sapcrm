@@ -5,9 +5,9 @@
 @section('heading','Aprovações')
 @section('contentSeg')
 
-    <div class="col-md-12 apolice table-responsive"">
+    <div class="col-md-12 apolice table-responsive">
     <div class="table">
-        <table class="table table-sm">
+        <table class="table table-hover table-condensed table-datatable">
             <thead>
             <tr>
                 <th>Nº PROPOSTA</th>
@@ -68,7 +68,7 @@
             @endforeach
             </tbody>
         </table>
-        <center>{{$propostas->render()}}</center>
+
     </div>
 
 

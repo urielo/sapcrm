@@ -48,4 +48,17 @@ class Corretores extends Model
     {
         return $this->hasMany('App\User', 'idcorretor','idcorretor');
     }
+
+    public function estadocivil()
+    {
+        return $this->belongsTo('App\Model\EstadosCivis', 'corrcdestadocivil', 'idestadocivil');
+    }
+
+
+    public function uf()
+    {
+        return $this->belongsTo('App\Model\Uf', 'corrcduf', 'cd_uf');
+
+    }
 }
+
