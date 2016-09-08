@@ -8,11 +8,12 @@
 <div class="modal-body">
     <div class="container-fluid">
         <div class="row">
+            {!! Form::hidden('usuario_id',$usuario->id) !!}
             @foreach($roles as $role)
                 <div class="col-md-4 col-xs-4 col-sm-4">
                     <div class="form-check">
                         <label class="form-check-label">
-                            {!! Form::checkbox('roles[]',$role->name, ( $usuario->hasRole($role->name) ? true : false ),['class'=>'form-check-input']) !!}
+                            {!! Form::checkbox('roles[]',$role->id, ( $usuario->hasRole($role->name) ? true : false ),['class'=>'form-check-input']) !!}
                             {{ $role->display_name }}
                         </label>
                     </div>
@@ -22,8 +23,8 @@
     </div>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-    <button type="submit" class="btn btn-success">Efetuar</button>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+    <button type="submit" class="btn btn-primary">Salvar</button>
 </div>
 {!!Form::close()!!}
 

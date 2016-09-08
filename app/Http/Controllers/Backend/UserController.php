@@ -15,7 +15,7 @@ class UserController extends Controller
     public function index()
     {
 
-        $usuarios = User::orderBy('updated_at', 'DESC')->paginate(100);
+        $usuarios = User::orderBy('updated_at', 'DESC')->get();
         return view('backend.user.home', compact('usuarios'));
 
     }
@@ -55,5 +55,15 @@ class UserController extends Controller
         $roles = Role::all();
         
         return view('backend.show.showtipos', compact('usuario', 'roles'));
+    }
+    public function alteratipos(Request $request)
+    {
+
+
+        $usuario = User::find($request->usuario_id);
+
+        $usuario->roles()->sync( (count($request->roles) > 0 ? $request->roles : [] ) );
+
+     return redirect()->route('usuarios.gestao')->with('sucesso','Alterações realizadas com sucesso');
     }
 }

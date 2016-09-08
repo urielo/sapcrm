@@ -14,6 +14,3 @@
     </div>
 @stop
 
-@section('pagination')
-            {{$usuarios->render()}}
-@stop

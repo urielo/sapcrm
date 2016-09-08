@@ -12,7 +12,7 @@
             </div>
             <div class="panel-body" style="height: 450px; overflow-x: auto;" id="body-panel">
 
-                <div class="alert alert-danger" id="diverror">
+                <div class="alert alert-danger hide" id="diverror">
                     <strong>Erro: </strong>
                     <div id="messageerror">
 

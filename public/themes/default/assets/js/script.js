@@ -20,6 +20,7 @@ $(function () {
     var menorparc = 0.0;
 
     produtopagamento.hide();
+    diverror.removeClass('hide');
     diverror.hide();
     pergunta.hide();
     panelsegurado.hide();
