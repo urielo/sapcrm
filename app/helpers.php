@@ -98,7 +98,7 @@ if (!function_exists('webserviceCotar')):
         $data = json_encode(array_merge($cotacao, $perfilsegurado, $corretor, $segurado, $veiculo, $produtos, $proprietario, $condutor));
         $curl = curl_init();
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "http://www.seguroautopratico.com.br/api/gerar/cotacao",
+            CURLOPT_URL => "http://producao.seguroautopratico.com.br/gerar/cotacao",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
@@ -130,7 +130,7 @@ if (!function_exists('webserviceProposta')):
         $data = json_encode(array_merge($proposta, $perfilsegurado, $segurado, $veiculo, $produtos, $proprietario, $condutor));
         $curl = curl_init();
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "http://www.seguroautopratico.com.br/api/gerar/proposta",
+            CURLOPT_URL => "http://producao.seguroautopratico.com.br/gerar/proposta",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,

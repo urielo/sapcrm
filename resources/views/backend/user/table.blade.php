@@ -21,7 +21,7 @@
             <td scope="row">{!! $usuario->id !!}</td>
             <td scope="row"><a href="#" class="">{!! nomeCase($usuario->nome) !!}</a>
             <td>
-                <a class="btn btn-xs" data-toggle="collapse" href="#{{$usuario->id}}tipos">Tipos</a>
+                <a class="btn btn-default btn-xs" data-toggle="collapse" href="#{{$usuario->id}}tipos">Tipos</a>
                 <div class="btn-group" role="group">
                     <button type="button"
                             data-toggle="modal"
