@@ -93,12 +93,12 @@ endif;
 
 if (!function_exists('webserviceCotar')):
 
-    function webserviceCotacao($cotacao, $corretor, $segurado, $veiculo, $produtos, $proprietario, $condutor, $perfilsegurado)
+    function webserviceCotacao($cotacao, $corretor, $segurado, $veiculo, $produtos, $proprietario, $condutor, $perfilsegurado,$url)
     {
         $data = json_encode(array_merge($cotacao, $perfilsegurado, $corretor, $segurado, $veiculo, $produtos, $proprietario, $condutor));
         $curl = curl_init();
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "http://producao.seguroautopratico.com.br/gerar/cotacao",
+            CURLOPT_URL => $url ."cotacao",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
@@ -125,12 +125,12 @@ endif;
 
 if (!function_exists('webserviceProposta')):
 
-    function webserviceProposta($proposta, $segurado, $veiculo, $produtos, $proprietario, $condutor, $perfilsegurado)
+    function webserviceProposta($proposta, $segurado, $veiculo, $produtos, $proprietario, $condutor, $perfilsegurado,$url)
     {
         $data = json_encode(array_merge($proposta, $perfilsegurado, $segurado, $veiculo, $produtos, $proprietario, $condutor));
         $curl = curl_init();
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "http://producao.seguroautopratico.com.br/gerar/proposta",
+            CURLOPT_URL => $url ."proposta",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,

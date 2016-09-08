@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Contracts\Validation\Validator;
 use App\Http\Requests;
 use App\Model\Segurado;
+use App\Model\Config;
 use App\Model\TipoVeiculos;
 use App\Model\FipeAnoValor;
 use App\Model\Veiculos;
@@ -92,7 +93,8 @@ class CotacaoController extends Controller
     public function gerar(CotacaoRequest $request)
     {
 
-
+        $configws =  Config::where('env_local',env('APP_LOCAL'))->where('webservice','SAP')->first();
+        $url = $configws->url;
 //        return view('backend.cotacao.sucesso', ['message' => 'Cotação realizada com sucesso!']);
         $segurado = ["segurado" =>
             ["segNomeRazao" => ($request->tipopessoa == 1 ? $request->segnome : $request->segrazao),
@@ -195,13 +197,13 @@ class CotacaoController extends Controller
             "nmParceiro" => "Seguro AUTOPRATICO",
             "indCondutorVeic" => $request->indproprietario,
             "indProprietVeic" => $request->indcondutor,
-            "comissao" => $request->comissao,];
+            "comissao" => (isset($request->comissao) ? $request->comissao : Auth::user()->corretor->corrcomissaopadrao),];
 
 //        return json_encode(array_merge($cotacao, $corretor, $segurado, $veiculo, $produtos, $proprietario, $condutor, $perfilsegurado));
 //
 //     return webserviceCotacao($cotacao, $corretor, $segurado, $veiculo, $produtos, $proprietario, $condutor, $perfilsegurado);
 
-        $wscotacao = json_decode(webserviceCotacao($cotacao, $corretor, $segurado, $veiculo, $produtos, $proprietario, $condutor, $perfilsegurado));
+        $wscotacao = json_decode(webserviceCotacao($cotacao, $corretor, $segurado, $veiculo, $produtos, $proprietario, $condutor, $perfilsegurado,$url));
 
         if ($wscotacao->cdretorno != '000') {
             return response()->json([
@@ -240,7 +242,7 @@ class CotacaoController extends Controller
             ];
         }
 
-        $wsproposta = json_decode(webserviceProposta($proposta, $segurado, $veiculo, $produtos, $proprietario, $condutor, $perfilsegurado));
+        $wsproposta = json_decode(webserviceProposta($proposta, $segurado, $veiculo, $produtos, $proprietario, $condutor, $perfilsegurado,$url));
 
 
         if ($wsproposta->cdretorno != '000') {

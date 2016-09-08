@@ -11,39 +11,45 @@ Route::get('/', [
     'uses' => 'Backend\DashboardController@index'
 ]);
 
-use Illuminate\Support\Facades\Mail;
 use Khill\Lavacharts\Lavacharts;
-use App\User;
-use App\Model\Role;
-use App\Model\Corretores;
 
 use App\Model\Logs;
 
 Route::get('teste', function () {
-//    $user = User::find(1);
-//
-//    $
-
-//    $role = Role::find(3);
-//    $user =  User::create([
-//        'nome' => 'joao',
-//        'email' => 'brito@email.com',
-//        'idstatus' => 2,
-//        'password' => bcrypt(1234456),
-//    ]);
-//
-//    $user->attachRole($role);
-//
-//    return $user;
 
 
-//    $data = ['nome'=> 'uriel'];
+    $url =  Config::where('env_local',env('APP_LOCAL'))->where('webservice','SAP')->first();
+    echo $url->url .'proposta';
+////    $user = User::find(1);
+////
+////    $
 //
-//    Mail::send('welcome', $data, function ($message) {
-//        $message->from('uriel@skyprotection.com.br', 'Uriel');
+////    $role = Role::find(3);
+////    $user =  User::create([
+////        'nome' => 'joao',
+////        'email' => 'brito@email.com',
+////        'idstatus' => 2,
+////        'password' => bcrypt(1234456),
+////    ]);
+////
+////    $user->attachRole($role);
+////
+////    return $user;
 //
-//        $message->to('uriel@seguroautopratico.com.br');
-//    });
+//
+////    $data = ['nome'=> 'uriel'];
+////
+////    Mail::send('welcome', $data, function ($message) {
+////        $message->from('uriel@skyprotection.com.br', 'Uriel');
+////
+////        $message->to('uriel@seguroautopratico.com.br');
+////    });
+//if(env('APP_LOCAL') == 'producao'){
+//    return env('APP_LOCAL');
+//
+//}else{
+//    return env('APP_LOCAL');
+//}
 
 
 });
@@ -60,7 +66,6 @@ Route::group(['prefix' => 'ajax'], function () {
     Route::get('/produtosopcional', ['as' => 'produtosopcional', 'uses' => 'Backend\AjaxController@produtosopcional']);
     Route::get('/complete', ['as' => 'seguradoauto', 'uses' => 'Backend\AjaxController@inputscomplete']);
     Route::get('/getcorretor', ['as' => 'corretor.form', 'uses' => 'Auth\AuthController@getCorretor']);
-
 
 });
 
