@@ -44,8 +44,9 @@
             </td>
             <td><a href="#" class="">{{$usuario->email}}</a></td>
             <td>
-                {!! nomeCase($usuario->corretor->corrnomerazao) !!}
-
+                @if($usuario->corretor)
+                    {!! nomeCase($usuario->corretor->corrnomerazao) !!}
+                @endif
             </td>
             <td class="{{($usuario->idstatus == 1 ? 'bg-success' : 'bg-danger' )}}">{{$usuario->status->descricao}}
 
