@@ -269,10 +269,10 @@ class CotacaoController extends Controller
         $curl = curl_init();
         $configws =  Config::where('env_local',env('APP_LOCAL'))->where('webservice','SAP')->first();
         $url = $configws->url;
-       
+
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => $url,
+            CURLOPT_URL => $url.'pdf',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
