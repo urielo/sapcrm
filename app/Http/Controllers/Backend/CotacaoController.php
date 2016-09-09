@@ -267,12 +267,12 @@ class CotacaoController extends Controller
     public function pdf($idproposta)
     {
         $curl = curl_init();
-
-        $url['producao'] = "http://www.seguroautopratico.com.br/api/gerar/pdf";
-        $url['debuga'] = "http://www.webservice.local/gerar/pdf";
+        $configws =  Config::where('env_local',env('APP_LOCAL'))->where('webservice','SAP')->first();
+        $url = $configws->url;
+       
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => $url['producao'],
+            CURLOPT_URL => $url,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
