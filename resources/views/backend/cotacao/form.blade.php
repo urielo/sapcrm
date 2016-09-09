@@ -68,7 +68,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-md-4  " id="divano">
+                                        <div class="col-md-4  hide" id="divano">
                                             <div class="form-group form-group-sm">
                                                 <label for="anom" class="label label-default">Ano Modelo - Combustivel -
                                                     Valor</label>
@@ -80,7 +80,7 @@
 
                                     </div>
 
-                                    <div class="row" id="dadosveiculos">
+                                    <div class="row hide" id="dadosveiculos">
                                         <div class="col-md-12 ">
 
                                             <div class="row">
@@ -239,7 +239,7 @@
 
                     <!--Incio - Dados Cliente-->
 
-                    <div class="panel panel-default" id="panelsegurado">
+                    <div class="panel panel-default hide" id="panelsegurado">
                         <div class="panel-heading">
                             <h2 class="panel-title" style="text-align: center;">Dados do Segurado</h2>
                         </div>
@@ -539,127 +539,9 @@
 
                     </div>
                     <!--Fim - Dados Cliente-->
-                </div>
-
-                <div class="col-md-3 " id="produtopagamento">
                     <div class="row">
-                        <!--Incio - Escolha Produtos Master-->
-                        <div class="col-md-12 ">
-                            <div class="panel panel-default " id="panelprodutosmaster">
-                                <div class="panel-heading">
-                                    <h2 class="panel-title" style="text-align: center;">Produtos</h2>
-                                </div>
-                                <div class="panel-body">
-                                    <div class="row produto" id="produtos">
-
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <!--Fim- Escolha Produtos Master-->
-                        <!--Incio - Escolha Produtos Opcional-->
-                        <div class="col-md-12 ">
-                            <div class="panel panel-default " id="panelprodutosopcional">
-                                <div class="panel-heading">
-                                    <h2 class="panel-title" style="text-align: center;">Opcionais</h2>
-                                </div>
-                                <div class="panel-body">
-                                    <div class="row produto" id="produtosopcionais">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--Fim- Escolha Produtos Opcional-->
-
-                    @role('altera-comissao')
-                    <!--Inicio - Escolha Margem-->
-
-                        <div class="col-md-12 ">
-                            <div class="panel panel-default " id="panelmargem">
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-md-3  col-md-offset -2">
-                                            <p class="form-control-static" style="font-weight: bold;">Margem:</p>
-                                        </div>
-                                        <div class="form-group form-group-sm">
-                                            <div class="col-md-5 ">
-                                                <div class="form-inline">
-                                                    <div class="input-group">
-                                                        <select name="comissao" id="comissao"
-                                                                class="selectpicker form-control form-control-sm"
-                                                                style="padding: 0;">
-                                                            <option value="{{Auth::user()->corretor->corrcomissaopadrao}}"
-                                                                    selected>{{Auth::user()->corretor->corrcomissaopadrao}}</option>
-                                                            <option value="{{Auth::user()->corretor->corrcomissaomin}}">{{Auth::user()->corretor->corrcomissaomin}}</option>
-                                                        </select>
-                                                        <span class="input-group-addon" id="porcentsimbol">%</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endrole
-                    <!--Fim- Escolha Margem-->
-
-
-                        <!--Inicio - Escolha Forma Pagamento-->
-                        <div class="col-md-12 ">
-
-                            <div class="panel panel-success " id="panelpagamento">
-                                <div class="panel-heading">
-                                    <h2 class="panel-title" style="text-align: center;">Total a pagar: <strong
-                                                id="valortotal"></strong></h2>
-                                </div>
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-md-12 ">
-
-                                            @foreach($formapagamentos::all() as $forma)
-                                                <div class="btn-group" data-toggle="buttons">
-                                                    <label class="btn btn-info btn-xs {!! ($first ? 'active':'') !!}">
-                                                        <input type="radio" name="formapagamento" id="formapagamento"
-                                                               value='{!!json_encode(["idforma"=>$forma->idformapgto, "maxparc" =>$forma->nummaxparc, "parcsemjuros"=>  $forma->numparcsemjuros, "juros"=>  $forma->taxamesjuros])!!}'
-                                                                {!! ($first ? 'checked':'') !!}>{{$forma->descformapgto}}
-                                                    </label>
-                                                    <?php $first = TRUE; ?>
-                                                </div>
-                                            @endforeach
-                                            <div id="parcelas">
-                                                <label class="label label-default">
-                                                    <input type="radio" name="quantparcela" id="formapagamento"
-                                                           value="1">1
-                                                </label>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                    <div class="row produto" id="parcelas">
-
-
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <!--Fim- Escolha Forma Pagamento-->
-
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="row">
-                <div class="col-md-12 " id="condutor-proprietario">
-
-                    <div class="row" id="pergunta">
-                        <div class="form-group form-group-sm">
-
-                            <div class="col-md-4  col-md-offset -2">
+                        <div class="form-group form-group-sm hide" id="pergunta">
+                            <div class="col-md-4  col-md-offset-2">
                                 <div class="radio">
                                     <b>Segurado é o Proprietário? </b>
                                     <label>
@@ -689,333 +571,332 @@
 
                         </div>
                     </div>
+
+
                     <!--Inicio - Dados Proprietario-->
-
-                    <div class="row">
-                        <div class="col-md-12 ">
-                            <div class="panel panel-default" id="panelproprietario">
-                                <div class="panel-heading">
-                                    <h2 class="panel-title" style="text-align: center;">Proprietário do Veiculo</h2>
-                                </div>
-                                <div class="panel-body">
-
-                                    <div class="form-group form-group-sm">
-                                        <div class="row">
-                                            <div class="col-md-4  col-lg-offset-4">
-                                                <div class="radio">
-                                                    <b>Tipo de Pessoa? </b>
-                                                    <label>
-                                                        <input type="radio" name="proptipopessoa" id="tipopessoa"
-                                                               value="1"
-                                                               checked>
-                                                        Física
-                                                    </label>
-                                                    <label>
-                                                        <input type="radio" name="proptipopessoa" id="tipopessoa"
-                                                               value="2">
-                                                        Jurídica
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row" id="propripessoafisca">
-
-                                        <div class="col-md-12 ">
-
-                                            <div class="row" id="propfisica1">
-
-                                                <div class="col-md-5 ">
-                                                    <div class="form-group form-group-sm">
-                                                        <label class="label label-default" for="propnome">Nome
-                                                            Completo </label>
-                                                        <input class="form-control form-control-sm" type="text"
-                                                               name="propnome"
-                                                               id="propnome"/>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-2 ">
-                                                    <div class="form-group form-group-sm">
-                                                        <label class="label label-default" for="propdatanasc">Data
-                                                            Nascimento</label>
-                                                        <input class="form-control form-control-sm" type="text"
-                                                               stats="1" tipoinput="data-nascimento" name="propdatanasc"
-                                                               id="propdatanasc"/>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-2 ">
-                                                    <div class="form-group form-group-sm">
-                                                        <label class="label label-default" for="propsexo">Sexo</label>
-                                                        <select name="propsexo" id="propsexo"
-                                                                class="form-control form-control-sm">
-
-                                                            <option value="1">Masculino</option>
-                                                            <option value="2">Feminino</option>
-
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-2 ">
-                                                    <div class="form-group form-group-sm">
-                                                        <label class="label label-default" for="propestadocivil">Estado
-                                                            Civil</label>
-                                                        <select name="propestadocivil" id="propestadocivil"
-                                                                class="form-control form-control-sm">
-                                                            @foreach($estadoscivis::all() as $estadoscivil)
-                                                                <option value="{{$estadoscivil->idestadocivil}}">{{$estadoscivil->nmestadocivil}}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-                                            <div class="row" id="propjuridica1">
-
-                                                <div class="col-md-5 ">
-                                                    <div class="form-group form-group-sm">
-                                                        <label class="label label-default" for="proprazao">Razão
-                                                            Social </label>
-                                                        <input class="form-control form-control-sm" type="text"
-                                                               name="proprazao"
-                                                               id="nomepropurado"/>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-2 ">
-                                                    <div class="form-group form-group-sm">
-                                                        <label class="label label-default" for="propdatafund">Data
-                                                            Fundação</label>
-                                                        <input class="form-control form-control-sm" type="text"
-                                                               stats="1" tipoinput="data-normal" name="propdatafund"
-                                                               id="propdatafund"/>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-3 ">
-                                                    <div class="form-group form-group-sm">
-                                                        <label class="label label-default" for="propcnpj">CNPJ</label>
-                                                        <input class="form-control form-control-sm" type="text"
-                                                               stats="1" pessoa="proprietario" tipoinput="cnpj"
-                                                               name="propcnpj"
-                                                               id="propcnpj"/>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-                                            <div class="row" id="propfisica2">
-
-                                                <div class="col-md-2 ">
-                                                    <div class="form-group form-group-sm">
-                                                        <label class="label label-default" for="propcpf">CPF</label>
-                                                        <input class="form-control form-control-sm"
-                                                               pessoa="proprietario" type="text"
-                                                               tipoinput="cpf" stats="2"
-                                                               name="propcpf"
-
-                                                               id="propcpf"/>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-2 ">
-                                                    <div class="form-group form-group-sm">
-                                                        <label class="label label-default" for="proprg">RG</label>
-                                                        <input class="form-control form-control-sm" type="text"
-                                                               tipoinput="rg" stats="1" name="proprg"
-                                                               id="proprg"/>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-4 ">
-                                                    <div class="form-group form-group-sm">
-                                                        <label class="label label-default" for="proprgoe">Orgão
-                                                            Emissor</label>
-                                                        <select name="proprgoe" id="proprgoe"
-                                                                class="form-control form-control-sm"
-                                                                style="font-size: 12px; padding: 0;">
-                                                            @foreach($orgaoemissors::all() as $orgaoemissor)
-                                                                <option value="{{$orgaoemissor->cd_oe}}"
-                                                                        style="font-size: 12px;">{{$orgaoemissor->desc_oe}}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-1 ">
-                                                    <div class="form-group form-group-sm">
-                                                        <label class="label label-default" for="proprguf">UF</label>
-                                                        <select name="proprguf" id="proprguf"
-                                                                class="form-control form-control-sm"
-                                                                style="font-size: 12px; padding: 0;">
-                                                            @foreach($ufs::all() as $uf)
-                                                                <option value="{{$uf->cd_uf}}"
-                                                                        style="font-size: 12px;">{{$uf->nm_uf}}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-2 ">
-                                                    <div class="form-group form-group-sm">
-                                                        <label class="label label-default" for="proprgdtemissao">Data
-                                                            Emissão</label>
-                                                        <input class="form-control form-control-sm" type="text"
-                                                               tipoinput="data-normal"
-                                                               name="proprgdtemissao" stats="1" id="proprgdtemissao"/>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-
-                                                <div class="col-md-1 ">
-                                                    <div class="form-group form-group-sm">
-                                                        <label class="label label-default" for="propdddcel">DDD</label>
-                                                        <input type="text" name="propdddcel" id="propdddcel"
-                                                               tipoinput="DDD" stats="1"
-                                                               class="form-control form-control-sm" value=""/>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-2 ">
-                                                    <div class="form-group form-group-sm">
-                                                        <label class="label label-default"
-                                                               for="propnmcel">Celular</label>
-                                                        <input class="form-control form-control-sm" type="text"
-                                                               tipoinput="cel" stats="1" name="propnmcel"
-                                                               id="propnmcel"/>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-1 ">
-                                                    <div class="form-group form-group-sm">
-                                                        <label class="label label-default" for="propdddfone">DDD</label>
-                                                        <input type="text" name="propdddfone" id="propdddfone"
-                                                               tipoinput="ddd" stats="1"
-                                                               class="form-control form-control-sm" value=""/>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-2 ">
-                                                    <div class="form-group form-group-sm">
-                                                        <label class="label label-default" for="propnmfone">Fone</label>
-                                                        <input class="form-control form-control-sm" type="text"
-                                                               tipoinput="fone" stats="1"
-                                                               name="propnmfone" id="propnmfone"/>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="form-group form-group-sm">
-                                                        <label class="label label-default" for="propemail">Email</label>
-                                                        <input class="form-control form-control-sm" type="email"
-                                                               placeholder="email@email.com" name="propemail"
-                                                               id="propemail"/>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div class="row">
-
-                                                <div class="col-md-2 ">
-                                                    <div class="form-group form-group-sm">
-                                                        <label class="label label-default" for="propcep">CEP</label>
-                                                        <input type="text" name="propcep" id="propcep"
-                                                               tipoinput="cep" stats="1"
-                                                               class="form-control form-control-sm" value=""/>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3 ">
-                                                    <div class="form-group form-group-sm">
-                                                        <label class="label label-default"
-                                                               for="propendlog">Logradouro</label>
-                                                        <input type="text" name="propendlog" id="propendlog"
-                                                               class="form-control form-control-sm" value=""/>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-1 ">
-                                                    <div class="form-group form-group-sm">
-                                                        <label class="label label-default"
-                                                               for="propnmend">Numero</label>
-                                                        <input class="form-control form-control-sm" type="text"
-                                                               name="propnmend"
-                                                               id="propnmend"/>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-3 ">
-                                                    <div class="form-group form-group-sm">
-                                                        <label class="label label-default" for="propendcompl">Complemento</label>
-                                                        <input type="text" name="propendcompl" id="propendcompl"
-                                                               class="form-control form-control-sm" value=""/>
-                                                    </div>
-                                                </div>
-
-
-                                                <div class="col-md-2 ">
-                                                    <div class="form-group form-group-sm">
-                                                        <label class="label label-default"
-                                                               for="propendcidade">Cidade</label>
-                                                        <input type="text" name="propendcidade" id="propendcidade"
-                                                               class="form-control form-control-sm" value=""/>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-1 ">
-                                                    <div class="form-group form-group-sm">
-                                                        <label class="label label-default" for="propenduf">UF</label>
-                                                        <select name="propenduf" id="propenduf"
-                                                                title="Escolha o estado"
-                                                                class="selectpicker form-control form-control-sm"
-                                                        >
-                                                            @foreach($ufs::all() as $uf)
-                                                                <option id="{{$uf->nm_uf}}"
-                                                                        value="{{$uf->cd_uf}}">{{$uf->nm_uf}}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-5 " id="propprofissao">
-                                                    <div class="form-group form-group-sm">
-                                                        <label class="label label-default"
-                                                               for="propprofissao">Profissao</label>
-                                                        <input type="text" name="propprofissao" id="propprofissao"
-                                                               class="form-control form-control-sm" value=""/>
-                                                        <input type="hidden" name="propcdprofissao" id="propcdprofissao"
-                                                               value=""/>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-5 " id="propramoatividade">
-                                                    <div class="form-group form-group-sm">
-                                                        <label class="label label-default" for="propramoatividade">Ramo
-                                                            Atividade</label>
-                                                        <input type="text" name="propramoatividade"
-                                                               id="propramoatividade"
-                                                               class="form-control form-control-sm" value=""/>
-                                                        <input type="hidden" name="propcdramoatividade"
-                                                               id="propcdramoatividade"
-                                                               value=""/>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                </div>
-
-                            </div>
+                    <div class="panel panel-default hide" id="panelproprietario">
+                        <div class="panel-heading">
+                            <h2 class="panel-title" style="text-align: center;">Proprietário do Veiculo</h2>
                         </div>
+                        <div class="panel-body">
+
+                            <div class="form-group form-group-sm">
+                                <div class="row">
+                                    <div class="col-md-4  col-lg-offset-4">
+                                        <div class="radio">
+                                            <b>Tipo de Pessoa? </b>
+                                            <label>
+                                                <input type="radio" name="proptipopessoa" id="tipopessoa"
+                                                       value="1"
+                                                       checked>
+                                                Física
+                                            </label>
+                                            <label>
+                                                <input type="radio" name="proptipopessoa" id="tipopessoa"
+                                                       value="2">
+                                                Jurídica
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row" id="propripessoafisca">
+
+                                <div class="col-md-12 ">
+
+                                    <div class="row" id="propfisica1">
+
+                                        <div class="col-md-5 ">
+                                            <div class="form-group form-group-sm">
+                                                <label class="label label-default" for="propnome">Nome
+                                                    Completo </label>
+                                                <input class="form-control form-control-sm" type="text"
+                                                       name="propnome"
+                                                       id="propnome"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-2 ">
+                                            <div class="form-group form-group-sm">
+                                                <label class="label label-default" for="propdatanasc">Data
+                                                    Nascimento</label>
+                                                <input class="form-control form-control-sm" type="text"
+                                                       stats="1" tipoinput="data-nascimento" name="propdatanasc"
+                                                       id="propdatanasc"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-2 ">
+                                            <div class="form-group form-group-sm">
+                                                <label class="label label-default" for="propsexo">Sexo</label>
+                                                <select name="propsexo" id="propsexo"
+                                                        class="form-control form-control-sm">
+
+                                                    <option value="1">Masculino</option>
+                                                    <option value="2">Feminino</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-2 ">
+                                            <div class="form-group form-group-sm">
+                                                <label class="label label-default" for="propestadocivil">Estado
+                                                    Civil</label>
+                                                <select name="propestadocivil" id="propestadocivil"
+                                                        class="form-control form-control-sm">
+                                                    @foreach($estadoscivis::all() as $estadoscivil)
+                                                        <option value="{{$estadoscivil->idestadocivil}}">{{$estadoscivil->nmestadocivil}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row" id="propjuridica1">
+
+                                        <div class="col-md-5 ">
+                                            <div class="form-group form-group-sm">
+                                                <label class="label label-default" for="proprazao">Razão
+                                                    Social </label>
+                                                <input class="form-control form-control-sm" type="text"
+                                                       name="proprazao"
+                                                       id="nomepropurado"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-2 ">
+                                            <div class="form-group form-group-sm">
+                                                <label class="label label-default" for="propdatafund">Data
+                                                    Fundação</label>
+                                                <input class="form-control form-control-sm" type="text"
+                                                       stats="1" tipoinput="data-normal" name="propdatafund"
+                                                       id="propdatafund"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3 ">
+                                            <div class="form-group form-group-sm">
+                                                <label class="label label-default" for="propcnpj">CNPJ</label>
+                                                <input class="form-control form-control-sm" type="text"
+                                                       stats="1" pessoa="proprietario" tipoinput="cnpj"
+                                                       name="propcnpj"
+                                                       id="propcnpj"/>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row" id="propfisica2">
+
+                                        <div class="col-md-2 ">
+                                            <div class="form-group form-group-sm">
+                                                <label class="label label-default" for="propcpf">CPF</label>
+                                                <input class="form-control form-control-sm"
+                                                       pessoa="proprietario" type="text"
+                                                       tipoinput="cpf" stats="2"
+                                                       name="propcpf"
+
+                                                       id="propcpf"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-2 ">
+                                            <div class="form-group form-group-sm">
+                                                <label class="label label-default" for="proprg">RG</label>
+                                                <input class="form-control form-control-sm" type="text"
+                                                       tipoinput="rg" stats="1" name="proprg"
+                                                       id="proprg"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4 ">
+                                            <div class="form-group form-group-sm">
+                                                <label class="label label-default" for="proprgoe">Orgão
+                                                    Emissor</label>
+                                                <select name="proprgoe" id="proprgoe"
+                                                        class="form-control form-control-sm"
+                                                        style="font-size: 12px; padding: 0;">
+                                                    @foreach($orgaoemissors::all() as $orgaoemissor)
+                                                        <option value="{{$orgaoemissor->cd_oe}}"
+                                                                style="font-size: 12px;">{{$orgaoemissor->desc_oe}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-1 ">
+                                            <div class="form-group form-group-sm">
+                                                <label class="label label-default" for="proprguf">UF</label>
+                                                <select name="proprguf" id="proprguf"
+                                                        class="form-control form-control-sm"
+                                                        style="font-size: 12px; padding: 0;">
+                                                    @foreach($ufs::all() as $uf)
+                                                        <option value="{{$uf->cd_uf}}"
+                                                                style="font-size: 12px;">{{$uf->nm_uf}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-2 ">
+                                            <div class="form-group form-group-sm">
+                                                <label class="label label-default" for="proprgdtemissao">Data
+                                                    Emissão</label>
+                                                <input class="form-control form-control-sm" type="text"
+                                                       tipoinput="data-normal"
+                                                       name="proprgdtemissao" stats="1" id="proprgdtemissao"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="col-md-1 ">
+                                            <div class="form-group form-group-sm">
+                                                <label class="label label-default" for="propdddcel">DDD</label>
+                                                <input type="text" name="propdddcel" id="propdddcel"
+                                                       tipoinput="DDD" stats="1"
+                                                       class="form-control form-control-sm" value=""/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 ">
+                                            <div class="form-group form-group-sm">
+                                                <label class="label label-default"
+                                                       for="propnmcel">Celular</label>
+                                                <input class="form-control form-control-sm" type="text"
+                                                       tipoinput="cel" stats="1" name="propnmcel"
+                                                       id="propnmcel"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-1 ">
+                                            <div class="form-group form-group-sm">
+                                                <label class="label label-default" for="propdddfone">DDD</label>
+                                                <input type="text" name="propdddfone" id="propdddfone"
+                                                       tipoinput="ddd" stats="1"
+                                                       class="form-control form-control-sm" value=""/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 ">
+                                            <div class="form-group form-group-sm">
+                                                <label class="label label-default" for="propnmfone">Fone</label>
+                                                <input class="form-control form-control-sm" type="text"
+                                                       tipoinput="fone" stats="1"
+                                                       name="propnmfone" id="propnmfone"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 ">
+                                            <div class="form-group form-group-sm">
+                                                <label class="label label-default" for="propemail">Email</label>
+                                                <input class="form-control form-control-sm" type="email"
+                                                       placeholder="email@email.com" name="propemail"
+                                                       id="propemail"/>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="col-md-2 ">
+                                            <div class="form-group form-group-sm">
+                                                <label class="label label-default" for="propcep">CEP</label>
+                                                <input type="text" name="propcep" id="propcep"
+                                                       tipoinput="cep" stats="1"
+                                                       class="form-control form-control-sm" value=""/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 ">
+                                            <div class="form-group form-group-sm">
+                                                <label class="label label-default"
+                                                       for="propendlog">Logradouro</label>
+                                                <input type="text" name="propendlog" id="propendlog"
+                                                       class="form-control form-control-sm" value=""/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1 ">
+                                            <div class="form-group form-group-sm">
+                                                <label class="label label-default"
+                                                       for="propnmend">Numero</label>
+                                                <input class="form-control form-control-sm" type="text"
+                                                       name="propnmend"
+                                                       id="propnmend"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3 ">
+                                            <div class="form-group form-group-sm">
+                                                <label class="label label-default"
+                                                       for="propendcompl">Complemento</label>
+                                                <input type="text" name="propendcompl" id="propendcompl"
+                                                       class="form-control form-control-sm" value=""/>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-2 ">
+                                            <div class="form-group form-group-sm">
+                                                <label class="label label-default"
+                                                       for="propendcidade">Cidade</label>
+                                                <input type="text" name="propendcidade" id="propendcidade"
+                                                       class="form-control form-control-sm" value=""/>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-1 ">
+                                            <div class="form-group form-group-sm">
+                                                <label class="label label-default" for="propenduf"  >UF</label>
+                                                <select name="propenduf" id="propenduf"
+                                                        title="Escolha o estado"
+                                                        class="selectpicker form-control form-control-sm"
+                                                        style="font-size: 12px; padding: 0;"
+                                                >
+                                                    @foreach($ufs::all() as $uf)
+                                                        <option id="{{$uf->nm_uf}}"
+                                                                value="{{$uf->cd_uf}}">{{$uf->nm_uf}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-5 " id="propprofissao">
+                                            <div class="form-group form-group-sm">
+                                                <label class="label label-default"
+                                                       for="propprofissao">Profissao</label>
+                                                <input type="text" name="propprofissao" id="propprofissao"
+                                                       class="form-control form-control-sm" value=""/>
+                                                <input type="hidden" name="propcdprofissao" id="propcdprofissao"
+                                                       value=""/>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-5 " id="propramoatividade">
+                                            <div class="form-group form-group-sm">
+                                                <label class="label label-default" for="propramoatividade">Ramo
+                                                    Atividade</label>
+                                                <input type="text" name="propramoatividade"
+                                                       id="propramoatividade"
+                                                       class="form-control form-control-sm" value=""/>
+                                                <input type="hidden" name="propcdramoatividade"
+                                                       id="propcdramoatividade"
+                                                       value=""/>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
                     </div>
                     <!--Fim - Dados Proprietario-->
 
                     <!--Inicio - Dados Condutor-->
-                    <div class="panel panel-default" id="panelcondutor">
+                    <div class="panel panel-default hide" id="panelcondutor">
                         <div class="panel-heading">
                             <h2 class="panel-title" style="text-align: center;">Principal Condutor</h2>
                         </div>
@@ -1104,67 +985,195 @@
                         </div>
 
                     </div>
-
                     <!--Fim - Dados Condutor-->
-                </div>
 
-                <!--Inicio - Dados Cartao-->
-                <div class="col-md-3 " id="dadoscartao">
+                    <div class="row">
+                        <div class="col-md-12" id="condutor-proprietario">
 
-                    <div class="panel panel-default ">
-                        <div class="panel-heading">
-                            <h2 class="panel-title" style="text-align: center;">Dados do Cartão</h2>
-                        </div>
-                        <div class="panel-body">
                             <div class="row">
-                                <div class="col-md-12 ">
-
-                                    <div class="form-group form-group-sm">
-                                        <label class="label label-default" for="cartaonumero">Nº Cartão</label>
-                                        <input class="form-control form-control-sm" type="text"
-                                               tipoinput="num-cartao" stats="1" name="cartaonumero" id="cartaonumero"/>
-                                    </div>
-                                    <div class="form-group form-group-sm">
-                                        <label class="label label-default" for="cartaonumero">Titular do Cartão</label>
-                                        <input class="form-control form-control-sm" type="text"
-                                               placeholder="Nome proprietario do cartão" name="cartaonome"
-                                               id="cartaonome"/>
-                                    </div>
-
-
-                                </div>
-
-                                <div class="form-group form-group-sm col-md-6 ">
-                                    <label class="label label-default" for="cartaobandeira">Bandeira Cartão</label>
-                                    <select name="cartaobandeira" id="cartaobandeira"
-                                            class="form-control form-control-sm">
-
-                                        <option value="visa">Visa</option>
-                                        <option value="mastercard">MasterCard</option>
-
-                                    </select>
-                                </div>
-
-                                <div class="form-group form-group-sm col-md-6 ">
-                                    <label class="label label-default" for="cartaovalidade">Data Validade</label>
-                                    <input class="form-control form-control-sm" type="text"
-                                           tipoinput="data-validade-cartao" stats="1" name="cartaovalidade"
-                                           id="cartaovalidade"/>
-                                </div>
 
                             </div>
 
+
                         </div>
+
+
                     </div>
 
-
-                    <!--Fim- Dados do cartao-->
                 </div>
+
+                <div class="col-md-3 hide" id="produtopagamento">
+                    <div class="row">
+                        <!--Incio - Escolha Produtos Master-->
+                        <div class="col-md-12 ">
+                            <div class="panel panel-default " id="panelprodutosmaster">
+                                <div class="panel-heading">
+                                    <h2 class="panel-title" style="text-align: center;">Produtos</h2>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row produto" id="produtos">
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!--Fim- Escolha Produtos Master-->
+                        <!--Incio - Escolha Produtos Opcional-->
+                        <div class="col-md-12 ">
+                            <div class="panel panel-default " id="panelprodutosopcional">
+                                <div class="panel-heading">
+                                    <h2 class="panel-title" style="text-align: center;">Opcionais</h2>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row produto" id="produtosopcionais">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Fim- Escolha Produtos Opcional-->
+
+                    @role('altera-comissao')
+                    <!--Inicio - Escolha Margem-->
+
+                        <div class="col-md-12 ">
+                            <div class="panel panel-default hide" id="panelmargem">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-md-3  col-md-offset -2">
+                                            <p class="form-control-static" style="font-weight: bold;">Margem:</p>
+                                        </div>
+                                        <div class="form-group form-group-sm">
+                                            <div class="col-md-5 ">
+                                                <div class="form-inline">
+                                                    <div class="input-group">
+                                                        <select name="comissao" id="comissao"
+                                                                class="selectpicker form-control form-control-sm"
+                                                                style="padding: 0;">
+                                                            <option value="{{Auth::user()->corretor->corrcomissaopadrao}}"
+                                                                    selected>{{Auth::user()->corretor->corrcomissaopadrao}}</option>
+                                                            <option value="{{Auth::user()->corretor->corrcomissaomin}}">{{Auth::user()->corretor->corrcomissaomin}}</option>
+                                                        </select>
+                                                        <span class="input-group-addon" id="porcentsimbol">%</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endrole
+                    <!--Fim- Escolha Margem-->
+
+
+                        <!--Inicio - Escolha Forma Pagamento-->
+                        <div class="col-md-12 ">
+
+                            <div class="panel panel-success hide" id="panelpagamento">
+                                <div class="panel-heading">
+                                    <h2 class="panel-title" style="text-align: center;">Total a pagar: <strong
+                                                id="valortotal"></strong></h2>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-md-12 ">
+
+                                            @foreach($formapagamentos::all() as $forma)
+                                                <div class="btn-group" data-toggle="buttons">
+                                                    <label class="btn btn-info btn-xs {!! ($first ? 'active':'') !!}">
+                                                        <input type="radio" name="formapagamento" id="formapagamento"
+                                                               value='{!!json_encode(["idforma"=>$forma->idformapgto, "maxparc" =>$forma->nummaxparc, "parcsemjuros"=>  $forma->numparcsemjuros, "juros"=>  $forma->taxamesjuros])!!}'
+                                                                {!! ($first ? 'checked':'') !!}>{{$forma->descformapgto}}
+                                                    </label>
+                                                    <?php $first = TRUE; ?>
+                                                </div>
+                                            @endforeach
+                                            <div id="parcelas">
+                                                <label class="label label-default">
+                                                    <input type="radio" name="quantparcela" id="formapagamento"
+                                                           value="1">1
+                                                </label>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="row produto" id="parcelas">
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!--Fim- Escolha Forma Pagamento-->
+
+                        <!--Inicio - Dados Cartao-->
+                        <div class="col-md-12 " id="dadoscartao">
+
+                            <div class="panel panel-default ">
+                                <div class="panel-heading">
+                                    <h2 class="panel-title" style="text-align: center;">Dados do Cartão</h2>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-md-12 ">
+
+                                            <div class="form-group form-group-sm">
+                                                <label class="label label-default" for="cartaonumero">Nº Cartão</label>
+                                                <input class="form-control form-control-sm" type="text"
+                                                       tipoinput="num-cartao" stats="1" name="cartaonumero"
+                                                       id="cartaonumero"/>
+                                            </div>
+                                            <div class="form-group form-group-sm">
+                                                <label class="label label-default" for="cartaonumero">Titular do
+                                                    Cartão</label>
+                                                <input class="form-control form-control-sm" type="text"
+                                                       placeholder="Nome proprietario do cartão" name="cartaonome"
+                                                       id="cartaonome"/>
+                                            </div>
+
+
+                                        </div>
+
+                                        <div class="form-group form-group-sm col-md-6 ">
+                                            <label class="label label-default" for="cartaobandeira">Bandeira
+                                                Cartão</label>
+                                            <select name="cartaobandeira" id="cartaobandeira"
+                                                    class="form-control form-control-sm">
+
+                                                <option value="visa">Visa</option>
+                                                <option value="mastercard">MasterCard</option>
+
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group form-group-sm col-md-6 ">
+                                            <label class="label label-default" for="cartaovalidade">Data
+                                                Validade</label>
+                                            <input class="form-control form-control-sm" type="text"
+                                                   tipoinput="data-validade-cartao" stats="1" name="cartaovalidade"
+                                                   id="cartaovalidade"/>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <!--Fim- Dados do cartao-->
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
 
 
             <!--Incio - Botão-->
-            <div class="row produto" id="btnproposta">
+            <div class="row produto hide" id="btnproposta">
 
                 <div class="col-md-12 ">
                     <div class="form-group form-group-sm" style="float: right;">
@@ -1175,7 +1184,7 @@
                     </div>
                     <div class="form-group form-group-sm" style="float: right;">
                         <label for="btnsubmit">
-                            <button type="submit" class="btn btn-primary pull-right" id="btnsubmit">Enviar
+                            <button type="submit" class="btn btn-lg btn-success  pull-right" id="btnsubmit">Confirmar
                             </button>
                         </label>
                     </div>

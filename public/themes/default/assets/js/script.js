@@ -19,8 +19,21 @@ $(function () {
     var produtosvalores = [];
     var menorparc = 0.0;
 
-    produtopagamento.hide();
     diverror.removeClass('hide');
+    divano.removeClass('hide');
+    panelsegurado.removeClass('hide');
+    dadosveiculos.removeClass('hide');
+    dadoscartao.removeClass('hide');
+    produtopagamento.removeClass('hide');
+    panelpagamento.removeClass('hide');
+    produtos.removeClass('hide');
+    panelproprietario.removeClass('hide');
+    panelcondutor.removeClass('hide');
+    pergunta.removeClass('hide');
+    
+    btnproposta.removeClass('hide');
+
+    produtopagamento.hide();
     diverror.hide();
     pergunta.hide();
     panelsegurado.hide();
@@ -120,7 +133,8 @@ $(function () {
                 endDate: "-Infinity",
                 language: "pt-BR",
                 orientation: "auto",
-                toggleActive: true,
+                // toggleActive: true,
+                autoclose: true,
                 defaultViewDate: {year: d.getFullYear() - 18, month: d.getMonth(), day: d.getDay() - 1}
 
             });
@@ -782,6 +796,7 @@ $(function () {
                                     $('#messageerror').text(value2);
                                 })
                             } else {
+                                $('.panel-body').animate({scrollTop: 0}, "slow")
                                 $('#messageerror').text(value);
                             }
 
