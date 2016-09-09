@@ -27,11 +27,13 @@
                                 <button type="button" class="btn btn-danger">PDF</button>
                             </a>
                         </div>
+                       @role('diretor')
                         <div class="btn-group">
                             <a href="#">
                                 <button type="button" href="#" class="btn btn-info">ENVIAR VIA EMAIL</button>
                             </a>
                         </div>
+                        @endrole
                     </center>
 
                 </div>
