@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="158326c0-4f81-4588-bf4f-593b4ab725fa" name="Default" comment="Alterações nos viwes e criacoes de novos models">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/themes/default/assets/js/script.js" afterPath="$PROJECT_DIR$/public/themes/default/assets/js/script.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/cotacao/form.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/cotacao/form.blade.php" />
     </list>
     <ignored path="sap.local.iws" />
@@ -82,8 +81,8 @@
       <file leaf-file-name="form.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/backend/cotacao/form.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="381">
-              <caret line="851" column="80" selection-start-line="851" selection-start-column="80" selection-end-line="851" selection-end-column="80" />
+            <state relative-caret-position="54">
+              <caret line="1039" column="59" selection-start-line="1039" selection-start-column="59" selection-end-line="1039" selection-end-column="59" />
               <folding>
                 <element signature="e#477#16198#0#HTML" expanded="false" />
                 <element signature="e#2585#3638#0#HTML" expanded="false" />
@@ -93,7 +92,10 @@
                 <element signature="e#17714#36381#0#HTML" expanded="false" />
                 <element signature="e#22771#27225#0#HTML" expanded="false" />
                 <element signature="e#36552#38190#0#HTML" expanded="false" />
+                <element signature="e#38295#59514#0#HTML" expanded="false" />
                 <element signature="e#38461#38488#0#HTML" expanded="true" />
+                <element signature="e#39842#59453#0#HTML" expanded="false" />
+                <element signature="e#43236#45404#0#HTML" expanded="false" />
                 <element signature="e#47410#47446#0#HTML" expanded="true" />
                 <element signature="e#47710#47734#0#HTML" expanded="true" />
                 <element signature="e#48483#48519#0#HTML" expanded="true" />
@@ -102,10 +104,9 @@
                 <element signature="e#59639#64767#0#HTML" expanded="false" />
                 <element signature="e#59801#59828#0#HTML" expanded="true" />
                 <element signature="e#64837#65074#0#HTML" expanded="false" />
-                <element signature="e#65116#74782#0#HTML" expanded="false" />
-                <element signature="e#38295#59514#0#HTML" expanded="false" />
-                <element signature="e#69019#71375#0#HTML" expanded="false" />
-                <marker date="1473448990490" expanded="false" signature="71554:74730" ph="..." />
+                <element signature="e#67199#67225#0#HTML" expanded="true" />
+                <element signature="e#69014#71370#0#HTML" expanded="false" />
+                <marker date="1473449226881" expanded="false" signature="71549:74725" ph="..." />
               </folding>
             </state>
           </provider>
@@ -114,8 +115,8 @@
       <file leaf-file-name="script.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/themes/default/assets/js/script.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="32" column="4" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="4" />
+            <state relative-caret-position="160">
+              <caret line="958" column="101" selection-start-line="958" selection-start-column="99" selection-end-line="958" selection-end-column="101" />
               <folding>
                 <element signature="e#1626#1787#0" expanded="false" />
                 <element signature="e#1827#1910#0" expanded="false" />
@@ -594,12 +595,12 @@
       <workItem from="1472834444773" duration="440000" />
       <workItem from="1473347962122" duration="12040000" />
       <workItem from="1473431350903" duration="1519000" />
-      <workItem from="1473445940519" duration="3049000" />
+      <workItem from="1473445940519" duration="3305000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="595226000" />
+    <option name="totallyTimeSpent" value="595482000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1046,8 +1047,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/themes/default/assets/js/script.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="32" column="4" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="4" />
+        <state relative-caret-position="160">
+          <caret line="958" column="101" selection-start-line="958" selection-start-column="99" selection-end-line="958" selection-end-column="101" />
           <folding>
             <element signature="e#1626#1787#0" expanded="false" />
             <element signature="e#1827#1910#0" expanded="false" />
@@ -1085,8 +1086,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/backend/cotacao/form.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="381">
-          <caret line="851" column="80" selection-start-line="851" selection-start-column="80" selection-end-line="851" selection-end-column="80" />
+        <state relative-caret-position="54">
+          <caret line="1039" column="59" selection-start-line="1039" selection-start-column="59" selection-end-line="1039" selection-end-column="59" />
           <folding>
             <element signature="e#477#16198#0#HTML" expanded="false" />
             <element signature="e#2585#3638#0#HTML" expanded="false" />
@@ -1096,7 +1097,10 @@
             <element signature="e#17714#36381#0#HTML" expanded="false" />
             <element signature="e#22771#27225#0#HTML" expanded="false" />
             <element signature="e#36552#38190#0#HTML" expanded="false" />
+            <element signature="e#38295#59514#0#HTML" expanded="false" />
             <element signature="e#38461#38488#0#HTML" expanded="true" />
+            <element signature="e#39842#59453#0#HTML" expanded="false" />
+            <element signature="e#43236#45404#0#HTML" expanded="false" />
             <element signature="e#47410#47446#0#HTML" expanded="true" />
             <element signature="e#47710#47734#0#HTML" expanded="true" />
             <element signature="e#48483#48519#0#HTML" expanded="true" />
@@ -1105,10 +1109,9 @@
             <element signature="e#59639#64767#0#HTML" expanded="false" />
             <element signature="e#59801#59828#0#HTML" expanded="true" />
             <element signature="e#64837#65074#0#HTML" expanded="false" />
-            <element signature="e#65116#74782#0#HTML" expanded="false" />
-            <element signature="e#38295#59514#0#HTML" expanded="false" />
-            <element signature="e#69019#71375#0#HTML" expanded="false" />
-            <marker date="1473448990490" expanded="false" signature="71554:74730" ph="..." />
+            <element signature="e#67199#67225#0#HTML" expanded="true" />
+            <element signature="e#69014#71370#0#HTML" expanded="false" />
+            <marker date="1473449226881" expanded="false" signature="71549:74725" ph="..." />
           </folding>
         </state>
       </provider>

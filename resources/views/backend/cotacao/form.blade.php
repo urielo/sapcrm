@@ -1037,7 +1037,7 @@
                     <!--Inicio - Escolha Margem-->
 
                         <div class="col-md-12 ">
-                            <div class="panel panel-default hide" id="panelmargem">
+                            <div class="panel panel-default" id="panelmargem">
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-md-3  col-md-offset -2">
