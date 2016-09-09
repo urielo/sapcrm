@@ -129,24 +129,20 @@ class AjaxController extends Controller
         $valor = $request->input('valor');
         $comissao = $request->input('comissao');
         $idade = date('Y') - ($request->input('ano') > 1 ? $request->input('ano') : date('Y'));
-        $tipo = $request->input('tipo');
+        $tipo = ($request->input('tipo') == 8 ? 1 : $request->input('tipo'));
         $categoria = CategoriaFipes::where('codefipe', '=', $cdfipe)
             ->where('idseguradora', '=', 2)
             ->get();
         $categoria = $categoria[0]->idcategoria;
 
-//        echo '<pre>';
-//        var_dump();
-//        echo '</pre>';
+
 
         $fipe = Fipes::find($cdfipe);
         $retorno = [];
         $combos = [];
 
         foreach (Produtos::whereTipoproduto('master')->whereCodstatus('1')->orderBy('idproduto', 'ASC')->get() as $produto):
-//            $roubo = $produto->idproduto == 1 ? TRUE : $produto->idproduto == 2 ? TRUE : $produto->idproduto == 19 ? TRUE : $produto->idproduto == 20 ? TRUE : FALSE;
-//            $rcf = $produto->idproduto == 3 ? TRUE : $produto->idproduto == 13 ? TRUE : $produto->idproduto == 14 ? TRUE : FALSE;
-//            $ass = $produto->idproduto == 12 ? TRUE : $produto->idproduto == 4 ? TRUE : $produto->idproduto == 15 ? TRUE : $produto->idproduto == 11 ? TRUE : FALSE;
+
             foreach (Combos::whereIdprodutomaster($produto->idproduto)->get() as $combo) {
                 $combos['idproduto' . $combo->idprodutomaster][] = $combo->idprodutoopcional;
             }
@@ -313,7 +309,7 @@ class AjaxController extends Controller
         $valor = $request->input('valor');
         $idproduto = $request->input('idproduto');
         $idade = date('Y') - ($request->input('ano') > 1 ? $request->input('ano') : date('Y'));
-        $tipo = $request->input('tipo');
+        $tipo = ($request->input('tipo') == 8 ? 1 : $request->input('tipo'));
         $categoria = CategoriaFipes::where('codefipe', '=', $cdfipe)
             ->where('idseguradora', '=', 2)
             ->get();

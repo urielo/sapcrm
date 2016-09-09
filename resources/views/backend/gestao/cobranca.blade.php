@@ -19,9 +19,16 @@
                 @foreach ($propostas as $proposta)
 
                     <tr>
-                        <td><a href="{{route('show.proposta',$proposta->idproposta)}}" class="" data-toggle="modal"
+                        <td>
+                            <div class="btn-group">
+                            <a href="{{route('show.proposta',$proposta->idproposta)}}" class="" data-toggle="modal"
                                data-target=".modal-show"
-                               id="showinfo">{{$proposta->idproposta}}</a></td>
+                               id="showinfo">{{$proposta->idproposta}}</a>
+                                <a href="{{route('cotacao.pdf',$proposta->idproposta)}}" target="_blank">
+                                    <button type="button" class="btn btn-primary btn-xs">PDF</button>
+                                </a>
+                            </div>
+                        </td>
                         <td><a href="{{route('show.segurado',$proposta->cotacao->segurado->clicpfcnpj)}}" class=""
                                data-toggle="modal"
                                data-target=".modal-show"

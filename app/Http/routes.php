@@ -17,9 +17,9 @@ use App\Model\Logs;
 
 Route::get('teste', function () {
 
-
-    $url =  Config::where('env_local',env('APP_LOCAL'))->where('webservice','SAP')->first();
-    echo $url->url .'proposta';
+echo date('Y-m-d 00:00:00', strtotime('+ 30 days'));
+//    $url =  Config::where('env_local',env('APP_LOCAL'))->where('webservice','SAP')->first();
+//    echo $url->url .'proposta';
 ////    $user = User::find(1);
 ////
 ////    $
