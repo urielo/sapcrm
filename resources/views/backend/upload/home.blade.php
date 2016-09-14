@@ -65,9 +65,3 @@
 @stop
 
 
-<!--<div class="fileupload fileupload-new" data-provides="fileupload">
-    <span class="btn btn-primary btn-file"><span class="fileupload-new">Procurar</span>
-        <span class="fileupload-exists">Trocar</span>{!!Form::file('xlsfipe', $attributes = ['id' => "input-1",'class' => "file",])!!}</span>
-    <span class="fileupload-preview"></span>
-    <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
-</div>-->

@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'uriel@seguroautopratico.com.br', 'name' => 'Uriel'],
+    'from' => ['address' => 'website@seguroautopratico.com.br', 'name' => 'Contato'],
 
     /*
     |--------------------------------------------------------------------------
