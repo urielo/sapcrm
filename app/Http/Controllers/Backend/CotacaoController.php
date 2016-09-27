@@ -190,8 +190,13 @@ class CotacaoController extends Controller
 
         foreach ($request->produtos as $produto):
             $ids = json_decode($produto);
-            $produtos["produto"][] = ["idProduto" => $ids->idproduto];
+            $produtos["produto"][] = ["idProduto" => $ids->idproduto, 'valorLmiProduto'=>$ids->vllmi];
         endforeach;
+
+
+
+
+
 
         $cotacao = ["idParceiro" => 99,
             "nmParceiro" => "Seguro AUTOPRATICO",
@@ -251,7 +256,8 @@ class CotacaoController extends Controller
                 'message' => $wsproposta,
             ]);
         } else {
-            Propostas::find($wsproposta->retorno->idproposta)->update(['dtvalidade' => date('Y-m-d', strtotime('-45 day'))]);
+            Cotacoes::where('idcotacao',$wscotacao->retorno->cdCotacao)->update(['usuario_id'=>Auth::user()->id]);
+            Propostas::where('idproposta',$wsproposta->retorno->idproposta)->update(['dtvalidade' => date('Y-m-d', strtotime('-45 day')), 'usuario_id'=>Auth::user()->id]);
             return response()->json([
                 'sucesso' => true,
                 'html' => (string)view('backend.cotacao.sucesso', [

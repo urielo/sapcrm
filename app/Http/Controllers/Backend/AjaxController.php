@@ -136,7 +136,6 @@ class AjaxController extends Controller
         $categoria = $categoria[0]->idcategoria;
 
 
-
         $fipe = Fipes::find($cdfipe);
         $retorno = [];
         $combos = [];
@@ -149,148 +148,61 @@ class AjaxController extends Controller
             foreach (PrecoProdutos::where('idproduto', '=', $produto->idproduto)->get() as $preco):
                 $retorno[] = ['produtos' => $produto];
                 if ($tipo == $produto->idtipoveiculo):
-                    if ($valor >= $preco->vlrfipeminimo && $valor <= $preco->vlrfipemaximo && $idade <= $preco->idadeaceitamax):
+                    if ($valor >= $preco->vlrfipeminimo && $valor <= $preco->vlrfipemaximo && $idade <= $preco->idadeaceitamax && $tipo == $preco->idtipoveiculo):
 
                         if ($fipe->idstatus == 23) {
-                            $vlcont = Contingencia::where('idseguradora',$produto->idseguradora)->first();
-                            if($vlcont){
+                            $vlcont = Contingencia::where('idseguradora', $produto->idseguradora)->first();
+                            if ($vlcont) {
                                 $preco->premioliquidoproduto = $preco->premioliquidoproduto + $vlcont->valor;
                             }
 
                             $retorno[] = [
-                                'html' =>
-                                    '<div class="col-md-12" id="divp' . $produto->idproduto . '">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="produtos[]" value=\'' . json_encode(['idproduto' => $produto->idproduto, 'menorparc' => $preco->vlrminprimparc, 'vlproduto' => $preco->premioliquidoproduto]) . '\' id="porduto' . $produto->idproduto . '"> <strong>  ' . $produto->nomeproduto . ' - R$ <span id="preco' . $produto->idproduto . '">' . number_format($preco->premioliquidoproduto, 2, ',', '.') . '</span> </strong>
-                    </label>
-                    <div id="acordion' . $produto->idproduto . '">
-                        <h6>Detalhes</h6>
-                        <div>
-                            <p>
-                                <b>Descrição: </b>' . $produto->descproduto . '.
-                                <br>
-                                <b>Caracteristaca:  </b> ' . $preco->caractproduto . '.
-                                <br>
-                                <br>
-                                <b>Exigencia Vistoria:  </b>' . ($produto->indexigenciavistoria ? 'Sim' : 'Não') . '
-                                <b>Exigencia Rastreador:  </b>' . ($preco->indobrigrastreador ? 'Sim' : 'Não') . ' 
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div> ',
+                                'html' => (string) view('backend.produto.div',compact('preco','produto')),
                                 'acordion' => '#acordion' . $produto->idproduto,
-                                'chkid' => '#porduto' . $produto->idproduto,
-                                'precospan' => '#preco' . $produto->idproduto,
-                                'divp' => '#divp' . $produto->idproduto,
+                                'chkid' => '#produto-'. $produto->idproduto.'-'.$preco->idprecoproduto,
+                                'precospan' => '#preco-' . $produto->idproduto.'-'.$preco->idprecoproduto,
+                                'divp' => '#divp-' . $produto->idproduto.'-'.$preco->idprecoproduto,
                                 'idproduto' => $produto->idproduto,
-
-
+                                'span' => "span-".$produto->idproduto."-".$preco->idprecoproduto,
                             ];
-                        } elseif($fipe->idstatus == 22 && $produto->idseguradora == 1){
+                        } elseif ($fipe->idstatus == 22 && $produto->idseguradora == 1) {
 
                         } else {
                             $retorno[] = [
-                                'html' =>
-                                    '<div class="col-md-12" id="divp' . $produto->idproduto . '">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="produtos[]" value=\'' . json_encode(['idproduto' => $produto->idproduto, 'menorparc' => $preco->vlrminprimparc, 'vlproduto' => $preco->premioliquidoproduto]) . '\' id="porduto' . $produto->idproduto . '"> <strong>  ' . $produto->nomeproduto . ' - R$ <span id="preco' . $produto->idproduto . '">' . number_format($preco->premioliquidoproduto, 2, ',', '.') . '</span> </strong>
-                    </label>
-                    <div id="acordion' . $produto->idproduto . '">
-                        <h6>Detalhes</h6>
-                        <div>
-                            <p>
-                                <b>Descrição: </b>' . $produto->descproduto . '.
-                                <br>
-                                <b>Caracteristaca:  </b> ' . $preco->caractproduto . '.
-                                <br>
-                                <br>
-                                <b>Exigencia Vistoria:  </b>' . ($produto->indexigenciavistoria ? 'Sim' : 'Não') . '
-                                <b>Exigencia Rastreador:  </b>' . ($preco->indobrigrastreador ? 'Sim' : 'Não') . ' 
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div> ',
+                                'html' => (string) view('backend.produto.div',compact('preco','produto')),
                                 'acordion' => '#acordion' . $produto->idproduto,
-                                'chkid' => '#porduto' . $produto->idproduto,
-                                'precospan' => '#preco' . $produto->idproduto,
-                                'divp' => '#divp' . $produto->idproduto,
+                                'chkid' => '#produto-'. $produto->idproduto.'-'.$preco->idprecoproduto,
+                                'precospan' => '#preco-' . $produto->idproduto.'-'.$preco->idprecoproduto,
+                                'divp' => '#divp-' . $produto->idproduto.'-'.$preco->idprecoproduto,
                                 'idproduto' => $produto->idproduto,
-
-
+                                'span' => "#span-".$produto->idproduto."-".$preco->idprecoproduto,
                             ];
                         }
 
-                        
+
                     endif;
                 elseif ($preco->idcategoria == $categoria):
                     $retorno[] = [
-                        'html' =>
-                            '<div class="col-md-12" id="divp' . $produto->idproduto . '">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="produtos[]" value=\'' . json_encode(['idproduto' => $produto->idproduto, 'menorparc' => $preco->vlrminprimparc, 'vlproduto' => $preco->premioliquidoproduto]) . '\' id="porduto' . $produto->idproduto . '"> <strong>  ' . $produto->nomeproduto . ' - R$ <span id="preco' . $produto->idproduto . '">' . number_format($preco->premioliquidoproduto, 2, ',', '.') . '</span> </strong>
-                    </label>
-                    <div id="acordion' . $produto->idproduto . '">
-                        <h6>Detalhes</h6>
-                        <div>
-                            <p>
-                                <b>Descrição: </b>' . $produto->descproduto . '.
-                                <br>
-                                <b>Caracteristaca:  </b> ' . $preco->caractproduto . '.
-                                <br>
-                                <br>
-                                <b>Exigencia Vistoria:  </b>' . ($produto->indexigenciavistoria ? 'Sim' : 'Não') . '
-                                <b>Exigencia Rastreador:  </b>' . ($preco->indobrigrastreador ? 'Sim' : 'Não') . ' 
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div> ',
+                        'html' => (string) view('backend.produto.div',compact('preco','produto')),
                         'acordion' => '#acordion' . $produto->idproduto,
-                        'chkid' => '#porduto' . $produto->idproduto,
-                        'precospan' => '#preco' . $produto->idproduto,
-                        'divp' => '#divp' . $produto->idproduto,
+                        'chkid' => '#produto-'. $produto->idproduto.'-'.$preco->idprecoproduto,
+                        'precospan' => '#preco-' . $produto->idproduto.'-'.$preco->idprecoproduto,
+                        'divp' => '#divp-' . $produto->idproduto.'-'.$preco->idprecoproduto,
                         'idproduto' => $produto->idproduto,
-
-
+                        'span' => "span-".$produto->idproduto."-".$preco->idprecoproduto,
                     ];
 
                 elseif ($tipo == $produto->idtipoveiculo):
-                    if ($idade >= $preco->idadeaceitamin && $idade <= $preco->idadeaceitamax):
+                    if ($idade >= $preco->idadeaceitamin && $idade <= $preco->idadeaceitamax && $tipo == $preco->idtipoveiculo):
                         $retorno[] = [
-                            'html' =>
-                                '<div class="col-md-12" id="divp' . $produto->idproduto . '">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="produtos[]" value=\'' . json_encode(['idproduto' => $produto->idproduto, 'menorparc' => $preco->vlrminprimparc, 'vlproduto' => $preco->premioliquidoproduto]) . '\' id="porduto' . $produto->idproduto . '"> <strong>  ' . $produto->nomeproduto . ' - R$ <span id="preco' . $produto->idproduto . '">' . number_format($preco->premioliquidoproduto, 2, ',', '.') . '</span> </strong>
-                    </label>
-                    <div id="acordion' . $produto->idproduto . '">
-                        <h6>Detalhes</h6>
-                        <div>
-                            <p>
-                                <b>Descrição: </b>' . $produto->descproduto . '.
-                                <br>
-                                <b>Caracteristaca:  </b> ' . $preco->caractproduto . '.
-                                <br>
-                                <br>
-                                <b>Exigencia Vistoria:  </b>' . ($produto->indexigenciavistoria ? 'Sim' : 'Não') . '
-                                <b>Exigencia Rastreador:  </b>' . ($preco->indobrigrastreador ? 'Sim' : 'Não') . ' 
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div> ',
+                            'html' => (string) view('backend.produto.div',compact('preco','produto')),
                             'acordion' => '#acordion' . $produto->idproduto,
-                            'chkid' => '#porduto' . $produto->idproduto,
-                            'precospan' => '#preco' . $produto->idproduto,
-                            'divp' => '#divp' . $produto->idproduto,
+                            'chkid' => '#produto-'. $produto->idproduto.'-'.$preco->idprecoproduto,
+                            'precospan' => '#preco-' . $produto->idproduto.'-'.$preco->idprecoproduto,
+                            'divp' => '#divp-' . $produto->idproduto.'-'.$preco->idprecoproduto,
                             'idproduto' => $produto->idproduto,
 
-
+                            'span' => "span-".$produto->idproduto."-".$preco->idprecoproduto,
                         ];
                     endif;
 
@@ -326,74 +238,30 @@ class AjaxController extends Controller
                 $preco;
                 #$retorno[] = ['produtos' => $produto];
 
-                if ($valor >= $preco->vlrfipeminimo && $tipo == $produto->idtipoveiculo && $preco->idcategoria == ($preco->idcategoria == $categoria ? $categoria : null) && $valor <= $preco->vlrfipemaximo && $idade <= $preco->idadeaceitamax):
+                if ($valor >= $preco->vlrfipeminimo && $tipo == $produto->idtipoveiculo && $preco->idcategoria == ($preco->idcategoria == $categoria ? $categoria : null) && $valor <= $preco->vlrfipemaximo && $idade <= $preco->idadeaceitamax && $tipo == $preco->idtipoveiculo):
 
                     $retorno[] = [
-                        'html' =>
-                            '<div class="col-md-12" id="divp' . $produto->idproduto . '">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="produtos[]" value=\'' . json_encode(['idproduto' => $produto->idproduto, 'tiposeguro' => $produto->tipodeseguro, 'menorparc' => $preco->vlrminprimparc, 'vlproduto' => $preco->premioliquidoproduto]) . '\' id="porduto' . $produto->idproduto . '"> <strong>  ' . $produto->nomeproduto . ' - R$ <span id="preco' . $produto->idproduto . '">' . number_format($preco->premioliquidoproduto, 2, ',', '.') . '</span> </strong>
-                    </label>
-                    <div id="acordion' . $produto->idproduto . '">
-                        <h6>Detalhes</h6>
-                        <div>
-                            <p>
-                                <b>Descrição: </b>' . $produto->descproduto . '.
-                                <br>
-                                <b>Caracteristaca:  </b> ' . $preco->caractproduto . '.
-                                <br>
-                                <br>
-                                <b>Exigencia Vistoria:  </b>' . ($produto->indexigenciavistoria ? 'Sim' : 'Não') . '
-                                <b>Exigencia Rastreador:  </b>' . ($preco->indobrigrastreador ? 'Sim' : 'Não') . ' 
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div> ',
+                        'html' => (string) view('backend.produto.div',compact('preco','produto')),
                         'acordion' => '#acordion' . $produto->idproduto,
-                        'chkid' => '#porduto' . $produto->idproduto,
-                        'precospan' => '#preco' . $produto->idproduto,
+                        'chkid' => '#produto-'. $produto->idproduto.'-'.$preco->idprecoproduto,
+                        'precospan' => '#preco-' . $produto->idproduto.'-'.$preco->idprecoproduto,
+                        'divp' => '#divp-' . $produto->idproduto.'-'.$preco->idprecoproduto,
                         'idproduto' => $produto->idproduto,
-                        'tiposeguro' => $produto->tipodeseguro,
-                        'divp' => '#divp' . $produto->idproduto,
-
-
+                        'span' => "span-".$produto->idproduto."-".$preco->idprecoproduto,
+                        'tiposeguro'=> $produto->tipodeseguro
                     ];
 
 
-                elseif ($tipo == $produto->idtipoveiculo && $preco->vlrfipeminimo == null && $preco->idcategoria == null && $idade >= $preco->idadeaceitamin && $idade <= $preco->idadeaceitamax):
+                elseif ($tipo == $produto->idtipoveiculo && $preco->vlrfipeminimo == null && $preco->idcategoria == null && $idade >= $preco->idadeaceitamin && $idade <= $preco->idadeaceitamax && $tipo == $preco->idtipoveiculo):
                     $retorno[] = [
-                        'html' =>
-                            '<div class="col-md-12" id="divp' . $produto->idproduto . '">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="produtos[]" value=\'' . json_encode(['idproduto' => $produto->idproduto, 'tiposeguro' => $produto->tipodeseguro, 'menorparc' => $preco->vlrminprimparc, 'vlproduto' => $preco->premioliquidoproduto]) . '\' id="porduto' . $produto->idproduto . '"> <strong>  ' . $produto->nomeproduto . ' - R$ <span id="preco' . $produto->idproduto . '">' . number_format($preco->premioliquidoproduto, 2, ',', '.') . '</span> </strong>
-                    </label>
-                    <div id="acordion' . $produto->idproduto . '">
-                        <h6>Detalhes</h6>
-                        <div>
-                            <p>
-                                <b>Descrição: </b>' . $produto->descproduto . '.
-                                <br>
-                                <b>Caracteristaca:  </b> ' . $preco->caractproduto . '.
-                                <br>
-                                <br>
-                                <b>Exigencia Vistoria:  </b>' . ($produto->indexigenciavistoria ? 'Sim' : 'Não') . '
-                                <b>Exigencia Rastreador:  </b>' . ($preco->indobrigrastreador ? 'Sim' : 'Não') . ' 
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div> ',
+                        'html' => (string) view('backend.produto.div',compact('preco','produto')),
                         'acordion' => '#acordion' . $produto->idproduto,
-                        'chkid' => '#porduto' . $produto->idproduto,
-                        'precospan' => '#preco' . $produto->idproduto,
+                        'chkid' => '#produto-'. $produto->idproduto.'-'.$preco->idprecoproduto,
+                        'precospan' => '#preco-' . $produto->idproduto.'-'.$preco->idprecoproduto,
+                        'divp' => '#divp-' . $produto->idproduto.'-'.$preco->idprecoproduto,
                         'idproduto' => $produto->idproduto,
-                        'tiposeguro' => $produto->tipodeseguro,
-                        'divp' => '#divp' . $produto->idproduto,
-
-
+                        'span' => "span-".$produto->idproduto."-".$preco->idprecoproduto,
+                        'tiposeguro'=> $produto->tipodeseguro
                     ];
 
                 endif;

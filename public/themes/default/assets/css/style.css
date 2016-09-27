@@ -333,3 +333,8 @@ body {
     background: rgba(0, 0, 0, .48) url('../images/gear.gif') 50% 50% no-repeat;
     /*overflow: hidden;*/
 }
+
+.detalhe p {
+    font-size: 70%;
+    text-align: justify;
+}

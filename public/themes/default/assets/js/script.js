@@ -30,7 +30,7 @@ $(function () {
     panelproprietario.removeClass('hide');
     panelcondutor.removeClass('hide');
     pergunta.removeClass('hide');
-    
+
     btnproposta.removeClass('hide');
 
     produtopagamento.hide();
@@ -98,6 +98,14 @@ $(function () {
 
     })
 
+
+    function jurosComposto(valor, taxa, parcelas) {
+        taxa = taxa / 100;
+        var potencia = valor * taxa * Math.pow((taxa + 1), parcelas) / (Math.pow((taxa + 1), parcelas) - 1);
+
+
+        return potencia;
+    }
 
     function setAnofab() {
         var anom = $.parseJSON($('select[name=anom]').val());
@@ -238,14 +246,18 @@ $(function () {
             var textojuroc = (i > parcelasemjuros) ? 'Juros: ' + taxajuros.replace('.', ',') + '%' : 'Sem juros';
 
 
-            if (i > parcelasemjuros && juros / i < menorparc && formapg == 2) {
+
+            var parcjuros = jurosComposto(vltotal, taxajuros, i);
+
+
+            if (i > parcelasemjuros && parcjuros < menorparc && formapg == 2) {
                 priparcela = menorparc;
-                demparcela = (juros - menorparc) / (i - 1);
+                demparcela = jurosComposto((vltotal - menorparc), taxajuros, (i - 1));
             } else if (i <= parcelasemjuros && vltotal / i < menorparc && formapg == 2) {
                 priparcela = menorparc;
                 demparcela = (vltotal - menorparc) / (i - 1);
             } else if (i > parcelasemjuros) {
-                priparcela = juros / i;
+                priparcela = parcjuros;
                 demparcela = priparcela;
             } else {
                 priparcela = vltotal / i;
@@ -546,13 +558,18 @@ $(function () {
                 $.each(retorno, function (key, value) {
                     produtos.append(value.html);
 
+                    //
+                    // $(value.acordion).accordion({
+                    //     heightStyle: "content",
+                    //     active: true,
+                    //     collapsible: true,
+                    //     header: 'h6'
+                    // });
 
-                    $(value.acordion).accordion({
-                        heightStyle: "content",
-                        active: true,
-                        collapsible: true,
-                        header: 'h6'
-                    });
+                    $(value.span).on('click', function () {
+                        var span = $(this).children('span')
+                        console.log(span.attr('class'))
+                    })
 
                     if (value.chkid) {
 
@@ -591,13 +608,7 @@ $(function () {
                                         $.each(retorno2, function (key, opcionais) {
                                             $('#produtosopcionais').append(opcionais.html);
                                             $('#panelprodutosopcional').show();
-                                            $(opcionais.acordion).accordion({
-                                                heightStyle: "content",
-                                                active: true,
-                                                collapsible: true,
-                                                header: 'h6'
-                                            });
-
+                                           
                                             if (opcionais.chkid) {
                                                 $('#comissao').change(function () {
 
@@ -654,6 +665,7 @@ $(function () {
                                 })
 
                             } else {
+
                                 $('#panelprodutosopcional').hide();
                                 $('#produtosopcionais').empty();
                                 $.each(retorno, function (key, idsdiv) {
@@ -739,7 +751,8 @@ $(function () {
             var values = $.parseJSON($(this).attr('value'));
             if ($(this).is(":checked") && values.idforma == 1) {
                 $('#parcelas').empty();
-
+                console.log(menorparc);
+                console.log(vltotal);
                 $.each(gerarParcelas(vltotal, values.maxparc, values.parcsemjuros, values.juros, menorparc, values.idforma), function (key, html) {
                     $('#parcelas').append(html);
                 })
@@ -749,7 +762,8 @@ $(function () {
                 }
             } else {
                 $('#parcelas').empty();
-
+                console.log(menorparc);
+                console.log(vltotal-menorparc);
                 $.each(gerarParcelas(vltotal, values.maxparc, values.parcsemjuros, values.juros, menorparc, values.idforma), function (key, html) {
                     $('#parcelas').append(html);
                 })
@@ -849,7 +863,7 @@ $(function () {
                 }
 
             });
-        }else if ($(this).attr('id') == 'erro') {
+        } else if ($(this).attr('id') == 'erro') {
             var idmsg = '#' + $(this).attr('message')
             $('#msgdeerro').text($(idmsg).val())
 
@@ -1234,6 +1248,8 @@ $(function () {
             }
             // console.log($(this).attr('data'));
         })
+
+        
 
 
     });
