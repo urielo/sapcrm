@@ -3,3 +3,66 @@
     footer: page-footer;
 }
 
+.logo img {
+    width: 50px;
+}
+
+b {
+    font-weight: bold;
+}
+
+.title h4{
+    font-weight: bold;
+    background-color: #CFCFCF;
+    width: 100%;
+    text-align: center;
+    margin: 0 0 0.5% 0;
+}
+
+.title h6 {
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+
+}
+
+.table table{
+    width: 100%;
+}
+
+.title{
+  margin-bottom: 3%;
+}
+
+.table-bordered td {
+    border-color: #0c0c0c ;
+    /*border-top-color: #0c0c0c ;*/
+}
+
+.spacing td {
+    padding-right: 5%;
+}
+
+.pdf-center td{
+    text-align: center;
+}
+table {
+    font-size: 12px;
+}
+p{
+    text-align: justify;
+}
+.obs p {
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.seguro {
+    border: 1px solid #000000;
+    padding: 1%;
+    margin-bottom: 3%;
+
+}
+.seguro p {
+    font-size: 10px;
+}

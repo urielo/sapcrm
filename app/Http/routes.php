@@ -53,8 +53,10 @@ Route::get('teste', function () {
 
 //    $pdf = App::make('dompdf.wrapper');
     error_reporting(E_ERROR);
-    $html = view('backend.pdf.certificado')->render();
+
+
     $pdf = PDF::loadView('backend.pdf.certificado');
+    $pdf->SetProtection(['print'],'','456');
     return $pdf->stream('document.pdf');
 
 
