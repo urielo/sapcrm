@@ -17,7 +17,7 @@ use App\Model\Logs;
 
 Route::get('teste', function () {
 
-echo date('Y-m-d 00:00:00', strtotime('+ 30 days'));
+//echo date('Y-m-d 00:00:00', strtotime('+ 30 days'));
 //    $url =  Config::where('env_local',env('APP_LOCAL'))->where('webservice','SAP')->first();
 //    echo $url->url .'proposta';
 ////    $user = User::find(1);
@@ -50,6 +50,12 @@ echo date('Y-m-d 00:00:00', strtotime('+ 30 days'));
 //}else{
 //    return env('APP_LOCAL');
 //}
+
+//    $pdf = App::make('dompdf.wrapper');
+    error_reporting(E_ERROR);
+    $html = view('backend.pdf.certificado')->render();
+    $pdf = PDF::loadView('backend.pdf.certificado');
+    return $pdf->stream('document.pdf');
 
 
 });

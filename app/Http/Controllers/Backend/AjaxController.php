@@ -150,11 +150,11 @@ class AjaxController extends Controller
                 if ($tipo == $produto->idtipoveiculo):
                     if ($valor >= $preco->vlrfipeminimo && $valor <= $preco->vlrfipemaximo && $idade <= $preco->idadeaceitamax && $tipo == $preco->idtipoveiculo):
 
-                        if ($fipe->idstatus == 23) {
-                            $vlcont = Contingencia::where('idseguradora', $produto->idseguradora)->first();
-                            if ($vlcont) {
-                                $preco->premioliquidoproduto = $preco->premioliquidoproduto + $vlcont->valor;
-                            }
+                        if ( $produto->idproduto == 1) {
+                            $vlcont = Contingencia::where('ind_idstatus_fipe', $fipe->idstatus)->first();
+                            $preco->premioliquidoproduto = $preco->premioliquidoproduto + $vlcont->valor;
+                        }
+
 
                             $retorno[] = [
                                 'html' => (string) view('backend.produto.div',compact('preco','produto')),
@@ -165,19 +165,7 @@ class AjaxController extends Controller
                                 'idproduto' => $produto->idproduto,
                                 'span' => "span-".$produto->idproduto."-".$preco->idprecoproduto,
                             ];
-                        } elseif ($fipe->idstatus == 22 && $produto->idseguradora == 1) {
 
-                        } else {
-                            $retorno[] = [
-                                'html' => (string) view('backend.produto.div',compact('preco','produto')),
-                                'acordion' => '#acordion' . $produto->idproduto,
-                                'chkid' => '#produto-'. $produto->idproduto.'-'.$preco->idprecoproduto,
-                                'precospan' => '#preco-' . $produto->idproduto.'-'.$preco->idprecoproduto,
-                                'divp' => '#divp-' . $produto->idproduto.'-'.$preco->idprecoproduto,
-                                'idproduto' => $produto->idproduto,
-                                'span' => "#span-".$produto->idproduto."-".$preco->idprecoproduto,
-                            ];
-                        }
 
 
                     endif;

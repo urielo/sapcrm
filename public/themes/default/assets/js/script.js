@@ -242,6 +242,7 @@ $(function () {
             var juros = vltotal + (vltotal * (taxajuros / 100));
             var priparcela = 0;
             var demparcela = 0;
+            var vlfinal = 0;
             var textojuros = (i > parcelasemjuros) ? 'J.: ' + taxajuros.replace('.', ',') + '%' : 'S/J';
             var textojuroc = (i > parcelasemjuros) ? 'Juros: ' + taxajuros.replace('.', ',') + '%' : 'Sem juros';
 
@@ -253,25 +254,34 @@ $(function () {
             if (i > parcelasemjuros && parcjuros < menorparc && formapg == 2) {
                 priparcela = menorparc;
                 demparcela = jurosComposto((vltotal - menorparc), taxajuros, (i - 1));
+                vlfinal = menorparc + (demparcela*(i-1));
+
+
             } else if (i <= parcelasemjuros && vltotal / i < menorparc && formapg == 2) {
                 priparcela = menorparc;
                 demparcela = (vltotal - menorparc) / (i - 1);
+                vlfinal = menorparc + (demparcela * (i - 1));
             } else if (i > parcelasemjuros) {
                 priparcela = parcjuros;
                 demparcela = priparcela;
+                vlfinal = demparcela * i;
+
             } else {
                 priparcela = vltotal / i;
                 demparcela = priparcela;
+                vlfinal = demparcela * i;
             }
+
+            vlfinal = vlfinal.toFixed(2).replace('.', ',');
             priparcela = priparcela.toFixed(2).replace('.', ',');
             demparcela = demparcela.toFixed(2).replace('.', ',');
             if (i == 1) {
-                retorno.push('<label style="font-size: 10px;"><input type="radio" name="quantparcela" id="formapagamento" value="' + i + '">' + i + 'x de R$ ' + priparcela + ' (' + textojuroc + ') </label><br>')
+                retorno.push('<label style="font-size: 10px;"><input type="radio" data-vlfinal="'+ vlfinal +'" name="quantparcela" id="formapagamento" value="' + i + '">' + i + 'x de R$ ' + priparcela + ' (' + textojuroc + ') </label><br>')
             } else if (formapg == 1) {
-                retorno.push('<label style="font-size: 10px;"><input type="radio" name="quantparcela" id="formapagamento" value="' + i + '">' + i + 'x de R$ ' + priparcela + ' (' + textojuroc + ') </label><br>')
+                retorno.push('<label style="font-size: 10px;"><input type="radio" data-vlfinal="'+ vlfinal +'" name="quantparcela" id="formapagamento" value="' + i + '">' + i + 'x de R$ ' + priparcela + ' (' + textojuroc + ') </label><br>')
             } else {
                 var ii = i - 1;
-                retorno.push('<label style="font-size: 10px;"><input type="radio" name="quantparcela" id="formapagamento" value="' + i + '">' + i + 'x (1x de R$ ' + priparcela + ' e ' + ii + 'x de  R$ ' + demparcela + ' ' + textojuros + ') </label><br>')
+                retorno.push('<label style="font-size: 10px;"><input type="radio" data-vlfinal="'+ vlfinal +'" name="quantparcela" id="formapagamento" value="' + i + '">' + i + 'x (1x de R$ ' + priparcela + ' e ' + ii + 'x de  R$ ' + demparcela + ' ' + textojuros + ') </label><br>')
             }
         }
 
@@ -533,8 +543,8 @@ $(function () {
             });
         } else {
 
-            var djson = $.parseJSON($("select[name=anom]").val());
         }
+        var djson = $.parseJSON($("select[name=anom]").val());
         var dados = {
             comissao: $('#comissao').val(),
             cdfipe: $('input[name=codefipe]').val(),
@@ -702,6 +712,7 @@ $(function () {
     });
 
 
+
     $('input:radio').change(function () {
 
         if ($(this).attr('name') == 'tipopessoa') {
@@ -751,23 +762,30 @@ $(function () {
             var values = $.parseJSON($(this).attr('value'));
             if ($(this).is(":checked") && values.idforma == 1) {
                 $('#parcelas').empty();
-                console.log(menorparc);
-                console.log(vltotal);
                 $.each(gerarParcelas(vltotal, values.maxparc, values.parcsemjuros, values.juros, menorparc, values.idforma), function (key, html) {
                     $('#parcelas').append(html);
                 })
+                $('input[name=quantparcela]').on('change',function () {
+                    if($(this).is(":checked")){
+                        $('#valortotal').text('R$ '+$(this).attr('data-vlfinal'))
+                    }
+                })
+
                 if (vltotal > 0) {
                     $('#condutor-proprietario').removeClass('col-md-12').addClass('col-md-9');
                     dadoscartao.fadeIn('slow');
                 }
             } else {
                 $('#parcelas').empty();
-                console.log(menorparc);
-                console.log(vltotal-menorparc);
                 $.each(gerarParcelas(vltotal, values.maxparc, values.parcsemjuros, values.juros, menorparc, values.idforma), function (key, html) {
                     $('#parcelas').append(html);
                 })
                 $('#condutor-proprietario').removeClass('col-md-9').addClass('col-md-12');
+                $('input[name=quantparcela]').on('change',function () {
+                    if($(this).is(":checked")){
+                        $('#valortotal').text('R$ '+$(this).attr('data-vlfinal'))
+                    }
+                })
                 dadoscartao.hide();
             }
         }

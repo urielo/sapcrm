@@ -161,6 +161,7 @@ return [
         Artisaninweb\SoapWrapper\ServiceProvider::class,
         Khill\Lavacharts\Laravel\LavachartsServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
+        niklasravnsborg\LaravelPdf\PdfServiceProvider::class,
 
     ],
 
@@ -213,6 +214,8 @@ return [
         'Lavacharts' =>  Khill\Lavacharts\Laravel\LavachartsServiceProvider::class,
         'SoapWrapper' => Artisaninweb\SoapWrapper\Facades\SoapWrapper::class,
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
+        'PDF' => niklasravnsborg\LaravelPdf\Facades\Pdf::class,
+
 
     ],
 

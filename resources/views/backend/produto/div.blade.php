@@ -12,8 +12,8 @@
                     <b>Caracteristaca:  </b> {!! $produto->caractproduto !!}.
                     <br>
                     <br>
-                    <b>Exigencia Vistoria:  </b>{!! ($produto->indexigenciavistoria ? 'Sim' : 'Não') !!}
-                    <b>Exigencia Rastreador:  </b>{!!  ($preco->indobrigrastreador ? 'Sim' : 'Não') !!}
+                    <b>Exigencia Vistoria:  </b>{!! ($produto->ind_exige_vistoria ? 'Sim' : 'Não') !!}
+                    <b>Exigencia Rastreador:  </b>{!!  ($produto->ind_exige_rastreador ? 'Sim' : 'Não') !!}
                 </p>
             </div>
         </div>
