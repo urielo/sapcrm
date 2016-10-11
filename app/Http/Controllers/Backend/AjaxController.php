@@ -220,7 +220,7 @@ class AjaxController extends Controller
 
 
         foreach (Combos::whereIdprodutomaster($idproduto)->get() as $combo):
-            $produto = Produtos::find($combo->idprodutoopcional);
+            $produto = Produtos::whereIdproduto($combo->idprodutoopcional)->whereCodstatus(1)->first();
 
             foreach ($produto->precoproduto as $preco):
                 $preco;

@@ -95,6 +95,7 @@ $(function () {
         },
         "scrollY": ttable,
         "scrollCollapse": true,
+        "lengthMenu": [50, 100, 150,200]
 
     })
 

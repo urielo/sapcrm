@@ -26,9 +26,9 @@
                         <table class="table-bordered">
                             <tbody>
                             <tr class="spacing">
-                                <td><b>Proposta: </b> $idproposta</td>
-                                <td><b>Apólice: </b> $idapolice</td>
-                                <td><b>Certifica: </b> $idcertificado</td>
+                                <td><b>Proposta: </b> {{$proposta->idproposta}}</td>
+                                <td><b>Apólice: </b> 3620</td>
+                                <td><b>Certifica: </b> {{$certificado->id}}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -41,7 +41,7 @@
                             <tbody>
                             <tr class="spacing">
                                 <td><b>Produto:</b> Seguro AUTOPRATICO</td>
-                                <td><b>Data de Emissão: </b> $dataemissao</td>
+                                <td><b>Data de Emissão: </b> {{ showDate($certificado->dt_emissao) }}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -65,24 +65,29 @@
                         <table class="table-bordered">
                             <tbody>
                             <tr class="spacing">
-                                <td><b>Nome: </b> $idproposta</td>
-                                <td><b>CPF: </b> $idapolice</td>
+                                <td><b>Nome: </b> {{nomeCase($proposta->cotacao->segurado->clinomerazao)}}</td>
+                                <td><b>CPF: </b> {!! format('cpfcnpj',$proposta->cotacao->segurado->clicpfcnpj) !!}</td>
                             </tr>
                             <tr class="spacing">
-                                <td><b>Endereço: </b> $idproposta</td>
-                                <td><b>Complemento: </b> $idapolice</td>
+                                <td><b>Endereço: </b> {{$proposta->cotacao->segurado->clinmcidade}}
+                                    , {{$proposta->cotacao->segurado->clinumero}} </td>
+                                <td><b>Complemento: </b> {{$proposta->cotacao->segurado->cliendcomplet}}</td>
                             </tr>
                             <tr class="spacing">
-                                <td><b>Bairro: </b> $idproposta</td>
-                                <td><b>Cidade: </b> $idapolice</td>
+                                <td><b>Bairro: </b></td>
+                                <td><b>Cidade: </b> {{nomeCase($proposta->cotacao->segurado->clinmcidade)}}</td>
                             </tr>
                             <tr class="spacing">
-                                <td><b>Estado: </b> $idproposta</td>
-                                <td><b>CEP: </b> $idapolice</td>
+                                <td><b>Estado: </b> {{$proposta->cotacao->segurado->uf->nm_uf}}</td>
+                                <td><b>CEP: </b> {!! format('cep',$proposta->cotacao->segurado->clicep) !!}</td>
                             </tr>
                             <tr class="spacing">
-                                <td><b>Telefone Residencial: </b> $idproposta</td>
-                                <td><b>Telefone Celular: </b> $idapolice</td>
+                                <td><b>Telefone
+                                        Residencial: </b> {!! (strlen($proposta->cotacao->segurado->clinmfone) > 4 ? '('.$proposta->cotacao->segurado->clidddfone.') '. format('fone',$proposta->cotacao->segurado->clinmfone) : '') !!}
+                                </td>
+                                <td><b>Telefone
+                                        Celular: </b> {!! (strlen($proposta->cotacao->segurado->clinmfone) > 4 ? '('.$proposta->cotacao->segurado->clidddcel.') '. format('fone',$proposta->cotacao->segurado->clinmcel) : '') !!}
+                                </td>
                             </tr>
                             </tbody>
                         </table>
@@ -104,8 +109,9 @@
                         <table class="table-bordered">
                             <tbody>
                             <tr>
-                                <td><b>Vigência da cobertura: </b> A partir das 24:00 horas do dia 00/00/00 (data de
-                                    emissão) e terminará às 24:00 do dia 00/00/00 (1 ano a partir da data de início)
+                                <td><b>Vigência da cobertura: </b> A partir das 24:00 horas do
+                                    dia {{ showDate($certificado->dt_inicio_virgencia) }} e terminará às 24:00 do
+                                    dia {{ showDate($certificado->dt_inicio_virgencia,'+1 year') }}
                                 </td>
                             </tr>
                             </tbody>
@@ -118,19 +124,20 @@
                         <table class="table-bordered">
                             <tbody>
                             <tr class="spacing">
-                                <td><b>Marca: </b> $idproposta</td>
-                                <td><b>Modelo: </b> $idapolice</td>
-                                <td><b>Veículo 0 Km: </b> $idapolice</td>
+                                <td><b>Marca: </b> {{$proposta->cotacao->veiculo->fipe->marca}}</td>
+                                <td><b>Modelo: </b> {{$proposta->cotacao->veiculo->fipe->modelo}}</td>
+                                <td><b>Veículo 0
+                                        Km: </b> {!! ($proposta->cotacao->veiculo->veicautozero ? 'Sim':'Não') !!}</td>
                             </tr>
                             <tr class="spacing">
-                                <td><b>Chassi: </b> $idproposta</td>
-                                <td><b>Renavam: </b> $idapolice</td>
-                                <td><b>Ano: </b> $idapolice</td>
+                                <td><b>Chassi: </b> {{$proposta->cotacao->veiculo->veicchassi}}</td>
+                                <td><b>Renavam: </b> {{$proposta->cotacao->veiculo->veicrenavam}}</td>
+                                <td><b>Ano: </b> {{$proposta->cotacao->veiculo->veicano}}</td>
                             </tr>
                             <tr class="spacing">
-                                <td><b>Placa: </b> $idproposta</td>
-                                <td><b>Cor: </b> $idapolice</td>
-                                <td><b>Combustível: </b> $idapolice</td>
+                                <td><b>Placa: </b> {{format('placa',$proposta->cotacao->veiculo->veicplaca)}}</td>
+                                <td><b>Cor: </b> {{$proposta->cotacao->veiculo->veicor}} </td>
+                                <td><b>Combustível: </b> {{$proposta->cotacao->veiculo->combustivel->nm_comb}}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -142,8 +149,26 @@
                         <table class="table-bordered">
                             <tbody>
                             <tr>
-                                <td><b>Valor do veículo:</b></td>
-                                <td><b>Faixa de valor selecionada: </b></td>
+                                @foreach($proposta->cotacao->veiculo->fipe->anovalor as $valor)
+                                    @if($valor->ano == $proposta->cotacao->veiculo->veicano && $valor->idcombustivel == $proposta->cotacao->veiculo->veictipocombus)
+                                        <td><b>Valor do veículo:</b> R$ {{format('real',$valor->valor)}}</td>
+                                    @endif
+                                @endforeach
+
+                                @foreach($proposta->cotacao->produtos as $produto)
+
+
+
+                                    @foreach($produto->produto->precoproduto as $preco)
+                                        @if($preco->idprecoproduto == $produto->idprecoproduto && $produto->idproduto == 1)
+                                            <td><b>Faixa de valor
+                                                    selecionada: </b>R$ {{format('real',$preco->vlrfipeminimo)}} -
+                                                R$ {{format('real',$preco->vlrfipemaximo)}} </td>
+                                        @endif
+                                    @endforeach
+
+                                @endforeach
+
                             </tr>
                             </tbody>
                         </table>
@@ -154,6 +179,7 @@
                 </tbody>
             </table>
             {{-- Fim dados do veiculo--}}
+
 
             {{-- Incio Quadro de cobertura--}}
             <table class="table">
@@ -176,37 +202,40 @@
                             </tr>
                             <tr class="">
                                 <td><b>Roubo ou Furto Total</b></td>
-                                <td><b>R$ 000,00</b></td>
+                                <td><b>{!!  $custos[1]->custo !!} </b></td>
                                 <td><b>Não Há</b></td>
                                 <td><b> Não Há </b></td>
-                                <td rowspan="2"><b>100% do valor referenciado pela Tabela FIPE *, exceto para Taxi e
+                                <td rowspan="2"><b>100% do valor referenciado pela Tabela FIPE *, exceto para
+                                        Taxi e
                                         veículos salvados**.</b></td>
                             </tr>
                             <tr class="">
                                 <td><b>Indenização Integral por Colisão </b></td>
-                                <td><b>X Un²</b></td>
+                                <td><b>{!! $custos[19]->custo  !!} </b></td>
                                 <td><b>Não Há</b></td>
                                 <td><b>Não Há </b></td>
                             </tr>
                             <tr class="">
                                 <td><b>Assistência 24 Horas Veículos</b></td>
-                                <td><b>X Un²</b></td>
+                                <td><b>{!!$custos[4]->custo !!} </b></td>
                                 <td><b>Não Há</b></td>
                                 <td><b>Não Há </b></td>
                                 <td><b>Limites da Assistência</b></td>
                             </tr>
                             <tr class="">
-                                <td><b>Assistência a Vidros(Reparo/Troca de Vidros - para veículo importado a cobertura
+                                <td><b>Assistência a Vidros(Reparo/Troca de Vidros - para veículo importado a
+                                        cobertura
                                         de troca de vidro não está inclusa).</b></td>
-                                <td><b>X Un²</b></td>
+                                <td><b>{!! $custos[5]->custo !!}</b></td>
                                 <td><b>Não Há</b></td>
-                                <td><b>Franquia para-brisa ou vigia R$ 180,00 / Franquia vidros laterais R$ 80,00 </b>
+                                <td><b>Franquia para-brisa ou vigia R$ 180,00 / Franquia vidros laterais R$
+                                        80,00 </b>
                                 </td>
                                 <td><b>Limites da Assistência</b></td>
                             </tr>
                             <tr class="">
                                 <td><b>Reparo de Para-choque</b></td>
-                                <td><b>X Un²</b></td>
+                                <td><b> {!! $custos[6]->custo !!}</b></td>
                                 <td><b>Não Há</b></td>
                                 <td><b>Reparo de para-choque de veículos nacionais R$120,00 / Franquia Reparo de
                                         para-choque de veículos importados R$ 180,00</b></td>
@@ -214,10 +243,12 @@
                             </tr>
                             <tr class="">
                                 <td><b>Serviço de Reparo de Pintura</b></td>
-                                <td><b>X Un²</b></td>
+                                <td><b>{!! $custos[7]->custo !!}</b></td>
                                 <td><b>Não Há</b></td>
-                                <td><b>Haverá cobrança por peça reparada conforme quadro a seguir: Franquias SRA. /
-                                        Franquia 1º peça reparada R$ 50,00. / Franquia a partir da 2º peça reparada
+                                <td><b>Haverá cobrança por peça reparada conforme quadro a seguir: Franquias
+                                        SRA. /
+                                        Franquia 1º peça reparada R$ 50,00. / Franquia a partir da 2º peça
+                                        reparada
                                         (cada peça) R$ 10,00.</b></td>
                                 <td><b>Limites da Assistência</b></td>
                             </tr>
@@ -226,10 +257,13 @@
                     </td>
 
                 </tr>
-
-
+                <tr>
+                    <td>            <small style="color: red">S/C: Sem Cobertura</small>
+                    </td>
+                </tr>
                 </tbody>
             </table>
+
             {{-- Fim Quadro de cobertura--}}
 
             {{-- Incio Quadro de valor--}}
@@ -238,22 +272,22 @@
                 <tbody>
                 <tr>
                     <td>
-                        <b>Prêmio Líquido:</b>
+                        <b>Prêmio Líquido: </b> R$ {{ format('real',$custos['premioLiquido']) }}
                     </td>
                     <td>
-                        <b>IOF:</b>
+                        <b>IOF:</b> {{str_replace('.',',',$certificado->iof)}}%
                     </td>
                     <td>
-                        <b>Prêmio Total:</b>
+                        <b>Prêmio Total:</b> R$ {{format('real',$custos['premioTotal']) }}
                     </td>
 
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <b>Forma de pagamento:</b>
+                        <b>Forma de pagamento: </b> {{$proposta->quantparc}}x no {{$proposta->formapg->descformapgto}}
                     </td>
                     <td>
-                        <b>Periodicidade:</b>
+                        <b>Periodicidade:</b> Anual
                     </td>
 
 

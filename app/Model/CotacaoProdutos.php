@@ -21,4 +21,6 @@ class CotacaoProdutos extends Model
     {
         return $this->belongsTo('App\Model\Cotacoes', 'idcotacao', 'idcotacao');
     }
+    
+  
 }

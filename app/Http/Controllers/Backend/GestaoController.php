@@ -56,13 +56,11 @@ class GestaoController extends Controller
 
     public function apolices()
     {
-        $cotacoes = $this->cotacoes->has('proposta')
-            ->whereIdstatus(15)
-            ->orderBy('idcotacao', 'desc')
+        $propostas = $this->propostas->whereIn('idstatus', [15,24,18])
+            ->orderBy('idproposta', 'asc')
             ->get();
 
-
-        return view('backend.gestao.apolices', compact('cotacoes'));
+        return view('backend.gestao.apolices', compact('propostas'));
     }
 
     public function emitir($idproposta)

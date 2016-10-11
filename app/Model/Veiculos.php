@@ -32,6 +32,7 @@ class Veiculos extends Model
         "idstatus",
         "dtcreate",
         "dtupdate",
+        "veicor",
     ];
     public $timestamps = FALSE;
 
@@ -43,6 +44,11 @@ class Veiculos extends Model
     public function fipe()
     {
         return $this->belongsTo('App\Model\Fipes','veiccodfipe', 'codefipe');
+    }
+    
+    public function combustivel()
+    {
+        return $this->belongsTo('App\Model\Combustivel','veictipocombus', 'id_auto_comb');
     }
     
 }

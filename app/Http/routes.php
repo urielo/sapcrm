@@ -15,52 +15,64 @@ use Khill\Lavacharts\Lavacharts;
 
 use App\Model\Logs;
 
+use App\Model\CotacaoProdutos;
+
 Route::get('teste', function () {
-
-//echo date('Y-m-d 00:00:00', strtotime('+ 30 days'));
-//    $url =  Config::where('env_local',env('APP_LOCAL'))->where('webservice','SAP')->first();
-//    echo $url->url .'proposta';
-////    $user = User::find(1);
-////
-////    $
 //
-////    $role = Role::find(3);
-////    $user =  User::create([
-////        'nome' => 'joao',
-////        'email' => 'brito@email.com',
-////        'idstatus' => 2,
-////        'password' => bcrypt(1234456),
-////    ]);
+////echo date('Y-m-d 00:00:00', strtotime('+ 30 days'));
+////    $url =  Config::where('env_local',env('APP_LOCAL'))->where('webservice','SAP')->first();
+////    echo $url->url .'proposta';
+//////    $user = User::find(1);
+//////
+//////    $
 ////
-////    $user->attachRole($role);
+//////    $role = Role::find(3);
+//////    $user =  User::create([
+//////        'nome' => 'joao',
+//////        'email' => 'brito@email.com',
+//////        'idstatus' => 2,
+//////        'password' => bcrypt(1234456),
+//////    ]);
+//////
+//////    $user->attachRole($role);
+//////
+//////    return $user;
 ////
-////    return $user;
+////
+//////    $data = ['nome'=> 'uriel'];
+//////
+//////    Mail::send('welcome', $data, function ($message) {
+//////        $message->from('uriel@skyprotection.com.br', 'Uriel');
+//////
+//////        $message->to('uriel@seguroautopratico.com.br');
+//////    });
+////if(env('APP_LOCAL') == 'producao'){
+////    return env('APP_LOCAL');
+////
+////}else{
+////    return env('APP_LOCAL');
+////}
+//
+////    $pdf = App::make('dompdf.wrapper');
+//    error_reporting(E_ERROR);
+//
+//    $proposta = Propostas::find($idproposta);
 //
 //
-////    $data = ['nome'=> 'uriel'];
-////
-////    Mail::send('welcome', $data, function ($message) {
-////        $message->from('uriel@skyprotection.com.br', 'Uriel');
-////
-////        $message->to('uriel@seguroautopratico.com.br');
-////    });
-//if(env('APP_LOCAL') == 'producao'){
-//    return env('APP_LOCAL');
+//    $pdf = PDF::loadView('backend.pdf.certificado',compact('proposta'));
+//    $pdf->SetProtection(['print'],'','456');
+//    return $pdf->stream('document.pdf');
+
+//    return date('d/m/Y', strtotime('+1 month'));
+
+//    $cotaocao = CotacaoProdutos::where('idcotcao',7523)->first();
 //
-//}else{
-//    return env('APP_LOCAL');
-//}
-
-//    $pdf = App::make('dompdf.wrapper');
-    error_reporting(E_ERROR);
-
-
-    $pdf = PDF::loadView('backend.pdf.certificado');
-    $pdf->SetProtection(['print'],'','456');
-    return $pdf->stream('document.pdf');
+//    return $cotaocao->preco;
 
 
 });
+
+Route::get('/certificado/{idproposta}',['as'=>'certificado','uses'=>'Backend\ApolicesController@index']);
 
 
 Route::group(['prefix' => 'ajax'], function () {

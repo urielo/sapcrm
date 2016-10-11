@@ -10,108 +10,62 @@
         <div class="table-responsive">
             <table class="table table-hover table-condensed table-datatable">
                 <thead>
-                <tr >
-                    <th>#PROPOSTA</th>
-                    <th>CPF/CNPJ</th>
-                    <th class="hidden-xs">PRODUTOS</th>
-                    <th>VEICULO</th>
-                    <th class="hidden-xs">VALIDADE</th>
+                <tr>
+                    <th>#ID</th>
+                    <th>Segurado</th>
+                    <th>Placa</th>
+                    <th>Data do pagamento</th>
+                    <th class="hidden-xs">Corretor</th>
                     <th></th>
-
                 </thead>
                 <tbody>
-                @foreach ($cotacoes as $cotacao)
-                    @if(is_object($cotacao->proposta))
-                        <tr class="{!!date('d/m/Y', strtotime($cotacao->proposta->dtvalidade)) > date('d/m/Y') ? 'danger"': ''!!}">
-                            <td><a href="#">{{$cotacao->proposta->idproposta}}</a></td>
-                            <td><a
-                                        href="#">{!! format('cpfcnpj', $cotacao->segurado->clicpfcnpj) !!}</a></td>
-                            <td class="hidden-xs">
-                                {{--<button class="btn btn-success btn-xs">ver</button>--}}
-                                <div>
-                                    @foreach($cotacao->produtos as $produto)
-                                        {{$produto->produto->nomeproduto }}
-                                        @if($cotacao->produtos->count() > 1)
-                                        <br>
-                                        @endif
 
 
-                                    @endforeach
-                                </div>
+                @foreach($propostas as $proposta)
+                    <tr>
+                        <th>{{$proposta->idproposta}}</th>
+                        <td><a href="#{{$proposta->cotacao->segurado->clicpfcnpj}}">
+                                {{nomeCase($proposta->cotacao->segurado->clinomerazao)}}
+                            </a></td>
+                        <td><a href="#{{$proposta->cotacao->veiculo->veicid}}">
+                                {{format('placa',$proposta->cotacao->veiculo->veicplaca)}}
+                            </a></td>
+                        <td>{{( is_object($proposta->cobranca) ? showDate($proposta->cobranca->dtpagamento) : '||') }}</td>
+                        <td><a href="#{{$proposta->cotacao->corretor->idcorretor}}">
+                                {{nomeCase($proposta->cotacao->corretor->corrnomerazao)}}
+                            </a></td>
+                        <td>
 
-                            </td>
-                            <td><a href="#"
-                                   class="">{!! format('placa',$cotacao->veiculo->veicplaca) !!}</a>
-                            </td>
-                            <td class="hidden-xs">{!! date('d/m/Y', strtotime($cotacao->proposta->dtvalidade)) !!}</td>
-                            <td>
+                            <div class="btn-group" role="group">
 
-
-                                @if(!$cotacao->proposta->apoliceseguradora)
-
-                                    @if($cotacao->proposta->propostaseguradora && $cotacao->proposta->propostaseguradora->cd_retorno_seguradora != 0 )
-                                        <div class="btn-group">
-
-                                            <button type="button" class="btn btn-danger btn-xs" data-toggle="modal"
-                                                    data-target=".modal-error"
-                                                    message="erro{{$cotacao->proposta->idproposta}}" id="erro">Ver Erro
-                                            </button>
-                                            <input type="hidden" id="erro{{$cotacao->proposta->idproposta}}"
-                                                   value="Proposta:{{$cotacao->proposta->idproposta}} {{$cotacao->proposta->cotacaoseguradora->nm_retorno_seguradora}}">
-                                            <button type="button" class="btn btn-warning btn-xs" data-toggle="modal"
-                                                    data-target=".modal-error"
-                                                    message="xml{{$cotacao->proposta->idproposta}}" id="xml">XML
-                                            </button>
-                                            <input type="hidden" id="xml{{$cotacao->proposta->idproposta}}"
-                                                   value="{{$cotacao->proposta->cotacaoseguradora->xml_saida}}">
-
-                                            <a href="{{route('apolices.emitir', $cotacao->proposta->idproposta)}}"
-                                               class="">
-                                                <button type="button" class="btn btn-success btn-xs">Emitir</button>
-                                            </a>
-                                        </div>
-                                    @elseif($cotacao->proposta->cotacaoseguradora && $cotacao->proposta->cotacaoseguradora->cd_retorno_seguradora != 0)
-                                        <div class="btn-group">
-
-                                            <button type="button" class="btn btn-danger btn-xs" data-toggle="modal"
-                                                    data-target=".modal-error"
-                                                    message="erro{{$cotacao->proposta->idproposta}}" id="erro">Ver Erro
-                                            </button>
-                                            <input type="hidden" id="erro{{$cotacao->proposta->idproposta}}"
-                                                   value="Proposta:{{$cotacao->proposta->idproposta}}  {{$cotacao->proposta->cotacaoseguradora->nm_retorno_seguradora}}">
-
-                                            <button type="button" class="btn btn-warning btn-xs" data-toggle="modal"
-                                                    data-target=".modal-error"
-                                                    message="xml{{$cotacao->proposta->idproposta}}" id="xml">XML
-                                            </button>
-                                            <input type="hidden" id="xml{{$cotacao->proposta->idproposta}}"
-                                                   value="{{$cotacao->proposta->cotacaoseguradora->xml_saida}}">
-
-                                            <a href="{{route('apolices.emitir', $cotacao->proposta->idproposta)}}"
-                                               class="">
-                                                <button type="button" class="btn btn-success btn-xs">Emitir</button>
-                                            </a>
-                                        </div>
-                                    @else
-                                        <div class="btn-group">
-                                            <a href="{{route('apolices.emitir', $cotacao->proposta->idproposta)}}"
-                                               class="">
-                                                <button type="button" class="btn btn-info btn-xs">Emitir</button>
-                                            </a>
-                                        </div>
-                                    @endif
-
-
-                                @elseif($cotacao->proposta->apoliceseguradora->cd_retorno_seguradora == 0)
-                                    <a href="{{route('apolices.pdf', $cotacao->proposta->idproposta)}}" target="_blank">
-                                        <span class="glyphicon glyphicon-save-file"></span> PDF - Apolice </a>
+                                @if($proposta->idstatus == 15)
+                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
+                                            data-target=".modal-show"
+                                            href="#"
+                                            {{--href="{{route('show.confirmapgto',$proposta->proposta->idproposta)}}"--}}
+                                            id="emitir">Emitir
+                                    </button>
+                                @elseif($proposta->idstatus == 24)
+                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                            data-target=".modal-show"
+                                            href="#"
+                                            {{--href="{{route('show.confirmapgto',$proposta->proposta->idproposta)}}"--}}
+                                            id="emitir">Emitir
+                                    </button>
+                                @elseif($proposta->idstatus == 18)
+                                    <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
+                                            data-target=".modal-show"
+                                            href="#"
+                                            {{--href="{{route('show.confirmapgto',$proposta->proposta->idproposta)}}"--}}
+                                            id="emitir">
+                                    </button>
                                 @endif
 
-                            </td>
 
+                            </div>
 
-                        </tr>
-                    @endif
+                        </td>
+                    </tr>
                 @endforeach
                 </tbody>
             </table>

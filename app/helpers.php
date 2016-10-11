@@ -313,4 +313,23 @@ if (!function_exists('getDataReady')):
 
 endif;
 
+if (!function_exists('showDate')):
+
+    function showDate($date,$interval = NULL)
+    {
+
+
+        if($interval == NULL){
+            return  date('d/m/Y',strtotime($date));
+
+        } else {
+            return date('d/m/Y', strtotime($interval, strtotime($date)));
+        }
+
+
+
+    }
+
+endif;
+
 
