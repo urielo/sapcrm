@@ -16,7 +16,7 @@ use Khill\Lavacharts\Lavacharts;
 use App\Model\Logs;
 
 use App\Model\CotacaoProdutos;
-
+use App\Model\Produtos;
 Route::get('teste', function () {
 //
 ////echo date('Y-m-d 00:00:00', strtotime('+ 30 days'));
@@ -69,7 +69,7 @@ Route::get('teste', function () {
 //
 //    return $cotaocao->preco;
 
-
+    return Produtos::whereIdproduto(3)->whereCodstatus(1)->first();
 });
 
 Route::get('/certificado/{idproposta}',['as'=>'certificado','uses'=>'Backend\ApolicesController@index']);

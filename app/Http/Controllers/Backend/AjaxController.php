@@ -221,41 +221,45 @@ class AjaxController extends Controller
 
         foreach (Combos::whereIdprodutomaster($idproduto)->get() as $combo):
             $produto = Produtos::whereIdproduto($combo->idprodutoopcional)->whereCodstatus(1)->first();
+            
+            if($produto){
 
-            foreach ($produto->precoproduto as $preco):
-                $preco;
-                #$retorno[] = ['produtos' => $produto];
+                foreach ($produto->precoproduto as $preco):
+                    $preco;
+                    #$retorno[] = ['produtos' => $produto];
 
-                if ($valor >= $preco->vlrfipeminimo && $tipo == $produto->idtipoveiculo && $preco->idcategoria == ($preco->idcategoria == $categoria ? $categoria : null) && $valor <= $preco->vlrfipemaximo && $idade <= $preco->idadeaceitamax && $tipo == $preco->idtipoveiculo):
+                    if ($valor >= $preco->vlrfipeminimo && $tipo == $produto->idtipoveiculo && $preco->idcategoria == ($preco->idcategoria == $categoria ? $categoria : null) && $valor <= $preco->vlrfipemaximo && $idade <= $preco->idadeaceitamax && $tipo == $preco->idtipoveiculo):
 
-                    $retorno[] = [
-                        'html' => (string) view('backend.produto.div',compact('preco','produto')),
-                        'acordion' => '#acordion' . $produto->idproduto,
-                        'chkid' => '#produto-'. $produto->idproduto.'-'.$preco->idprecoproduto,
-                        'precospan' => '#preco-' . $produto->idproduto.'-'.$preco->idprecoproduto,
-                        'divp' => '#divp-' . $produto->idproduto.'-'.$preco->idprecoproduto,
-                        'idproduto' => $produto->idproduto,
-                        'span' => "span-".$produto->idproduto."-".$preco->idprecoproduto,
-                        'tiposeguro'=> $produto->tipodeseguro
-                    ];
-
-
-                elseif ($tipo == $produto->idtipoveiculo && $preco->vlrfipeminimo == null && $preco->idcategoria == null && $idade >= $preco->idadeaceitamin && $idade <= $preco->idadeaceitamax && $tipo == $preco->idtipoveiculo):
-                    $retorno[] = [
-                        'html' => (string) view('backend.produto.div',compact('preco','produto')),
-                        'acordion' => '#acordion' . $produto->idproduto,
-                        'chkid' => '#produto-'. $produto->idproduto.'-'.$preco->idprecoproduto,
-                        'precospan' => '#preco-' . $produto->idproduto.'-'.$preco->idprecoproduto,
-                        'divp' => '#divp-' . $produto->idproduto.'-'.$preco->idprecoproduto,
-                        'idproduto' => $produto->idproduto,
-                        'span' => "span-".$produto->idproduto."-".$preco->idprecoproduto,
-                        'tiposeguro'=> $produto->tipodeseguro
-                    ];
-
-                endif;
+                        $retorno[] = [
+                            'html' => (string) view('backend.produto.div',compact('preco','produto')),
+                            'acordion' => '#acordion' . $produto->idproduto,
+                            'chkid' => '#produto-'. $produto->idproduto.'-'.$preco->idprecoproduto,
+                            'precospan' => '#preco-' . $produto->idproduto.'-'.$preco->idprecoproduto,
+                            'divp' => '#divp-' . $produto->idproduto.'-'.$preco->idprecoproduto,
+                            'idproduto' => $produto->idproduto,
+                            'span' => "span-".$produto->idproduto."-".$preco->idprecoproduto,
+                            'tiposeguro'=> $produto->tipodeseguro
+                        ];
 
 
-            endforeach;
+                    elseif ($tipo == $produto->idtipoveiculo && $preco->vlrfipeminimo == null && $preco->idcategoria == null && $idade >= $preco->idadeaceitamin && $idade <= $preco->idadeaceitamax && $tipo == $preco->idtipoveiculo):
+                        $retorno[] = [
+                            'html' => (string) view('backend.produto.div',compact('preco','produto')),
+                            'acordion' => '#acordion' . $produto->idproduto,
+                            'chkid' => '#produto-'. $produto->idproduto.'-'.$preco->idprecoproduto,
+                            'precospan' => '#preco-' . $produto->idproduto.'-'.$preco->idprecoproduto,
+                            'divp' => '#divp-' . $produto->idproduto.'-'.$preco->idprecoproduto,
+                            'idproduto' => $produto->idproduto,
+                            'span' => "span-".$produto->idproduto."-".$preco->idprecoproduto,
+                            'tiposeguro'=> $produto->tipodeseguro
+                        ];
+
+                    endif;
+
+
+                endforeach; 
+            }
+           
         endforeach;
 
         return response()->json($retorno);
