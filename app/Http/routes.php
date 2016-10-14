@@ -15,7 +15,8 @@ use Khill\Lavacharts\Lavacharts;
 
 use App\Model\Logs;
 
-use App\Model\CotacaoProdutos;
+use App\Model\Propostas;
+use App\Model\FipeAnoValor;
 use App\Model\Produtos;
 Route::get('teste', function () {
 //
@@ -69,7 +70,16 @@ Route::get('teste', function () {
 //
 //    return $cotaocao->preco;
 
-    return Produtos::whereIdproduto(3)->whereCodstatus(1)->first();
+
+    $proposta = Propostas::find(419);
+
+//    echo between(1,10,5);
+
+    echo date('d/m/Y',strtotime(20150915));
+//    return FipeAnoValor::where('codefipe',$proposta->cotacao->veiculo->veiccodfipe)
+//        ->where('idcombustivel',$proposta->cotacao->veiculo->veictipocombus)
+//        ->where('ano',$proposta->cotacao->veiculo->veicano)->first()->valor;
+//    return Produtos::whereIdproduto(3)->whereCodstatus(1)->first();
 });
 
 Route::get('/certificado/{idproposta}',['as'=>'certificado','uses'=>'Backend\ApolicesController@index']);
@@ -173,15 +183,25 @@ Route::group(['prefix' => 'gestao', 'middleware' => 'auth'], function () {
         'as' => 'gestao.aprovacao',
         'uses' => 'Backend\GestaoController@aprovacao']);
 
-    Route::get('apolices/emitir/{idproposta}', [
-        'middleware' => ['permission:gestao-cobranca'],
-        'as' => 'apolices.emitir',
-        'uses' => 'Backend\GestaoController@emitir']);
-
-    Route::get('apolices/pdf/{idproposta}', [
+    Route::get('apolices/show/{idproposta}', [
         'middleware' => ['permission:gestao-apolice-emitir'],
-        'as' => 'apolices.pdf',
-        'uses' => 'Backend\GestaoController@apolicepdf']);
+        'as' => 'apolices.show',
+        'uses' => 'Backend\ApolicesController@showModal']);
+    
+    Route::get('apolices/showemitidas/{idproposta}', [
+        'middleware' => ['permission:gestao-apolice-emitir'],
+        'as' => 'apolices.showemiditas',
+        'uses' => 'Backend\ApolicesController@showModalApolices']);
+
+    Route::post('apolices/emitir', [
+        'middleware' => ['permission:gestao-apolice-emitir'],
+        'as' => 'apolices.emitir',
+        'uses' => 'Backend\ApolicesController@emitir']);
+    
+    Route::post('apolices/download', [
+        'middleware' => ['permission:gestao-apolice-emitir'],
+        'as' => 'apolices.download',
+        'uses' => 'Backend\ApolicesController@download']);
 
     Route::get('cobranca', [
         'middleware' => ['permission:gestao-apolice-pdf'],

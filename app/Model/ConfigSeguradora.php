@@ -21,11 +21,17 @@ class ConfigSeguradora extends Model
         'id_produto_parcela_premio',
         'nm_resp1_gov',
         'nm_resp2_gov',
+        'iof',
 
     ];
     
     public $timestamps = FALSE;
 
+    
+    public function seguradora()
+    {
+     return $this->belongsTo('App\Model\Seguradora','id_seguradora','idseguradora');
+    }
     
 
    

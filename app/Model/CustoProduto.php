@@ -18,6 +18,16 @@ class CustoProduto extends Model
     ];
 
 
+    public function produto()
+    {
+        return $this->belongsTo('App\Model\Produtos','idproduto','idproduto');
+    }
+
+
+    public function seguradora()
+    {
+        return $this->belongsTo('App\Model\Seguradora','idseguradora','idseguradora');
+    }
     /**
      * @return array
      */

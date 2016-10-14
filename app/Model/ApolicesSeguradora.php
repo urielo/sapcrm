@@ -48,6 +48,14 @@ class ApolicesSeguradora extends Model
         return $this->belongsTo('App\Model\PropostasSeguradora', 'id_proposta_seguradora', 'id_proposta_seguradora');
     }
 
+
+    public function configSeguradora()
+    {
+        return $this->hasOne('App\Model\ConfigSeguradora','id_config_seguradora','id');
+    }
+    
+   
+
     
 
 

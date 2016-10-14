@@ -11,7 +11,6 @@ class Produtos extends Model
     protected $primaryKey = 'idproduto';
     protected $fillable =
         [
-
             'idproduto',
             'nomeproduto',
             'descproduto',
@@ -25,12 +24,15 @@ class Produtos extends Model
             'indtabprecocategorianobre',
             'numparcelsemjuros',
             'jurosmesparcelamento',
-            'indexigenciavistoria',
+            'ind_exige_vistoria',
             'codstatus',
             'idseguradora',
             'procsusepproduto',
             'codramoproduto',
             'cobertura',
+            'tipoproduto',
+            'tipodeseguro',
+            'ind_exige_rastreador',
 
         ];
     public $timestamps = FALSE;
@@ -46,5 +48,11 @@ class Produtos extends Model
     public function combos()
     {
         return $this->hasMany(Combos::class, 'idproduto', 'idprodutomaster');
+    }
+
+
+    public function seguradoras()
+    {
+        return $this->hasMany('App\Model\SeguradoraProduto','idproduto','idproduto');
     }
 }

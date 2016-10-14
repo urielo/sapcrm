@@ -331,5 +331,13 @@ if (!function_exists('showDate')):
     }
 
 endif;
+if (!function_exists('between')):
+
+    function between($val,$min, $max)
+    {
+        return ($val >= $min && $val <= $max);
+    }
+
+endif;
 
 

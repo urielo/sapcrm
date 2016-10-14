@@ -22,6 +22,8 @@ class SeguradoraProduto extends Model
         'id_corretor_master',
         'id_estipulante',
         'vl_franquia',
+        'vl_franquia',
+        'obg_mesma_seguradora',
     ];
 
     public $timestamps = FALSE;
@@ -30,6 +32,6 @@ class SeguradoraProduto extends Model
 
     public function seguradora()
     {
-//        return $this->belongsToMany(CustoProduto::class, 'certificado_custo','certificado_id','custo_produto_id');
+        return $this->belongsTo('App\Model\Seguradora', 'idseguradora', 'idseguradora');
     }
 }

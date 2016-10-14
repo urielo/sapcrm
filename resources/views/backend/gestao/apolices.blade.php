@@ -39,26 +39,23 @@
                             <div class="btn-group" role="group">
 
                                 @if($proposta->idstatus == 15)
-                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
+                                    <a type="button" class="btn btn-info btn-sm" data-toggle="modal"
                                             data-target=".modal-show"
-                                            href="#"
-                                            {{--href="{{route('show.confirmapgto',$proposta->proposta->idproposta)}}"--}}
-                                            id="emitir">Emitir
-                                    </button>
+                                            href="{{route('apolices.show',$proposta->idproposta)}}"
+                                            id="showinfo">Emitir
+                                    </a>
                                 @elseif($proposta->idstatus == 24)
-                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                    <a type="button" class="btn btn-info btn-sm" data-toggle="modal"
                                             data-target=".modal-show"
-                                            href="#"
-                                            {{--href="{{route('show.confirmapgto',$proposta->proposta->idproposta)}}"--}}
-                                            id="emitir">Emitir
-                                    </button>
+                                            href="{{route('apolices.show',$proposta->idproposta)}}"
+                                            id="showinfo">Emitir
+                                    </a>
                                 @elseif($proposta->idstatus == 18)
-                                    <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
+                                    <a type="button" class="btn btn-success btn-sm" data-toggle="modal"
                                             data-target=".modal-show"
-                                            href="#"
-                                            {{--href="{{route('show.confirmapgto',$proposta->proposta->idproposta)}}"--}}
-                                            id="emitir">
-                                    </button>
+                                            href="{{route('apolices.showemiditas',$proposta->idproposta)}}"
+                                            id="showinfo">Apolices
+                                    </a>
                                 @endif
 
 
@@ -71,19 +68,11 @@
             </table>
         </div>
 
-        <div class="modal fade modal-error" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+        <div class="modal fade modal-show" tabindex="-1" role="dialog" aria-labelledby="Emissao/Emitidas"
              aria-hidden="true">
-            <div class="modal-dialog modal-sm">
+            <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h4 class="modal-title">Descrição do Erro</h4>
-                    </div>
-                    <div class="modal-body danger">
-                        <p id="msgdeerro"></p>
-                    </div>
+
                 </div>
             </div>
         </div>

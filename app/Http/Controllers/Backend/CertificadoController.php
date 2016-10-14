@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Model\Certificados;
 use App\Model\Propostas;
 use App\Model\CustoProduto;
+use App\Model\ApolicesSeguradora;
 use niklasravnsborg\LaravelPdf\Facades\Pdf as PDF;
 
 use App\Model\SeguradoraProduto;
@@ -16,25 +17,31 @@ use phpDocumentor\Reflection\Types\Object_;
 class CertificadoController extends Controller
 {
     /**
-     * @param array $middleware
+     * @param array $middleware $this->certificado->dt_inicio_virgencia
      */
     protected $certificado;
-    protected $data_emissao = '';
+    protected $data_virgencia = '';
     protected $proposta;
     protected $idseguradora = 0;
+    protected $config = null;
+
+    protected $status = false;
 
 
-    public function gerarCertificado($proposta, $data_emissao, $idseguradora)
+    public function gerarCertificado($proposta, $data_virgencia, $config)
     {
         $this->proposta = $proposta;
-        $this->data_emissao = date('Y-m-d H:i:s', strtotime($data_emissao));
-        $this->idseguradora = $idseguradora;
+        $this->data_virgencia = date('Y-m-d H:i:s', strtotime(getDateFormat($data_virgencia)));
+        $this->idseguradora = $config->id_seguradora;
+        $this->config = $config;
         $this->Create();
         $this->attachCusto();
         $this->pdf();
+        $this->apoliceCreate();
+
+        return true;
 
 
-        return $this->certificado->pdf_base64;
     }
 
 
@@ -45,10 +52,30 @@ class CertificadoController extends Controller
         $certificado->idproposta = $this->proposta->idproposta;
         $certificado->idseguradora = $this->idseguradora;
         $certificado->dt_emissao = date('Y-m-d H:i:s');
-        $certificado->dt_inicio_virgencia = $this->data_emissao;
-        $certificado->iof = 2.5;
+        $certificado->dt_inicio_virgencia = $this->data_virgencia;
+        $certificado->iof = $this->config->iof;
         $certificado->save();
         $this->certificado = $certificado;
+
+
+    }
+
+    protected function apoliceCreate()
+    {
+        $apolice = new ApolicesSeguradora();
+
+        $date = date('Ymd', strtotime($this->certificado->dt_inicio_virgencia));
+
+        $apolice->id_config_seguradora = $this->config->id;
+        $apolice->id_apolice_seguradora = $this->certificado->id;
+        $apolice->dt_ativa_rastreador = $date;
+        $apolice->dt_instalacao_rastreador = $date;
+        $apolice->dt_ativa_rastreador = $date;
+        $apolice->dt_inicio_comodato = $date;
+        $apolice->dt_fim_comodato = date('Ymd', strtotime('+1 year', strtotime($this->certificado->dt_inicio_virgencia)));
+
+        $this->proposta->apoliceseguradora()->save($apolice);
+
     }
 
 
@@ -60,7 +87,11 @@ class CertificadoController extends Controller
             $custo = CustoProduto::whereIdproduto($produto->idproduto)
                 ->whereIdprecoproduto($produto->idprecoproduto)
                 ->whereIdseguradora($this->idseguradora)->first();
-            $custos[] = $custo->id;
+
+            if ($custo) {
+
+                $custos[] = $custo->id;
+            }
 
         }
 
@@ -105,7 +136,7 @@ class CertificadoController extends Controller
 
         }
 
-        $custos['premioLiquido'] = $custos['premioTotal'] -  ($custos['premioTotal'] * $this->certificado->iof / 100);
+        $custos['premioLiquido'] = $custos['premioTotal'] - ($custos['premioTotal'] * $this->certificado->iof / 100);
 
 
         error_reporting(E_ERROR);

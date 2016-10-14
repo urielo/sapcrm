@@ -95,7 +95,7 @@ $(function () {
         },
         "scrollY": ttable,
         "scrollCollapse": true,
-        "lengthMenu": [50, 100, 150,200]
+        "lengthMenu": [50, 100, 150, 200]
 
     })
 
@@ -128,6 +128,13 @@ $(function () {
         }
 
     }
+
+    $('.date-virgencia').datepicker({
+        format: "dd/mm/yyyy",
+        clearBtn: true,
+        language: "pt-BR",
+        orientation: "auto"
+    })
 
     function setDateP(idinput, tipo) {
         var d = new Date();
@@ -248,14 +255,13 @@ $(function () {
             var textojuroc = (i > parcelasemjuros) ? 'Juros: ' + taxajuros.replace('.', ',') + '%' : 'Sem juros';
 
 
-
             var parcjuros = jurosComposto(vltotal, taxajuros, i);
 
 
             if (i > parcelasemjuros && parcjuros < menorparc && formapg == 2) {
                 priparcela = menorparc;
                 demparcela = jurosComposto((vltotal - menorparc), taxajuros, (i - 1));
-                vlfinal = menorparc + (demparcela*(i-1));
+                vlfinal = menorparc + (demparcela * (i - 1));
 
 
             } else if (i <= parcelasemjuros && vltotal / i < menorparc && formapg == 2) {
@@ -277,12 +283,12 @@ $(function () {
             priparcela = priparcela.toFixed(2).replace('.', ',');
             demparcela = demparcela.toFixed(2).replace('.', ',');
             if (i == 1) {
-                retorno.push('<label style="font-size: 10px;"><input type="radio" data-vlfinal="'+ vlfinal +'" name="quantparcela" id="formapagamento" value="' + i + '">' + i + 'x de R$ ' + priparcela + ' (' + textojuroc + ') </label><br>')
+                retorno.push('<label style="font-size: 10px;"><input type="radio" data-vlfinal="' + vlfinal + '" name="quantparcela" id="formapagamento" value="' + i + '">' + i + 'x de R$ ' + priparcela + ' (' + textojuroc + ') </label><br>')
             } else if (formapg == 1) {
-                retorno.push('<label style="font-size: 10px;"><input type="radio" data-vlfinal="'+ vlfinal +'" name="quantparcela" id="formapagamento" value="' + i + '">' + i + 'x de R$ ' + priparcela + ' (' + textojuroc + ') </label><br>')
+                retorno.push('<label style="font-size: 10px;"><input type="radio" data-vlfinal="' + vlfinal + '" name="quantparcela" id="formapagamento" value="' + i + '">' + i + 'x de R$ ' + priparcela + ' (' + textojuroc + ') </label><br>')
             } else {
                 var ii = i - 1;
-                retorno.push('<label style="font-size: 10px;"><input type="radio" data-vlfinal="'+ vlfinal +'" name="quantparcela" id="formapagamento" value="' + i + '">' + i + 'x (1x de R$ ' + priparcela + ' e ' + ii + 'x de  R$ ' + demparcela + ' ' + textojuros + ') </label><br>')
+                retorno.push('<label style="font-size: 10px;"><input type="radio" data-vlfinal="' + vlfinal + '" name="quantparcela" id="formapagamento" value="' + i + '">' + i + 'x (1x de R$ ' + priparcela + ' e ' + ii + 'x de  R$ ' + demparcela + ' ' + textojuros + ') </label><br>')
             }
         }
 
@@ -619,7 +625,7 @@ $(function () {
                                         $.each(retorno2, function (key, opcionais) {
                                             $('#produtosopcionais').append(opcionais.html);
                                             $('#panelprodutosopcional').show();
-                                           
+
                                             if (opcionais.chkid) {
                                                 $('#comissao').change(function () {
 
@@ -713,7 +719,6 @@ $(function () {
     });
 
 
-
     $('input:radio').change(function () {
 
         if ($(this).attr('name') == 'tipopessoa') {
@@ -766,9 +771,9 @@ $(function () {
                 $.each(gerarParcelas(vltotal, values.maxparc, values.parcsemjuros, values.juros, menorparc, values.idforma), function (key, html) {
                     $('#parcelas').append(html);
                 })
-                $('input[name=quantparcela]').on('change',function () {
-                    if($(this).is(":checked")){
-                        $('#valortotal').text('R$ '+$(this).attr('data-vlfinal'))
+                $('input[name=quantparcela]').on('change', function () {
+                    if ($(this).is(":checked")) {
+                        $('#valortotal').text('R$ ' + $(this).attr('data-vlfinal'))
                     }
                 })
 
@@ -782,9 +787,9 @@ $(function () {
                     $('#parcelas').append(html);
                 })
                 $('#condutor-proprietario').removeClass('col-md-9').addClass('col-md-12');
-                $('input[name=quantparcela]').on('change',function () {
-                    if($(this).is(":checked")){
-                        $('#valortotal').text('R$ '+$(this).attr('data-vlfinal'))
+                $('input[name=quantparcela]').on('change', function () {
+                    if ($(this).is(":checked")) {
+                        $('#valortotal').text('R$ ' + $(this).attr('data-vlfinal'))
                     }
                 })
                 dadoscartao.hide();
@@ -1002,9 +1007,9 @@ $(function () {
                 url: $(this).attr('href'),
                 type: 'GET',
                 success: function (retorno) {
-
                     $('.modal-content').html(retorno);
 
+                    $('.modal-content').trigger('click');
 
                     return false;
                 }
@@ -1014,11 +1019,20 @@ $(function () {
 
     });
 
+    $('.modal-content').on('mouseover', function () {
+        $('.input-group.date').datepicker({
+            format: "dd/mm/yyyy",
+            clearBtn: true,
+            language: "pt-BR",
+            orientation: "auto",
+            endDate: "+Infinity",
+            autoclose: true
+        })
+    })
 
     $('body').on('mouseover', function () {
 
         // $("input,select,textarea").not("[type=submit]").jqBootstrapValidation();
-
 
         $(':input').each(function () {
 
@@ -1267,8 +1281,6 @@ $(function () {
             }
             // console.log($(this).attr('data'));
         })
-
-        
 
 
     });
