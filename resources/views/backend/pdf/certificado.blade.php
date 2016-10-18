@@ -28,7 +28,7 @@
                             <tr class="spacing">
                                 <td><b>Proposta: </b> {{$proposta->idproposta}}</td>
                                 <td><b>Apólice: </b> 3620</td>
-                                <td><b>Certifica: </b> {{$certificado->id}}</td>
+                                <td><b>Certificado: </b> {{$certificado->id}}</td>
                             </tr>
                             </tbody>
                         </table>

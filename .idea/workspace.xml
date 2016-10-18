@@ -2,23 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="158326c0-4f81-4588-bf4f-593b4ab725fa" name="Default" comment="Alterações nos viwes e criacoes de novos models">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Model/Seguradora.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/backend/show/baixarapolices.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/backend/show/emitirapolices.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Backend/ApolicesController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/ApolicesController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Backend/CertificadoController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/CertificadoController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Model/ApolicesSeguradora.php" afterPath="$PROJECT_DIR$/app/Model/ApolicesSeguradora.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Model/ConfigSeguradora.php" afterPath="$PROJECT_DIR$/app/Model/ConfigSeguradora.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Model/CustoProduto.php" afterPath="$PROJECT_DIR$/app/Model/CustoProduto.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Model/Produtos.php" afterPath="$PROJECT_DIR$/app/Model/Produtos.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Model/Propostas.php" afterPath="$PROJECT_DIR$/app/Model/Propostas.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Model/SeguradoraProduto.php" afterPath="$PROJECT_DIR$/app/Model/SeguradoraProduto.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/helpers.php" afterPath="$PROJECT_DIR$/app/helpers.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/themes/default/assets/js/script.js" afterPath="$PROJECT_DIR$/public/themes/default/assets/js/script.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/themes/default/views/layouts/cotacao.blade.php" afterPath="$PROJECT_DIR$/public/themes/default/views/layouts/cotacao.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/gestao/apolices.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/gestao/apolices.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/pdf/certificado.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/pdf/certificado.blade.php" />
     </list>
     <ignored path="sap.local.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,7 +28,7 @@
       <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
+            <state relative-caret-position="1920">
               <caret line="201" column="61" selection-start-line="201" selection-start-column="61" selection-end-line="201" selection-end-column="61" />
               <folding>
                 <element signature="e#3414#4486#1#PHP" expanded="false" />
@@ -70,8 +55,28 @@
       <file leaf-file-name="apolices.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/backend/gestao/apolices.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
+            <state relative-caret-position="618">
               <caret line="45" column="40" selection-start-line="41" selection-start-column="36" selection-end-line="45" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pdf.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/themes/default/views/layouts/pdf.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="certificado.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/backend/pdf/certificado.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="30" column="82" selection-start-line="30" selection-start-column="82" selection-end-line="30" selection-end-column="82" />
               <folding />
             </state>
           </provider>
@@ -80,7 +85,7 @@
       <file leaf-file-name="ApolicesController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/ApolicesController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="676">
+            <state relative-caret-position="690">
               <caret line="49" column="45" selection-start-line="49" selection-start-column="45" selection-end-line="49" selection-end-column="45" />
               <folding>
                 <element signature="e#48#76#0#PHP" expanded="true" />
@@ -93,18 +98,8 @@
       <file leaf-file-name="baixarapolices.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/backend/show/baixarapolices.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="287">
+            <state relative-caret-position="435">
               <caret line="29" column="87" selection-start-line="29" selection-start-column="87" selection-end-line="29" selection-end-column="87" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Certificados.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Model/Certificados.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="19" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -113,22 +108,32 @@
       <file leaf-file-name="Propostas.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Model/Propostas.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="406">
+            <state relative-caret-position="930">
               <caret line="62" column="81" selection-start-line="62" selection-start-column="81" selection-end-line="62" selection-end-column="81" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CertificadoController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CertificadoController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/CertificadoController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="91" column="0" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
+            <state relative-caret-position="165">
+              <caret line="115" column="31" selection-start-line="115" selection-start-column="31" selection-end-line="115" selection-end-column="31" />
               <folding>
                 <element signature="e#48#76#0#PHP" expanded="true" />
-                <marker date="1476481663803" expanded="true" signature="3926:3936" ph="..." />
+                <marker date="1476798836818" expanded="true" signature="3926:3936" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SeguradoraProduto.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Model/SeguradoraProduto.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -180,7 +185,6 @@
         <option value="$PROJECT_DIR$/app/Model/Combustivel.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/Controller.php" />
         <option value="$PROJECT_DIR$/app/Model/Certificados.php" />
-        <option value="$PROJECT_DIR$/resources/views/backend/pdf/certificado.blade.php" />
         <option value="$PROJECT_DIR$/app/Model/CotacaoProdutos.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/GestaoController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/AjaxController.php" />
@@ -201,6 +205,7 @@
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/ApolicesController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/CertificadoController.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/pdf/certificado.blade.php" />
       </list>
     </option>
   </component>
@@ -296,6 +301,20 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sap.local" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sap.local" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
@@ -366,30 +385,16 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sap.local" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sap.local" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../prime-contabilidade.com" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/CertificadoController.php&#10;cer&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Certificados.php&#10;pro&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Propostas.php&#10;apo&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/ApolicesSeguradora.php&#10;ap&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/ApolicesSeguradora.php&#10;route&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/routes.php&#10;onf&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/ConfigSeguradora.php&#10;conf&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/ConfigSeguradora.php&#10;Apolic&#9;null&#9;null&#10;pr&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Propostas.php&#10;hel&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/helpers.php&#10;propo&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Propostas.php&#10;veicu&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Veiculos.php&#10;cotaca&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/cotacao.blade.php&#10;ges&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/GestaoController.php&#10;e&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/show/emitirapolices.blade.php&#10;f&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/cotacao/form.blade.php&#10;form&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/cotacao/form.blade.php&#10;cu&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/CustoProduto.php&#10;cus&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/CustoProduto.php&#10;seg&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Seguradora.php&#10;cor&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Corretores.php&#10;sc&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/js/script.js&#10;prod&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Produtos.php&#10;rou&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/routes.php&#10;ve&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Veiculos.php&#10;vei&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Veiculos.php&#10;Fipe&#9;null&#9;null&#10;fipe&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/FipeAnoValor.php&#10;show&#9;null&#9;null&#10;a&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/ApolicesController.php&#10;js&#9;FILE&#9;file:///var/www/Myproject/sap.local/composer.json&#10;corr&#9;null&#9;null&#10;cobran&#9;null&#9;null&#10;veic&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Veiculos.php&#10;segu&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Segurado.php&#10;cotac&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/CotacaoController.php&#10;cert&#9;null&#9;null&#10;rout&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/routes.php&#10;Cus&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/CustoProduto.php&#10;cota&#9;null&#9;null&#10;se&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Segurado.php&#10;propos&#9;null&#9;null&#10;model&#9;null&#9;null&#10;app&#9;FILE&#9;file:///var/www/Myproject/sap.local/config/app.php&#10;pdf&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/css/pdf.css&#10;css&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/css/pdf.css&#10;.e&#9;FILE&#9;file:///var/www/Myproject/sap.local/.env&#10;st&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/css/style.css&#10;he&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/helpers.php" />
+    <property name="SearchEverywhereHistoryKey" value="cer&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/pdf/certificado.blade.php&#10;pdf&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/pdf.blade.php&#10;apo&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/gestao/apolices.blade.php&#10;pro&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Propostas.php&#10;ap&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/ApolicesSeguradora.php&#10;route&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/routes.php&#10;onf&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/ConfigSeguradora.php&#10;conf&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/ConfigSeguradora.php&#10;Apolic&#9;null&#9;null&#10;pr&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Propostas.php&#10;hel&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/helpers.php&#10;propo&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Propostas.php&#10;veicu&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Veiculos.php&#10;cotaca&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/cotacao.blade.php&#10;ges&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/GestaoController.php&#10;e&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/show/emitirapolices.blade.php&#10;f&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/cotacao/form.blade.php&#10;form&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/cotacao/form.blade.php&#10;cu&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/CustoProduto.php&#10;cus&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/CustoProduto.php&#10;seg&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Seguradora.php&#10;cor&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Corretores.php&#10;sc&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/js/script.js&#10;prod&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Produtos.php&#10;rou&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/routes.php&#10;ve&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Veiculos.php&#10;vei&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Veiculos.php&#10;Fipe&#9;null&#9;null&#10;fipe&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/FipeAnoValor.php&#10;show&#9;null&#9;null&#10;a&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/ApolicesController.php&#10;js&#9;FILE&#9;file:///var/www/Myproject/sap.local/composer.json&#10;corr&#9;null&#9;null&#10;cobran&#9;null&#9;null&#10;veic&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Veiculos.php&#10;segu&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Segurado.php&#10;cotac&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/CotacaoController.php&#10;cert&#9;null&#9;null&#10;rout&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/routes.php&#10;Cus&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/CustoProduto.php&#10;cota&#9;null&#9;null&#10;se&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Segurado.php&#10;propos&#9;null&#9;null&#10;model&#9;null&#9;null&#10;app&#9;FILE&#9;file:///var/www/Myproject/sap.local/config/app.php&#10;css&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/css/pdf.css&#10;.e&#9;FILE&#9;file:///var/www/Myproject/sap.local/.env&#10;st&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/css/style.css&#10;he&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/helpers.php" />
     <property name="ToolWindowREST Client.ShowToolbar" value="false" />
     <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
     <property name="js.buildTools.gulp.gulp_package_dir" value="$PROJECT_DIR$/node_modules/gulp" />
@@ -622,12 +627,15 @@
       <workItem from="1476373132846" duration="17547000" />
       <workItem from="1476404004703" duration="776000" />
       <workItem from="1476407032686" duration="660000" />
-      <workItem from="1476458879758" duration="22519000" />
+      <workItem from="1476458879758" duration="23216000" />
+      <workItem from="1476714939261" duration="69000" />
+      <workItem from="1476794108264" duration="811000" />
+      <workItem from="1476798600053" duration="1939000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="763142000" />
+    <option name="totallyTimeSpent" value="766658000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -643,14 +651,14 @@
     <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24981017" sideWeight="0.5051395" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21978852" sideWeight="0.4948605" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22885196" sideWeight="0.4948605" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32668713" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5927052" sideWeight="0.5027451" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32568806" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24941176" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39417177" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39296636" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930514" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297546" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -719,13 +727,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-405">
-          <caret line="35" column="15" selection-start-line="35" selection-start-column="15" selection-end-line="35" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/themes/default/assets/css/pdf.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2055">
@@ -803,13 +804,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/pdf/certificado.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3450">
-          <caret line="289" column="51" selection-start-line="289" selection-start-column="46" selection-end-line="289" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Model/Segurado.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -884,7 +878,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" column="58" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="58" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -892,7 +885,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="11" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -900,7 +892,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="14" column="22" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -908,7 +899,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="14" column="16" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -916,15 +906,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="55">
           <caret line="14" column="24" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Model/SeguradoraProduto.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="25" column="9" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -932,7 +913,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="12" column="24" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -940,18 +920,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1471635508277" expanded="true" signature="2373:2573" ph="..." />
-            <marker date="1471635508277" expanded="true" signature="2385:2571" ph="..." />
-            <marker date="1471635508277" expanded="true" signature="2844:3020" ph="..." />
-            <marker date="1471635508277" expanded="true" signature="2856:3018" ph="..." />
-            <marker date="1471635508277" expanded="true" signature="3977:4169" ph="..." />
-            <marker date="1471635508277" expanded="true" signature="3989:4167" ph="..." />
-            <marker date="1471635508277" expanded="true" signature="4435:4616" ph="..." />
-            <marker date="1471635508277" expanded="true" signature="4447:4614" ph="..." />
-            <marker date="1471635508277" expanded="true" signature="4886:5099" ph="..." />
-            <marker date="1471635508277" expanded="true" signature="4898:5097" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -959,23 +927,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding>
-            <marker date="1471635508285" expanded="true" signature="1667:1867" ph="..." />
-            <marker date="1471635508285" expanded="true" signature="1679:1865" ph="..." />
-            <marker date="1471635508285" expanded="true" signature="2190:2438" ph="..." />
-            <marker date="1471635508285" expanded="true" signature="2202:2436" ph="..." />
-            <marker date="1471635508285" expanded="true" signature="2697:2963" ph="..." />
-            <marker date="1471635508285" expanded="true" signature="2709:2961" ph="..." />
-            <marker date="1471635508285" expanded="true" signature="3227:3649" ph="..." />
-            <marker date="1471635508285" expanded="true" signature="3239:3647" ph="..." />
-            <marker date="1471635508285" expanded="true" signature="3407:3646" ph="..." />
-            <marker date="1471635508285" expanded="true" signature="3906:4137" ph="..." />
-            <marker date="1471635508285" expanded="true" signature="3918:4135" ph="..." />
-            <marker date="1471635508285" expanded="true" signature="4565:4749" ph="..." />
-            <marker date="1471635508285" expanded="true" signature="4577:4747" ph="..." />
-            <marker date="1471635508285" expanded="true" signature="5019:5191" ph="..." />
-            <marker date="1471635508285" expanded="true" signature="5031:5189" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -991,15 +942,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3640">
           <caret line="1027" column="33" selection-start-line="1027" selection-start-column="33" selection-end-line="1027" selection-end-column="33" />
-          <folding>
-            <element signature="e#2191#3243#0" expanded="false" />
-            <element signature="e#36142#46764#0" expanded="false" />
-            <element signature="e#46816#48738#0" expanded="false" />
-            <marker date="1476471330873" expanded="true" signature="9216:9232" ph="..." />
-            <marker date="1476471330873" expanded="true" signature="9498:9514" ph="..." />
-            <marker date="1476471330873" expanded="true" signature="9794:9810" ph="..." />
-            <marker date="1476471330873" expanded="true" signature="35087:35165" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1007,7 +949,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="790">
           <caret line="57" column="52" selection-start-line="57" selection-start-column="44" selection-end-line="57" selection-end-column="52" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1015,7 +956,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="16" column="22" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1023,7 +963,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="600">
           <caret line="40" column="48" selection-start-line="40" selection-start-column="48" selection-end-line="40" selection-end-column="48" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1031,7 +970,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1039,14 +977,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
           <caret line="305" column="85" selection-start-line="305" selection-start-column="8" selection-end-line="305" selection-end-column="85" />
-          <folding>
-            <element signature="e#885#1509#0#PHP" expanded="false" />
-            <element signature="e#13331#13366#0#PHP" expanded="false" />
-            <element signature="e#13371#14849#0#PHP" expanded="false" />
-            <element signature="e#14855#14890#0#PHP" expanded="false" />
-            <element signature="e#14896#15140#0#PHP" expanded="false" />
-            <element signature="e#15146#15418#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1054,7 +984,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="39" column="61" selection-start-line="39" selection-start-column="61" selection-end-line="39" selection-end-column="61" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1079,7 +1008,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="21" column="23" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1087,22 +1015,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="451">
           <caret line="56" column="3" selection-start-line="56" selection-start-column="3" selection-end-line="56" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Model/Propostas.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="62" column="81" selection-start-line="62" selection-start-column="81" selection-end-line="62" selection-end-column="81" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/gestao/apolices.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="45" column="40" selection-start-line="41" selection-start-column="36" selection-end-line="45" selection-end-column="40" />
           <folding />
         </state>
       </provider>
@@ -1127,17 +1039,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/show/baixarapolices.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="29" column="87" selection-start-line="29" selection-start-column="87" selection-end-line="29" selection-end-column="87" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
+        <state relative-caret-position="1920">
           <caret line="201" column="61" selection-start-line="201" selection-start-column="61" selection-end-line="201" selection-end-column="61" />
           <folding>
             <element signature="e#3414#4486#1#PHP" expanded="false" />
@@ -1146,9 +1050,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Model/Propostas.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="930">
+          <caret line="62" column="81" selection-start-line="62" selection-start-column="81" selection-end-line="62" selection-end-column="81" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/CertificadoController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="115" column="31" selection-start-line="115" selection-start-column="31" selection-end-line="115" selection-end-column="31" />
+          <folding>
+            <element signature="e#48#76#0#PHP" expanded="true" />
+            <marker date="1476798836818" expanded="true" signature="3926:3936" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Model/SeguradoraProduto.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/ApolicesController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="676">
+        <state relative-caret-position="690">
           <caret line="49" column="45" selection-start-line="49" selection-start-column="45" selection-end-line="49" selection-end-column="45" />
           <folding>
             <element signature="e#48#76#0#PHP" expanded="true" />
@@ -1157,14 +1088,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/CertificadoController.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/show/baixarapolices.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="91" column="0" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
-          <folding>
-            <element signature="e#48#76#0#PHP" expanded="true" />
-            <marker date="1476481663803" expanded="true" signature="3926:3936" ph="..." />
-          </folding>
+        <state relative-caret-position="435">
+          <caret line="29" column="87" selection-start-line="29" selection-start-column="87" selection-end-line="29" selection-end-column="87" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/gestao/apolices.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="618">
+          <caret line="45" column="40" selection-start-line="41" selection-start-column="36" selection-end-line="45" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/themes/default/views/layouts/pdf.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/pdf/certificado.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="30" column="82" selection-start-line="30" selection-start-column="82" selection-end-line="30" selection-end-column="82" />
+          <folding />
         </state>
       </provider>
     </entry>
