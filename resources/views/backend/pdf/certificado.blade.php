@@ -258,7 +258,8 @@
 
                 </tr>
                 <tr>
-                    <td>            <small style="color: red">S/C: Sem Cobertura</small>
+                    <td>
+                        <small style="color: red">S/C: Sem Cobertura</small>
                     </td>
                 </tr>
                 </tbody>
@@ -580,7 +581,8 @@
                     </ol>
                     </p>
 
-                    <p><b>Além dos documentos básicos, o segurado deverá apresentar ainda de acordo com a cobertura de
+                    <p>
+                        <b>Além dos documentos básicos, o segurado deverá apresentar ainda de acordo com a cobertura de
                             Perda Total por Colisão:</b>
                     <ol type="a">
                         <li>Boletim de Ocorrência Policial original ou cópia autenticada, no qual devem ser
@@ -652,9 +654,11 @@
                         da execução do presente resumo do seguro Auto.
                     </p></li>
             </ol>
+
         </div>
 
         <div class="contato">
+            Aviso de Sinistro em Caso de Roubo e Furto: 0800 77 25099 | (11) 2770-1601<br>
             Central de Atendimento 0800 723 2886; <br>
             Central de Atendimento Exclusivo SUSEP 0800 021 8484;<br>
             SAC QBE 0800 774 4419;<br>

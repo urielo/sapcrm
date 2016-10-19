@@ -38,17 +38,26 @@ class Veiculos extends Model
 
     public function segurado()
     {
-        return $this->belongsTo('App\Model\Segurado','clicpfcnpj','clicpfcnpj');
+        return $this->belongsTo('App\Model\Segurado', 'clicpfcnpj', 'clicpfcnpj');
     }
 
     public function fipe()
     {
-        return $this->belongsTo('App\Model\Fipes','veiccodfipe', 'codefipe');
+        return $this->belongsTo('App\Model\Fipes', 'veiccodfipe', 'codefipe');
     }
-    
+
+    /**
+     * @return array
+     */
+    public function fipe_ano_valor()
+    {
+        return $this->hasMany('App\Model\FipeAnoValor', 'codefipe', 'veiccodfipe');
+    }
+
     public function combustivel()
     {
-        return $this->belongsTo('App\Model\Combustivel','veictipocombus', 'id_auto_comb');
+        return $this->belongsTo('App\Model\Combustivel', 'veictipocombus', 'id_auto_comb');
     }
-    
+
+
 }

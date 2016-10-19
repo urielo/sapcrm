@@ -1,0 +1,91 @@
+.email-body{
+    background-color:#DCDCDC;
+}
+
+.email-header{
+    background-color: #FFFFFF;
+    padding: 3%;
+}
+.email-header img{
+    float: left;
+
+    margin-top: -2%;
+
+}
+
+.email-header h1{
+    margin-top: 1%;
+
+    color: #191970;
+    text-align:  center;
+    vertical-align: middle;
+    font-family: Copperplate,"Copperplate Gothic Light",fantasy;
+
+}
+
+.email-footer {
+    /*margin: 0;*/
+    background-color: #000000;
+    text-align: center;
+
+}
+.email-footer span{
+    font-weight: bold;
+    margin: 5% 0;
+    color: #ffffff;
+}
+
+.email-box-1 {
+    background-color: #0b97c4;
+    padding: 2%;
+
+}
+
+.email-box-1 p{
+    color: #ffffff;
+    text-align: center;
+    font-size: large;
+    font-weight: bold;
+
+}
+
+.email-box-1 h3{
+    color: #ffffff;
+    text-align: center;
+    font-size: large;
+}
+
+
+.email-box-2{
+    background-color: #ffffff;
+    padding: 2%;
+
+}
+
+.email-box-2 .nome{
+    color: #000000;
+    font-weight: bolder;
+}
+.email-box-2 p  {
+    text-align: center;
+    font-size: 150%;
+}
+
+.email-box-2 h3 {
+    color: #000000;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 120%;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+.email-box-2 h1{
+    color: #ff0000;
+    font-size: 300%;
+    font-weight: bolder;
+    text-align: center;
+    margin-top: 0;
+
+}
+
