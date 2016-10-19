@@ -146,9 +146,10 @@ Route::group(['prefix' => 'gestao', 'middleware' => 'auth'], function () {
         'uses' => 'Backend\ApolicesController@download']);
 
     Route::get('cobranca', [
-        'middleware' => ['permission:gestao-apolice-pdf'],
+        'middleware' => ['permission:gestao-cobranca'],
         'as' => 'gestao.cobranca',
         'uses' => 'Backend\GestaoController@cobranca']);
+    
     Route::get('pagamento/recusar/{idproposta}', [
         'middleware' => ['permission:gestao-aprovacao-recusar'],
         'as' => 'gestao.recusar',

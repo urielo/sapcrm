@@ -14,7 +14,7 @@ class RolesController extends Controller
 {
     public function index(Request $request)
     {
-        $roles= Role::All();
+        $roles = Role::All();
         $permissions = Permission::All();
 
         return view('backend.user.roles',compact('roles','permissions','request'));
