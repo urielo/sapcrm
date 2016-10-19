@@ -1,22 +1,19 @@
 .email-body{
+    padding-top: 0.5%;
     background-color:#DCDCDC;
 }
 
 .email-header{
     background-color: #FFFFFF;
     padding: 3%;
-}
-.email-header img{
-    float: left;
-
-    margin-top: -2%;
-
+    text-align:  center;
 }
 
-.email-header h1{
+
+.email-box-1 h1{
     margin-top: 1%;
 
-    color: #191970;
+    color: #ffffff;
     text-align:  center;
     vertical-align: middle;
     font-family: Copperplate,"Copperplate Gothic Light",fantasy;

@@ -99,14 +99,14 @@ class TesteController extends Controller
         ];
         $proposta = Propostas::find(307);
 
-//        return view('backend.mail.teste',compact('proposta'));
+        echo view('backend.mail.apolice',compact('proposta'));
 
         $file = fopen(public_path('certificado.pdf'), 'w');
         fwrite($file, base64_decode($proposta->certificado->pdf_base64));
         fclose($file);
 
 
-        Mail::send('backend.mail.teste', compact('proposta'), function ($m) use($file) {
+        Mail::send('backend.mail.apolice', compact('proposta'), function ($m) use($file) {
             $m->from('pedro@seguroautopratico.com.br', 'Teste');
             $m->attach(public_path('certificado.pdf'));
             $m->replyTo('apolices@seguroautopratico.com.br','Apolices');

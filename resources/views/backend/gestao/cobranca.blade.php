@@ -44,7 +44,7 @@
                                 <button type="button" class="btn btn-success btn-xs" data-toggle="modal"
                                         data-target=".modal-show"
                                         href="{{route('show.pagamento',$proposta->idproposta)}}"
-                                        id="pagar">Efetuar Pagamento
+                                        id="pagar">Agenda Pagamento
                                 </button>
 
 

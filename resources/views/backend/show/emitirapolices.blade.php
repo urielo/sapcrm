@@ -22,7 +22,7 @@
             {!! Form::label('datavirgencia', 'Inicio Virgencia') !!}
 
             <div class="input-group date">
-                {!! Form::text('datavirgencia',date('d/m/Y'),
+                {!! Form::text('datavirgencia', (empty($proposta->cobranca->dtpagamento) ? date('d/m/Y'): date('d/m/Y',strtotime($proposta->cobranca->dtpagamento))),
                                            ['class'=> 'form-control form-control-sm',
                                            'data-date-format'=> 'dd/mm/yyyy',
                                            'placeholder'=> 'DD/MM/YYYY',

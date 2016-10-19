@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Seguro Auto Pratico</title>
+    <title>Seguro AUTOPRATICO</title>
 {{--    <link rel="stylesheet" href="{{ theme('css/backend.css') }}">--}}
 
 
@@ -86,6 +86,10 @@
                         <li><a href="{{route('usuarios.gestao')}}">Usuários</a></li>
                         @endpermission
 
+                        @permission('altera-grupo')
+                        <li><a href="{{route('grupos.index')}}">Grupos</a></li>
+                        @endpermission
+
                         <li><a href="{{route('backend.upload')}}">Upload</a></li>
 
 
@@ -104,7 +108,7 @@
 </nav>
 
 <div class="container-fluid" id="allbody">
-    <div class="row row-offcanvas row-offcanvas-left">
+    <div class="row">
         @yield('content')
     </div>
 </div>

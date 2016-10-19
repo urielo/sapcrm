@@ -12,14 +12,19 @@ Route::get('/', [
 ]);
 
 
-Route::group(['prefix'=>'teste'], function () {
-    Route::get('/','Backend\TesteController@index');
-    Route::get('/mail','Backend\TesteController@mail');
-    
-    
+Route::group(['prefix' => 'teste'], function () {
+    Route::get('/', 'Backend\TesteController@index');
+    Route::get('/mail', 'Backend\TesteController@mail');
+
+
 });
 
-Route::get('/certificado/{idproposta}',['as'=>'certificado','uses'=>'Backend\ApolicesController@index']);
+Route::get('/certificado/{idproposta}', ['as' => 'certificado', 'uses' => 'Backend\ApolicesController@index']);
+
+Route::group(['prefix' => 'grupos', 'middleware' => ['permission:altera-grupo']], function () {
+    Route::get('/', ['as' => 'grupos.index', 'uses' => 'Backend\RolesController@index']);
+    Route::post('/update', ['as' => 'grupos.update', 'uses' => 'Backend\RolesController@update']);
+});
 
 
 Route::group(['prefix' => 'ajax'], function () {
@@ -52,7 +57,7 @@ Route::group(['prefix' => 'usuario', 'middleware' => 'auth'], function () {
             'uses' => 'Backend\UserController@search'
         ]
     );
-    
+
     Route::get('/alterstatus/{iduser}', [
             'middleware' => ['permission:usuarios-gestao'],
             'as' => 'usuarios.alterstatus',
@@ -124,7 +129,7 @@ Route::group(['prefix' => 'gestao', 'middleware' => 'auth'], function () {
         'middleware' => ['permission:gestao-apolice-emitir'],
         'as' => 'apolices.show',
         'uses' => 'Backend\ApolicesController@showModal']);
-    
+
     Route::get('apolices/showemitidas/{idproposta}', [
         'middleware' => ['permission:gestao-apolice-emitir'],
         'as' => 'apolices.showemiditas',
@@ -134,7 +139,7 @@ Route::group(['prefix' => 'gestao', 'middleware' => 'auth'], function () {
         'middleware' => ['permission:gestao-apolice-emitir'],
         'as' => 'apolices.emitir',
         'uses' => 'Backend\ApolicesController@emitir']);
-    
+
     Route::post('apolices/download', [
         'middleware' => ['permission:gestao-apolice-emitir'],
         'as' => 'apolices.download',
