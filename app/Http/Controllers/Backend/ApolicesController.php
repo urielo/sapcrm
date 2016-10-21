@@ -162,6 +162,7 @@ class ApolicesController extends Controller
             Mail::send('backend.mail.apolice', compact('proposta'), function ($m) use ($file, $proposta, $apolice) {
                 $m->from('apolice@seguroautopratico.com.br', 'Apolices');
                 $m->attach($apolice);
+                $m->bcc('apolices_enviadas@seguroautopratico.com.br');
                 $m->replyTo('apolice@seguroautopratico.com.br', 'Apolices');
                 (strlen($proposta->cotacao->corretor->corremail) > 3 ? $m->cc($proposta->cotacao->corretor->corremail, primeiroNome($proposta->cotacao->corretor->corrnomerazao)) : NULL);
                 $m->to($proposta->cotacao->segurado->cliemail, primeiroNome($proposta->cotacao->segurado->clinomerazao))->subject('Apolice');
