@@ -167,6 +167,7 @@ class ApolicesController extends Controller
                 $m->to($proposta->cotacao->segurado->cliemail, primeiroNome($proposta->cotacao->segurado->clinomerazao))->subject('Apolice');
             });
             unlink($apolice);
+            return Redirect::back()->with('sucesso', 'Email enviado com sucesso! ');
 
         } else {
             return Redirect::back()->with('error', 'Error ao tentar enviar, o email do cliente é inválido! ');
