@@ -27,11 +27,16 @@
                     {!! Form::hidden('filename','Certificado_'.$proposta->idproposta) !!}
                     {!! Form::hidden('base64',$proposta->certificado->pdf_base64) !!}
 
-                    <button type="submit" class="btn btn-danger btn-sm" target="_blank">Baixar
+                    <button type="submit" class="btn btn-danger btn-sm" target="_blank"><span class="glyphicon glyphicon-save-file" aria-hidden="true"></span>  Baixar
                     </button>
 
                     {!!Form::close()!!}
 
+                </div>
+                <div class="btn-group">
+                    <a href="{{ route('apolices.email',$proposta->idproposta) }}">
+                        <button type="submit" class="btn btn-success btn-sm"> <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Enviar Email</button>
+                    </a>
                 </div>
             </div>
         </div>

@@ -130,6 +130,11 @@ Route::group(['prefix' => 'gestao', 'middleware' => 'auth'], function () {
         'as' => 'apolices.show',
         'uses' => 'Backend\ApolicesController@showModal']);
 
+    Route::get('apolices/email/{idproposta}', [
+        'middleware' => ['permission:gestao-apolice-emitir'],
+        'as' => 'apolices.email',
+        'uses' => 'Backend\ApolicesController@email']);
+
     Route::get('apolices/showemitidas/{idproposta}', [
         'middleware' => ['permission:gestao-apolice-emitir'],
         'as' => 'apolices.showemiditas',

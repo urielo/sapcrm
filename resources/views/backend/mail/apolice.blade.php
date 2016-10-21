@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-md-12 email-header">
 
-                    <img src="{{theme('images/logo.png')}}" alt="">
+                    <a href="www.seguroautopratico.com.br"><img title="SeguroAUTOPRATICO" src="{{theme('images/logo.png')}}" alt="Seguro AUTOPRATICO"></a>
 
                 </div>
             </div>

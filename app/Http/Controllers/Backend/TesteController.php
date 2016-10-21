@@ -93,10 +93,7 @@ class TesteController extends Controller
     {
         
 
-        $datas = [
-            'title' => 'Teste do Email',
-            'content' => 'Ness email vai o teste do mailgun',
-        ];
+       
         $proposta = Propostas::find(307);
 
         echo view('backend.mail.apolice',compact('proposta'));

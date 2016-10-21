@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 use Illuminate\Support\Facades\Redirect;
 
@@ -70,7 +71,6 @@ class ApolicesController extends Controller
         }
 
     }
-
 
     public function showModal($idproposta)
     {
@@ -144,5 +144,34 @@ class ApolicesController extends Controller
         $proposta = Propostas::find($idproposta);
 
         return view('backend.show.baixarapolices', compact('proposta'));
+    }
+
+
+    public function email($idproposta)
+    {
+
+        $proposta = Propostas::find($idproposta);
+
+        if (strlen($proposta->cotacao->segurado->cliemail) > 3) {
+            $apolice = public_path('Certificado.pdf');
+
+            $file = fopen($apolice, 'w');
+            fwrite($file, base64_decode($proposta->certificado->pdf_base64));
+            fclose($file);
+
+            Mail::send('backend.mail.apolice', compact('proposta'), function ($m) use ($file, $proposta, $apolice) {
+                $m->from('apolice@seguroautopratico.com.br', 'Apolices');
+                $m->attach($apolice);
+                $m->replyTo('apolice@seguroautopratico.com.br', 'Apolices');
+                (strlen($proposta->cotacao->corretor->corremail) > 3 ? $m->cc($proposta->cotacao->corretor->corremail, primeiroNome($proposta->cotacao->corretor->corrnomerazao)) : NULL);
+                $m->to($proposta->cotacao->segurado->cliemail, primeiroNome($proposta->cotacao->segurado->clinomerazao))->subject('Apolice');
+            });
+            unlink($apolice);
+
+        } else {
+            return Redirect::back()->with('error', 'Error ao tentar enviar, o email do cliente é inválido! ');
+
+        }
+
     }
 }

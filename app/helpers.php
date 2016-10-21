@@ -339,5 +339,46 @@ if (!function_exists('between')):
     }
 
 endif;
+if (!function_exists('primeiroNome')):
+
+    /**
+     * Get a users first name from the full name
+     * or return the full name if first name cannot be found
+     * e.g.
+     * James Smith 	    -> James
+     * James C. Smith   -> James
+     * Mr James Smith   -> James
+     * Mr Smith 	    -> Mr Smith
+     * Mr J Smith 	    -> Mr J Smith
+     * Mr J. Smith 	    -> Mr J. Smith
+     *
+     * @param string $fullName
+     * @param bool   $checkFirstNameLength Should we make sure it doesn't just return "J" as a name? Defaults to TRUE.
+     *
+     * @return string
+     */
+    function primeiroNome($fullName, $checkFirstNameLength=TRUE)
+    {
+        // Split out name so we can quickly grab the first name part
+        $nameParts = explode(' ', $fullName);
+        $firstName = $nameParts[0];
+        // If the first part of the name is a prefix, then find the name differently
+        if(in_array(strtolower($firstName), array('sr', 'sra', 'srs', 'sras', 'dr','dra'))) {
+            if($nameParts[2]!='') {
+                // E.g. Mr James Smith -> James
+                $firstName = $nameParts[1];
+            } else {
+                // e.g. Mr Smith (no first name given)
+                $firstName = $fullName;
+            }
+        }
+        // make sure the first name is not just "J", e.g. "J Smith" or "Mr J Smith" or even "Mr J. Smith"
+        if($checkFirstNameLength && strlen($firstName)<3) {
+            $firstName = $fullName;
+        }
+        return $firstName;
+    }
+
+endif;
 
 
