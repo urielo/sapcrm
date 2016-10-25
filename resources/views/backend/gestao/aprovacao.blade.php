@@ -31,7 +31,8 @@
                     </td>
                     <td>
 
-                        {!! date('d/m/Y', strtotime($proposta->dtvencimento)) !!}
+
+                        {!! ( empty($proposta->proposta->cobranca->dtvencimento) ? NULL : date('d/m/Y', strtotime($proposta->proposta->cobranca->dtvencimento))) !!}
 
                     </td>
                     <td><a href="#" class="">{!! format('placa',$proposta->proposta->cotacao->veiculo->veicplaca) !!}</a></td>
@@ -41,7 +42,7 @@
 
                         <div class="btn-group" role="group">
 
-                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
+                            <button type="button" class="btn btn-success btn-xs" data-toggle="modal"
                                     data-target=".modal-show"
                                     href="{{route('show.confirmapgto',$proposta->proposta->idproposta)}}"
                                     id="comfirmapgto">Confirmar
@@ -52,7 +53,7 @@
 
                         <div class="btn-group" role="group">
                             <a href="{{route('gestao.recusar',$proposta->proposta->idproposta)}}">
-                                <button type="button" class="btn btn-danger btn-sm"
+                                <button type="button" class="btn btn-danger btn-xs"
                                         id="recusar">Recusar
                                 </button>
                             </a>

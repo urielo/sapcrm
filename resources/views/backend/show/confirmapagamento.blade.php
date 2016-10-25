@@ -13,7 +13,7 @@
             {!! Form::hidden('idproposta',$proposta->idproposta) !!}
             @if($proposta->idformapg == 1)
 
-                @foreach($proposta->cobranca as $cobranca)
+                @foreach($proposta->cobranca()->where('idstatus',14)->get()  as $cobranca)
                     <h4 style="text-align: center"> Dados Cartão</h4>
                     <div class="row">
                         <div class="col-md-4">
@@ -78,7 +78,7 @@
             @else
 
 
-                @foreach($proposta->cobranca as $cobranca)
+                @foreach($proposta->cobranca()->where('idstatus',14)->get() as $cobranca)
                     <div class="row">
                         <div class="col-md-6">
                             <b>VENCIMENTO PRIMEIRA: </b> {!! date('d/m/Y',strtotime($cobranca->dtvencimento)) !!}
