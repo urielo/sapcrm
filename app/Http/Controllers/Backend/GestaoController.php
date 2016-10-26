@@ -56,7 +56,7 @@ class GestaoController extends Controller
 
     public function apolices()
     {
-        $propostas = $this->propostas->whereIn('idstatus', [15,24,18])
+        $propostas = $this->propostas->whereIn('idstatus', [15, 24, 18])
             ->orderBy('idproposta', 'asc')
             ->get();
 
@@ -282,8 +282,7 @@ class GestaoController extends Controller
 
     public function aprovacao()
     {
-        $propostas = Cobranca::distinct()->select('idproposta')
-            ->whereIdstatus(14)
+        $propostas = Cobranca::whereIdstatus(14)
             ->orderBy('idproposta', 'asc')
             ->get();
 
@@ -390,21 +389,20 @@ class GestaoController extends Controller
 
         $proposta = Propostas::find($request->idproposta);
 
-        foreach ($proposta->cobranca as $cobranca):
-            if ($cobranca->idstatus == 14) {
+        foreach ($proposta->cobranca()->where('idstatus', 14)->get() as $cobranca):
 
-                if ($proposta->idformapg == 1) {
-                    $cobranca->numpagamento = $request->cvrecibocartao;
+            if ($proposta->idformapg == 1) {
+                $cobranca->numpagamento = $request->cvrecibocartao;
 
-                } else {
-                    $cobranca->numpagamento = $request->numboleto;
-                    $cobranca->operadora = $request->numboleto;
-                }
-
-                $cobranca->dtpagamento = getDateFormat($request->datapgto,'nascimento');
-                $cobranca->idstatus = 15;
-                $cobranca->save();
+            } else {
+                $cobranca->numpagamento = $request->numboleto;
+                $cobranca->operadora = $request->numboleto;
             }
+
+            $cobranca->dtpagamento = getDateFormat($request->datapgto, 'nascimento');
+            $cobranca->idstatus = 15;
+            $cobranca->save();
+
 
         endforeach;
 

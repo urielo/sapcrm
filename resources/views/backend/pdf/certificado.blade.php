@@ -69,7 +69,7 @@
                                 <td><b>CPF: </b> {!! format('cpfcnpj',$proposta->cotacao->segurado->clicpfcnpj) !!}</td>
                             </tr>
                             <tr class="spacing">
-                                <td><b>Endereço: </b> {{$proposta->cotacao->segurado->clinmcidade}}
+                                <td><b>Endereço: </b> {{$proposta->cotacao->segurado->clinmend}}
                                     , {{$proposta->cotacao->segurado->clinumero}} </td>
                                 <td><b>Complemento: </b> {{$proposta->cotacao->segurado->cliendcomplet}}</td>
                             </tr>

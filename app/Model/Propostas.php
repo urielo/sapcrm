@@ -51,6 +51,10 @@ class Propostas extends Model
     {
         return $this->hasOne('App\Model\Cobranca', 'idproposta', 'idproposta');
     }
+    public function cobrancas()
+    {
+        return $this->hasMany('App\Model\Cobranca', 'idproposta', 'idproposta');
+    }
     
     public function apoliceseguradora()
     {

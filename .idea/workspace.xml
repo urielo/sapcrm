@@ -3,8 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="158326c0-4f81-4588-bf4f-593b4ab725fa" name="Default" comment="Alterações nos viwes e criacoes de novos models">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/gestao/aprovacao.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/gestao/aprovacao.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/show/confirmapagamento.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/show/confirmapagamento.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Backend/GestaoController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/GestaoController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Model/Propostas.php" afterPath="$PROJECT_DIR$/app/Model/Propostas.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Model/Segurado.php" afterPath="$PROJECT_DIR$/app/Model/Segurado.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/pdf/certificado.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/pdf/certificado.blade.php" />
     </list>
     <ignored path="sap.local.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,8 +43,8 @@
       <file leaf-file-name="Segurado.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Model/Segurado.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="17" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="17" />
+            <state relative-caret-position="525">
+              <caret line="35" column="17" selection-start-line="35" selection-start-column="17" selection-end-line="35" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -61,21 +63,31 @@
       <file leaf-file-name="aprovacao.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/backend/gestao/aprovacao.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="690">
-              <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+            <state relative-caret-position="255">
+              <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="confirmapagamento.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-7">
+              <caret line="114" column="74" selection-start-line="114" selection-start-column="74" selection-end-line="114" selection-end-column="74" />
+              <folding>
+                <element signature="e#4019#6399#1#PHP" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="confirmapagamento.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/backend/show/confirmapagamento.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+            <state relative-caret-position="45">
+              <caret line="15" column="46" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="76" />
               <folding>
-                <element signature="e#657#683#0#HTML" expanded="true" />
-                <element signature="e#2106#2132#0#HTML" expanded="true" />
                 <marker date="1477362469224" expanded="true" signature="2405:2605" ph="..." />
                 <marker date="1477362469224" expanded="true" signature="2417:2603" ph="..." />
                 <marker date="1477362469224" expanded="true" signature="2876:3052" ph="..." />
@@ -101,17 +113,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GestaoController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GestaoController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/GestaoController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="106">
-              <caret line="387" column="55" selection-start-line="387" selection-start-column="55" selection-end-line="387" selection-end-column="55" />
+            <state relative-caret-position="468">
+              <caret line="411" column="26" selection-start-line="411" selection-start-column="26" selection-end-line="411" selection-end-column="26" />
               <folding>
-                <element signature="e#13371#14849#0#PHP" expanded="false" />
-                <element signature="e#14896#15140#0#PHP" expanded="false" />
-                <element signature="e#15464#15880#0#PHP" expanded="false" />
-                <element signature="e#15887#17555#0#PHP" expanded="false" />
-                <element signature="e#17561#17958#0#PHP" expanded="false" />
+                <element signature="e#1809#13327#0#PHP" expanded="false" />
+                <element signature="e#13373#14851#0#PHP" expanded="false" />
+                <element signature="e#14898#15142#0#PHP" expanded="false" />
+                <element signature="e#15148#15373#0#PHP" expanded="false" />
+                <element signature="e#15419#15835#0#PHP" expanded="false" />
+                <element signature="e#15842#17510#0#PHP" expanded="false" />
+                <element signature="e#17516#17913#0#PHP" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -120,8 +134,8 @@
       <file leaf-file-name="Propostas.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Model/Propostas.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="421">
-              <caret line="62" column="81" selection-start-line="62" selection-start-column="81" selection-end-line="62" selection-end-column="81" />
+            <state relative-caret-position="224">
+              <caret line="53" column="2" selection-start-line="53" selection-start-column="2" selection-end-line="53" selection-end-column="2" />
               <folding />
             </state>
           </provider>
@@ -154,7 +168,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/config/mail.php" />
         <option value="$PROJECT_DIR$/database/migrations/2016_09_14_125239_add_column_id_tipoveiculo_table_precoprodutofipe.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php" />
         <option value="$PROJECT_DIR$/public/themes/default/assets/css/style.css" />
@@ -172,7 +185,6 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/Controller.php" />
         <option value="$PROJECT_DIR$/app/Model/Certificados.php" />
         <option value="$PROJECT_DIR$/app/Model/CotacaoProdutos.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/GestaoController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/AjaxController.php" />
         <option value="$PROJECT_DIR$/app/Model/SeguradoraProduto.php" />
         <option value="$PROJECT_DIR$/app/Model/Seguradora.php" />
@@ -183,11 +195,9 @@
         <option value="$PROJECT_DIR$/app/Model/ConfigSeguradora.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/gestao/apolices.blade.php" />
         <option value="$PROJECT_DIR$/app/Model/ApolicesSeguradora.php" />
-        <option value="$PROJECT_DIR$/app/Model/Propostas.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/CertificadoController.php" />
         <option value="$PROJECT_DIR$/app/Model/Veiculos.php" />
         <option value="$PROJECT_DIR$/composer.json" />
-        <option value="$PROJECT_DIR$/resources/views/backend/pdf/certificado.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/mail/teste.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/gestao/cobranca.blade.php" />
         <option value="$PROJECT_DIR$/public/themes/default/assets/css/email.css" />
@@ -205,6 +215,10 @@
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/resources/views/backend/gestao/aprovacao.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/show/confirmapagamento.blade.php" />
+        <option value="$PROJECT_DIR$/app/Model/Segurado.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/pdf/certificado.blade.php" />
+        <option value="$PROJECT_DIR$/app/Model/Propostas.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/GestaoController.php" />
       </list>
     </option>
   </component>
@@ -272,8 +286,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -374,12 +386,14 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../prime-contabilidade.com" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="conf&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/show/confirmapagamento.blade.php&#10;pro&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Propostas.php&#10;cobranca&#9;null&#9;null&#10;proposta&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Propostas.php&#10;aprov&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/gestao/aprovacao.blade.php&#10;segura&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Segurado.php&#10;segu&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/SeguradoraProduto.php&#10;cotac&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/cotacao.blade.php&#10;ema&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/emails.blade.php&#10;bootstrap.&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/src/css/bootstrap.min.css&#10;email&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/css/email.css&#10;e&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/emails.blade.php&#10;apolice&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/mail/apolice.blade.php&#10;emai&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/emails.blade.php&#10;rou&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/routes.php&#10;corre&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Corretores.php&#10;he&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/helpers.php&#10;tes&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/TesteController.php&#10;cota&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/cotacao.blade.php&#10;route&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/routes.php&#10;back&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/backend.blade.php&#10;propost&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Propostas.php&#10;cobra&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/gestao/cobranca.blade.php&#10;ce&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/pdf/certificado.blade.php&#10;cer&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Certificados.php&#10;seg&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/SeguradoraProduto.php&#10;bac&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/backend.blade.php&#10;em&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/emails.blade.php&#10;ba&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/backend.blade.php&#10;Pr&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Propostas.php&#10;fipe&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/FipeAnoValor.php&#10;veicu&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Veiculos.php&#10;pdf&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/pdf.blade.php&#10;apo&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/gestao/apolices.blade.php&#10;ap&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/ApolicesSeguradora.php&#10;onf&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/ConfigSeguradora.php&#10;Apolic&#9;null&#9;null&#10;pr&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Propostas.php&#10;hel&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/helpers.php&#10;propo&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Propostas.php&#10;cotaca&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/cotacao.blade.php&#10;ges&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/GestaoController.php&#10;f&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/cotacao/form.blade.php&#10;form&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/cotacao/form.blade.php&#10;cu&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/CustoProduto.php&#10;cus&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/CustoProduto.php&#10;cor&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Corretores.php&#10;sc&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/js/script.js&#10;prod&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Produtos.php&#10;ve&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Veiculos.php" />
+    <property name="SearchEverywhereHistoryKey" value="pro&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Propostas.php&#10;rou&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/routes.php&#10;cert&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/pdf/certificado.blade.php&#10;conf&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/show/confirmapagamento.blade.php&#10;cobranca&#9;null&#9;null&#10;proposta&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Propostas.php&#10;aprov&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/gestao/aprovacao.blade.php&#10;segura&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Segurado.php&#10;segu&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/SeguradoraProduto.php&#10;cotac&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/cotacao.blade.php&#10;ema&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/emails.blade.php&#10;bootstrap.&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/src/css/bootstrap.min.css&#10;email&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/css/email.css&#10;e&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/emails.blade.php&#10;apolice&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/mail/apolice.blade.php&#10;emai&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/emails.blade.php&#10;corre&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Corretores.php&#10;he&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/helpers.php&#10;tes&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/TesteController.php&#10;cota&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/cotacao.blade.php&#10;route&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/routes.php&#10;back&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/backend.blade.php&#10;propost&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Propostas.php&#10;cobra&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/gestao/cobranca.blade.php&#10;ce&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/pdf/certificado.blade.php&#10;cer&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Certificados.php&#10;seg&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/SeguradoraProduto.php&#10;bac&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/backend.blade.php&#10;em&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/emails.blade.php&#10;ba&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/backend.blade.php&#10;Pr&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Propostas.php&#10;fipe&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/FipeAnoValor.php&#10;veicu&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Veiculos.php&#10;pdf&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/pdf.blade.php&#10;apo&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/gestao/apolices.blade.php&#10;ap&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/ApolicesSeguradora.php&#10;onf&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/ConfigSeguradora.php&#10;Apolic&#9;null&#9;null&#10;pr&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Propostas.php&#10;hel&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/helpers.php&#10;propo&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Propostas.php&#10;cotaca&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/cotacao.blade.php&#10;ges&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/GestaoController.php&#10;f&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/cotacao/form.blade.php&#10;form&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/cotacao/form.blade.php&#10;cu&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/CustoProduto.php&#10;cus&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/CustoProduto.php&#10;cor&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Corretores.php&#10;sc&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/js/script.js&#10;prod&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Produtos.php" />
     <property name="ToolWindowREST Client.ShowToolbar" value="false" />
     <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
     <property name="js.buildTools.gulp.gulp_package_dir" value="$PROJECT_DIR$/node_modules/gulp" />
@@ -628,11 +642,13 @@
       <workItem from="1477005472024" duration="5723000" />
       <workItem from="1477059538037" duration="2458000" />
       <workItem from="1477358802411" duration="3312000" />
+      <workItem from="1477441340126" duration="1788000" />
+      <workItem from="1477484488284" duration="871000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="806805000" />
+    <option name="totallyTimeSpent" value="809464000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -648,14 +664,14 @@
     <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24981017" sideWeight="0.5051395" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27114803" sideWeight="0.4948605" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27870092" sideWeight="0.4948605" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32668713" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5927052" sideWeight="0.5027451" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32568806" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24941176" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39263803" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12079511" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930514" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297546" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -899,13 +915,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/pdf/certificado.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9900">
-          <caret line="660" column="0" selection-start-line="660" selection-start-column="0" selection-end-line="661" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/database.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="93">
@@ -924,7 +933,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -954,7 +962,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="14" column="22" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -962,7 +969,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="14" selection-start-line="0" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -970,7 +976,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="1214" selection-start-line="0" selection-start-column="0" selection-end-line="5" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -985,17 +990,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1005">
-          <caret line="134" column="17" selection-start-line="134" selection-start-column="17" selection-end-line="134" selection-end-column="31" />
-          <folding>
-            <element signature="e#1871#2939#1#PHP" expanded="false" />
-            <element signature="e#3004#3954#1#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1023,30 +1017,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Model/Segurado.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="17" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Model/Cobranca.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="39" selection-start-line="4" selection-start-column="39" selection-end-line="4" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Model/Propostas.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="421">
-          <caret line="62" column="81" selection-start-line="62" selection-start-column="81" selection-end-line="62" selection-end-column="81" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -1055,26 +1025,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/gestao/aprovacao.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/ApolicesController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="745">
           <caret line="164" column="70" selection-start-line="164" selection-start-column="70" selection-end-line="164" selection-end-column="70" />
-          <folding>
-            <element signature="e#48#76#0#PHP" expanded="true" />
-            <element signature="e#514#998#0#PHP" expanded="false" />
-            <element signature="e#1004#1245#0#PHP" expanded="false" />
-            <element signature="e#1251#2098#0#PHP" expanded="false" />
-            <element signature="e#2104#4361#0#PHP" expanded="false" />
-            <element signature="e#4367#4549#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1086,27 +1040,61 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/GestaoController.php">
+    <entry file="file://$PROJECT_DIR$/app/Model/Segurado.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="387" column="55" selection-start-line="387" selection-start-column="55" selection-end-line="387" selection-end-column="55" />
+        <state relative-caret-position="525">
+          <caret line="35" column="17" selection-start-line="35" selection-start-column="17" selection-end-line="35" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/pdf/certificado.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="195" column="21" selection-start-line="195" selection-start-column="21" selection-end-line="195" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-7">
+          <caret line="114" column="74" selection-start-line="114" selection-start-column="74" selection-end-line="114" selection-end-column="74" />
           <folding>
-            <element signature="e#13371#14849#0#PHP" expanded="false" />
-            <element signature="e#14896#15140#0#PHP" expanded="false" />
-            <element signature="e#15464#15880#0#PHP" expanded="false" />
-            <element signature="e#15887#17555#0#PHP" expanded="false" />
-            <element signature="e#17561#17958#0#PHP" expanded="false" />
+            <element signature="e#4019#6399#1#PHP" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Model/Cobranca.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="39" selection-start-line="4" selection-start-column="39" selection-end-line="4" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/gestao/aprovacao.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Model/Propostas.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="53" column="2" selection-start-line="53" selection-start-column="2" selection-end-line="53" selection-end-column="2" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/backend/show/confirmapagamento.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+        <state relative-caret-position="45">
+          <caret line="15" column="46" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="76" />
           <folding>
-            <element signature="e#657#683#0#HTML" expanded="true" />
-            <element signature="e#2106#2132#0#HTML" expanded="true" />
             <marker date="1477362469224" expanded="true" signature="2405:2605" ph="..." />
             <marker date="1477362469224" expanded="true" signature="2417:2603" ph="..." />
             <marker date="1477362469224" expanded="true" signature="2876:3052" ph="..." />
@@ -1117,6 +1105,22 @@
             <marker date="1477362469224" expanded="true" signature="4510:4677" ph="..." />
             <marker date="1477362469224" expanded="true" signature="4949:5162" ph="..." />
             <marker date="1477362469224" expanded="true" signature="4961:5160" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/GestaoController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="411" column="26" selection-start-line="411" selection-start-column="26" selection-end-line="411" selection-end-column="26" />
+          <folding>
+            <element signature="e#1809#13327#0#PHP" expanded="false" />
+            <element signature="e#13373#14851#0#PHP" expanded="false" />
+            <element signature="e#14898#15142#0#PHP" expanded="false" />
+            <element signature="e#15148#15373#0#PHP" expanded="false" />
+            <element signature="e#15419#15835#0#PHP" expanded="false" />
+            <element signature="e#15842#17510#0#PHP" expanded="false" />
+            <element signature="e#17516#17913#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
