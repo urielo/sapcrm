@@ -61,3 +61,7 @@ header nav li:last-of-type{
     width: 200px;
     float: right;
 }
+
+.btn-label{
+    padding-top: 16%;
+}

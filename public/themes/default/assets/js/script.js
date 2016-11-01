@@ -19,6 +19,18 @@ $(function () {
     var produtosvalores = [];
     var menorparc = 0.0;
 
+    function addCommas(nStr) {
+        nStr += '';
+        x = nStr.split('.');
+        x1 = x[0];
+        x2 = x.length > 1 ? ',' + x[1] : '';
+        var rgx = /(\d+)(\d{3})/;
+        while (rgx.test(x1)) {
+            x1 = x1.replace(rgx, '$1' + '.' + '$2');
+        }
+        return x1 + x2;
+    }
+
     diverror.removeClass('hide');
     divano.removeClass('hide');
     panelsegurado.removeClass('hide');
@@ -279,9 +291,9 @@ $(function () {
                 vlfinal = demparcela * i;
             }
 
-            vlfinal = vlfinal.toFixed(2).replace('.', ',');
-            priparcela = priparcela.toFixed(2).replace('.', ',');
-            demparcela = demparcela.toFixed(2).replace('.', ',');
+            vlfinal = addCommas(vlfinal.toFixed(2));
+            priparcela = addCommas(priparcela.toFixed(2));
+            demparcela = addCommas(demparcela.toFixed(2));
             if (i == 1) {
                 retorno.push('<label style="font-size: 10px;"><input type="radio" data-vlfinal="' + vlfinal + '" name="quantparcela" id="formapagamento" value="' + i + '">' + i + 'x de R$ ' + priparcela + ' (' + textojuroc + ') </label><br>')
             } else if (formapg == 1) {
@@ -303,7 +315,7 @@ $(function () {
 
     function reusltAutoComplete(cdfipe) {
         $('#codefip-value').val(cdfipe);
-        $('#codefip-text').text(cdfipe);
+        // $('#codefip-text').val(cdfipe);
         divano.fadeIn("slow");
 
         $.get(geturl() + "anovalor/",
@@ -496,28 +508,56 @@ $(function () {
 
     $('#btnvender').on('click', function () {
         var cc = 0;
+        var pp = 0;
+
+        $('input:radio').each(function () {
+
+            if ($(this).attr('name') == 'quantparcela' && $(this).is(':checked') && pp == 0) {
+                pp = pp + 1;
+
+            }
+        })
+
         $('input:checkbox').each(function () {
             if ($(this).attr('name') == 'produtos[]' && $(this).is(':checked') && cc == 0) {
-                dadosveiculos.fadeIn("slow");
-                panelsegurado.fadeIn("slow");
-                pergunta.fadeIn("slow");
-                btnsubmit.fadeIn("slow");
 
-                setAnofab()
-                setAnoRenav()
-
-                $('#placa').focus();
-
-                $('body').animate({scrollTop: 0}, "slow")
                 cc = cc + 1;
 
             }
         })
 
         if (cc == 0) {
-            alert('Escolha um produto antes de proseguir')
+
+            $('.panel-body').animate({scrollTop: 0}, "fast")
+            $('#messageerror').text('Escolha um produto antes de proseguir');
+            diverror.show();
+
+        } else if (pp == 0) {
+
+            $('.panel-body').animate({scrollTop: 0}, "fast")
+            $('#messageerror').text('Escolha uma qunatidade de parcela antes de proseguir');
+            diverror.show();
         } else {
+            diverror.hide();
+
+            dadosveiculos.fadeIn("slow");
+            panelsegurado.fadeIn("slow");
+            pergunta.fadeIn("slow");
+            btnsubmit.fadeIn("slow");
+
+
+            setAnofab()
+            setAnoRenav()
+
+            $('#placa').focus();
+
+            $('body').animate({scrollTop: 0}, "slow")
+
+
             $('#veiculo').prop('disabled', true)
+            $('#search-fipe').prop('disabled', true)
+            $('.fipe-label').css('padding-top', '16%')
+            $('#codefip-value').prop('readonly', true)
             $('#veiculo').after("<input type='hidden' name='anom' value='" + $("select[name=anom]").val() + "'>")
             $("select[name=anom]").prop('disabled', true);
             $('#rowtipoveiculo').hide();
@@ -594,7 +634,7 @@ $(function () {
                         $('#comissao').change(function () {
                             var valor = $.parseJSON($(value.chkid).val());
                             var valorcomiss = aplicaComissao(valor.vlproduto, $(this).val());
-                            $(value.precospan).text(valorcomiss.replace('.', ','));
+                            $(value.precospan).text(addCommas(valorcomiss));
                             $('#valortotal').trigger('change');
                         });
 
@@ -632,7 +672,7 @@ $(function () {
                                                     if ($(opcionais.chkid).val()) {
                                                         var valor = $.parseJSON($(opcionais.chkid).val());
                                                         var valorcomiss = aplicaComissao(valor.vlproduto, $(this).val());
-                                                        $(opcionais.precospan).text(valorcomiss.replace('.', ','));
+                                                        $(opcionais.precospan).text(addCommas(valorcomiss));
                                                         $('#valortotal').trigger('change');
                                                     }
 
@@ -804,7 +844,7 @@ $(function () {
         });
         $('input[name=formapagamento]').trigger('change');
         if (vltotal > 0) {
-            $(this).text('R$ ' + vltotal.toFixed(2).replace('.', ','));
+            $(this).text('R$ ' + addCommas(vltotal.toFixed(2)));
             panelpagamento.fadeIn();
         } else {
             panelpagamento.fadeOut();
@@ -1334,6 +1374,88 @@ $(function () {
     })
 
 
+    $('.forma-pagamento').on('click', function () {
+
+        $('.forma-pagamento').each(function () {
+            $(this).removeClass('active')
+                .removeClass('btn-primary')
+                .addClass('btn-default');
+
+        })
+        $(this).removeClass('btn-default').addClass('active').addClass('btn-primary');
+
+    })
+
+
+    $('#search-placa').on('click', function () {
+        var input = $($(this).attr('data-target'))
+        var placa = input.val().replace('-', '')
+        var dados = {"placa": placa}
+        var url = $(this).attr('href')
+
+        var chassi = $(input.attr('data-target-chassi'))
+        var renavan = $(input.attr('data-target-renavan'))
+        var municipio = $(input.attr('data-target-municipio'))
+        var ufplaca = $(input.attr('data-target-uf'))
+        var anorevav = $(input.attr('data-target-anorenav'))
+        var cor = $(input.attr('data-target-cor'))
+
+
+        $.ajax({
+            data: dados,
+            url: url,
+            dataType: "json",
+            type: 'GET',
+            success: function (retorno) {
+                // var debug = retorno
+
+                if (retorno.status) {
+                    chassi.val(retorno.chassi)
+                    renavan.val(retorno.renavan)
+                    municipio.val(retorno.municipio)
+                    ufplaca.val(retorno.uf)
+                    cor.val(retorno.cor)
+
+                } else {
+                    chassi.empty()
+                    renavan.empty()
+                    municipio.empty()
+                    ufplaca.empty()
+                    cor.empty()
+                }
+                // console.log(debug)
+            }
+        })
+
+    })
+    $('#search-fipe').on('click', function () {
+        var input = $($(this).attr('data-target'))
+        var fipe = input.val()
+        var dados = {"fipe": fipe}
+        var url = $(this).attr('href')
+
+        var veiculo = $(input.attr('data-veiculo'))
+
+
+        $.ajax({
+            data: dados,
+            url: url,
+            dataType: "json",
+            type: 'GET',
+            success: function (retorno) {
+                // var debug = retorno
+
+                if (retorno.status) {
+                    veiculo.val(retorno.marca + ' - ' + retorno.modelo + ' (' + retorno.preiodo + ')')
+                    reusltAutoComplete(retorno.codefipe)
+                }
+                // console.log(debug)
+            }
+        })
+
+    })
+
+    $('.fipe').mask('999999-9')
 //    search table function
 
 });

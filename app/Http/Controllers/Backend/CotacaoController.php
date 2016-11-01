@@ -117,6 +117,7 @@ class CotacaoController extends Controller
                 "segNumRg" => ($request->tipopessoa == 1 ? $request->segrg : NULL),
                 "segDtEmissaoRg" => ($request->tipopessoa == 1 ? getDateFormat($request->segrgdtemissao, 'nascimento') : Null),
                 "segEmissorRg" => ($request->tipopessoa == 1 ? $request->segrgoe : NULL),
+                "segBairro" => $request->segendbairro ,
                 "segCdUfRg" => ($request->tipopessoa == 1 ? $request->segrguf : NULL),]
         ];
         $perfilsegurado = ["perfilSegurado" =>

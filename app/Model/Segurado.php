@@ -34,6 +34,7 @@ class Segurado extends Model
         'clicdufemissaorg',
         'cliemissorrg',
         'clinmend',
+        'bairro',
     ];
     public $timestamps = FALSE;
     public $incrementing = false;

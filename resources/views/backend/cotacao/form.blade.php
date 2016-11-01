@@ -33,7 +33,7 @@
                                             </div>
 
                                             <?php $first = TRUE; ?>
-                                            @foreach($tipos::all() as $tipo)
+                                            @foreach($tipos::where('status_id',1)->get() as $tipo)
 
                                                 <div class="col-md-2 ">
                                                     <div class="radio">
@@ -53,18 +53,31 @@
                                     </div>
                                     <div class="row">
 
+                                        <div class="col-md-2">
+                                            <div class="input-group input-group-sm">
+                                                <label for="veiculo" class="label label-default">Codigo Fipe</label>
 
-                                        <div class="col-md-8 ">
+                                                <input type="text" placeholder="000000-0" name="codefipe"
+                                                       class="fipe form-control form-control-sm" id="codefip-value"
+                                                       data-veiculo="#veiculo">
+                                                <span class="input-group-btn fipe-label">
+                                                             <button class="btn btn-primary btn-sm"
+                                                                     data-target="#codefip-value"
+                                                                     href="{{route('fipe.search')}}" type="button"
+                                                                     id="search-fipe">
+                                                                 <span class="glyphicon glyphicon-search"></span>
+                                                             </button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 ">
                                             <div class="form-group form-group-sm">
-                                                <label for="veiculo" class="label label-default">Codigo Fipe -
-                                                    Veiculo</label>
-                                                <div class="input-group">
-                                                    <span class="input-group-addon" id="codefip-text">000000-0</span>
-                                                    <input class="form-control form-control-sm form-control-danger"
-                                                           type="text"
-                                                           name="veiculo" aria-describedby="basic-addon1" id="veiculo"/>
-                                                </div>
-                                                <input type="hidden" name="codefipe" id="codefip-value" value=""/>
+                                                <label for="veiculo" class="label label-default">Veiculo</label>
+
+                                                <input class="form-control form-control-sm form-control-danger"
+                                                       type="text"
+                                                       name="veiculo" aria-describedby="basic-addon1" id="veiculo"/>
+
                                             </div>
                                         </div>
 
@@ -94,10 +107,23 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2  ">
-                                                    <div class="form-group form-group-sm">
+                                                    <div class="form-group form-group-sm input-group input-group-sm ">
                                                         <label class="label label-default" for="placa">Placa</label>
                                                         <input class="form-control form-control-sm" type="text"
+                                                               data-target-chassi="#chassi"
+                                                               data-target-renavan="#renavan"
+                                                               data-target-municipio="#munplaca"
+                                                               data-target-uf="#placauf"
+                                                               data-target-anorenav="#anorenav"
+                                                               data-target-cor="#veiccor"
                                                                tipoinput="placa" stats="1" name="placa" id="placa"/>
+                                                        <span class="input-group-btn btn-label">
+                                                             <button class="btn btn-primary btn-sm" data-target="#placa"
+                                                                     href="{{route('veiculo.search')}}" type="button"
+                                                                     id="search-placa">
+                                                                 <span class="glyphicon glyphicon-search"></span>
+                                                             </button>
+                                                        </span>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4  ">
@@ -105,7 +131,7 @@
                                                         <label class="label label-default"
                                                                for="munplaca">Município </label>
                                                         <input class="form-control form-control-sm" type="text"
-                                                               name="munplaca" id="placa"/>
+                                                               name="munplaca" id="munplaca"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-1 ">
@@ -174,7 +200,7 @@
                                                     <div class="form-group form-group-sm">
                                                         <label class="label label-default" for="veiccor">Cor</label>
                                                         <input class="form-control form-control-sm" type="veiccor"
-                                                               name="veiccor" id="chassi"/>
+                                                               name="veiccor" id="veiccor"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2 ">
@@ -476,6 +502,7 @@
 
                                     </div>
                                     <div class="row">
+
                                         <div class="col-md-4 ">
                                             <div class="form-group form-group-sm">
                                                 <label class="label label-default" for="segendcompl">Complemento</label>
@@ -483,7 +510,13 @@
                                                        class="form-control form-control-sm" value=""/>
                                             </div>
                                         </div>
-
+                                        <div class="col-md-3 ">
+                                            <div class="form-group form-group-sm">
+                                                <label class="label label-default" for="segendbairro">Bairro</label>
+                                                <input type="text" name="segendbairro" id="segendbairro"
+                                                       class="form-control form-control-sm" value=""/>
+                                            </div>
+                                        </div>
                                         <div class="col-md-4 ">
                                             <div class="form-group form-group-sm">
                                                 <label class="label label-default" for="segendcidade">Cidade</label>
@@ -847,7 +880,7 @@
 
                                         <div class="col-md-1 ">
                                             <div class="form-group form-group-sm">
-                                                <label class="label label-default" for="propenduf"  >UF</label>
+                                                <label class="label label-default" for="propenduf">UF</label>
                                                 <select name="propenduf" id="propenduf"
                                                         title="Escolha o estado"
                                                         class="selectpicker form-control form-control-sm"
@@ -1081,7 +1114,7 @@
 
                                             @foreach($formapagamentos::all() as $forma)
                                                 <div class="btn-group" data-toggle="buttons">
-                                                    <label class="btn btn-info btn-xs {!! ($first ? 'active':'') !!}">
+                                                    <label class="forma-pagamento btn btn-{!! ($first ? 'primary active':'default ') !!} btn-xs">
                                                         <input type="radio" name="formapagamento" id="formapagamento"
                                                                value='{!!json_encode(["idforma"=>$forma->idformapgto, "maxparc" =>$forma->nummaxparc, "parcsemjuros"=>  $forma->numparcsemjuros, "juros"=>  $forma->taxamesjuros])!!}'
                                                                 {!! ($first ? 'checked':'') !!}>{{$forma->descformapgto}}

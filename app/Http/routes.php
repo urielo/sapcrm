@@ -38,6 +38,8 @@ Route::group(['prefix' => 'ajax'], function () {
     Route::get('/produtosopcional', ['as' => 'produtosopcional', 'uses' => 'Backend\AjaxController@produtosopcional']);
     Route::get('/complete', ['as' => 'seguradoauto', 'uses' => 'Backend\AjaxController@inputscomplete']);
     Route::get('/getcorretor', ['as' => 'corretor.form', 'uses' => 'Auth\AuthController@getCorretor']);
+    Route::get('/veiculo', ['as' => 'veiculo.search', 'uses' => 'Backend\VeiculoController@searchVeiculo']);
+    Route::get('/searchfipe', ['as' => 'fipe.search', 'uses' => 'Backend\VeiculoController@searchFipe']);
 
 });
 

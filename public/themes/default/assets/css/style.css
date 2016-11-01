@@ -338,3 +338,10 @@ body {
     font-size: 70%;
     text-align: justify;
 }
+
+.btn-label{
+    padding-top: 16%;
+}
+.fipe-label{
+    padding-top: 11%;
+}
