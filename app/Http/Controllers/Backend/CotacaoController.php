@@ -186,7 +186,24 @@ class CotacaoController extends Controller
                 "veiIndAcidentado" => $request->indacidentado,
                 "veiIndAlienado" => $request->indaliendado,]
         ];
-        $corretor = ["corretor" => ["correCpfCnpj" => Auth::user()->corretor->corrcpfcnpj]];
+        $corretor = ["corretor" => ["correSusep"=> Auth::user()->corretor->corresusep,
+            "correNomeRazao"=> Auth::user()->corretor->corrnomerazao,
+            "correCpfCnpj"=> Auth::user()->corretor->corrcpfcnpj,
+            "correDtNasci"=> Auth::user()->corretor->corrdtnasc,
+            "correCdSexo"=> Auth::user()->corretor->corrcdsexo,
+            "correCdEstCivl"=> Auth::user()->corretor->corrcdestadocivil,
+            "correProfRamoAtivi"=> Auth::user()->corretor->corrcdprofiramoatividade,
+            "correEmail"=> Auth::user()->corretor->corremail,
+            "correCelDdd"=> Auth::user()->corretor->corrdddcel,
+            "correCelNum"=> Auth::user()->corretor->corrnmcel,
+            "correFoneDdd"=> Auth::user()->corretor->corrdddfone,
+            "correFoneNum"=> Auth::user()->corretor->corrnmfone,
+            "correEnd"=> Auth::user()->corretor->corrnmend,
+            "correEndNum"=> Auth::user()->corretor->corrnumero,
+            "correEndCep"=> Auth::user()->corretor->corrcep,
+            "correEndCompl"=> Auth::user()->corretor->correndcomplet,
+            "correEndCidade"=> Auth::user()->corretor->corrnmcidade,
+            "correEndCdUf"=> Auth::user()->corretor->corrcduf]];
 
         foreach ($request->produtos as $produto):
             $ids = json_decode($produto);

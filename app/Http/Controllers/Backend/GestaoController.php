@@ -371,13 +371,11 @@ class GestaoController extends Controller
 
         $proposta = Propostas::find($idproposta);
 
-        foreach ($proposta->cobranca as $cobranca) {
+        foreach ($proposta->cobranca()->where('idstatus', 14)->get() as $cobranca) {
 
-            if ($cobranca->idstatus == 14) {
+            $cobranca->idstatus = 20;
+            $cobranca->save();
 
-                $cobranca->idstatus = 20;
-                $cobranca->save();
-            }
         }
 
 

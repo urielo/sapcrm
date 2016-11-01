@@ -86,8 +86,12 @@ class TesteController extends Controller
 //        ->where('ano',$proposta->cotacao->veiculo->veicano)->first()->valor;
 //    return Produtos::whereIdproduto(3)->whereCodstatus(1)->first();
 
-        return public_path('certificado.pdf');
+//        return public_path('certificado.pdf');
+
+echo date('d/m/Y',strtotime('19771122'));
+echo null . 'corretor';
     }
+    
 
     public function mail()
     {
