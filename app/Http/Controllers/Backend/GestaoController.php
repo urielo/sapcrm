@@ -301,6 +301,8 @@ class GestaoController extends Controller
         $proposta->save();
         $proposta->cotacao->idstatus = $request->status;
         $proposta->cotacao->save();
+        $proposta->cotacao->veiculo->update(['idstatus'=>$request->status, 'dtupdate'=>date('Y-m-d H:i:s')]);
+
 
         return Redirect::back()->with('sucesso', 'Operação relaizada com sucesso!!');
     }
@@ -377,6 +379,8 @@ class GestaoController extends Controller
             $cobranca->save();
 
         }
+
+        $proposta->cotacao->veiculo->update(['idstatus'=>9, 'dtupdate'=>date('Y-m-d H:i:s')]);
 
 
         return Redirect::back()->with('sucesso', 'Operação relaizada com sucesso!!');

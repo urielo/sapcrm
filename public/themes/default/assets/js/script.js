@@ -870,11 +870,14 @@ $(function () {
 
 
                             if ($.isPlainObject(value)) {
+                                console.log(value)
                                 $.each(value, function (key2, value2) {
+                                    $('.panel-body').animate({scrollTop: 0}, "fast")
                                     $('#messageerror').text(value2);
                                 })
                             } else {
-                                $('.panel-body').animate({scrollTop: 0}, "slow")
+                                $('.panel-body').animate({scrollTop: 0}, "fast")
+
                                 $('#messageerror').text(value);
                             }
 
