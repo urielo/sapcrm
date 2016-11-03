@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Seguro AUTOPRATICO</title>
-{{--    <link rel="stylesheet" href="{{ theme('css/backend.css') }}">--}}
+    {{--    <link rel="stylesheet" href="{{ theme('css/backend.css') }}">--}}
 
 
 
-
+    @yield('style')
     <link rel="stylesheet" href="{{ theme('css/jquery-ui.min.css') }}">
     <link rel="stylesheet" href="{{ theme('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ theme('css/bootstrap-theme.min.css') }}">
@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{{ theme('css/style.css') }}">
 
     {{--<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">--}}
+    @yield('script')
 
 </head>
 

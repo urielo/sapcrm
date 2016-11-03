@@ -1419,12 +1419,6 @@ $(function () {
                     ufplaca.val(retorno.uf)
                     cor.val(retorno.cor)
 
-                } else {
-                    chassi.empty()
-                    renavan.empty()
-                    municipio.empty()
-                    ufplaca.empty()
-                    cor.empty()
                 }
                 // console.log(debug)
             }
