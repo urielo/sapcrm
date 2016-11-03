@@ -231,7 +231,8 @@ class CotacaoController extends Controller
         if ($wscotacao->cdretorno != '000') {
             return response()->json([
                 'sucesso' => false,
-                'message' => 'Cotacao: '.$wscotacao,
+                'message' => $wscotacao,
+                'tipo' => 'Cotacao'
             ]);
 
         }
@@ -271,7 +272,8 @@ class CotacaoController extends Controller
         if ($wsproposta->cdretorno != '000') {
             return response()->json([
                 'sucesso' => false,
-                'message' => 'Proposta: '. $wsproposta,
+                'message' => $wsproposta,
+                'tipo' => 'Proposta'
             ]);
         } else {
             Cotacoes::where('idcotacao',$wscotacao->retorno->cdCotacao)->update(['usuario_id'=>Auth::user()->id]);
