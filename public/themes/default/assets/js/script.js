@@ -634,7 +634,14 @@ $(function () {
 
 
                         $('#comissao').change(function () {
-                            var valor = $.parseJSON($(value.chkid).val());
+
+
+                            if($(value.chkid).val()){
+                                var valor = $.parseJSON($(value.chkid).val());
+
+                            } else {
+                                return false;
+                            }
                             var valorcomiss = aplicaComissao(valor.vlproduto, $(this).val());
                             $(value.precospan).text(addCommas(valorcomiss));
                             $('#valortotal').trigger('change');
