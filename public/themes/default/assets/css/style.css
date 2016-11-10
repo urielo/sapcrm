@@ -345,3 +345,7 @@ body {
 .fipe-label{
     padding-top: 11%;
 }
+
+.alert-sm {
+    padding: 0;
+}

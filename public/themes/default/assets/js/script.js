@@ -322,7 +322,9 @@ $(function () {
             {cdfipe: cdfipe},
             // Carregamos o resultado acima para o campo modelo
             function (valor) {
-                $("select[name=anom]").html(valor);
+                $("select[name=anom]").html(valor).trigger('change');
+
+
             }
         )
 
@@ -461,6 +463,12 @@ $(function () {
     for (var i = $('select[name=comissao]').val() - 1; i > commin - 1; i--) {
 
         $('select[name=comissao]').append('<option value="' + i + '">' + i + '</option>')
+    }
+
+    var produtos_set = function () {
+        $('input:checkbox').on('click',function () {
+            console.log($(this).val())
+        })
     }
 
 
@@ -615,13 +623,7 @@ $(function () {
                 $.each(retorno, function (key, value) {
                     produtos.append(value.html);
 
-                    //
-                    // $(value.acordion).accordion({
-                    //     heightStyle: "content",
-                    //     active: true,
-                    //     collapsible: true,
-                    //     header: 'h6'
-                    // });
+
 
                     $(value.span).on('click', function () {
                         var span = $(this).children('span')
@@ -751,12 +753,18 @@ $(function () {
                 panelprodutos.fadeIn('slow');
                 btnproposta.fadeIn('slow');
 
+                // produtos_set()
+
 
             }
 
         });
 
-    });
+    })
+
+
+
+
 
 
     $('input:radio').change(function () {

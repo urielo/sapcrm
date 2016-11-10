@@ -10,42 +10,49 @@
             <div class="panel-heading">
                 <h2 class="panel-title" style="text-align: center;">@yield('heading')</h2>
             </div>
-            <div class="panel-body" style="height: 450px; overflow-x: auto;" id="body-panel">
 
-                <div class="alert alert-danger hide" id="diverror">
-                    <strong>Erro: </strong>
-                    <div id="messageerror">
+            <div style="height: 450px; overflow-x: auto;" id="body-panel">
+                <div class="panel-body">
 
+                    <div class="alert alert-danger hide" id="diverror">
+                        <strong>Erro: </strong>
+                        <div id="messageerror">
+
+                        </div>
                     </div>
+
+                    @if(Session::has('sucesso'))
+                        <div class="alert alert-info" id="sucesso">
+                            <button type="button" class="close" aria-label="Close" id="fechasecesso">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            {{Session::get('sucesso')}}
+                        </div>
+                    @elseif(Session::has('error'))
+                        <div class="alert alert-danger" id="sucesso">
+                            <button type="button" class="close" aria-label="Close" id="fechasecesso">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            {{Session::get('error')}}
+                        </div>
+                    @elseif(Session::has('atencao'))
+                        <div class="alert alert-warning" id="sucesso">
+                            <button type="button" class="close" aria-label="Close" id="fechasecesso">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            {{Session::get('atencao')}}
+                        </div>
+                    @endif
+
+
+
+
+                    @yield('contentSeg')
+
+
                 </div>
 
-                @if(Session::has('sucesso'))
-                    <div class="alert alert-info" id="sucesso">
-                        <button type="button" class="close" aria-label="Close" id="fechasecesso">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        {{Session::get('sucesso')}}
-                    </div>
-                @elseif(Session::has('error'))
-                    <div class="alert alert-danger" id="sucesso">
-                        <button type="button" class="close" aria-label="Close" id="fechasecesso">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        {{Session::get('error')}}
-                    </div>
-                @elseif(Session::has('atencao'))
-                    <div class="alert alert-warning" id="sucesso">
-                        <button type="button" class="close" aria-label="Close" id="fechasecesso">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        {{Session::get('atencao')}}
-                    </div>
-                @endif
-
-
-
-
-                @yield('contentSeg')
+                    @yield('footer')
 
 
             </div>

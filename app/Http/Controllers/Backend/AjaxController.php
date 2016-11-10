@@ -91,9 +91,7 @@ class AjaxController extends Controller
             ->input('cdfipe'))
             ->orderBy('ano', 'ASC')
             ->get();
-
-
-        echo '<option selected value="0">Ano - Valor - Combus</option>';
+        
         foreach ($anovalor as $value):
 
 
