@@ -64,6 +64,11 @@
 
 
         <div class="box-large">
+
+            <div class="box-small alert alert-success text-justify">
+                Total a vista<br>
+                <strong>R$ {{format('real',$cotacao->premio)}}</strong>
+            </div>
             <table class="table table-striped td-no-border text-center">
                 <thead>
                 <tr>

@@ -235,3 +235,15 @@ ol {
 .td-no-border td{
     border: 0;
 }
+
+.box-small {
+    width: 100px;
+    margin: auto;
+    text-align: center;
+
+}
+
+.box-small strong{
+    font-weight: bold;
+
+}
