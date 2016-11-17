@@ -109,8 +109,8 @@
       <file leaf-file-name="script.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/themes/default/assets/js/script.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="323" column="66" selection-start-line="323" selection-start-column="66" selection-end-line="323" selection-end-column="66" />
+            <state relative-caret-position="180">
+              <caret line="324" column="58" selection-start-line="324" selection-start-column="58" selection-end-line="324" selection-end-column="58" />
               <folding>
                 <element signature="e#813#1085#0" expanded="false" />
                 <element signature="e#2035#3644#0" expanded="false" />
@@ -160,20 +160,10 @@
                 <element signature="e#58472#60394#0" expanded="false" />
                 <element signature="e#60482#60767#0" expanded="false" />
                 <element signature="e#60818#61905#0" expanded="false" />
-                <marker date="1479385838895" expanded="true" signature="12216:12232" ph="..." />
-                <marker date="1479385838895" expanded="true" signature="12504:12520" ph="..." />
-                <marker date="1479385838895" expanded="true" signature="12809:12825" ph="..." />
+                <marker date="1479386382908" expanded="true" signature="12216:12232" ph="..." />
+                <marker date="1479386382908" expanded="true" signature="12504:12520" ph="..." />
+                <marker date="1479386382908" expanded="true" signature="12809:12825" ph="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Cotacoes.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Model/Cotacoes.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="20" column="19" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="19" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -181,8 +171,8 @@
       <file leaf-file-name="helpers.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/helpers.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="415" column="108" selection-start-line="415" selection-start-column="108" selection-end-line="415" selection-end-column="108" />
+            <state relative-caret-position="245">
+              <caret line="415" column="103" selection-start-line="415" selection-start-column="103" selection-end-line="415" selection-end-column="103" />
               <folding>
                 <element signature="e#6#221#0#PHP" expanded="false" />
                 <element signature="e#223#1767#0#PHP" expanded="false" />
@@ -636,12 +626,12 @@
       <workItem from="1479212755079" duration="9635000" />
       <workItem from="1479225151718" duration="5383000" />
       <workItem from="1479338652994" duration="3902000" />
-      <workItem from="1479344425133" duration="17454000" />
+      <workItem from="1479344425133" duration="18053000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="946654000" />
+    <option name="totallyTimeSpent" value="947253000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1131,8 +1121,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/helpers.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="415" column="108" selection-start-line="415" selection-start-column="108" selection-end-line="415" selection-end-column="108" />
+        <state relative-caret-position="245">
+          <caret line="415" column="103" selection-start-line="415" selection-start-column="103" selection-end-line="415" selection-end-column="103" />
           <folding>
             <element signature="e#6#221#0#PHP" expanded="false" />
             <element signature="e#223#1767#0#PHP" expanded="false" />
@@ -1154,8 +1144,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/themes/default/assets/js/script.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="323" column="66" selection-start-line="323" selection-start-column="66" selection-end-line="323" selection-end-column="66" />
+        <state relative-caret-position="180">
+          <caret line="324" column="58" selection-start-line="324" selection-start-column="58" selection-end-line="324" selection-end-column="58" />
           <folding>
             <element signature="e#813#1085#0" expanded="false" />
             <element signature="e#2035#3644#0" expanded="false" />
@@ -1205,9 +1195,9 @@
             <element signature="e#58472#60394#0" expanded="false" />
             <element signature="e#60482#60767#0" expanded="false" />
             <element signature="e#60818#61905#0" expanded="false" />
-            <marker date="1479385838895" expanded="true" signature="12216:12232" ph="..." />
-            <marker date="1479385838895" expanded="true" signature="12504:12520" ph="..." />
-            <marker date="1479385838895" expanded="true" signature="12809:12825" ph="..." />
+            <marker date="1479386382908" expanded="true" signature="12216:12232" ph="..." />
+            <marker date="1479386382908" expanded="true" signature="12504:12520" ph="..." />
+            <marker date="1479386382908" expanded="true" signature="12809:12825" ph="..." />
           </folding>
         </state>
       </provider>
