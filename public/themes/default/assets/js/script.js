@@ -321,7 +321,7 @@ $(function () {
 
             if (i > parcelasemjuros && parcjuros < menorparc && formapg == 2) {
                 priparcela = menorparc;
-                demparcela = jurosComposto((vltotal - menorparc), taxajuros, (i - 1));
+                demparcela = ((jurosComposto(vltotal, taxajuros, i) * i) - menorparc) / (i - 1) ;
                 vlfinal = menorparc + (demparcela * (i - 1));
                 juros_retorno = taxajuros.replace('.', ',')
 
