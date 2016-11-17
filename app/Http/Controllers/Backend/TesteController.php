@@ -29,10 +29,22 @@ use App\Model\FormaPagamento;
 class TesteController extends Controller
 {
 
-    public function index(TipoUtilizacaoVeic $tipoutilizacao, TipoVeiculos $tipos)
+    public function index(TipoUtilizacaoVeic $tipoutilizacao, TipoVeiculos $tipos, FormaPagamento $formas)
     {
+
+        $a = 0;
+        $b = 1;
+        echo $a . '<br>';
+        echo $b . '<br><b>';
+        while ($b < 5000){
+            $c = $a + $b;
+            echo $c . '<br>';
+            $a = $b;
+            $b = $c;
+
+        }
       
-        return view('backend.cotacao.cotar',compact('tipos','tipoutilizacao'));
+//        return view('backend.cotacao.cotar',compact('tipos','tipoutilizacao', 'formas'));
 
     }
 

@@ -16,6 +16,8 @@ Route::group(['prefix' => 'teste'], function () {
     Route::get('/', 'Backend\TesteController@index');
     Route::get('/mail', 'Backend\TesteController@mail');
 
+    
+
 
 });
 
@@ -83,7 +85,8 @@ Route::group(['prefix' => 'usuario', 'middleware' => 'auth'], function () {
 
 Route::group(['prefix' => 'vendas', 'middleware' => 'auth'], function () {
 
-
+    
+    
     Route::post('gerar', [
         'middleware' => ['permission:vendas-cotacao-gerar'],
         'as' => 'cotacao.gerar',
@@ -99,20 +102,43 @@ Route::group(['prefix' => 'vendas', 'middleware' => 'auth'], function () {
         'middleware' => ['permission:vendas-negociacoes-negociar'],
         'as' => 'vendas.negociar',
         'uses' => 'Backend\CotacaoController@negociar']);
+    
+   
 
     Route::get('cotar', [
         'middleware' => ['permission:vendas-cotacao'],
         'as' => 'cotacao.cotar',
-        'uses' => 'Backend\CotacaoController@cotar'
+        'uses' => 'Backend\CotacaoController@index'
     ]);
+
+    Route::get('cotacao/sucesso/{idcotacao}', [
+        'middleware' => ['permission:vendas-cotacao-gerar'],
+        'as' => 'cotacao.sucesso',
+        'uses' => 'Backend\CotacaoController@sucesso']);
+    
+    Route::post('cotacao/salvar',[
+        'middleware' => ['permission:vendas-cotacao-gerar'],
+        'as' => 'cotacao.salvar',
+        'uses' => 'Backend\CotacaoController@salvar'
+    ]);
+
 
     Route::get('pdf/{idproposta}', [
         'middleware' => ['permission:vendas-cotacao-pdf'],
         'as' => 'cotacao.pdf',
         'uses' => 'Backend\CotacaoController@pdf'
     ]);
+    
+    Route::get('cotacao/pdf/{cotacao_id}',[
+        'middleware' => ['permission:vendas-cotacao-pdf'],
+        'as' => 'cotacao.pdf.gerar',
+        'uses' => 'Backend\CotacaoController@pdf_cotacao'
+    ]);
+
 
 });
+
+
 
 Route::group(['prefix' => 'gestao', 'middleware' => 'auth'], function () {
 

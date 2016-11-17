@@ -22,6 +22,7 @@ use App\Model\OrgaoEmissors;
 use App\Model\FormaPagamento;
 use App\Http\Requests\CotacaoRequest;
 use Illuminate\Support\Facades\Redirect;
+use niklasravnsborg\LaravelPdf\Facades\Pdf;
 use phpDocumentor\Reflection\Types\Null_;
 
 class CotacaoController extends Controller
@@ -42,8 +43,10 @@ class CotacaoController extends Controller
         parent::__construct();
     }
 
-    public function index()
+    public function index(TipoUtilizacaoVeic $tipoutilizacao, TipoVeiculos $tipos, FormaPagamento $formas)
     {
+
+        return view('backend.cotacao.cotar', compact('tipos', 'tipoutilizacao', 'formas'));
 
     }
 
@@ -93,7 +96,8 @@ class CotacaoController extends Controller
     public function gerar(CotacaoRequest $request)
     {
 
-        $configws =  Config::where('env_local',env('APP_LOCAL'))->where('webservice','SAP')->first();
+
+        $configws = Config::where('env_local', env('APP_LOCAL'))->where('webservice', 'SAP')->first();
         $url = $configws->url;
 //        return view('backend.cotacao.sucesso', ['message' => 'Cotação realizada com sucesso!']);
         $segurado = ["segurado" =>
@@ -117,7 +121,7 @@ class CotacaoController extends Controller
                 "segNumRg" => ($request->tipopessoa == 1 ? $request->segrg : NULL),
                 "segDtEmissaoRg" => ($request->tipopessoa == 1 ? getDateFormat($request->segrgdtemissao, 'nascimento') : Null),
                 "segEmissorRg" => ($request->tipopessoa == 1 ? $request->segrgoe : NULL),
-                "segBairro" => $request->segendbairro ,
+                "segBairro" => $request->segendbairro,
                 "segCdUfRg" => ($request->tipopessoa == 1 ? $request->segrguf : NULL),]
         ];
         $perfilsegurado = ["perfilSegurado" =>
@@ -187,33 +191,30 @@ class CotacaoController extends Controller
                 "veiIndAcidentado" => $request->indacidentado,
                 "veiIndAlienado" => $request->indaliendado,]
         ];
-        $corretor = ["corretor" => ["correSusep"=> Auth::user()->corretor->corresusep,
-            "correNomeRazao"=> Auth::user()->corretor->corrnomerazao,
-            "correCpfCnpj"=> Auth::user()->corretor->corrcpfcnpj,
-            "correDtNasci"=> Auth::user()->corretor->corrdtnasc,
-            "correCdSexo"=> Auth::user()->corretor->corrcdsexo,
-            "correCdEstCivl"=> Auth::user()->corretor->corrcdestadocivil,
-            "correProfRamoAtivi"=> Auth::user()->corretor->corrcdprofiramoatividade,
-            "correEmail"=> Auth::user()->corretor->corremail,
-            "correCelDdd"=> Auth::user()->corretor->corrdddcel,
-            "correCelNum"=> Auth::user()->corretor->corrnmcel,
-            "correFoneDdd"=> Auth::user()->corretor->corrdddfone,
-            "correFoneNum"=> Auth::user()->corretor->corrnmfone,
-            "correEnd"=> Auth::user()->corretor->corrnmend,
-            "correEndNum"=> Auth::user()->corretor->corrnumero,
-            "correEndCep"=> Auth::user()->corretor->corrcep,
-            "correEndCompl"=> Auth::user()->corretor->correndcomplet,
-            "correEndCidade"=> Auth::user()->corretor->corrnmcidade,
-            "correEndCdUf"=> Auth::user()->corretor->corrcduf]];
+        $corretor = ["corretor" => ["correSusep" => Auth::user()->corretor->corresusep,
+            "correNomeRazao" => Auth::user()->corretor->corrnomerazao,
+            "correCpfCnpj" => Auth::user()->corretor->corrcpfcnpj,
+            "correDtNasci" => Auth::user()->corretor->corrdtnasc,
+            "correCdSexo" => Auth::user()->corretor->corrcdsexo,
+            "correCdEstCivl" => Auth::user()->corretor->corrcdestadocivil,
+            "correProfRamoAtivi" => Auth::user()->corretor->corrcdprofiramoatividade,
+            "correEmail" => Auth::user()->corretor->corremail,
+            "correCelDdd" => Auth::user()->corretor->corrdddcel,
+            "correCelNum" => Auth::user()->corretor->corrnmcel,
+            "correFoneDdd" => Auth::user()->corretor->corrdddfone,
+            "correFoneNum" => Auth::user()->corretor->corrnmfone,
+            "correEnd" => Auth::user()->corretor->corrnmend,
+            "correEndNum" => Auth::user()->corretor->corrnumero,
+            "correEndCep" => Auth::user()->corretor->corrcep,
+            "correEndCompl" => Auth::user()->corretor->correndcomplet,
+            "correEndCidade" => Auth::user()->corretor->corrnmcidade,
+            "correEndCdUf" => Auth::user()->corretor->corrcduf],
+        ];
 
         foreach ($request->produtos as $produto):
             $ids = json_decode($produto);
-            $produtos["produto"][] = ["idProduto" => $ids->idproduto, 'valorLmiProduto'=>$ids->vllmi];
+            $produtos["produto"][] = ["idProduto" => $ids->idproduto, 'valorLmiProduto' => $ids->vllmi];
         endforeach;
-
-
-
-
 
 
         $cotacao = ["idParceiro" => 99,
@@ -226,7 +227,7 @@ class CotacaoController extends Controller
 //
 //     return webserviceCotacao($cotacao, $corretor, $segurado, $veiculo, $produtos, $proprietario, $condutor, $perfilsegurado);
 
-        $wscotacao = json_decode(webserviceCotacao($cotacao, $corretor, $segurado, $veiculo, $produtos, $proprietario, $condutor, $perfilsegurado,$url));
+        $wscotacao = json_decode(webserviceCotacao($cotacao, $corretor, $segurado, $veiculo, $produtos, $proprietario, $condutor, $perfilsegurado, $url));
 
         if ($wscotacao->cdretorno != '000') {
             return response()->json([
@@ -266,7 +267,7 @@ class CotacaoController extends Controller
             ];
         }
 
-        $wsproposta = json_decode(webserviceProposta($proposta, $segurado, $veiculo, $produtos, $proprietario, $condutor, $perfilsegurado,$url));
+        $wsproposta = json_decode(webserviceProposta($proposta, $segurado, $veiculo, $produtos, $proprietario, $condutor, $perfilsegurado, $url));
 
 
         if ($wsproposta->cdretorno != '000') {
@@ -276,8 +277,8 @@ class CotacaoController extends Controller
                 'tipo' => 'Proposta'
             ]);
         } else {
-            Cotacoes::where('idcotacao',$wscotacao->retorno->cdCotacao)->update(['usuario_id'=>Auth::user()->id]);
-            Propostas::where('idproposta',$wsproposta->retorno->idproposta)->update(['dtvalidade' => date('Y-m-d', strtotime('+30 day')), 'usuario_id'=>Auth::user()->id]);
+            Cotacoes::where('idcotacao', $wscotacao->retorno->cdCotacao)->update(['usuario_id' => Auth::user()->id]);
+            Propostas::where('idproposta', $wsproposta->retorno->idproposta)->update(['dtvalidade' => date('Y-m-d', strtotime('+30 day')), 'usuario_id' => Auth::user()->id]);
             return response()->json([
                 'sucesso' => true,
                 'html' => (string)view('backend.cotacao.sucesso', [
@@ -293,12 +294,12 @@ class CotacaoController extends Controller
     public function pdf($idproposta)
     {
         $curl = curl_init();
-        $configws =  Config::where('env_local',env('APP_LOCAL'))->where('webservice','SAP')->first();
+        $configws = Config::where('env_local', env('APP_LOCAL'))->where('webservice', 'SAP')->first();
         $url = $configws->url;
 
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => $url.'pdf',
+            CURLOPT_URL => $url . 'pdf',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
@@ -346,18 +347,115 @@ class CotacaoController extends Controller
 
     }
 
-    public function edit()
+    public function pdf_cotacao($cotacao_id)
     {
+
+        $cotacao = Cotacoes::find(base64_decode($cotacao_id));
+        $formas = [];
+
+        if ($cotacao) {
+            $menor_parcela = 0;
+            foreach ($cotacao->produtos as $produto) {
+                $menor_parcela = $menor_parcela + $produto->produto->precoproduto()->where('idprecoproduto', $produto->idprecoproduto)->first()->vlrminprimparc;
+            }
+
+            foreach (FormaPagamento::All() as $forma) {
+                $parcelas = new \stdClass();
+                $parcelas->parcelas = geraParcelas($cotacao->premio, $forma->nummaxparc, $forma->numparcsemjuros, $forma->taxamesjuros, $menor_parcela, $forma->idformapgto);
+                $parcelas->forma_pagamento = $forma->descformapgto;
+                $formas[] = $parcelas;
+            }
+
+
+//        return view('backend.pdf.cotacao',compact('cotacao', 'formas'));
+
+
+            error_reporting(E_ERROR);
+            $pdf = Pdf::loadView('backend.pdf.cotacao', compact('cotacao', 'formas'));
+            $pdf->SetProtection(['print'], '', '456');
+            return $pdf->stream();
+        } else {
+            return Redirect::back()->with('error', 'Cotação Invalida!');
+        }
+
 
     }
 
-    public function update()
+    public function sucesso($idcotacao)
     {
+        $cotacao = Cotacoes::find($idcotacao);
+
+        return view('backend.cotacao.sucesso', compact('cotacao'));
+
 
     }
 
-    public function destroy()
+    public function salvar(Request $request)
     {
+        $url = Config::where('env_local', env('APP_LOCAL'))->where('webservice', 'SAP')->first()->url;
+
+
+        $anoveic = json_decode($request->anomodelo);
+        $cotacao = [
+            "corretor" => ["correSusep" => Auth::user()->corretor->corresusep,
+                "correNomeRazao" => Auth::user()->corretor->corrnomerazao,
+                "correCpfCnpj" => Auth::user()->corretor->corrcpfcnpj,
+                "correDtNasci" => Auth::user()->corretor->corrdtnasc,
+                "correCdSexo" => Auth::user()->corretor->corrcdsexo,
+                "correCdEstCivl" => Auth::user()->corretor->corrcdestadocivil,
+                "correProfRamoAtivi" => Auth::user()->corretor->corrcdprofiramoatividade,
+                "correEmail" => Auth::user()->corretor->corremail,
+                "correCelDdd" => Auth::user()->corretor->corrdddcel,
+                "correCelNum" => Auth::user()->corretor->corrnmcel,
+                "correFoneDdd" => Auth::user()->corretor->corrdddfone,
+                "correFoneNum" => Auth::user()->corretor->corrnmfone,
+                "correEnd" => Auth::user()->corretor->corrnmend,
+                "correEndNum" => Auth::user()->corretor->corrnumero,
+                "correEndCep" => Auth::user()->corretor->corrcep,
+                "correEndCompl" => Auth::user()->corretor->correndcomplet,
+                "correEndCidade" => Auth::user()->corretor->corrnmcidade,
+                "correEndCdUf" => Auth::user()->corretor->corrcduf],
+            "segurado" => ["segCpfCnpj" => $request->cpfcnpj],
+            "veiculo" => ["veiCodFipe" => $request->codefipe,
+                "veiAno" => $anoveic->ano,
+                "veiIndZero" => $request->indautozero,
+                "veiCdTipo" => $request->tipoveiculo,
+                "veiCdCombust" => $anoveic->combus,
+            ],
+            "idParceiro" => 99,
+            "nmParceiro" => "Seguro AUTOPRATICO",
+            "comissao" => (isset($request->comissao) ? $request->comissao : Auth::user()->corretor->corrcomissaopadrao)
+        ];
+        $produtos = [];
+        foreach ($request->produtos as $produto):
+            $produtos["produto"][] = ["idProduto" => $produto, 'valorLmiProduto' => null];
+        endforeach;
+
+        $cotacao = webserviceCotacao(array_merge($cotacao, $produtos), $url);
+
+
+        if ($cotacao->cdretorno == 000) {
+            Cotacoes::where('idcotacao', $cotacao->retorno->cdCotacao)->update(['usuario_id' => Auth::user()->id]);
+            echo $cotacao->status . 'Codigo da cotacao:' . $cotacao->retorno->cdCotacao . ' ' . Auth::user()->id;
+
+            switch ($request->tipoenvio) {
+                case 'proposta':
+                    return 'tela.proposta';
+                    break;
+                case 'salvar':
+                    return Redirect::route('cotacao.sucesso', $cotacao->retorno->cdCotacao);
+                    break;
+                default :
+                    return Redirect::route('cotacao.cotar');
+            }
+        } else {
+
+            echo '<pre>';
+            print_r($cotacao);
+            echo '</pre>';
+//           return Redirect::back()->with('error', 'Error ao gerar cotacao '. $cotacao->cdretorno);
+        }
+
 
     }
 }

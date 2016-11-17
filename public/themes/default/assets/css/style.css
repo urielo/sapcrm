@@ -195,7 +195,7 @@ body {
 
 }
 .produto strong {
-    font-size: 12px;
+    font-size: 10px;
 }
 .produto .ui-accordion-header{
     display: block;
@@ -348,4 +348,19 @@ body {
 
 .alert-sm {
     padding: 0;
+}
+
+
+.table-sm  th ,td {
+    font-size: 10px;
+}
+
+.text-center td, th {
+    vertical-align: middle;
+    text-align: center;
+
+}
+.panel-heading-sm{
+    height: 28px;
+    padding: 4px 10px;
 }

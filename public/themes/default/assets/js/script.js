@@ -8,7 +8,7 @@ $(function () {
     var panelproprietario = $('#panelproprietario');
     var panelcondutor = $('#panelcondutor');
     var pergunta = $('#pergunta');
-    var produtopagamento = $('#produtopagamento');
+    var produtopagamento = $('.produto-pagamento');
     var btnsubmit = $('#btnsubmit');
     var panelpagamento = $('#panelpagamento');
     var dadoscartao = $('#dadoscartao');
@@ -18,6 +18,8 @@ $(function () {
     var vltotal = 0;
     var produtosvalores = [];
     var menorparc = 0.0;
+
+    var mask_cpfcnpj
 
     function addCommas(nStr) {
         nStr += '';
@@ -30,6 +32,8 @@ $(function () {
         }
         return x1 + x2;
     }
+
+    var dados_produtos
 
     diverror.removeClass('hide');
     divano.removeClass('hide');
@@ -61,6 +65,51 @@ $(function () {
     panelcondutor.hide();
     panelproprietario.hide();
 
+    var produto_master = false;
+    var produto_opcional = false;
+
+    var set_parcelas = function () {
+
+        var parcelas = [];
+        $('meta').each(function () {
+            if ($(this).attr('name') == 'forma-pagamento') {
+                parcelas_obg = gerarParcelas(vltotal, $(this).attr('data-maxparcela'), $(this).attr('data-parce-sem-juros'), $(this).attr('data-juros'), menorparc, $(this).attr('id-forma'))
+                var html_parcelas = ''
+
+                $.each(parcelas_obg, function (key, value) {
+                    var quant_demais = value.quantidade - 1
+                    html_parcelas = html_parcelas + '<tr>' +
+                        '<td>' + value.quantidade + 'x</td>' +
+                        '<td>' + (value.primeira != value.demais ? '1x de R$ ' + value.primeira + ' e ' + quant_demais + 'x de R$ '
+                        + value.demais : 'R$ ' + value.primeira ) + '</td>' +
+                        '<td>' + value.juros + '%</td>' +
+                        '<td>R$ ' + value.valorfinal + '</td>' +
+                        '</tr>'
+
+                })
+                parcelas.push({
+                    'id_forma': $(this).attr('id-forma'),
+                    'parcelas': html_parcelas
+                })
+            }
+        })
+
+
+        $('.formas_pagamento').each(function () {
+            var id_forma = $(this).attr('id-forma')
+            var target = $(this).attr('data-target') + ' tbody';
+            $.each(parcelas, function (key, value) {
+                if (id_forma == value.id_forma) {
+                    $(target).html(value.parcelas)
+                }
+
+
+            })
+            // console.log(parseInt($(this).attr('data-target')))
+
+        })
+    }
+
 
     $(document).ajaxStart(function () {
         $('body').prepend('<div class="bgloading" id="loading"></div>')
@@ -73,10 +122,10 @@ $(function () {
     });
 
 
-    $('#body-panel').height($(window).height() - 165);
+    $('#body-panel').height($(window).height() - 125);
     var ttable = $(window).height() - 300;
     $(window).resize(function () {
-        $('#body-panel').height($(window).height() - 165);
+        $('#body-panel').height($(window).height() - 125);
         ttable = $(window).height() - 300;
     })
 
@@ -210,12 +259,6 @@ $(function () {
 
     };
 
-    if ($('input[name=tipocadastro]')) {
-        $('input[name=tipocadastro]')
-
-
-    }
-
 
     function aplicaComissao(valor, comissao) {
         valor = parseFloat(valor);
@@ -253,6 +296,11 @@ $(function () {
     };
     function gerarParcelas(vltotal, maxparc, parcelasemjuros, taxajuros, menorparc, formapg) {
 
+        maxparc = parseInt(maxparc)
+        parcelasemjuros = parseInt(parcelasemjuros)
+        formapg = parseInt(formapg)
+        menorparc = parseFloat(menorparc)
+        vltotal = parseFloat(vltotal)
 
         var retorno = [];
         // var porcentj = parseFloat(taxajuros) / 100
@@ -265,6 +313,7 @@ $(function () {
             var vlfinal = 0;
             var textojuros = (i > parcelasemjuros) ? 'J.: ' + taxajuros.replace('.', ',') + '%' : 'S/J';
             var textojuroc = (i > parcelasemjuros) ? 'Juros: ' + taxajuros.replace('.', ',') + '%' : 'Sem juros';
+            var juros_retorno = 0
 
 
             var parcjuros = jurosComposto(vltotal, taxajuros, i);
@@ -274,13 +323,14 @@ $(function () {
                 priparcela = menorparc;
                 demparcela = jurosComposto((vltotal - menorparc), taxajuros, (i - 1));
                 vlfinal = menorparc + (demparcela * (i - 1));
-
+                juros_retorno = taxajuros.replace('.', ',')
 
             } else if (i <= parcelasemjuros && vltotal / i < menorparc && formapg == 2) {
                 priparcela = menorparc;
                 demparcela = (vltotal - menorparc) / (i - 1);
                 vlfinal = menorparc + (demparcela * (i - 1));
             } else if (i > parcelasemjuros) {
+                juros_retorno = taxajuros.replace('.', ',')
                 priparcela = parcjuros;
                 demparcela = priparcela;
                 vlfinal = demparcela * i;
@@ -294,14 +344,39 @@ $(function () {
             vlfinal = addCommas(vlfinal.toFixed(2));
             priparcela = addCommas(priparcela.toFixed(2));
             demparcela = addCommas(demparcela.toFixed(2));
-            if (i == 1) {
-                retorno.push('<label style="font-size: 10px;"><input type="radio" data-vlfinal="' + vlfinal + '" name="quantparcela" id="formapagamento" value="' + i + '">' + i + 'x de R$ ' + priparcela + ' (' + textojuroc + ') </label><br>')
-            } else if (formapg == 1) {
-                retorno.push('<label style="font-size: 10px;"><input type="radio" data-vlfinal="' + vlfinal + '" name="quantparcela" id="formapagamento" value="' + i + '">' + i + 'x de R$ ' + priparcela + ' (' + textojuroc + ') </label><br>')
-            } else {
-                var ii = i - 1;
-                retorno.push('<label style="font-size: 10px;"><input type="radio" data-vlfinal="' + vlfinal + '" name="quantparcela" id="formapagamento" value="' + i + '">' + i + 'x (1x de R$ ' + priparcela + ' e ' + ii + 'x de  R$ ' + demparcela + ' ' + textojuros + ') </label><br>')
-            }
+
+            retorno.push(
+                {
+                    "valorfinal": vlfinal,
+                    "quantidade": i,
+                    "primeira": priparcela,
+                    "demais": demparcela,
+                    "juros": juros_retorno
+
+                })
+
+
+            // if (i == 1) {
+            //    
+            //    
+            //     retorno.push(
+            //         {
+            //             "valorfinal": vlfinal,
+            //             "quantidade": i,
+            //             "primeira": priparcela,
+            //             "demais": demparcela,
+            //             "juros": juros,
+            //            
+            //         }
+            //     )
+            //    
+            //     retorno.push('<label style="font-size: 10px;"><input type="radio" data-vlfinal="' + vlfinal + '" name="quantparcela" id="formapagamento" value="' + i + '">' + i + 'x de R$ ' + priparcela + ' (' + textojuroc + ') </label><br>')
+            // } else if (formapg == 1) {
+            //     retorno.push('<label style="font-size: 10px;"><input type="radio" data-vlfinal="' + vlfinal + '" name="quantparcela" id="formapagamento" value="' + i + '">' + i + 'x de R$ ' + priparcela + ' (' + textojuroc + ') </label><br>')
+            // } else {
+            //     var ii = i - 1;
+            //     retorno.push('<label style="font-size: 10px;"><input type="radio" data-vlfinal="' + vlfinal + '" name="quantparcela" id="formapagamento" value="' + i + '">' + i + 'x (1x de R$ ' + priparcela + ' e ' + ii + 'x de  R$ ' + demparcela + ' ' + textojuros + ') </label><br>')
+            // }
         }
 
         return retorno;
@@ -315,14 +390,13 @@ $(function () {
 
     function reusltAutoComplete(cdfipe) {
         $('#codefip-value').val(cdfipe);
-        // $('#codefip-text').val(cdfipe);
         divano.fadeIn("slow");
 
         $.get(geturl() + "anovalor/",
             {cdfipe: cdfipe},
             // Carregamos o resultado acima para o campo modelo
             function (valor) {
-                $("select[name=anom]").html(valor).trigger('change');
+                $("select[name=anomodelo]").html(valor).trigger('change');
 
 
             }
@@ -331,6 +405,12 @@ $(function () {
 
     }
 
+    var remove_class = function () {
+
+        if($('.remove-class').hasClass($('.remove-class').attr('data-target'))){
+            $('.remove-class').removeClass($('.remove-class').attr('data-target'))
+        }
+    }
 
     function validate_cnpj(val) {
 
@@ -465,10 +545,238 @@ $(function () {
         $('select[name=comissao]').append('<option value="' + i + '">' + i + '</option>')
     }
 
-    var produtos_set = function () {
-        $('input:checkbox').on('click',function () {
-            console.log($(this).val())
+
+    var comissao_set = function () {
+        $('#comissao').change(function () {
+            var comissao = $(this).val();
+            $('input:checkbox').each(function () {
+                if ($(this).attr('name') == 'produtos[]') {
+                    var valorcomiss = aplicaComissao($(this).attr('data-val-vlproduto'), comissao);
+                    $($(this).attr('data-target-preco')).text(addCommas(valorcomiss));
+                }
+            })
+            $('#valortotal').trigger('change');
+
+        });
+    }
+
+    var change_produtos = function (input_id, tipo) {
+
+        if (tipo == 'master') {
+            // console.log($(input_id))
+
+            return $(input_id).on('change', function () {
+
+                var this_id = $(this).attr('data-target-div')
+                var div = $('#produtos').children('div')
+                var url = $(this).attr('href')
+                var menor = $(this).attr('data-val-menorparc')
+                var valor = {'valor': $(this).attr('data-val-vlproduto')}
+
+                if ($(this).is(":checked")) {
+
+                    $('#botton-cotacao').removeClass('hide')
+
+                    $.each(div, function (key, value) {
+                        var id = '#' + value.id
+                        if (id != this_id) {
+
+                            $($(id).attr('data-target')).removeAttr('checked').attr('disabled', true)
+                            $(id).hide()
+
+                        }
+                    })
+                    dados_produtos.idproduto = $(this).val()
+
+
+                    $.get(url, dados_produtos, function (retorno) {
+                        if (retorno.length !== 0) {
+                            $.each(retorno, function (key, value) {
+                                $('#produtosopcionais').append(value.html);
+                            })
+                            $('#panelprodutosopcional').show();
+                            set_produtos()
+                        }
+
+
+                    }, 'json')
+
+
+                    produtosvalores.push(valor);
+                    menorparc += parseFloat((menor > 0) ? menor : 0);
+
+
+                } else {
+                    $('#botton-cotacao').addClass('hide')
+
+                    $('#panelprodutosopcional').hide();
+                    $('#produtosopcionais').empty();
+
+
+                    (menorparc > 0) ? menorparc -= parseFloat((menor > 0) ? menor : 0) : menorparc;
+                    if (vltotal != 0) {
+                        produtosvalores.splice($.inArray(valor, produtosvalores), 1);
+                        produtosvalores = [];
+                    }
+
+                    $.each(div, function (key, value) {
+                        var id = '#' + value.id
+                        if (id != this_id) {
+                            $($(id).attr('data-target')).attr('disabled', false)
+                            $(id).show()
+                        }
+                    })
+                }
+
+                $('#valortotal').trigger('change');
+
+            })
+        } else if (tipo == 'opcional') {
+
+            return $(input_id).on('change', function () {
+                var this_id = $(this).attr('data-target-div')
+                var div = $('#produtosopcionais').children('div')
+                var menor = $(this).attr('data-val-menorparc')
+                var valor = {'valor': $(this).attr('data-val-vlproduto')}
+                var tipo_seguro = $(this).attr('data-val-tiposeguro')
+
+                if ($(this).is(":checked")) {
+                    if ($(this).attr('data-val-tipoproduto') == 'opcional') {
+                        $.each(div, function (key, value) {
+                            var id = '#' + value.id
+
+                            if (id != this_id && tipo_seguro == $(id).attr('data-val-tiposeguro')) {
+
+                                $($(id).attr('data-target')).removeAttr('checked').attr('disabled', true)
+                                $(id).hide()
+
+                            }
+                        })
+
+                        produtosvalores.push(valor);
+                        menorparc += parseFloat((menor > 0) ? menor : 0);
+                        $('#valortotal').trigger('change');
+
+                    }
+
+
+                } else {
+
+                    if ($(this).attr('data-val-tipoproduto') == 'opcional') {
+
+                        (menorparc > 0) ? menorparc -= parseFloat((menor > 0) ? menor : 0) : menorparc;
+                        if (vltotal !== 0) {
+                            produtosvalores.splice($.inArray(valor, produtosvalores), 1);
+                            $('#valortotal').trigger('change');
+                        }
+
+                        $.each(div, function (key, value) {
+                            var id = '#' + value.id
+                            if (id != this_id) {
+                                $($(id).attr('data-target')).attr('disabled', false)
+                                $(id).show()
+                            }
+                        })
+                    }
+                }
+
+            })
+
+
+        }
+
+    }
+
+
+    var set_produtos = function () {
+        $('input:checkbox').each(function () {
+            if ($(this).attr('name') == 'produtos[]' && $(this).attr('data-set') == 0) {
+                if ($(this).attr('data-val-tipoproduto') == "master") {
+                    change_produtos('#' + $(this).attr('id'), 'master')
+                    $(this).attr('data-set', 1)
+                } else if ($(this).attr('data-val-tipoproduto') == "opcional") {
+                    change_produtos('#' + $(this).attr('id'), 'opcional')
+                    $(this).attr('data-set', 1)
+                }
+
+            }
+
         })
+        toggle_sapn_icon()
+
+    }
+
+
+    $("select[name=anomodelo]").on('change', function () {
+
+        remove_class()
+        var djson = $.parseJSON($(this).val());
+        dados_produtos = {
+            comissao: $('#comissao').val(),
+            cdfipe: $('input[name=codefipe]').val(),
+            valor: djson.valor,
+            ano: djson.ano,
+            tipo: $('input[name=tipoveiculo]:checked').val()
+        };
+        $('#panelprodutosopcional').hide();
+        $('#produtosopcionais').empty();
+
+        $.ajax({
+            data: dados_produtos,
+            url: geturl() + 'produtosmaster',
+            dataType: "json",
+            type: 'GET',
+            success: function (retorno) {
+                produtos.empty();
+                produtopagamento.fadeIn();
+
+
+                $.each(retorno, function (key, value) {
+                    produtos.append(value.html);
+                });
+
+                set_produtos()
+                comissao_set()
+
+                $('#comissao').trigger('change');
+                panelprodutos.fadeIn('slow');
+                btnproposta.fadeIn('slow');
+
+
+            }
+
+        });
+
+    })
+
+    var set_cpfcnpj_mask = function (input) {
+
+        return $(input).keypress(function (event) {
+
+            if (event.which != 8 && isNaN(String.fromCharCode(event.which))) {
+                event.preventDefault();
+            }
+
+            try {
+                $(this).unmask(mask_cpfcnpj);
+            } catch (e) {
+            }
+
+            var tamanho = $(this).val().length;
+
+            if (tamanho < 11) {
+                $(this).attr('placeholder', '999.999.999-99');
+                $(this).mask("999.999.999-99");
+                mask_cpfcnpj = "999.999.999-99";
+
+            } else {
+                $(this).attr('placeholder', '99.999.999/9999-99');
+                mask_cpfcnpj = "99.999.999/9999-99";
+
+                $(this).mask("99.999.999/9999-99");
+            }
+        });
+
     }
 
 
@@ -624,7 +932,6 @@ $(function () {
                     produtos.append(value.html);
 
 
-
                     $(value.span).on('click', function () {
                         var span = $(this).children('span')
                         console.log(span.attr('class'))
@@ -636,7 +943,7 @@ $(function () {
                         $('#comissao').change(function () {
 
 
-                            if($(value.chkid).val()){
+                            if ($(value.chkid).val()) {
                                 var valor = $.parseJSON($(value.chkid).val());
 
                             } else {
@@ -770,10 +1077,6 @@ $(function () {
     })
 
 
-
-
-
-
     $('input:radio').change(function () {
 
         if ($(this).attr('name') == 'tipopessoa') {
@@ -855,15 +1158,22 @@ $(function () {
     $('#valortotal').on('change', function () {
         vltotal = 0;
         $.each(produtosvalores, function (key, value) {
-            vltotal += parseFloat(aplicaComissao(value.vlproduto, $('#comissao').val()))
+            // console.log(value.valor)
+            vltotal += parseFloat(aplicaComissao(value.valor, $('#comissao').val()))
         });
+
+
         $('input[name=formapagamento]').trigger('change');
         if (vltotal > 0) {
-            $(this).text('R$ ' + addCommas(vltotal.toFixed(2)));
+
             panelpagamento.fadeIn();
         } else {
+
             panelpagamento.fadeOut();
         }
+
+        set_parcelas()
+        $(this).text('R$ ' + addCommas(vltotal.toFixed(2)));
 
     });
 
@@ -888,12 +1198,12 @@ $(function () {
                                 // console.log(value)
                                 $.each(value, function (key2, value2) {
                                     $('.panel-body').animate({scrollTop: 0}, "fast")
-                                    $('#messageerror').text(retorno.tipo + ': '+value2);
+                                    $('#messageerror').text(retorno.tipo + ': ' + value2);
                                 })
                             } else {
                                 $('.panel-body').animate({scrollTop: 0}, "fast")
 
-                                $('#messageerror').text(retorno.tipo + ': '+value);
+                                $('#messageerror').text(retorno.tipo + ': ' + value);
                             }
 
                         }
@@ -1052,7 +1362,7 @@ $(function () {
     });
 
     function menssageError(message, idmessage) {
-        return '<small><div class="alert alert-danger" id="' + idmessage + '" style="padding: 0px; margin: 0px; background-color: transparent; border: transparent;">' + message + '</div></small>'
+        return '<small><div class="col-md-6 col-md-offset-3 alert alert-danger" id="' + idmessage + '">' + message + '</div></small>'
 
     }
 
@@ -1343,7 +1653,7 @@ $(function () {
 
     });
 
-    $('#cpfcnpj').focusout(function () {
+    $('.cpfcnpj2').focusout(function () {
         var val = $(this).val();
         $(this).trigger('keyup');
         if (val.length > 11) {
@@ -1390,6 +1700,8 @@ $(function () {
 
 
     })
+
+    set_cpfcnpj_mask('#cpfcnpj')
 
 
     $('.forma-pagamento').on('click', function () {
@@ -1448,27 +1760,69 @@ $(function () {
 
         var veiculo = $(input.attr('data-veiculo'))
 
+        if(fipe == ''){
+            return false
+        } else{
+            $.ajax({
+                data: dados,
+                url: url,
+                dataType: "json",
+                type: 'GET',
+                success: function (retorno) {
+                    // var debug = retorno
 
-        $.ajax({
-            data: dados,
-            url: url,
-            dataType: "json",
-            type: 'GET',
-            success: function (retorno) {
-                // var debug = retorno
-
-                if (retorno.status) {
-                    veiculo.val(retorno.marca + ' - ' + retorno.modelo + ' (' + retorno.preiodo + ')')
-                    reusltAutoComplete(retorno.codefipe)
+                    if (retorno.status) {
+                        veiculo.val(retorno.marca + ' - ' + retorno.modelo + ' (' + retorno.preiodo + ')')
+                        reusltAutoComplete(retorno.codefipe)
+                    }
+                    // console.log(debug)
                 }
-                // console.log(debug)
-            }
-        })
+            })
+        }
+
+
+
 
     })
 
     $('.fipe').mask('999999-9')
 //    search table function
+    var toggle_sapn_icon = function () {
+        $('.detalhe-toggle span').on('click', function () {
+            console.log($(this))
+        })
+    }
 
+
+
+    $('.button-cotacao-submit').on('click', function () {
+        var id_error_msg = 'form_error'
+
+        if ($('#cpfcnpj').val() == "" || !$('#cpfcnpj').val()) {
+
+            $($('#cpfcnpj').attr('data-target-input')).addClass('has-error')
+            $($('#cpfcnpj').attr('data-target-label')).addClass('label-danger')
+
+            if ($('#' + id_error_msg)) {
+                $('#' + id_error_msg).remove()
+            }
+            $('#form-cotacao').prepend(menssageError('O campo CPF/CNPJ é obrigatorio', id_error_msg))
+
+            $('.panel-body').scrollTop('fast')
+            return false
+
+        } else if ($('#' + id_error_msg)) {
+            $($('#cpfcnpj').attr('data-target-input')).removeClass('has-error')
+            $($('#cpfcnpj').attr('data-target-label')).removeClass('label-danger')
+            $('#' + id_error_msg).hide()
+        }
+
+        $('#cpfcnpj').unmask(mask_cpfcnpj)
+        $('#form-cotacao').append('<input name="tipoenvio" type="hidden" value="' + $(this).attr('id') + '">')
+
+    })
+
+
+   
 });
 

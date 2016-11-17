@@ -93,12 +93,12 @@ endif;
 
 if (!function_exists('webserviceCotar')):
 
-    function webserviceCotacao($cotacao, $corretor, $segurado, $veiculo, $produtos, $proprietario, $condutor, $perfilsegurado,$url)
+    function webserviceCotacao($cotacao, $url)
     {
-        $data = json_encode(array_merge($cotacao, $perfilsegurado, $corretor, $segurado, $veiculo, $produtos, $proprietario, $condutor));
+        $data = json_encode($cotacao);
         $curl = curl_init();
         curl_setopt_array($curl, array(
-            CURLOPT_URL => $url ."cotacao",
+            CURLOPT_URL => $url . "cotacao",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
@@ -118,19 +118,19 @@ if (!function_exists('webserviceCotar')):
         if ($err) {
             return "cURL Error #:" . $err;
         } else {
-            return $response;
+            return json_decode($response);
         }
     }
 endif;
 
 if (!function_exists('webserviceProposta')):
 
-    function webserviceProposta($proposta, $segurado, $veiculo, $produtos, $proprietario, $condutor, $perfilsegurado,$url)
+    function webserviceProposta($proposta, $segurado, $veiculo, $produtos, $proprietario, $condutor, $perfilsegurado, $url)
     {
         $data = json_encode(array_merge($proposta, $perfilsegurado, $segurado, $veiculo, $produtos, $proprietario, $condutor));
         $curl = curl_init();
         curl_setopt_array($curl, array(
-            CURLOPT_URL => $url ."proposta",
+            CURLOPT_URL => $url . "proposta",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
@@ -315,17 +315,16 @@ endif;
 
 if (!function_exists('showDate')):
 
-    function showDate($date,$interval = NULL)
+    function showDate($date, $interval = NULL)
     {
 
 
-        if($interval == NULL){
-            return  date('d/m/Y',strtotime($date));
+        if ($interval == NULL) {
+            return date('d/m/Y', strtotime($date));
 
         } else {
             return date('d/m/Y', strtotime($interval, strtotime($date)));
         }
-
 
 
     }
@@ -333,7 +332,7 @@ if (!function_exists('showDate')):
 endif;
 if (!function_exists('between')):
 
-    function between($val,$min, $max)
+    function between($val, $min, $max)
     {
         return ($val >= $min && $val <= $max);
     }
@@ -345,26 +344,26 @@ if (!function_exists('primeiroNome')):
      * Get a users first name from the full name
      * or return the full name if first name cannot be found
      * e.g.
-     * James Smith 	    -> James
+     * James Smith        -> James
      * James C. Smith   -> James
      * Mr James Smith   -> James
-     * Mr Smith 	    -> Mr Smith
-     * Mr J Smith 	    -> Mr J Smith
-     * Mr J. Smith 	    -> Mr J. Smith
+     * Mr Smith        -> Mr Smith
+     * Mr J Smith        -> Mr J Smith
+     * Mr J. Smith        -> Mr J. Smith
      *
      * @param string $fullName
-     * @param bool   $checkFirstNameLength Should we make sure it doesn't just return "J" as a name? Defaults to TRUE.
+     * @param bool $checkFirstNameLength Should we make sure it doesn't just return "J" as a name? Defaults to TRUE.
      *
      * @return string
      */
-    function primeiroNome($fullName, $checkFirstNameLength=TRUE)
+    function primeiroNome($fullName, $checkFirstNameLength = TRUE)
     {
         // Split out name so we can quickly grab the first name part
         $nameParts = explode(' ', $fullName);
         $firstName = $nameParts[0];
         // If the first part of the name is a prefix, then find the name differently
-        if(in_array(strtolower($firstName), array('sr', 'sra', 'srs', 'sras', 'dr','dra'))) {
-            if($nameParts[2]!='') {
+        if (in_array(strtolower($firstName), array('sr', 'sra', 'srs', 'sras', 'dr', 'dra'))) {
+            if ($nameParts[2] != '') {
                 // E.g. Mr James Smith -> James
                 $firstName = $nameParts[1];
             } else {
@@ -373,12 +372,74 @@ if (!function_exists('primeiroNome')):
             }
         }
         // make sure the first name is not just "J", e.g. "J Smith" or "Mr J Smith" or even "Mr J. Smith"
-        if($checkFirstNameLength && strlen($firstName)<3) {
+        if ($checkFirstNameLength && strlen($firstName) < 3) {
             $firstName = $fullName;
         }
         return $firstName;
     }
 
 endif;
+
+if (!function_exists('jurosComposto')):
+
+    function jurosComposto($valor, $taxa, $parcelas)
+    {
+        $taxa = $taxa / 100;
+        $potencia = $valor * $taxa * pow(($taxa + 1), $parcelas) / (pow(($taxa + 1), $parcelas) - 1);
+        $valParcela = number_format($potencia, 2, ".", ",");
+
+        return $valParcela;
+    }
+
+endif;
+
+if (!function_exists('geraParcelas')):
+    //gerarParcelas(vltotal, maxparc, parcelasemjuros, taxajuros, menorparc, formapg)
+
+    function geraParcelas($premio, $max_parcelas, $parcelas_sem_juros, $taxa_juros, $valor_menor_parcela, $id_forma)
+    {
+        $parcela = 1;
+        $retorno = [];
+
+        while ($parcela <= $max_parcelas) {
+
+
+            $obj_retorno = new stdClass();
+            $obj_retorno->taxa_juros = 0;
+            $obj_retorno->quantidade = $parcela;
+
+
+            $parcela_com_juros = jurosComposto($premio, $taxa_juros, $parcela);
+
+            if ($parcela > $parcelas_sem_juros && $parcela_com_juros < $valor_menor_parcela && $id_forma == 2) {
+                $obj_retorno->primeira_parcela = $valor_menor_parcela;
+                $obj_retorno->demais_parcela =        ((jurosComposto($premio, $taxa_juros, $parcela) * $parcela) - $valor_menor_parcela) / ($parcela -1);
+                $obj_retorno->valor_final = $valor_menor_parcela + $obj_retorno->demais_parcela * ($parcela - 1);
+                $obj_retorno->taxa_juros = $taxa_juros;
+            } elseif ($parcela <= $parcelas_sem_juros && $premio / $parcela < $valor_menor_parcela && $id_forma == 2) {
+                $obj_retorno->primeira_parcela = $valor_menor_parcela;
+                $obj_retorno->demais_parcela = ($premio - $valor_menor_parcela) / ($parcela - 1);
+                $obj_retorno->valor_final = $valor_menor_parcela + ($obj_retorno->demais_parcela * ($parcela - 1));
+            } elseif ($parcela > $parcelas_sem_juros) {
+                $obj_retorno->primeira_parcela = $parcela_com_juros;
+                $obj_retorno->demais_parcela = $parcela_com_juros;
+                $obj_retorno->valor_final = $parcela_com_juros * $parcela;
+                $obj_retorno->taxa_juros = $taxa_juros;
+            } else {
+                $obj_retorno->primeira_parcela = $premio / $parcela;
+                $obj_retorno->demais_parcela = $obj_retorno->primeira_parcela;
+                $obj_retorno->valor_final = $obj_retorno->primeira_parcela * $parcela;
+            }
+            $parcela++;
+            $retorno[] = $obj_retorno;
+
+        }
+
+        return $retorno;
+    }
+
+endif;
+
+
 
 
