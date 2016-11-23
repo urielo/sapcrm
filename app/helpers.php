@@ -413,7 +413,7 @@ if (!function_exists('geraParcelas')):
 
             if ($parcela > $parcelas_sem_juros && $parcela_com_juros < $valor_menor_parcela && $id_forma == 2) {
                 $obj_retorno->primeira_parcela = $valor_menor_parcela;
-                $obj_retorno->demais_parcela =        ((jurosComposto($premio, $taxa_juros, $parcela) * $parcela) - $valor_menor_parcela) / ($parcela -1);
+                $obj_retorno->demais_parcela = ((jurosComposto($premio, $taxa_juros, $parcela) * $parcela) - $valor_menor_parcela) / ($parcela - 1);
                 $obj_retorno->valor_final = $valor_menor_parcela + $obj_retorno->demais_parcela * ($parcela - 1);
                 $obj_retorno->taxa_juros = $taxa_juros;
             } elseif ($parcela <= $parcelas_sem_juros && $premio / $parcela < $valor_menor_parcela && $id_forma == 2) {
@@ -436,6 +436,29 @@ if (!function_exists('geraParcelas')):
         }
 
         return $retorno;
+    }
+
+endif;
+if (!function_exists('hiddenId')):
+
+
+    function hiddenId($id, $tipo)
+    {
+        $token = md5('hidden') . '-';
+        
+        switch ($tipo) {
+            case 'encode':
+            $id = base64_encode($token . $id);
+                break;
+            case 'decode':
+                $id = str_replace($token,'',base64_decode($id));
+                break;
+            default :
+                return false;
+
+        }
+
+        return $id;
     }
 
 endif;

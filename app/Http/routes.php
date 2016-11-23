@@ -16,6 +16,9 @@ Route::group(['prefix' => 'teste'], function () {
     Route::get('/', 'Backend\TesteController@index');
     Route::get('/mail', 'Backend\TesteController@mail');
 
+    Route::get('/post', ['as'=>'post.teste',
+    'uses'=> 'Backend\TesteController@post_teste']);
+
     
 
 
@@ -109,6 +112,18 @@ Route::group(['prefix' => 'vendas', 'middleware' => 'auth'], function () {
         'middleware' => ['permission:vendas-cotacao'],
         'as' => 'cotacao.cotar',
         'uses' => 'Backend\CotacaoController@index'
+    ]);
+
+    Route::get('proposta/{cotacao_id}', [
+        'middleware' => ['permission:vendas-cotacao'],
+        'as' => 'proposta.index',
+        'uses' => 'Backend\PorpostaController@index'
+    ]);
+    
+    Route::post('proposta/emitir', [
+        'middleware' => ['permission:vendas-cotacao'],
+        'as' => 'proposta.emitir',
+        'uses' => 'Backend\PorpostaController@emitir'
     ]);
 
     Route::get('cotacao/sucesso/{idcotacao}', [

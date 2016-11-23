@@ -31,10 +31,11 @@ class Segurado extends Model
         "dtupdate",
     ];
     public $timestamps = FALSE;
-    
-      public function veiculo()
+
+    public function estadocivil()
     {
-        return $this->hasMany(App\Model\Veiculos);
+        
     }
 
+    
 }

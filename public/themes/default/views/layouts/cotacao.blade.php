@@ -52,7 +52,7 @@
 
                 </div>
 
-                    @yield('footer')
+                @yield('footer')
 
 
             </div>
@@ -66,4 +66,8 @@
     </div>
 
 
+@stop
+
+@section('script')
+    @yield('script')
 @stop

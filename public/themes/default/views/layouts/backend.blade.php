@@ -11,14 +11,18 @@
     @yield('style')
     <link rel="stylesheet" href="{{ theme('css/jquery-ui.min.css') }}">
     <link rel="stylesheet" href="{{ theme('css/bootstrap.min.css') }}">
+    {{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">--}}
+    {{--<link rel="stylesheet" href="https://bootswatch.com/sandstone/bootstrap.min.css">--}}
+    <link rel="stylesheet" href="{{ theme('css/bootstrap-select.min.css') }}">
+
     <link rel="stylesheet" href="{{ theme('css/bootstrap-theme.min.css') }}">
     <link rel="stylesheet" href="{{ theme('css/datepicker.css') }}">
     <link rel="stylesheet" href="{{ theme('datatables/datatables.min.css') }}">
-    <link rel="stylesheet" href="{{ theme('css/sidebar.css') }}">
+    {{--<link rel="stylesheet" href="{{ theme('css/sidebar.css') }}">--}}
     <link rel="stylesheet" href="{{ theme('css/style.css') }}">
 
+
     {{--<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">--}}
-    @yield('script')
 
 </head>
 
@@ -115,6 +119,10 @@
 </div>
 <script src="{{ theme('js/jquery.js') }}"></script>
 <script src="{{ theme('js/bootstrap.min.js') }}"></script>
+<script src="{{ theme('js/bootstrap-select.min.js') }}"></script>
+{{--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>--}}
+
+<script src="{{ theme('js/i18n/defaults-pt_BR.min.js') }}"></script>
 <script src="{{ theme('js/jquery-ui.js') }}"></script>
 <script src="{{ theme('js/bootstrap-datepicker.js') }}"></script>
 <script src="{{ theme('js/bootstrap-validation.min.js') }}"></script>
@@ -123,6 +131,9 @@
 <script src="{{ theme('datatables/datatables.min.js') }}"></script>
 <script src="{{ theme('js/maskedinput.min.js') }}"></script>
 <script src="{{ theme('js/script.js') }}"></script>
+
+
+@yield('script')
 
 <footer class="footer navbar-fixed-bottom">
     <div class="container-fluid">

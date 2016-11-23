@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Mail;
 use App\Console\Commands\CotacaoCommand;
 use Illuminate\Support\Facades\Auth;
@@ -350,7 +351,7 @@ class CotacaoController extends Controller
     public function pdf_cotacao($cotacao_id)
     {
 
-        $cotacao = Cotacoes::find(base64_decode($cotacao_id));
+        $cotacao = Cotacoes::find(Crypt::decrypt($cotacao_id));
         $formas = [];
 
         if ($cotacao) {
@@ -373,7 +374,7 @@ class CotacaoController extends Controller
             error_reporting(E_ERROR);
             $pdf = Pdf::loadView('backend.pdf.cotacao', compact('cotacao', 'formas'));
             $pdf->SetProtection(['print'], '', '456');
-            return $pdf->stream();
+            return $pdf->stream('Cotacao');
         } else {
             return Redirect::back()->with('error', 'Cotação Invalida!');
         }
@@ -383,9 +384,10 @@ class CotacaoController extends Controller
 
     public function sucesso($idcotacao)
     {
-        $cotacao = Cotacoes::find($idcotacao);
+        $cotacao = Cotacoes::find(Crypt::decrypt($idcotacao));
+        $crypt = Crypt::class;
 
-        return view('backend.cotacao.sucesso', compact('cotacao'));
+        return view('backend.cotacao.sucesso', compact('cotacao','crypt'));
 
 
     }
@@ -440,10 +442,10 @@ class CotacaoController extends Controller
 
             switch ($request->tipoenvio) {
                 case 'proposta':
-                    return 'tela.proposta';
+                    return Redirect::route('proposta.index',Crypt::encrypt($cotacao->retorno->cdCotacao));
                     break;
                 case 'salvar':
-                    return Redirect::route('cotacao.sucesso', $cotacao->retorno->cdCotacao);
+                    return Redirect::route('cotacao.sucesso', Crypt::encrypt($cotacao->retorno->cdCotacao));
                     break;
                 default :
                     return Redirect::route('cotacao.cotar');

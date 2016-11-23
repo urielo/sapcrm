@@ -10,7 +10,7 @@ class Cotacoes extends Model
     protected $table = 'cotacao';
     protected $primaryKey = 'idcotacao';
     protected $fillable = [
-        'idcotacao',
+        'w',
         'idparceiro',
         'idcorretor',
         'clicpfcnpj',
