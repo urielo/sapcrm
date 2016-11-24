@@ -125,9 +125,9 @@ endif;
 
 if (!function_exists('webserviceProposta')):
 
-    function webserviceProposta($proposta, $segurado, $veiculo, $produtos, $proprietario, $condutor, $perfilsegurado, $url)
+    function webserviceProposta($proposta, $url)
     {
-        $data = json_encode(array_merge($proposta, $perfilsegurado, $segurado, $veiculo, $produtos, $proprietario, $condutor));
+        $data = json_encode($proposta);
         $curl = curl_init();
         curl_setopt_array($curl, array(
             CURLOPT_URL => $url . "proposta",
@@ -270,7 +270,7 @@ endif;
 
 if (!function_exists('getDateFormat')):
 
-    function getDateFormat($date, $type = null)
+    function  getDateFormat($date, $type = null)
     {
         switch ($type) {
 

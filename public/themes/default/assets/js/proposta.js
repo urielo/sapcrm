@@ -1,4 +1,5 @@
 $(function () {
+
     $('input:radio[name="formapagamento"]').on('change', function () {
         var radio = $(this)
 
@@ -17,8 +18,7 @@ $(function () {
                 var value = $('input:radio[name="quant_parcela"]:checked').val()
 
 
-
-                if(parcela.attr('data-name') == data_target && parcela.val() == value){
+                if (parcela.attr('data-name') == data_target && parcela.val() == value) {
                     parcela.prop('checked', true)
                 }
             })
@@ -37,9 +37,7 @@ $(function () {
         })
 
 
-
     })
-
     $('#search-placa').on('click', function () {
         var input = $($(this).attr('data-target'))
         var placa = input.val().replace('-', '')
@@ -106,14 +104,15 @@ $(function () {
 
     })
 
+    var mask_cpfcnpj
 
-
-    if($('.cpfcnpj').val().length > 11){
-        $('.cpfcnpj').mask("99.999.999/9999-99");
+    if ($('.cpfcnpj').val().length > 11) {
+        mask_cpfcnpj = "99.999.999/9999-99";
     } else {
-        $('.cpfcnpj').mask("999.999.999-99")
+        mask_cpfcnpj = "999.999.999-99";
     }
 
+    $('.cpfcnpj').mask(mask_cpfcnpj)
     $('.ddd').mask("99")
     $('.cel').mask("9 9999-9999")
     $('.fixo').mask("9999-9999")
@@ -126,7 +125,7 @@ $(function () {
         endDate: "+Infinity",
         autoclose: true
     })
-    
+
     $('.input-group.date.vencimento').datepicker({
         format: "dd/mm/yyyy",
         language: "pt-BR",
@@ -142,7 +141,7 @@ $(function () {
         minViewMode: 0,
         autoclose: true
     })
-    
+
     $('.input-group.date.validade').datepicker({
         format: "mm/yyyy",
         language: "pt-BR",
@@ -153,62 +152,69 @@ $(function () {
         autoclose: true
     })
 
-    
-        $('input.cep').mask('99999-999')
-        $('button.cep').on('click',function () {
-            var input =  $('input.cep ');
 
-            var cep = (input.val()).replace('-', '')
-            var settings = {
-                "async": true,
-                "crossDomain": true,
-                "url": "https://viacep.com.br/ws/" + cep + "/json/",
-                "method": "GET",
-                "dataType": "jsonp",
-            }
+    $('input.cep').mask('99999-999')
+    $('button.cep').on('click', function () {
+        var input = $('input.cep ');
 
-            var logradouro = $(input.attr('data-target-logradouro'))
-            var bairro = $(input.attr('data-target-bairro'))
-            var cidade = $(input.attr('data-target-cidade'))
-            var ufs = $(input.attr('data-target-uf') + 'option')
-            var uf = $(input.attr('data-target-uf'))
+        var cep = (input.val()).replace('-', '')
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://viacep.com.br/ws/" + cep + "/json/",
+            "method": "GET",
+            "dataType": "jsonp",
+        }
 
-
-            $.ajax(settings).done(function (response) {
+        var logradouro = $(input.attr('data-target-logradouro'))
+        var bairro = $(input.attr('data-target-bairro'))
+        var cidade = $(input.attr('data-target-cidade'))
+        var ufs = $(input.attr('data-target-uf') + 'option')
+        var uf = $(input.attr('data-target-uf'))
 
 
-                $.each(ufs, function (key, value) {
-                    if (response.uf == value.id) {
-                        uf.val(value.value);
-                    }
-                });
-                logradouro.val(response.logradouro);
-                bairro.val(response.bairro);
-                cidade.val(response.localidade);
+        $.ajax(settings).done(function (response) {
 
+
+            $.each(ufs, function (key, value) {
+                if (response.uf == value.id) {
+                    uf.val(value.value);
+                }
             });
+            logradouro.val(response.logradouro);
+            bairro.val(response.bairro);
+            cidade.val(response.localidade);
+
+        });
 
 
-        })
+    })
 
-    if( $('input.cep').val() != ''){
+    if ($('input.cep').val() != '') {
         $('button.cep').trigger('click')
     }
 
-    $('select[name="ind_propritetario"]').on('change',function () {
+    $('select[name="ind_propritetario"]').on('change', function () {
         var ind_proprietario = $(this)
-       
+
         $('.dados-proprietario').each(function () {
             var dados_prop = $(this)
-            
-            if(ind_proprietario.val() == 0 && !dados_prop.hasClass('hide')){
+
+            if (ind_proprietario.val() == 1 && !dados_prop.hasClass('hide')) {
                 dados_prop.addClass('hide')
-                
-            } else if(ind_proprietario.val() == 1 && dados_prop.hasClass('hide')){
+
+            } else if (ind_proprietario.val() == 0 && dados_prop.hasClass('hide')) {
                 dados_prop.removeClass('hide')
 
             }
         })
+    })
+
+    $('.button-proposta-enviar').click( function () {
+        $('.cpfcnpj').unmask(mask_cpfcnpj)
+
+
+        // return false
     })
 
 })

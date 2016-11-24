@@ -15,7 +15,8 @@
 
     <div class="row">
         <div class="col-md-6 col-xs-12">
-            <div class="row" id="veiculo-row">
+
+            <div class="row" id="segurado-row">
                 <div class="col-md-12">
                     <div class="panel panel-default">
 
@@ -26,178 +27,25 @@
                                     <div class="row info-veiculo">
 
                                         <div class="col-md-4">
-                                            <strong>Marca: </strong> {{$cotacao->veiculo->fipe->marca}}
+                                            <strong>Cotação: </strong> {{$cotacao->idcotacao}}
 
                                         </div>
 
-                                        <div class="col-md-8">
-                                            <strong>Modelo: </strong> {{$cotacao->veiculo->fipe->modelo}}
+                                        <div class="col-md-4">
+                                            <strong>Emissão: </strong> {{date('d/m/Y', strtotime($cotacao->dtcreate))}}
 
-                                        </div>
-                                        <div class="col-md-3">
-                                            <strong>Fipe: </strong> {{$cotacao->veiculo->veiccodfipe}}
-                                        </div>
-                                        <div class="col-md-3">
-                                            <strong>Valor: </strong>
-                                            R$ {{format('real',$cotacao->veiculo->fipe->anovalor()->where('idcombustivel',$cotacao->veiculo->veictipocombus)->where('ano',$cotacao->veiculo->veicano)->first()->valor)}}
-                                        </div>
-
-                                        <div class="col-md-2">
-                                            <strong>Ano: </strong> {{$cotacao->veiculo->veicano}}
                                         </div>
                                         <div class="col-md-4">
-                                            <strong>Combustivel: </strong> {{$cotacao->veiculo->combustivel->nm_comb}}
+                                            <strong>Vencimento: </strong> {{date('d/m/Y', strtotime($cotacao->dtvalidade))}}
                                         </div>
 
+
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="row">
 
-                                <div class="col-md-3">
-                                    <label class="label label-default" for="placa">Placa</label>
-                                    <div class="input-group input-group-sm ">
-                                        <input class="form-control form-control-sm" type="text"
-                                               data-target-chassi="#chassi"
-                                               data-target-renavan="#renavan"
-                                               data-target-municipio="#munplaca"
-                                               data-target-uf="#placauf"
-                                               data-target-anorenav="#anorenav"
-                                               data-target-cor="#veiccor"
-                                               name="placa" id="placa"/>
-                                                        <span class="input-group-btn">
-                                                             <button class="btn btn-primary btn-sm" data-target="#placa"
-                                                                     href="{{route('veiculo.search')}}" type="button"
-                                                                     id="search-placa">
-                                                                 <span class="glyphicon glyphicon-search"></span>
-                                                             </button>
-                                                        </span>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-5  ">
-                                    <div class="form-group form-group-sm">
-                                        <label class="label label-default"
-                                               for="munplaca">Município </label>
-                                        <input class="form-control form-control-sm" type="text"
-                                               name="munplaca" id="munplaca"/>
-                                    </div>
-                                </div>
-                                <div class="col-md-2 ">
-                                    <div class="form-group form-group-sm">
-
-                                        {!! Form::label('placa_uf','UF',['class'=>'label label-default']) !!}
-                                        {!! Form::select('placa_uf',
-                                        $ufs,
-                                        1,
-                                        ['class'=>'selectpicker form-control form-control-sm',
-                                        'data-live-search'=>'true',
-                                        'data-style'=>'btn-secondary btn-sm',
-                                        'id'=>'placa_uf']) !!}
-
-                                    </div>
-                                </div>
-                                <div class="col-md-2  ">
-                                    <div class="form-group form-group-sm">
-                                        <label for="anof" class="label label-default">Fabricação</label>
-
-
-                                        <select name="anof" id="anof"
-                                                class="form-control form-control-sm">
-                                            @for($i = $cotacao->veiculo->veicano; $i >= $cotacao->veiculo->veicano - 1; $i--)
-                                                <option value="{{$i}}">{{$i}}</option>
-                                            @endfor
-
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-3  ">
-                                    <div class="form-group form-group-sm">
-                                        <label class="label label-default" for="renavan">Renavan</label>
-                                        <input class="form-control form-control-sm" type="text"
-                                               tipoinput="renavan" stats="1" name="renavan"
-                                               id="renavan"/>
-                                    </div>
-                                </div>
-                                <div class="col-md-2  ">
-                                    <div class="form-group form-group-sm">
-                                        <label class="label label-default" for="anorenav">Ano
-                                            Renavan</label>
-                                        <select name="anorenav" id="anorenav"
-                                                class="form-control form-control-sm">
-                                            @for($i = ($cotacao->veiculo->veicano == 0 ? date('Y') :$cotacao->veiculo->veicano); $i <= date('Y'); $i++)
-                                                <option value="{{$i}}">{{$i}}</option>
-                                            @endfor
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-4  ">
-                                    <div class="form-group form-group-sm">
-                                        <label class="label label-default" for="chassi">Chassi </label>
-                                        <input class="form-control form-control-sm" stats="1"
-                                               tipoinput="chassi" type="text"
-                                               name="chassi" id="chassi"/>
-                                    </div>
-                                </div>
-                                <div class="col-md-3  ">
-                                    <div class="form-group form-group-sm">
-                                        <label class="label label-default" for="veiccor">Cor</label>
-                                        <input class="form-control form-control-sm" type="veiccor"
-                                               name="veiccor" id="veiccor"/>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-3 ">
-                                    <div class="form-group form-group-sm">
-                                        <label class="label label-default" for="veicultilizacao">Ultilização</label>
-                                        <select name="veicultilizacao" id="veicultilizacao"
-                                                class="form-control form-control-sm">
-                                            @foreach($tipoultiveics::orderBy('idutilveiculo', 'ASC')->get() as $tipoulti)
-                                                <option value="{{$tipoulti->idutilveiculo}}"
-                                                        style="font-size: 12px;">{{$tipoulti->descutilveiculo}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 ">
-                                    <div class="form-group form-group-sm">
-                                        <label class="label label-default" for="indcahssiremarc">Chassi
-                                            Remarcado?</label>
-                                        <select name="indcahssiremarc" id="indcahssiremarc"
-                                                class="form-control form-control-sm">
-                                            <option value="0">Não</option>
-                                            <option value="1">Sim</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 ">
-                                    <div class="form-group form-group-sm">
-                                        <label class="label label-default" for="indleilao">Comprado em Leilão? </label>
-                                        <select name="indleilao" id="indleilao"
-                                                class="form-control form-control-sm">
-                                            <option value="0">Não</option>
-                                            <option value="1">Sim</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row" id="segurado-row">
-                <div class="col-md-12">
-                    <div class="panel panel-default">
-
-                        <div class="panel-body">
-
-                            @if(strlen($cotacao->segurado->clicpfcnpj) > 11)
+                        @if(strlen($cotacao->segurado->clicpfcnpj) > 11)
 
 
                                 <div class="row pessoa">
@@ -246,7 +94,7 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group form-group-sm">
-                                            {!! Form::label('seg_profissao_ramo','Profissão',['class'=>'label label-default']) !!}
+                                            {!! Form::label('seg_profissao_ramo','Romo Atividade',['class'=>'label label-default']) !!}
                                             {!! Form::select('seg_profissao_ramo',$ramos_atividades,
                                             (!empty($cotacao->segurado->clicdprofiramoatividade) ? $cotacao->segurado->clicdprofiramoatividade : '')
                                             ,
@@ -264,7 +112,6 @@
 
                                         <div class="form-group form-group-sm">
                                             {!! Form::label('seg_cpfnpj','CPF',['class'=>'label label-default']) !!}
-                                            {{--<label class="label label-default" for="segcpf">CPF</label>--}}
                                             {!! Form::text('seg_cpfnpj',$cotacao->segurado->clicpfcnpj,[
                                             'class' =>'form-control form-control-sm cpfcnpj',
                                             'readonly'=>true,
@@ -585,8 +432,8 @@
                                             <div class="form-group form-group-sm">
                                                 {!! Form::label('ind_propritetario','Proprietário é o seg?',['class'=>'label label-default']) !!}
                                                 {!! Form::select('ind_propritetario',
-                                                ['0'=>'Sim','1'=>'Não'],
-                                                0,
+                                                ['1'=>'Sim','0'=>'Não'],
+                                                1,
                                                 ['class'=>'form-control form-control-sm ind-proprietario','id'=>'ind_propritetario']) !!}
 
                                             </div>
@@ -635,6 +482,183 @@
         </div>
 
         <div class="col-md-6 col-xs-12">
+            <div class="row" id="veiculo-row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+
+                        <div class="panel-body">
+
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="row info-veiculo">
+
+                                        <div class="col-md-4">
+                                            <strong>Marca: </strong> {{$cotacao->veiculo->fipe->marca}}
+
+                                        </div>
+
+                                        <div class="col-md-8">
+                                            <strong>Modelo: </strong> {{$cotacao->veiculo->fipe->modelo}}
+
+                                        </div>
+                                        <div class="col-md-3">
+                                            <strong>Fipe: </strong> {{$cotacao->veiculo->veiccodfipe}}
+                                        </div>
+                                        <div class="col-md-3">
+                                            <strong>Valor: </strong>
+                                            R$ {{format('real',$cotacao->veiculo->fipe->anovalor()->where('idcombustivel',$cotacao->veiculo->veictipocombus)->where('ano',$cotacao->veiculo->veicano)->first()->valor)}}
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <strong>Ano: </strong> {{$cotacao->veiculo->veicano}}
+                                        </div>
+                                        <div class="col-md-4">
+                                            <strong>Combustivel: </strong> {{$cotacao->veiculo->combustivel->nm_comb}}
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-3">
+                                    <label class="label label-default" for="placa">Placa</label>
+                                    <div class="input-group input-group-sm ">
+                                        <input class="form-control form-control-sm" type="text"
+                                               data-target-chassi="#chassi"
+                                               data-target-renavan="#renavan"
+                                               data-target-municipio="#munplaca"
+                                               data-target-uf="#placauf"
+                                               data-target-anorenav="#anorenav"
+                                               data-target-cor="#veiccor"
+                                               name="placa" id="placa"/>
+                                                        <span class="input-group-btn">
+                                                             <button class="btn btn-primary btn-sm" data-target="#placa"
+                                                                     href="{{route('veiculo.search')}}" type="button"
+                                                                     id="search-placa">
+                                                                 <span class="glyphicon glyphicon-search"></span>
+                                                             </button>
+                                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-5  ">
+                                    <div class="form-group form-group-sm">
+                                        <label class="label label-default"
+                                               for="munplaca">Município </label>
+                                        <input class="form-control form-control-sm" type="text"
+                                               name="munplaca" id="munplaca"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 ">
+                                    <div class="form-group form-group-sm">
+
+                                        {!! Form::label('placa_uf','UF',['class'=>'label label-default']) !!}
+                                        {!! Form::select('placa_uf',
+                                        $ufs,
+                                        1,
+                                        ['class'=>'selectpicker form-control form-control-sm',
+                                        'data-live-search'=>'true',
+                                        'data-style'=>'btn-secondary btn-sm',
+                                        'id'=>'placa_uf']) !!}
+
+                                    </div>
+                                </div>
+                                <div class="col-md-2  ">
+                                    <div class="form-group form-group-sm">
+                                        <label for="anof" class="label label-default">Fabricação</label>
+
+
+                                        <select name="anof" id="anof"
+                                                class="form-control form-control-sm">
+                                            @for($i = $cotacao->veiculo->veicano; $i >= $cotacao->veiculo->veicano - 1; $i--)
+                                                <option value="{{$i}}">{{$i}}</option>
+                                            @endfor
+
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3  ">
+                                    <div class="form-group form-group-sm">
+                                        <label class="label label-default" for="renavan">Renavan</label>
+                                        <input class="form-control form-control-sm" type="text"
+                                               tipoinput="renavan" stats="1" name="renavan"
+                                               id="renavan"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-2  ">
+                                    <div class="form-group form-group-sm">
+                                        <label class="label label-default" for="anorenav">Ano
+                                            Renavan</label>
+                                        <select name="anorenav" id="anorenav"
+                                                class="form-control form-control-sm">
+                                            @for($i = ($cotacao->veiculo->veicano == 0 ? date('Y') :$cotacao->veiculo->veicano); $i <= date('Y'); $i++)
+                                                <option value="{{$i}}">{{$i}}</option>
+                                            @endfor
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4  ">
+                                    <div class="form-group form-group-sm">
+                                        <label class="label label-default" for="chassi">Chassi </label>
+                                        <input class="form-control form-control-sm" stats="1"
+                                               tipoinput="chassi" type="text"
+                                               name="chassi" id="chassi"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-3  ">
+                                    <div class="form-group form-group-sm">
+                                        <label class="label label-default" for="veiccor">Cor</label>
+                                        <input class="form-control form-control-sm" type="veiccor"
+                                               name="veiccor" id="veiccor"/>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 ">
+                                    <div class="form-group form-group-sm">
+                                        <label class="label label-default" for="veicultilizacao">Ultilização</label>
+                                        <select name="veicultilizacao" id="veicultilizacao"
+                                                class="form-control form-control-sm">
+                                            @foreach($tipoultiveics::orderBy('idutilveiculo', 'ASC')->get() as $tipoulti)
+                                                <option value="{{$tipoulti->idutilveiculo}}"
+                                                        style="font-size: 12px;">{{$tipoulti->descutilveiculo}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 ">
+                                    <div class="form-group form-group-sm">
+                                        <label class="label label-default" for="indcahssiremarc">Chassi
+                                            Remarcado?</label>
+                                        <select name="indcahssiremarc" id="indcahssiremarc"
+                                                class="form-control form-control-sm">
+                                            <option value="0">Não</option>
+                                            <option value="1">Sim</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 ">
+                                    <div class="form-group form-group-sm">
+                                        <label class="label label-default" for="indleilao">Comprado em Leilão? </label>
+                                        <select name="indleilao" id="indleilao"
+                                                class="form-control form-control-sm">
+                                            <option value="0">Não</option>
+                                            <option value="1">Sim</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
             <div class="row" id="formas-pagamentos-row">
                 <div class="col-md-12">
                     <div class="panel panel-default">
@@ -751,32 +775,34 @@
                                                     @else
                                                         <div class="col-md-4 ">
 
+
+
                                                             <div class="form-group form-group-sm">
-                                                                <label class="label label-default" for="cartaonumero">Nº
+                                                                <label class="label label-default" for="forma_cartao_numero">Nº
                                                                     Cartão</label>
                                                                 <input class="form-control form-control-sm" type="text"
                                                                        tipoinput="num-cartao" stats="1"
-                                                                       name="cartaonumero"
-                                                                       id="cartaonumero"/>
+                                                                       name="forma_cartao_numero"
+                                                                       id="forma_cartao_numero"/>
                                                             </div>
 
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group form-group-sm">
-                                                                <label class="label label-default" for="cartaonumero">Titular
+                                                                <label class="label label-default" for="forma_cartao_nome">Titular
                                                                     do
                                                                     Cartão</label>
                                                                 <input class="form-control form-control-sm" type="text"
                                                                        placeholder="Nome proprietario do cartão"
-                                                                       name="cartaonome"
-                                                                       id="cartaonome"/>
+                                                                       name="forma_cartao_nome"
+                                                                       id="forma_cartao_nome"/>
                                                             </div>
 
                                                         </div>
                                                         <div class="form-group form-group-sm col-md-4 ">
-                                                            <label class="label label-default" for="cartaobandeira">Bandeira
+                                                            <label class="label label-default" for="forma_cartao_bandeira">Bandeira
                                                                 Cartão</label>
-                                                            <select name="cartaobandeira" id="cartaobandeira"
+                                                            <select name="forma_cartao_bandeira" id="forma_cartao_bandeira"
                                                                     class="form-control form-control-sm">
 
                                                                 <option value="visa">Visa</option>
@@ -818,7 +844,7 @@
             </div>
 
 
-            <div class="btn-group pull-right">
+            <div class="btn-group pull-right button-proposta-enviar">
                 <button type="submit" class="btn btn-primary">Enviar</button>
             </div>
 

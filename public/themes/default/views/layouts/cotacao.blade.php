@@ -26,21 +26,21 @@
                             <button type="button" class="close" aria-label="Close" id="fechasecesso">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            {{Session::get('sucesso')}}
+                            {!! Session::get('sucesso')!!}
                         </div>
                     @elseif(Session::has('error'))
                         <div class="alert alert-danger" id="sucesso">
                             <button type="button" class="close" aria-label="Close" id="fechasecesso">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            {{Session::get('error')}}
+                            {!! Session::get('error') !!}
                         </div>
                     @elseif(Session::has('atencao'))
                         <div class="alert alert-warning" id="sucesso">
                             <button type="button" class="close" aria-label="Close" id="fechasecesso">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            {{Session::get('atencao')}}
+                            {!! Session::get('atencao')!!}
                         </div>
                     @endif
 

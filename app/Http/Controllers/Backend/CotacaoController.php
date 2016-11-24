@@ -102,7 +102,8 @@ class CotacaoController extends Controller
         $url = $configws->url;
 //        return view('backend.cotacao.sucesso', ['message' => 'Cotação realizada com sucesso!']);
         $segurado = ["segurado" =>
-            ["segNomeRazao" => ($request->tipopessoa == 1 ? $request->segnome : $request->segrazao),
+            [
+                "segNomeRazao" => ($request->tipopessoa == 1 ? $request->segnome : $request->segrazao),
                 "segCpfCnpj" => ($request->tipopessoa == 1 ? getDataReady($request->segcpf) : getDataReady($request->segcnpj)),
                 "segDtNasci" => ($request->tipopessoa == 1 ? getDateFormat($request->segdatanasc, 'nascimento') : getDateFormat($request->segdatafund, 'nascimento')),
                 "segCdSexo" => ($request->tipopessoa == 1 ? $request->segsexo : NULL),
@@ -151,9 +152,9 @@ class CotacaoController extends Controller
                 "condutProfRamoAtivi" => $request->condcdprofissao,]
         ];
         $proprietario = ["proprietario" =>
-            ["proprNomeRazao" => ($request->proptipopessoa == 1 ? $request->propnome : $request->proprazao),
+            [
+                
                 "proprCpfCnpj" => ($request->proptipopessoa == 1 ? getDataReady($request->propcpf) : getDataReady($request->propcnpj)),
-                "proprDtNasci" => ($request->proptipopessoa == 1 ? getDateFormat($request->propdatanasc, 'nascimento') : getDateFormat($request->propdatafund, 'nascimento')),
                 "proprCdSexo" => ($request->proptipopessoa == 1 ? $request->propsexo : NULL),
                 "proprCdEstCivl" => ($request->proptipopessoa == 1 ? $request->propestadocivil : 0),
                 "proprPrfoRamoAtivi" => ($request->proptipopessoa == 1 ? (int)$request->propcdprofissao : (int)$request->propcdramoatividade),
@@ -292,45 +293,6 @@ class CotacaoController extends Controller
 
     }
 
-    public function pdf($idproposta)
-    {
-        $curl = curl_init();
-        $configws = Config::where('env_local', env('APP_LOCAL'))->where('webservice', 'SAP')->first();
-        $url = $configws->url;
-
-
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => $url . 'pdf',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "POST",
-            CURLOPT_POSTFIELDS => "{\n    \"idParceiro\": 99,\n    \"nmParceiro\": \"Seguro AutoPratico\",\n    \"idProposta\": {$idproposta}\n}",
-            CURLOPT_HTTPHEADER => array(
-                "cache-control: no-cache",
-                "content-type: application/json",
-                "postman-token: baa0f845-adf2-40ef-3a66-806648b4b7fd",
-                "x-api-key: 000666"
-            ),
-        ));
-
-        $response = curl_exec($curl);
-        $err = curl_error($curl);
-
-        curl_close($curl);
-
-        if ($err) {
-            echo "cURL Error #:" . $err;
-        } else {
-            $pdf = json_decode($response, true);
-
-            header("Content-type: application/pdf");
-            header("Content-Disposition: inline; filename=\"proposta_N{$idproposta}.pdf\";");
-            echo base64_decode($pdf['base64']);
-        }
-    }
 
     public function sendEmail()
     {
@@ -452,10 +414,17 @@ class CotacaoController extends Controller
             }
         } else {
 
-            echo '<pre>';
-            print_r($cotacao);
-            echo '</pre>';
-//           return Redirect::back()->with('error', 'Error ao gerar cotacao '. $cotacao->cdretorno);
+            $msg = '<strong>Status: </strong> ' . $cotacao->status;
+            $msg .= '<br> <strong>Code: </strong> ' . $cotacao->cdretorno;
+            if (is_object($cotacao->message)) {
+                foreach ($cotacao->message as $message) {
+                    $msg .= '<br> <strong>Mensagem: </strong> ' . $message . '!';
+                }
+            } else {
+                $msg .= '<br> <strong>Mensagem: </strong> ' . $cotacao->message . '!';
+            }
+
+           return Redirect::back()->with('error', $msg);
         }
 
 

@@ -11,7 +11,7 @@
                 <div class="col-md-12" id="mensagem">
                     <h3 style="text-align: center;">
 
-                        Cotação Nº: {{$cotacao->idcotacao}}
+                        Cotação realizada com sucesso!! <br>Nº: {{$cotacao->idcotacao}}
                     </h3>
 
                 </div>
@@ -28,6 +28,12 @@
                         <div class="btn-group">
                             <a href="{{route('cotacao.pdf.gerar',$crypt::encrypt($cotacao->idcotacao))}}" target="_blank">
                                 <button type="button" class="btn btn-danger"> <span class="glyphicon glyphicon glyphicon-print" aria-hidden="true"></span> Imprimir PDF</button>
+                            </a>
+                        </div>
+
+                        <div class="btn-group">
+                            <a href="{{route('proposta.index',$crypt::encrypt($cotacao->idcotacao))}}" >
+                                <button type="button" class="btn btn-primary"> <span class="glyphicon glyphicon-expand" aria-hidden="true"></span> Emitir proposta</button>
                             </a>
                         </div>
 
@@ -51,7 +57,7 @@
                 <div class="col-md-12" id="mensagem">
                     <h3 style="text-align: center;">
 
-                        {{$message}} - PROPOSTA Nº: {{$idproposta}}
+                        Proposta realizada com sucesso!! <br> Nº: {{$proposta->idproposta}}
                     </h3>
 
                 </div>
@@ -62,12 +68,12 @@
                     <center>
                         <div class="btn-group">
                             <a href="{{route('cotacao.cotar')}}">
-                                <button type="button" class="btn btn-success">NOVA PROPOSTA</button>
+                                <button type="button" class="btn btn-success">Nova Cotacao</button>
                             </a>
                         </div>
                         <div class="btn-group">
-                            <a href="{{route('cotacao.pdf',$idproposta)}}" target="_blank">
-                                <button type="button" class="btn btn-danger">PDF</button>
+                            <a href="{{route('proposta.pdf',$crypt::encrypt($proposta->idproposta))}}" target="_blank">
+                                <button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-open-file"></i>PDF</button>
                             </a>
                         </div>
                         @role('diretor')

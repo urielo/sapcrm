@@ -126,10 +126,22 @@ Route::group(['prefix' => 'vendas', 'middleware' => 'auth'], function () {
         'uses' => 'Backend\PorpostaController@emitir'
     ]);
 
+    Route::get('proposta/sucesso/{proposta_id}', [
+        'middleware' => ['permission:vendas-cotacao-gerar'],
+        'as' => 'proposta.sucesso',
+        'uses' => 'Backend\PorpostaController@sucesso']);
+
+    Route::get('proposta/pdf/{proposta_id}', [
+        'middleware' => ['permission:vendas-cotacao-gerar'],
+        'as' => 'proposta.pdf',
+        'uses' => 'Backend\PorpostaController@pdf']);
+
     Route::get('cotacao/sucesso/{idcotacao}', [
         'middleware' => ['permission:vendas-cotacao-gerar'],
         'as' => 'cotacao.sucesso',
         'uses' => 'Backend\CotacaoController@sucesso']);
+
+
     
     Route::post('cotacao/salvar',[
         'middleware' => ['permission:vendas-cotacao-gerar'],
