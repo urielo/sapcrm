@@ -112,8 +112,6 @@ $(function () {
     }
 
 
-
-
     $(document).ajaxStart(function () {
         $('body').prepend('<div class="bgloading" id="loading"></div>')
         $('.modal-content').prepend('<div class="bgloading" id="loading"></div>')
@@ -126,10 +124,10 @@ $(function () {
 
 
     $('#body-panel').height($(window).height() - 125);
-    var ttable = $(window).height() - 300;
+    var ttable = $(window).height() - 250;
     $(window).resize(function () {
         $('#body-panel').height($(window).height() - 125);
-        ttable = $(window).height() - 300;
+        ttable = $(window).height() - 250;
     })
 
 
@@ -160,7 +158,6 @@ $(function () {
         "scrollY": ttable,
         "scrollCollapse": true,
         "lengthMenu": [50, 100, 150, 200]
-
     })
 
 
@@ -408,6 +405,24 @@ $(function () {
 
     }
 
+   $.reusltAutoComplete = function (cdfipe) {
+        $('#codefip-value').val(cdfipe);
+        divano.fadeIn("slow");
+
+        $.get(geturl() + "anovalor/",
+            {cdfipe: cdfipe},
+            // Carregamos o resultado acima para o campo modelo
+            function (valor) {
+                $("select[name=anomodelo]").html(valor).trigger('change');
+
+
+            }
+        )
+
+
+    }
+
+
     var remove_class = function () {
 
         if ($('.remove-class').hasClass($('.remove-class').attr('data-target'))) {
@@ -558,7 +573,6 @@ $(function () {
             var comissao = $(this).val();
 
 
-
             $('input:checkbox').each(function () {
                 if ($(this).attr('name') == 'produtos[]') {
                     var valorcomiss = aplicaComissao($(this).attr('data-val-vlproduto'), comissao);
@@ -571,7 +585,6 @@ $(function () {
 
         });
     }
-
 
 
     var change_produtos = function (input_id, tipo) {
@@ -727,7 +740,7 @@ $(function () {
 
 
     $("select[name=anomodelo]").on('change', function () {
-
+        produtosvalores = []
         remove_class()
         var djson = $.parseJSON($(this).val());
         dados_produtos = {
@@ -1196,16 +1209,16 @@ $(function () {
 
     });
 
-    if($('#valor-comissao')){
+    if ($('#valor-comissao')) {
 
 
-        $('#valor-comissao').on('change',function () {
+        $('#valor-comissao').on('change', function () {
             comissao_porcentagem = $('#comissao').val() / 100
-            comissao_valor= vltotal * comissao_porcentagem
+            comissao_valor = vltotal * comissao_porcentagem
             comissao_valor = parseFloat(comissao_valor).toFixed(2)
 
 
-            $(this).text('R$ '+ addCommas(comissao_valor))
+            $(this).text('R$ ' + addCommas(comissao_valor))
         })
     }
 
@@ -1749,9 +1762,6 @@ $(function () {
     })
 
 
-
-
-    $('.fipe').mask('999999-9')
 //    search table function
     var toggle_sapn_icon = function () {
         $('.detalhe-toggle span').on('click', function () {
@@ -1786,6 +1796,13 @@ $(function () {
         $('#form-cotacao').append('<input name="tipoenvio" type="hidden" value="' + $(this).attr('id') + '">')
 
     })
+
+
+    $('ul.nav li.dropdown').hover(function() {
+        $(this).find('.dropdown-menu').stop(true, true).delay(100).fadeIn(500);
+    }, function() {
+        $(this).find('.dropdown-menu').stop(true, true).delay(100).fadeOut(500);
+    });
 
 
 });

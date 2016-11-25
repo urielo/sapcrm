@@ -53,13 +53,22 @@ class CotacaoController extends Controller
 
     public function negociacoes()
     {
-        $cotacoes = $this->cotacoes->has('proposta')
-            ->whereIdcorretor(Auth::user()->corretor->idcorretor)
-            ->orderBy('idcotacao', 'desc')
-            ->paginate(10);
+
+        $crypt = Crypt::class;
+
+        if(Auth::user()->can('ver-todos-cotacoes')){
+
+            $cotacoes = Cotacoes::where('idcorretor',Auth::user()->corretor->idcorretor)->get();
+        } else {
+            $cotacoes = Cotacoes::where('usuario_id',Auth::user()->id)->get();
+
+        }
+       
 
 
-        return view('backend.cotacao.negociacoes', compact('cotacoes'));
+
+
+        return view('backend.cotacao.negociacoes', compact('cotacoes','crypt'));
     }
 
     public function negociar($idcotacao, FormaPagamento $formapagamentos)

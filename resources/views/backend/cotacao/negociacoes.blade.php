@@ -2,57 +2,64 @@
 
 
 @section('panelcolor','info')
-@section('heading','Negociações')
+@section('heading','Cotações')
 @section('contentSeg')
 
     <div class="col-md-12">
-        <div class="table-responsive">
-            <table class="table table-striped">
-                <thead style="font-size: 13px;">
+        <div class="table-responsive apolice">
+            <table class="table table-hover table-condensed table-datatable">
+                <thead>
                 <tr>
-                    <th>Nº PROPOSTA</th>
+                    <th># Cotação</th>
                     <th>CPF/CNPJ</th>
-                    <th>SEGURADO</th>
-                    <th>VEICULO</th>
-                    <th>VALIDADE</th>
+                    <th>Emissão</th>
+                    <th>Validade</th>
+                    <th>Status</th>
                     <th></th>
 
                 </tr>
                 </thead>
                 <tbody>
                 @foreach ($cotacoes as $cotacao)
-                    @if(is_object($cotacao->proposta))
-                        <tr {!! date('d/m/Y', strtotime($cotacao->proposta->dtvalidade)) > date('d/m/Y') ? 'class="danger"': '' !!}>
-                            <td><a href="#" class="">{{$cotacao->proposta->idproposta}}</a></td>
-                            <td><a href="#" class="">{!! format('cpfcnpj', $cotacao->segurado->clicpfcnpj) !!}</a></td>
-                            <td>{!! nomeCase($cotacao->segurado->clinomerazao) !!}</td>
-                            <td><a href="#" class="">{!! format('placa',$cotacao->veiculo->veicplaca) !!}</a></td>
-                            <td>{!! date('d/m/Y', strtotime($cotacao->proposta->dtvalidade)) !!}</td>
-                            <td>
-                                <center>
-                                    <div class="btn-group">
-                                        <a href="#" class="">
-                                            <button type="button" class="btn btn-danger btn-xs">Anular</button>
-                                        </a>
-                                        <a href="{{route('vendas.negociar', $cotacao->idcotacao)}}" class="">
-                                            <button type="button" class="btn btn-primary btn-xs">Negociar</button>
-                                        </a>
-                                        @if( date('d/m/Y', strtotime($cotacao->proposta->dtvalidade)) < date('d/m/Y') )
-                                            <a href="#" class="">
-                                                <button type="button" class="btn btn-success btn-xs">Efetivar</button>
-                                            </a>
-                                        @endif
-                                    </div>
-                                </center>
-                            </td>
+                    <tr {!! date('d/m/Y', strtotime($cotacao->dtvalidade)) > date('d/m/Y') ? 'class="danger"': '' !!}>
+                        <th><a href="#" class="">{{$cotacao->idcotacao}}</a></th>
+                        <th><a href="#" class="">{{format('cpfcnpj',$cotacao->segurado->clicpfcnpj)}}</a></th>
+                        <td>{!! date('d/m/Y', strtotime($cotacao->dtcreate)) !!}</td>
+                        <td>{!! date('d/m/Y', strtotime($cotacao->dtvalidade)) !!}</td>
+
+                        <td>{{$cotacao->status->descricao}}</td>
+
+                        <td>
+                            <div class="btn-group btn-group-xs">
+                                <a class="btn btn-danger"
+                                   href="{{route('cotacao.pdf',$crypt::encrypt($cotacao->idcotacao))}}"
+                                   target="_blank">
+                                    <span
+                                            class="glyphicon glyphicon glyphicon-print"
+                                            aria-hidden="true"></span> PDF
+
+                                </a>
+                                @if(!$cotacao->proposta)
+                                    <a class="btn btn-primary "
+                                       href="{{route('proposta.index',$crypt::encrypt($cotacao->idcotacao))}}">
+                                    <span
+                                            class="glyphicon glyphicon-expand" aria-hidden="true"></span>
+                                        Emitir proposta
+                                    </a>
+
+                                @endif
+
+                            </div>
 
 
-                        </tr>
-                    @endif
+                        </td>
+
+
+                    </tr>
+
                 @endforeach
                 </tbody>
             </table>
-            <center>{{$cotacoes->render()}}</center>
         </div>
 
     </div>

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Backend;
+use App\Model\HomePage;
 
 
 
@@ -9,6 +10,8 @@ class DashboardController extends Controller
 {
     public function index()
     {
-     return view('backend.dashboard');   
+        $textos = HomePage::class;
+
+        return view('backend.home.index',compact('textos'));
     }
 }

@@ -26,7 +26,7 @@
                             </a>
                         </div>
                         <div class="btn-group">
-                            <a href="{{route('cotacao.pdf.gerar',$crypt::encrypt($cotacao->idcotacao))}}" target="_blank">
+                            <a href="{{route('cotacao.pdf',$crypt::encrypt($cotacao->idcotacao))}}" target="_blank">
                                 <button type="button" class="btn btn-danger"> <span class="glyphicon glyphicon glyphicon-print" aria-hidden="true"></span> Imprimir PDF</button>
                             </a>
                         </div>

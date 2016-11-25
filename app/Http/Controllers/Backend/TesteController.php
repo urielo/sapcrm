@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Backend\Controller;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Khill\Lavacharts\Lavacharts;
 use Illuminate\Support\Facades\Mail;
@@ -50,8 +51,13 @@ class TesteController extends Controller
 
         $id = 7673;
 
+
         echo ' <a href="'.route('proposta.index',['id'=>Crypt::encrypt($id)]).'">proposta</a>';
         echo ' <a href="'.route('cotacao.sucesso', Crypt::encrypt($id)).'">sucesso</a>';
+
+        echo '<pre>';
+        print_r(geraParcelas(4505.56,13,3,2.5,349,2));
+        echo '</pre>';
         abort(404);
 
 

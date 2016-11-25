@@ -1,3 +1,45 @@
+@font-face {
+    font-family: 'Sneakout';
+    font-style: normal;
+    font-weight: normal;
+    src: local('../fonts/Sneakout'), url('../fonts/Sneakout.woff') format('woff');
+}
+/*@import url('bootstrap.min.css');*/
+
+
+
+.logo-autopratico  h1 {
+    color: #00afef;
+    font-family: 'Sneakout';
+    font-weight: normal;
+    font-size: 23px;
+    margin: 0;
+
+
+}
+
+.logo-autopratico h2 {
+    color: #ffffff;
+
+    font-family: 'Sneakout';
+    font-weight: normal;
+    font-size: 12px;
+    margin: 0;
+}
+
+.logo-autopratico.navbar-brand  {
+    padding: 5px 15px;
+}
+
+
+
+
+
+
+
+
+
+
 .btn-secondary {
     color: #373a3c;
     background-color: #fff;
@@ -399,7 +441,7 @@ body {
 }
 
 
-.table-sm  th ,td {
+.table-sm td {
     font-size: 10px;
 }
 
@@ -449,4 +491,54 @@ body {
 
 .valor-total .panel-body {
     padding: 5px;
+}
+
+.home-content {
+    margin-top: 15px;
+}
+
+
+.home-content h1 {
+    font-family: Sneakout;
+    font-weight: Normal;
+    color: #00afef;
+    font-size: 25px;
+    text-align: center;
+}
+.home-content li {
+    list-style-type:none;
+}
+
+.home-content li:before {
+
+    font-family: 'Glyphicons Halflings';
+    content: "\e013";
+    font-size: 14px;
+    float: left;
+    margin-top: -1px;
+    /*margin-left: 10px;*/
+    margin-right: 10px;
+    color: #00afef;
+
+}
+
+.home-content li h2 {
+
+    font-weight: Normal;
+    /*color: #00afef;*/
+    font-size: 16px;
+    color: #ff0000;
+
+}
+
+.home-content li p {
+    font-size: 12px;
+
+}
+
+.home-content .subtitle p {
+    text-align: center;
+}
+.content-body {
+    margin-top: 15px;
 }

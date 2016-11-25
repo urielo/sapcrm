@@ -270,7 +270,7 @@ endif;
 
 if (!function_exists('getDateFormat')):
 
-    function  getDateFormat($date, $type = null)
+    function getDateFormat($date, $type = null)
     {
         switch ($type) {
 
@@ -386,7 +386,7 @@ if (!function_exists('jurosComposto')):
     {
         $taxa = $taxa / 100;
         $potencia = $valor * $taxa * pow(($taxa + 1), $parcelas) / (pow(($taxa + 1), $parcelas) - 1);
-        $valParcela = number_format($potencia, 2, ".", ",");
+        $valParcela = number_format($potencia, 2, ".", "");
 
         return $valParcela;
     }

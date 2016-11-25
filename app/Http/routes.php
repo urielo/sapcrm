@@ -86,6 +86,51 @@ Route::group(['prefix' => 'usuario', 'middleware' => 'auth'], function () {
 
 });
 
+
+Route::group(['prefix'=> 'apolices','middleware'=>'auth'],function (){
+
+    Route::get('emitidas',[
+        'middleware'=>'permission:gesta-apolice',
+        'as' => 'apolices.emitidas',
+        'uses' => 'Backend\ApolicesController@emitidas']
+    );
+    
+    Route::get('emitir',[
+        'middleware'=>'permission:gesta-apolice',
+        'as' => 'apolices.aemitir',
+        'uses' => 'Backend\ApolicesController@aemitir']
+    );
+
+    Route::get('apolices', [
+        'middleware' => ['permission:gesta-apolice'],
+        'as' => 'gestao.apolices',
+        'uses' => 'Backend\GestaoController@apolices']);
+
+    Route::get('apolices/show/{idproposta}', [
+        'middleware' => ['permission:gestao-apolice-emitir'],
+        'as' => 'apolices.show',
+        'uses' => 'Backend\ApolicesController@showModal']);
+
+    Route::get('apolices/email/{idproposta}', [
+        'middleware' => ['permission:gestao-apolice-emitir'],
+        'as' => 'apolices.email',
+        'uses' => 'Backend\ApolicesController@email']);
+
+    Route::get('apolices/showemitidas/{idproposta}', [
+        'middleware' => ['permission:gestao-apolice-emitir'],
+        'as' => 'apolices.showemiditas',
+        'uses' => 'Backend\ApolicesController@showModalApolices']);
+
+    Route::post('apolices/emitir', [
+        'middleware' => ['permission:gestao-apolice-emitir'],
+        'as' => 'apolices.emitir',
+        'uses' => 'Backend\ApolicesController@emitir']);
+
+    Route::post('apolices/download', [
+        'middleware' => ['permission:gestao-apolice-emitir'],
+        'as' => 'apolices.download',
+        'uses' => 'Backend\ApolicesController@download']);
+});
 Route::group(['prefix' => 'vendas', 'middleware' => 'auth'], function () {
 
     
@@ -148,17 +193,11 @@ Route::group(['prefix' => 'vendas', 'middleware' => 'auth'], function () {
         'as' => 'cotacao.salvar',
         'uses' => 'Backend\CotacaoController@salvar'
     ]);
-
-
-    Route::get('pdf/{idproposta}', [
-        'middleware' => ['permission:vendas-cotacao-pdf'],
-        'as' => 'cotacao.pdf',
-        'uses' => 'Backend\CotacaoController@pdf'
-    ]);
+    
     
     Route::get('cotacao/pdf/{cotacao_id}',[
         'middleware' => ['permission:vendas-cotacao-pdf'],
-        'as' => 'cotacao.pdf.gerar',
+        'as' => 'cotacao.pdf',
         'uses' => 'Backend\CotacaoController@pdf_cotacao'
     ]);
 
@@ -170,40 +209,14 @@ Route::group(['prefix' => 'vendas', 'middleware' => 'auth'], function () {
 Route::group(['prefix' => 'gestao', 'middleware' => 'auth'], function () {
 
 
-    Route::get('apolices', [
-        'middleware' => ['permission:gesta-apolice'],
-        'as' => 'gestao.apolices',
-        'uses' => 'Backend\GestaoController@apolices']);
+
 
     Route::get('aprovacao', [
         'middleware' => ['permission:gesta-aprovacao'],
         'as' => 'gestao.aprovacao',
         'uses' => 'Backend\GestaoController@aprovacao']);
 
-    Route::get('apolices/show/{idproposta}', [
-        'middleware' => ['permission:gestao-apolice-emitir'],
-        'as' => 'apolices.show',
-        'uses' => 'Backend\ApolicesController@showModal']);
 
-    Route::get('apolices/email/{idproposta}', [
-        'middleware' => ['permission:gestao-apolice-emitir'],
-        'as' => 'apolices.email',
-        'uses' => 'Backend\ApolicesController@email']);
-
-    Route::get('apolices/showemitidas/{idproposta}', [
-        'middleware' => ['permission:gestao-apolice-emitir'],
-        'as' => 'apolices.showemiditas',
-        'uses' => 'Backend\ApolicesController@showModalApolices']);
-
-    Route::post('apolices/emitir', [
-        'middleware' => ['permission:gestao-apolice-emitir'],
-        'as' => 'apolices.emitir',
-        'uses' => 'Backend\ApolicesController@emitir']);
-
-    Route::post('apolices/download', [
-        'middleware' => ['permission:gestao-apolice-emitir'],
-        'as' => 'apolices.download',
-        'uses' => 'Backend\ApolicesController@download']);
 
     Route::get('cobranca', [
         'middleware' => ['permission:gestao-cobranca'],
@@ -265,23 +278,13 @@ Route::group(['prefix' => 'show', 'middleware' => 'auth'], function () {
 });
 
 
-Route::group(['prefix' => 'upload', 'middleware' => 'auth'], function () {
-    Route::resource('/', 'Backend\Config\UploadController');
-
-    Route::get('/', [
-        'as' => 'backend.upload',
-        'uses' => 'Backend\Config\UploadController@index'
-    ]);
-
-    Route::post('/fipeanovalor', [
-        'as' => 'upload.fipeanovalor',
-        'uses' => 'Backend\Config\UploadController@postUploadFipeAnoValor'
-    ]);
-
-    Route::post('/fipe', [
-        'as' => 'upload.fipe',
-        'uses' => 'Backend\Config\UploadController@postUploadFipe'
-    ]);
+Route::group(['prefix' => 'home', 'middleware' => 'auth'], function () {
+  
+    Route::get('alterar',[
+      'as'=>'backend.homepage',
+      'middleware'=>'permission:homepage-edit',
+      'uses'=>'Backend\HomePageController@altera_get']);
+    
 });
 //
 //Route::get('/', function () {

@@ -53,7 +53,7 @@
                     <tr>
                         <td>{{$produto->produto->nomeproduto}}</td>
                         <td>{{$produto->produto->descproduto}}</td>
-                        <td>{{$produto->produto->precoproduto()->where('idprecoproduto',$produto->idprecoproduto)->first()->caractproduto}}</td>
+                        <td>{{$produto->produto->caractproduto}}</td>
                         <td>{{($produto->produto->precoproduto()->where('idprecoproduto',$produto->idprecoproduto)->first()->lmiproduto ? $produto->produto->precoproduto()->where('idprecoproduto',$produto->idprecoproduto)->first()->lmiproduto : 'S/N') }}</td>
                     </tr>
                 @endforeach
@@ -85,7 +85,7 @@
                                 <thead>
                                 <tr>
                                     <th>Qt</th>
-                                    <th>Desc</th>
+                                    <th>Parcela</th>
                                     <th>Juros</th>
                                     <th>Total</th>
                                 </tr>

@@ -39,7 +39,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{route('backend.dashboard')}}">Seguro AutoPratico</a>
+            <a class="navbar-brand logo-autopratico " href="{{route('backend.dashboard')}}">
+                <h1>SEGURO</h1>
+                <h2>AUTOPRATICO</h2>
+                {{--<img src="{{ theme('images/logo-bar.png') }}"  height="25px" alt="Seguro AUTOPRATICO">--}}
+
+            </a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-2">
@@ -47,18 +52,45 @@
 
                 @permission('menu-vendas')
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Vendas<span style="font-size:16px;"
-                                                                                           class="pull-left hidden-xs showopacity glyphicon glyphicon glyphicon-shopping-cart"></span><span
-                                class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle mouse-over-down" data-toggle="dropdown">
+                        <span style="font-size:16px;"
+                              class="pull-left hidden-xs showopacity glyphicon glyphicon glyphicon-shopping-cart"></span>
+                        Cotação
+                        <span class="caret"></span></a>
                     <ul class="dropdown-menu forAnimate" role="menu">
 
                         @permission('vendas-cotacao')
-                        <li><a href="{{route('cotacao.cotar')}}">Cotar</a></li>
+                        <li><a href="{{route('cotacao.cotar')}}">Nova</a></li>
                         @endpermission
 
                         @permission('vendas-negociacoes')
-                        <li><a href="{{route('vendas.negociacoes')}}">Negociações</a></li>
+                        <li><a href="{{route('vendas.negociacoes')}}">Gestão</a></li>
                         @endpermission
+                        @permission('vendas-negociacoes')
+                        <li><a href="{{route('vendas.negociacoes')}}">Vencidas</a></li>
+                        @endpermission
+
+                    </ul>
+                </li>
+                @endpermission
+
+                @permission('menu-proposta')
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span style="font-size:16px;"
+                              class="pull-left hidden-xs showopacity glyphicon glyphicon glyphicon-shopping-cart"></span>
+                        Proposta
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu forAnimate" role="menu">
+
+                        @permission('vendas-cotacao')
+                        <li><a href="{{route('cotacao.cotar')}}">Acompanhamento</a></li>
+                        @endpermission
+
+                        @permission('vendas-negociacoes')
+                        <li><a href="{{route('vendas.negociacoes')}}">Caceladas</a></li>
+                        @endpermission
+
 
                     </ul>
                 </li>
@@ -66,15 +98,28 @@
 
                 @permission('menu-gestao')
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gestão<span style="font-size:16px;"
-                                                                                           class="pull-left hidden-xs showopacity glyphicon glyphicon-list-alt"></span><span
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cobrança<span style="font-size:16px;"
+                                                                                             class="pull-left hidden-xs showopacity glyphicon glyphicon-list-alt"></span><span
                                 class="caret"></span></a>
                     <ul class="dropdown-menu forAnimate" role="menu">
-                        <li><a href="{{route('gestao.cobranca')}}">Cobrança</a></li>
+                        <li><a href="{{route('gestao.cobranca')}}">Agendar</a></li>
 
-                        <li><a href="{{route('gestao.aprovacao')}}">Aprovação</a></li>
+                        <li><a href="{{route('gestao.aprovacao')}}">Aprovar</a></li>
 
-                        <li><a href="{{route('gestao.apolices')}}">Apolices</a></li>
+
+                    </ul>
+                </li>
+                @endpermission
+
+                @permission('menu-gestao')
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span style="font-size:16px;" class="hidden-xs showopacity glyphicon glyphicon-list-alt"></span>
+                        Apolices<span class="caret"></span></a>
+                    <ul class="dropdown-menu forAnimate" role="menu">
+                        <li><a href="{{route('apolices.aemitir')}}">Emitir</a></li>
+                        <li><a href="{{route('apolices.emitidas')}}">Gestão</a></li>
+                        <li><a href="{{route('apolices.emitidas')}}">Canceladas</a></li>
 
                     </ul>
                 </li>
@@ -95,7 +140,7 @@
                         <li><a href="{{route('grupos.index')}}">Grupos</a></li>
                         @endpermission
 
-                        <li><a href="{{route('backend.upload')}}">Upload</a></li>
+                        <li><a href="{{route('backend.homepage')}}">Homepage</a></li>
 
 
                     </ul>

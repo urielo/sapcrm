@@ -317,3 +317,7 @@
 
 
 @stop
+
+@section('script')
+    <script src="{{ theme('js/cotacao.js') }}"></script>
+@stop

@@ -176,4 +176,22 @@ class ApolicesController extends Controller
         }
 
     }
+
+    public function emitidas()
+    {
+        $propostas = Propostas::where('idstatus', 18)
+            ->orderBy('idproposta', 'asc')
+            ->get();
+
+        return view('backend.gestao.apolices', compact('propostas'));
+    }
+
+    public function aemitir()
+    {
+        $propostas = Propostas::whereIn('idstatus', [15, 24])
+            ->orderBy('idproposta', 'asc')
+            ->get();
+
+        return view('backend.gestao.apolices', compact('propostas'));
+    }
 }
