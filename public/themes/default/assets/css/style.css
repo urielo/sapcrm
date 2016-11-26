@@ -600,6 +600,17 @@ body {
 
 }
 
+.home-content li ul li {
+    content: "\e013";
+    font-size: 12px;
+    float: left;
+    margin-top: -1px;
+    /*margin-left: 10px;*/
+    margin-right: 10px;
+    color: #000000;
+
+}
+
 .home-content .subtitle p {
     text-align: center;
 }
