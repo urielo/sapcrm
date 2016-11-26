@@ -3,7 +3,7 @@
 @section('heading','Cobrança')
 @section('contentSeg')
     <div class="col-md-12 col-xs-12 ">
-        <div class="table apolice table-responsive">
+        <div class=" apolice table-responsive">
             <table class="table table-hover table-condensed table-datatable">
                 <thead>
                 <tr>

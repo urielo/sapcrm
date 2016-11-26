@@ -28,7 +28,7 @@
 
 <body>
 <div class="background"></div>
-<nav class="navbar navbar-inverse navbar-fixed-top"  role="navigation">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -150,9 +150,33 @@
 
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <form class="form-inline float-xs-right input-nav">
+                        <div class="input-group input-group-sm">
+
+                                <span class="input-group-btn">
+                                     <select id="tipo" class="selectpicker form-control"
+                                             data-style='btn-default btn-sm'>
+                                        <option>Placa</option>
+                                        <option>CPF/CNPJ</option>
+                                    </select>
+
+                                </span>
+
+                                 <input class="form-control" type="text" placeholder="Search">
+                                <span class="input-group-btn btn-up">
+
+                                    <button class="btn btn-xs btn-default" type="submit">Search</button>
+                                </span>
+
+                        </div>
+                    </form>
+                </li>
                 <li><span class="navbar-text">Olá, {{Auth::user()->nome}}</span></li>
                 <li><a href="{{route('auth.logout')}}">Logout</a></li>
             </ul>
+
+
         </div>
     </div>
 </nav>

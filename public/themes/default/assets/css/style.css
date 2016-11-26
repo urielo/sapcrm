@@ -650,6 +650,33 @@ body {
     background: rgba(245, 245, 245, 0.8);
 }
 
+.input-nav input{
+    background: rgba(0, 0, 0, 0)!important;
+    color: #ffffff;
+}
+.input-nav {
+    padding: 10px;
+
+}
+
+.input-nav .bootstrap-select  {
+    background: transparent;
+
+
+}
+
+.btn-up button {
+    margin-top: -3px;
+}
+
+.input-nav .bootstrap-select  button {
+    height: auto;
+
+}
+.input-nav .bootstrap-select  a {
+    font-size: 12px !important;
+
+}
 
 input {
     background-color: rgba(245, 245, 245, 0.8) !important;
@@ -666,14 +693,7 @@ select {
     color: #ffffff;
 }
 
-.table td {
-    background-color: rgba(245, 245, 245, 0.8) !important;
 
-}
-.table th {
-    background-color: rgba(245, 245, 245, 0.8) !important;
-
-}
 .placa {
     text-transform: uppercase;
 }

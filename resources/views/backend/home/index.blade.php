@@ -30,7 +30,7 @@
                         </div>
 
                         <ul class="row">
-                        @foreach($textos::where('type','li')->where('status_id',1)->orderBy('order_li','asc')->limit(5)->get() as $li)
+                        @foreach($textos::where('type','li')->where('status_id',1)->orderBy('order_li','asc')->orderBy('updated_at','desc')->limit(5)->get() as $li)
                         <div class="col-md-12">
                             <li>
                                 <h2>{{$li->title}}</h2>

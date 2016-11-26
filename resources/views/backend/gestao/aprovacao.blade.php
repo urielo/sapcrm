@@ -5,8 +5,8 @@
 @section('heading','Aprovações')
 @section('contentSeg')
 
-    <div class="col-md-12 apolice table-responsive">
-    <div class="table">
+    <div class="col-md-12 apolice ">
+    <div class="table-responsive">
         <table class="table table-hover table-condensed table-datatable">
             <thead>
             <tr>
