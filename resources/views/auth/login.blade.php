@@ -8,9 +8,9 @@
     <div class="row vertical-center">
         <div class="col-md-4">
             <div class="panel panel-{{ $errors->any() ? 'danger': 'default' }}">
-                <div class="panel-heading">
-                    <h2 class="panel-title">Bem Vindo ao SeguroAutoPratico</h2>
-                </div>
+                {{--<div class="panel-heading">--}}
+                    {{--<h2 class="panel-title">Bem Vindo ao SeguroAutoPratico</h2>--}}
+                {{--</div>--}}
                 <div class="panel-body">
 
 

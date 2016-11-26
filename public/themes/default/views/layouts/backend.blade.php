@@ -15,7 +15,7 @@
     {{--<link rel="stylesheet" href="https://bootswatch.com/sandstone/bootstrap.min.css">--}}
     <link rel="stylesheet" href="{{ theme('css/bootstrap-select.min.css') }}">
 
-    <link rel="stylesheet" href="{{ theme('css/bootstrap-theme.min.css') }}">
+    {{--<link rel="stylesheet" href="{{ theme('css/bootstrap-theme.min.css') }}">--}}
     <link rel="stylesheet" href="{{ theme('css/datepicker.css') }}">
     <link rel="stylesheet" href="{{ theme('datatables/datatables.min.css') }}">
     {{--<link rel="stylesheet" href="{{ theme('css/sidebar.css') }}">--}}
@@ -28,7 +28,7 @@
 
 <body>
 <div class="background"></div>
-<nav class="navbar navbar-inverse navbar-fixed-top" style="margin-bottom: 10px" role="navigation">
+<nav class="navbar navbar-inverse navbar-fixed-top"  role="navigation">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -184,7 +184,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <center>&copy; SeguroAutoPratico {{date('Y')}} </center>
+                <span>&copy;</span> Seguro AUTOPRATICO {{date('Y')}}
             </div>
         </div>
     </div>

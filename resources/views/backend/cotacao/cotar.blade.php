@@ -171,7 +171,7 @@
                                             <div class="input-group">
                                                 <select name="comissao" id="comissao"
                                                         class=" form-control form-control-sm"
-                                                        style="padding: 0;">
+                                                        >
                                                     <option value="{{Auth::user()->corretor->corrcomissaopadrao}}"
                                                             selected>{{Auth::user()->corretor->corrcomissaopadrao}}</option>
                                                     <option value="{{Auth::user()->corretor->corrcomissaomin}}">{{Auth::user()->corretor->corrcomissaomin}}</option>

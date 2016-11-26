@@ -93,9 +93,18 @@ body {
 }
 
 .footer {
-    background-color: #e7e7e7;
-}
+    font-family: 'Sneakout';
+    font-weight: normal;
+    background-color: rgba(176,196,222,0.2);
+    text-align: center;
+    color: #ffffff;
+    font-size: 12px;
 
+
+}
+.footer span {
+    font-family: 'Lucida Grande', sans-serif;
+}
 html {
     width: 100%;
     height: 100%;
@@ -620,14 +629,30 @@ body {
 }
 
 .panel-warning {
-    background-color: rgba(245, 245, 245, 0.8);
+    background: rgba(245, 245, 245, 0.8);
 }
+
 
 input {
     background-color: rgba(245, 245, 245, 0.8) !important;
 
 }
 
-.navbar {
-    background-color: rgba(0, 0, 0, 0.8) !important;
+select {
+    background-color: rgba(245, 245, 245, 0.8) !important;
+
+}
+
+.navbar.navbar-inverse {
+    background-color: rgba(0, 0, 0, 0.6) !important;
+    color: #ffffff;
+}
+
+.table td {
+    background-color: rgba(245, 245, 245, 0.8) !important;
+
+}
+.table th {
+    background-color: rgba(245, 245, 245, 0.8) !important;
+
 }
