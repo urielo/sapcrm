@@ -125,7 +125,7 @@
                                     @foreach($textos::where('type','li')->get() as $li)
                                         <tr>
                                             <td class="col-md-3">{{$li->title}}</td>
-                                            <td class="col-md-5">{!! html_entity_decode($li->text) !!}</td>
+                                            <td class="col-md-5 text-altera-home">{!! htmlspecialchars(html_entity_decode($li->text)) !!}</td>
                                             <td class="col-md-1">{{$li->status->descricao}}</td>
                                             <td class="col-md-1">{{$li->order_li}}</td>
                                             <td class="col-md-2">

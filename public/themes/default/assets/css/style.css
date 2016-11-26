@@ -616,6 +616,11 @@ body {
     color:#000000;
 }
 
+.text-altera-home{
+    font-size: 12px;
+    text-align: justify !important;
+}
+
 .home-content .subtitle p {
     text-align: center;
 }
