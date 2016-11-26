@@ -116,6 +116,8 @@ $(function () {
     $('.ddd').mask("99")
     $('.cel').mask("9 9999-9999")
     $('.fixo').mask("9999-9999")
+    $('.placa').mask("AAA-99999")
+    
 
 
     $('.input-group.date.nascimento').datepicker({

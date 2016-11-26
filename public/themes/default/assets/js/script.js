@@ -781,35 +781,7 @@ $(function () {
 
     })
 
-    var set_cpfcnpj_mask = function (input) {
 
-        return $(input).keypress(function (event) {
-
-            if (event.which != 8 && isNaN(String.fromCharCode(event.which))) {
-                event.preventDefault();
-            }
-
-            try {
-                $(this).unmask(mask_cpfcnpj);
-            } catch (e) {
-            }
-
-            var tamanho = $(this).val().length;
-
-            if (tamanho < 11) {
-                $(this).attr('placeholder', '999.999.999-99');
-                $(this).mask("999.999.999-99");
-                mask_cpfcnpj = "999.999.999-99";
-
-            } else {
-                $(this).attr('placeholder', '99.999.999/9999-99');
-                mask_cpfcnpj = "99.999.999/9999-99";
-
-                $(this).mask("99.999.999/9999-99");
-            }
-        });
-
-    }
 
 
     $('#veiculo').marcacomplete({
@@ -1762,7 +1734,7 @@ $(function () {
 
     })
 
-    set_cpfcnpj_mask('#cpfcnpj')
+ 
 
 
     $('.forma-pagamento').on('click', function () {

@@ -30,11 +30,11 @@
                         </div>
 
                         <ul class="row">
-                        @foreach($textos::where('type','li')->get() as $li)
-                        <div class="col-md-4">
+                        @foreach($textos::where('type','li')->where('status_id',1)->orderBy('order_li','asc')->limit(5)->get() as $li)
+                        <div class="col-md-12">
                             <li>
                                 <h2>{{$li->title}}</h2>
-                                <p>{!!  html_entity_decode($li->text) !!}</p>
+                                <p>{!!  html_entity_decode($li->text)   !!}</p>
                             </li>
                         </div>
 

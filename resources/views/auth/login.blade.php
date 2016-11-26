@@ -9,7 +9,7 @@
         <div class="col-md-4">
             <div class="panel panel-{{ $errors->any() ? 'danger': 'default' }}">
                 {{--<div class="panel-heading">--}}
-                    {{--<h2 class="panel-title">Bem Vindo ao SeguroAutoPratico</h2>--}}
+                {{--<h2 class="panel-title">Bem Vindo ao SeguroAutoPratico</h2>--}}
                 {{--</div>--}}
                 <div class="panel-body">
 
@@ -32,19 +32,23 @@
                     @endif
                     {!! Form::open() !!}
 
-                    <div class="form-group">
-                        {!! Form::label('email') !!}
+                        {!! Form::label('email','Email',['class'=>'label label-info']) !!}
+                    <div class="input-group ">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+
                         {!! Form::text('email', null, ['class' => 'form-control']) !!}
                     </div>
 
-                    <div class="form-group">
-                        {!! Form::label('senha') !!}
+                        {!! Form::label('senha','Senha',['class'=>'label label-info']) !!}
+                    <div class="input-group ">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-asterisk"></i></span>
                         {!! Form::password('password', ['class' => 'form-control']) !!}
                     </div>
 
-                    {!! Form::submit('Login',['class'=>'btn btn-primary']) !!}
 
-                    <a href="register"><button type="button" class="btn btn-info">Cadastre-se</button></a>
+                    <button type="submit" class="btn btn-primary">Login</button>
+
+                    <a href="register" class="btn btn-info">Cadastre-se</a>
                     <a class="small btn btn-link" href="{{ url('/password/reset') }}">Recuperar senha!</a>
 
 

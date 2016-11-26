@@ -55,7 +55,8 @@ class PorpostaController extends Controller
     public function emitir(Request $request)
     {
 
-        $url = Config::where('env_local', env('APP_LOCAL'))->where('webservice', 'SAP')->first()->url;
+        $url =env('API_URL', Config::where('env_local', env('APP_LOCAL'))->where('webservice', 'SAP')->first()->url);
+
 
 
         /*

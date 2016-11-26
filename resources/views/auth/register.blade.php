@@ -36,8 +36,8 @@
                             {{--<form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">--}}
                             <div class="row">
 
-                                <div class="form-group{{ $errors->has('nome') ? ' has-error' : '' }} col-md-6">
-                                    {!! Form::label('nome','Nome',['class'=>'control-label control-label-sm']) !!}
+                                <div class="form-group form-group-sm{{ $errors->has('nome') ? ' has-error' : '' }} col-md-6">
+                                    {!! Form::label('nome','Nome',['class'=>'label label-info']) !!}
                                     {!! Form::text('nome', old('nome'), ['class' => 'form-control form-control-sm','id'=>'nome']) !!}
 
                                     @if ($errors->has('nome'))
@@ -47,9 +47,9 @@
                                     @endif
                                 </div>
 
-                                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }} col-md-6">
+                                <div class="form-group form-group-sm{{ $errors->has('email') ? ' has-error' : '' }} col-md-6">
 
-                                    {!! Form::label('email','Email',['class'=>'control-label control-label-sm']) !!}
+                                    {!! Form::label('email','Email',['class'=>'label label-info']) !!}
                                     {!! Form::text('email', old('email'), ['class' => 'form-control form-control-sm','id'=>'email']) !!}
 
                                     @if ($errors->has('email'))
@@ -62,9 +62,9 @@
                             </div>
 
                             <div class="row">
-                                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }} col-md-6">
+                                <div class="form-group form-group-sm{{ $errors->has('password') ? ' has-error' : '' }} col-md-6">
 
-                                    {!! Form::label('password','Senha',['class'=>'control-label control-label-sm']) !!}
+                                    {!! Form::label('password','Senha',['class'=>'label label-info']) !!}
                                     {!! Form::password('password', ['class' => 'form-control form-control-sm','id'=>'password']) !!}
 
                                     @if ($errors->has('password'))
@@ -75,8 +75,8 @@
 
                                 </div>
 
-                                <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }} col-md-6">
-                                    {!! Form::label('password-confirm','Confirmação de Senha',['class'=>'control-label control-label-sm']) !!}
+                                <div class="form-group form-group-sm{{ $errors->has('password_confirmation') ? ' has-error' : '' }} col-md-6">
+                                    {!! Form::label('password-confirm','Confirmação de Senha',['class'=>'label label-info']) !!}
                                     {!! Form::password('password_confirmation', ['class' => 'form-control form-control-sm','id'=>'password-confirm']) !!}
 
                                     @if ($errors->has('password_confirmation'))
@@ -93,7 +93,9 @@
 
                     <div class="form-group">
 
-                        {!! Form::submit('Cadastrar',['class'=>'btn btn-primary']) !!}
+
+                        <button type="submit" class="btn btn-primary">Cadastrar</button>
+                        <button type="button" class="btn btn-danger" onclick="window.history.back()">Cancelar</button>
 
                     </div>
 

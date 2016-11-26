@@ -24,7 +24,21 @@
         </div>
 
         @if($texto->type == 'li')
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group form-group-sm">
+                        {!!  Form::label('status_id','Status',['class'=>'label label-info'])!!}
+                        {!! Form::select('status_id',[1=>'Ativo',2=>'Inativo'], $texto->status_id,['class'=>'form-control']) !!}
+                    </div>
 
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group form-group-sm">
+                        {!!  Form::label('order_li','Ordem',['class'=>'label label-info'])!!}
+                        {!! Form::select('order_li',[1=>1,2=>2,3=>3,4=>4,5=>5], $texto->order_li,['class'=>'form-control']) !!}
+                    </div>
+                </div>
+            </div>
             <div class="form-group form-group-sm">
             {!!  Form::label('text','Novidades',['class'=>'label label-info'])!!}
 
@@ -39,6 +53,22 @@
         <div class="form-group form-group-sm">
             {!!  Form::label('title','Title',['class'=>'label label-info'])!!}
             {!! Form::text('title','', ['class'=>'form-control']) !!}
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group form-group-sm">
+                    {!!  Form::label('status_id','Status',['class'=>'label label-info'])!!}
+                    {!! Form::select('status_id',[1=>'Ativo',2=>'Inativo'], 1,['class'=>'form-control']) !!}
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <div class="form-group form-group-sm">
+                    {!!  Form::label('order_li','Ordem',['class'=>'label label-info'])!!}
+                    {!! Form::select('order_li',[1=>1,2=>2,3=>3,4=>4,5=>5], 1,['class'=>'form-control']) !!}
+                </div>
+            </div>
         </div>
 
         <div class="form-group form-group-sm">

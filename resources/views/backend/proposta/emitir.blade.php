@@ -13,7 +13,7 @@
     {!!  Form::hidden('tipoveiculo',$cotacao->veiculo->veiccdveitipo)!!}
     {!!  Form::hidden('cotacao_id',$cotacao->idcotacao)!!}
 
-    <div class="row">
+    <div class="row proposta-form">
         <div class="col-md-6 col-xs-12">
 
             <div class="row" id="segurado-row">
@@ -45,7 +45,7 @@
                             </div>
 
 
-                        @if(strlen($cotacao->segurado->clicpfcnpj) > 11)
+                            @if(strlen($cotacao->segurado->clicpfcnpj) > 11)
 
 
                                 <div class="row pessoa">
@@ -245,11 +245,11 @@
 
                                         <div class="col-md-7">
                                             {!! Form::label('seg_email','E-mail',['class'=>'label label-default']) !!}
-                                            <div class="input-group input-group-sm">
+                                            <div class="input-group input-group-sm email">
                                                 <span class="input-group-addon">  <i
                                                             class="glyphicon glyphicon-envelope"></i> </span>
                                                 {!! Form::text('seg_email',(!empty($cotacao->segurado->cliemail) ? $cotacao->segurado->cliemail : NULL ),[
-                                                'class' =>'form-control form-control-sm',
+                                                'class' =>'form-control form-control-sm ',
                                                 'id'=>'seg_email'
 
                                                 ]) !!}
@@ -525,13 +525,14 @@
                                 <div class="col-md-3">
                                     <label class="label label-default" for="placa">Placa</label>
                                     <div class="input-group input-group-sm ">
-                                        <input class="form-control form-control-sm" type="text"
+                                        <input class="form-control form-control-sm placa" type="text"
                                                data-target-chassi="#chassi"
                                                data-target-renavan="#renavan"
                                                data-target-municipio="#munplaca"
                                                data-target-uf="#placauf"
                                                data-target-anorenav="#anorenav"
                                                data-target-cor="#veiccor"
+                                               placeholder="AAA-9999"
                                                name="placa" id="placa"/>
                                                         <span class="input-group-btn">
                                                              <button class="btn btn-primary btn-sm" data-target="#placa"
@@ -572,9 +573,17 @@
 
                                         <select name="anof" id="anof"
                                                 class="form-control form-control-sm">
-                                            @for($i = $cotacao->veiculo->veicano; $i >= $cotacao->veiculo->veicano - 1; $i--)
-                                                <option value="{{$i}}">{{$i}}</option>
-                                            @endfor
+
+                                            @if($cotacao->veiculo->veicano == 0)
+
+                                                <option value="{{date('Y')}}">{{date('Y')}}</option>
+
+                                            @else
+                                                @for($i = $cotacao->veiculo->veicano; $i >= $cotacao->veiculo->veicano - 1; $i--)
+                                                    <option value="{{$i}}">{{$i}}</option>
+                                                @endfor
+                                            @endif
+
 
                                         </select>
                                     </div>
@@ -776,9 +785,9 @@
                                                         <div class="col-md-4 ">
 
 
-
                                                             <div class="form-group form-group-sm">
-                                                                <label class="label label-default" for="forma_cartao_numero">Nº
+                                                                <label class="label label-default"
+                                                                       for="forma_cartao_numero">Nº
                                                                     Cartão</label>
                                                                 <input class="form-control form-control-sm" type="text"
                                                                        tipoinput="num-cartao" stats="1"
@@ -789,7 +798,8 @@
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group form-group-sm">
-                                                                <label class="label label-default" for="forma_cartao_nome">Titular
+                                                                <label class="label label-default"
+                                                                       for="forma_cartao_nome">Titular
                                                                     do
                                                                     Cartão</label>
                                                                 <input class="form-control form-control-sm" type="text"
@@ -800,9 +810,11 @@
 
                                                         </div>
                                                         <div class="form-group form-group-sm col-md-4 ">
-                                                            <label class="label label-default" for="forma_cartao_bandeira">Bandeira
+                                                            <label class="label label-default"
+                                                                   for="forma_cartao_bandeira">Bandeira
                                                                 Cartão</label>
-                                                            <select name="forma_cartao_bandeira" id="forma_cartao_bandeira"
+                                                            <select name="forma_cartao_bandeira"
+                                                                    id="forma_cartao_bandeira"
                                                                     class="form-control form-control-sm">
 
                                                                 <option value="visa">Visa</option>

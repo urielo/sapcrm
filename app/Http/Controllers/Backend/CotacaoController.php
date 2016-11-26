@@ -56,19 +56,16 @@ class CotacaoController extends Controller
 
         $crypt = Crypt::class;
 
-        if(Auth::user()->can('ver-todos-cotacoes')){
+        if (Auth::user()->can('ver-todos-cotacoes')) {
 
-            $cotacoes = Cotacoes::where('idcorretor',Auth::user()->corretor->idcorretor)->get();
+            $cotacoes = Cotacoes::where('idcorretor', Auth::user()->corretor->idcorretor)->get();
         } else {
-            $cotacoes = Cotacoes::where('usuario_id',Auth::user()->id)->get();
+            $cotacoes = Cotacoes::where('usuario_id', Auth::user()->id)->get();
 
         }
-       
 
 
-
-
-        return view('backend.cotacao.negociacoes', compact('cotacoes','crypt'));
+        return view('backend.cotacao.negociacoes', compact('cotacoes', 'crypt'));
     }
 
     public function negociar($idcotacao, FormaPagamento $formapagamentos)
@@ -162,7 +159,7 @@ class CotacaoController extends Controller
         ];
         $proprietario = ["proprietario" =>
             [
-                
+
                 "proprCpfCnpj" => ($request->proptipopessoa == 1 ? getDataReady($request->propcpf) : getDataReady($request->propcnpj)),
                 "proprCdSexo" => ($request->proptipopessoa == 1 ? $request->propsexo : NULL),
                 "proprCdEstCivl" => ($request->proptipopessoa == 1 ? $request->propestadocivil : 0),
@@ -358,14 +355,14 @@ class CotacaoController extends Controller
         $cotacao = Cotacoes::find(Crypt::decrypt($idcotacao));
         $crypt = Crypt::class;
 
-        return view('backend.cotacao.sucesso', compact('cotacao','crypt'));
+        return view('backend.cotacao.sucesso', compact('cotacao', 'crypt'));
 
 
     }
 
     public function salvar(Request $request)
     {
-        $url = Config::where('env_local', env('APP_LOCAL'))->where('webservice', 'SAP')->first()->url;
+        $url =env('API_URL', Config::where('env_local', env('APP_LOCAL'))->where('webservice', 'SAP')->first()->url);
 
 
         $anoveic = json_decode($request->anomodelo);
@@ -413,7 +410,7 @@ class CotacaoController extends Controller
 
             switch ($request->tipoenvio) {
                 case 'proposta':
-                    return Redirect::route('proposta.index',Crypt::encrypt($cotacao->retorno->cdCotacao));
+                    return Redirect::route('proposta.index', Crypt::encrypt($cotacao->retorno->cdCotacao));
                     break;
                 case 'salvar':
                     return Redirect::route('cotacao.sucesso', Crypt::encrypt($cotacao->retorno->cdCotacao));
@@ -433,7 +430,7 @@ class CotacaoController extends Controller
                 $msg .= '<br> <strong>Mensagem: </strong> ' . $cotacao->message . '!';
             }
 
-           return Redirect::back()->with('error', $msg);
+            return Redirect::back()->with('error', $msg);
         }
 
 

@@ -116,15 +116,19 @@
                                     <tr>
                                         <th>Titulo</th>
                                         <th>Texto</th>
+                                        <th>Status</th>
+                                        <th>Ordem</th>
                                         <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($textos::where('type','li')->get() as $li)
                                         <tr>
-                                            <td>{{$li->title}}</td>
-                                            <td>{!! html_entity_decode($li->text) !!}</td>
-                                            <td>
+                                            <td class="col-md-3">{{$li->title}}</td>
+                                            <td class="col-md-5">{!! html_entity_decode($li->text) !!}</td>
+                                            <td class="col-md-1">{{$li->status->descricao}}</td>
+                                            <td class="col-md-1">{{$li->order_li}}</td>
+                                            <td class="col-md-2">
                                                 <div class="btn-group btn-group-xs ">
 
                                                     <button  data-toggle="modal"

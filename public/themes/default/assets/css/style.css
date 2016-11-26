@@ -560,9 +560,6 @@ body {
     padding: 5px;
 }
 
-.home-content {
-    margin-top: 15px;
-}
 
 .home-content h1 {
     font-family: Sneakout;
@@ -653,6 +650,22 @@ select {
 
 }
 .table th {
+    background-color: rgba(245, 245, 245, 0.8) !important;
+
+}
+.placa {
+    text-transform: uppercase;
+}
+
+.proposta-form input {
+    text-transform: uppercase;
+}
+
+.email input {
+    text-transform: none;
+}
+
+.btn-secondary {
     background-color: rgba(245, 245, 245, 0.8) !important;
 
 }
