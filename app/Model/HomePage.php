@@ -8,4 +8,5 @@ class HomePage extends Model
 {
     protected $table = 'homepage_textos';
     protected $fillable = ["title", "text", "type"];
+
 }

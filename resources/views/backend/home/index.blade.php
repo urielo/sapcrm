@@ -5,6 +5,8 @@
 @section('content')
 
     <div class="col-md-10 col-md-offset-1 home-content">
+
+
         <div class="row">
             <div class="col-md-12">
 
@@ -32,7 +34,7 @@
                         <div class="col-md-4">
                             <li>
                                 <h2>{{$li->title}}</h2>
-                                <p>{{$li->text}}</p>
+                                <p>{!!  html_entity_decode($li->text) !!}</p>
                             </li>
                         </div>
 

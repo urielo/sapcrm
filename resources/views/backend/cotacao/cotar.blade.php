@@ -212,7 +212,7 @@
                         </div>
 
                         <div class="table-responsive">
-                            <table class="table  table-condensed table-sm text-center "
+                            <table class="table table-condensed table-sm text-center"
                                    style="margin-bottom:0;">
                                 <thead>
                                 <tr>

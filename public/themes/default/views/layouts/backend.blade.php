@@ -27,7 +27,7 @@
 </head>
 
 <body>
-
+<div class="background"></div>
 <nav class="navbar navbar-inverse navbar-fixed-top" style="margin-bottom: 10px" role="navigation">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -150,7 +150,7 @@
 
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><span class="navbar-text">Hello, {{Auth::user()->nome}}</span></li>
+                <li><span class="navbar-text">Olá, {{Auth::user()->nome}}</span></li>
                 <li><a href="{{route('auth.logout')}}">Logout</a></li>
             </ul>
         </div>

@@ -1402,6 +1402,22 @@ $(function () {
         } else if ($(this).attr('id') == 'fechasecesso') {
 
             $('#sucesso').hide();
+        } else {
+            $('.modal-content').empty()
+
+            $.ajax({
+                url: $(this).attr('href'),
+                type: 'GET',
+                success: function (retorno) {
+
+                    $('.modal-content').html(retorno);
+
+
+                    return false;
+                }
+
+            });
+
         }
 
     });

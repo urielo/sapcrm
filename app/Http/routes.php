@@ -283,7 +283,22 @@ Route::group(['prefix' => 'home', 'middleware' => 'auth'], function () {
     Route::get('alterar',[
       'as'=>'backend.homepage',
       'middleware'=>'permission:homepage-edit',
-      'uses'=>'Backend\HomePageController@altera_get']);
+      'uses'=>'Backend\HomePageController@altera_get']); 
+    
+    Route::post('alterar',[
+      'as'=>'backend.altera',
+      'middleware'=>'permission:homepage-edit',
+      'uses'=>'Backend\HomePageController@altera_post']); 
+    
+    Route::get('alterar/{type_id}',[
+      'as'=>'homepage.modal',
+      'middleware'=>'permission:homepage-edit',
+      'uses'=>'Backend\HomePageController@modal']);
+    
+    Route::get('delete/{type_id}',[
+      'as'=>'homepage.delete',
+      'middleware'=>'permission:homepage-edit',
+      'uses'=>'Backend\HomePageController@delete']);
     
 });
 //

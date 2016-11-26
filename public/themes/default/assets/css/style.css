@@ -4,17 +4,28 @@
     font-weight: normal;
     src: local('../fonts/Sneakout'), url('../fonts/Sneakout.woff') format('woff');
 }
+
 /*@import url('bootstrap.min.css');*/
+body {
+    /*filter: blur(1px);*/
+    background: rgba(76, 175, 80, 0.3) url('../images/backgraund-1.jpg') no-repeat center center fixed;
 
+    /*-webkit-filter: blur(5px);*/
+    /*-moz-filter: blur(5px);*/
+    /*-o-filter: blur(5px);*/
+    /*-ms-filter: blur(5px);*/
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
 
-
-.logo-autopratico  h1 {
+.logo-autopratico h1 {
     color: #00afef;
     font-family: 'Sneakout';
     font-weight: normal;
     font-size: 23px;
     margin: 0;
-
 
 }
 
@@ -27,18 +38,9 @@
     margin: 0;
 }
 
-.logo-autopratico.navbar-brand  {
+.logo-autopratico.navbar-brand {
     padding: 5px 15px;
 }
-
-
-
-
-
-
-
-
-
 
 .btn-secondary {
     color: #373a3c;
@@ -90,10 +92,9 @@
     border-color: #ccc;
 }
 
-.footer{
+.footer {
     background-color: #e7e7e7;
 }
-
 
 html {
     width: 100%;
@@ -133,7 +134,6 @@ body {
 
 }
 
-
 /*
  * Global add-ons
  */
@@ -159,6 +159,7 @@ body {
 .sidebar {
     display: none;
 }
+
 @media (min-width: 768px) {
     .sidebar {
         position: absolute;
@@ -181,17 +182,18 @@ body {
     margin-bottom: 20px;
     margin-left: -20px;
 }
+
 .nav-sidebar > li > a {
     padding-right: 20px;
     padding-left: 20px;
 }
+
 .nav-sidebar > .active > a,
 .nav-sidebar > .active > a:hover,
 .nav-sidebar > .active > a:focus {
     color: #fff;
     background-color: #428bca;
 }
-
 
 /*
  * Main content
@@ -200,16 +202,17 @@ body {
 .main {
     padding: 20px;
 }
+
 @media (min-width: 768px) {
     .main {
         padding-right: 40px;
         padding-left: 40px;
     }
 }
+
 .main .page-header {
     margin-top: 0;
 }
-
 
 /*
  * Placeholder dashboard ideas
@@ -219,12 +222,15 @@ body {
     margin-bottom: 30px;
     text-align: center;
 }
+
 .placeholders h4 {
     margin-bottom: 0;
 }
+
 .placeholder {
     margin-bottom: 20px;
 }
+
 .placeholder img {
     display: inline-block;
     border-radius: 50%;
@@ -238,17 +244,61 @@ body {
     border-radius: 4px;
 }
 
-
 /*editaveis*/
 
+.editar {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.4) center center no-repeat;
+    left: 0px;
+    top: 0px;
+    border: 2px;
+    border-radius: 20px;
+    border-color: #CCC;
+}
 
-.editar{position:fixed; height:100%; width:100%; background:rgba(0,0,0,0.4) center center no-repeat; left:0px; top:0px;     border: 2px; border-radius: 20px; border-color: #CCC; }
-.editar form{position:absolute; left:40%; top:45%; padding:20px; background:#fff; width:600px; height:530px; margin-left:-160px; margin-top:-220px; }
-.editar form label{display:block; margin-bottom:5px;}
-.editar form label .campo{display:block; font-size:12px;}
-.editar form label input{padding:5px; border:5px solid #CCC; width:280px;}
-.editar form .btnedit{display:block; margin:5px 0 0 0; float:left; cursor:pointer;}
-.editar form .btnclose{display:block; margin:5px 0 0 0; float:right; cursor:pointer;}
+.editar form {
+    position: absolute;
+    left: 40%;
+    top: 45%;
+    padding: 20px;
+    background: #fff;
+    width: 600px;
+    height: 530px;
+    margin-left: -160px;
+    margin-top: -220px;
+}
+
+.editar form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.editar form label .campo {
+    display: block;
+    font-size: 12px;
+}
+
+.editar form label input {
+    padding: 5px;
+    border: 5px solid #CCC;
+    width: 280px;
+}
+
+.editar form .btnedit {
+    display: block;
+    margin: 5px 0 0 0;
+    float: left;
+    cursor: pointer;
+}
+
+.editar form .btnclose {
+    display: block;
+    margin: 5px 0 0 0;
+    float: right;
+    cursor: pointer;
+}
 
 .ui-autocomplete-category {
     font-weight: bold;
@@ -258,8 +308,8 @@ body {
 }
 
 .ui-autocomplete.ui-widget {
-    font-family: Verdana,Arial,sans-serif;
-    font-size:12px;
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 12px;
 }
 
 .ui-autocomplete {
@@ -268,6 +318,7 @@ body {
     /* prevent horizontal scrollbar */
     overflow-x: hidden;
 }
+
 /* IE 6 doesn't support max-height
  * we use height instead, but this forces the menu to always be this tall
  */
@@ -275,19 +326,21 @@ body {
     height: 300px;
 }
 
-
 .produto .ui-accordion {
     border: none;
 
 }
-.produto .ui-accordion .ui-accordion-icons{
+
+.produto .ui-accordion .ui-accordion-icons {
     padding-left: 2.2em;
 
 }
+
 .produto strong {
     font-size: 10px;
 }
-.produto .ui-accordion-header{
+
+.produto .ui-accordion-header {
     display: block;
     cursor: pointer;
     position: relative;
@@ -299,7 +352,8 @@ body {
     background: none;
 
 }
-.produto  .ui-accordion-content{
+
+.produto .ui-accordion-content {
     padding: 5px 15px;
     border-top: 0;
     text-align: justify;
@@ -308,93 +362,98 @@ body {
     border: none;
     background-color: #eeeeee;
 }
-.produto  .ui-state-focus{
-    border: none;
-}
-.produto  .ui-state-active{
-    border: none;
-}
-.produto  .ui-state-default{
-    border: none;
-}
-.produto  .ui-corner-all {
-    border: none;
-}
-.produto  .ui-corner-top{
-    border: none;
-}
-.produto  .ui-accordion-header-active{
+
+.produto .ui-state-focus {
     border: none;
 }
 
+.produto .ui-state-active {
+    border: none;
+}
 
-.produto-scroll{
+.produto .ui-state-default {
+    border: none;
+}
+
+.produto .ui-corner-all {
+    border: none;
+}
+
+.produto .ui-corner-top {
+    border: none;
+}
+
+.produto .ui-accordion-header-active {
+    border: none;
+}
+
+.produto-scroll {
     height: 250px;
     overflow-y: scroll;
 }
-.apolice table th{
+
+.apolice table th {
     text-align: center;
     font-size: 13px;
 }
-.apolice table tbody td{
-    vertical-align:middle;
-    text-align: center;
 
+.apolice table tbody td {
+    vertical-align: middle;
+    text-align: center;
 
 }
 
 .results tr[visible='false'],
-.no-result{
-    display:none;
+.no-result {
+    display: none;
 }
 
-.results tr[visible='true']{
-    display:table-row;
+.results tr[visible='true'] {
+    display: table-row;
 }
 
-.counter{
-    padding:8px;
-    color:#ccc;
+.counter {
+    padding: 8px;
+    color: #ccc;
 }
 
 /*.scrolltable table {*/
-    /*width: 100%;*/
+/*width: 100%;*/
 /*}*/
 
 /*.scrolltable thead, tbody, tr, td, th { display: block; }*/
 
 /*.scrolltable tr:after {*/
-    /*content: ' ';*/
-    /*display: block;*/
-    /*visibility: hidden;*/
-    /*clear: both;*/
+/*content: ' ';*/
+/*display: block;*/
+/*visibility: hidden;*/
+/*clear: both;*/
 /*}*/
 
 /*.scrolltable thead th {*/
-    /*height: 30px;*/
+/*height: 30px;*/
 
-    /*!*text-align: left;*!*/
+/*!*text-align: left;*!*/
 /*}*/
 
 /*.scrolltable tbody {*/
-    /*height: 300px;*/
-    /*overflow-y: auto;*/
+/*height: 300px;*/
+/*overflow-y: auto;*/
 /*}*/
 
 /*.scrolltable thead {*/
-    /*!* fallback *!*/
+/*!* fallback *!*/
 /*}*/
-
 
 /*.scrolltable tbody td, thead th {*/
-    /*width: 16%;*/
-    /*float: left;*/
+/*width: 16%;*/
+/*float: left;*/
 /*}*/
 
-
-.table-fixed  thead {
+.table-fixed thead {
     width: 97%;
 }
+
 .table-fixed tbody {
     height: 350px;
     overflow-y: auto;
@@ -405,11 +464,10 @@ body {
     display: block;
 }
 
-.table-fixed tbody td, .table-fixed thead > tr> th {
+.table-fixed tbody td, .table-fixed thead > tr > th {
     float: left;
     border-bottom-width: 0;
 }
-
 
 .bgloading {
     display: block;
@@ -429,17 +487,17 @@ body {
     text-align: justify;
 }
 
-.btn-label{
+.btn-label {
     padding-top: 16%;
 }
-.fipe-label{
+
+.fipe-label {
     padding-top: 11%;
 }
 
 .alert-sm {
     padding: 0;
 }
-
 
 .table-sm td {
     font-size: 10px;
@@ -450,7 +508,8 @@ body {
     text-align: center;
 
 }
-.panel-heading-sm{
+
+.panel-heading-sm {
     height: 28px;
     padding: 4px 10px;
 }
@@ -464,8 +523,9 @@ body {
 .panel-body-sm table {
     margin: 5px;
 }
-.info-veiculo{
-    font-size: 12px ;
+
+.info-veiculo {
+    font-size: 12px;
 
 }
 
@@ -473,15 +533,13 @@ body {
     font-weight: normal;
 }
 
-
-
 .form-group-sm .dropdown-menu .inner a {
     font-size: 12px;
 }
 
-.radio-sm .radio  {
+.radio-sm .radio {
     font-size: 12px;
-    margin-bottom: 5px ;
+    margin-bottom: 5px;
 }
 
 .valor-total .alert {
@@ -497,7 +555,6 @@ body {
     margin-top: 15px;
 }
 
-
 .home-content h1 {
     font-family: Sneakout;
     font-weight: Normal;
@@ -505,8 +562,9 @@ body {
     font-size: 25px;
     text-align: center;
 }
+
 .home-content li {
-    list-style-type:none;
+    list-style-type: none;
 }
 
 .home-content li:before {
@@ -539,6 +597,37 @@ body {
 .home-content .subtitle p {
     text-align: center;
 }
+
 .content-body {
     margin-top: 15px;
+}
+
+.altera-homepage .titulo h5 {
+    font-family: Sneakout;
+    font-weight: Normal;
+    color: #00afef;
+
+}
+
+.panel-default {
+    background-color: rgba(245, 245, 245, 0.8);
+}
+.panel-success {
+    background-color: rgba(245, 245, 245, 0.8);
+}
+.panel-info {
+    background-color: rgba(245, 245, 245, 0.8);
+}
+
+.panel-warning {
+    background-color: rgba(245, 245, 245, 0.8);
+}
+
+input {
+    background-color: rgba(245, 245, 245, 0.8) !important;
+
+}
+
+.navbar {
+    background-color: rgba(0, 0, 0, 0.8) !important;
 }
