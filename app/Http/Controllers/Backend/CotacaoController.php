@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Mail;
 use App\Console\Commands\CotacaoCommand;
@@ -55,18 +56,18 @@ class CotacaoController extends Controller
     {
 
         $crypt = Crypt::class;
+        Cotacoes::where('dtvalidade', '<=', date('Y-m-d'))->update(['idstatus' => 11]);
 
         if (Auth::user()->can('ver-todos-cotacoes')) {
-
-            $cotacoes = Cotacoes::where('idcorretor', Auth::user()->corretor->idcorretor)->get();
+            $cotacoes = Cotacoes::where('idcorretor', Auth::user()->corretor->idcorretor)->whereIn('idstatus', [9, 10])->get();
         } else {
-            $cotacoes = Cotacoes::where('usuario_id', Auth::user()->id)->get();
-
+            $cotacoes = Cotacoes::where('usuario_id', Auth::user()->id)->whereIn('idstatus', [9, 10])->get();
         }
 
 
         return view('backend.cotacao.negociacoes', compact('cotacoes', 'crypt'));
     }
+
 
     public function negociar($idcotacao, FormaPagamento $formapagamentos)
     {
@@ -311,8 +312,34 @@ class CotacaoController extends Controller
 
     }
 
-    public function show()
+    public function reemitir($cotacao_id, TipoUtilizacaoVeic $tipoutilizacao, TipoVeiculos $tipos, FormaPagamento $formas)
     {
+        try {
+            $cotacao_id = Crypt::decrypt($cotacao_id);
+        } catch (DecryptException $e) {
+            return abort(404);
+        }
+
+        $produto_master = '';
+        $produto_opcionais = '';
+        $opcionais = [];
+
+        $cotacao = Cotacoes::find($cotacao_id);
+
+        foreach ($cotacao->produtos as $produto) {
+            if ($produto->produto->tipoproduto == 'master') {
+                $produto_master = $produto->produto->idproduto;
+            } else {
+                $opcionais[] = (string) $produto->produto->idproduto ;
+            }
+        }
+
+
+        if (count($opcionais)) {
+            $produto_opcionais = $opcionais;
+        }
+        return view('backend.cotacao.cotar', compact('tipos', 'tipoutilizacao', 'formas', 'cotacao', 'produto_master', 'produto_opcionais'));
+
 
     }
 
@@ -362,10 +389,9 @@ class CotacaoController extends Controller
 
     public function salvar(Request $request)
     {
-        $url =env('API_URL', Config::where('env_local', env('APP_LOCAL'))->where('webservice', 'SAP')->first()->url);
+        $url = env('API_URL', Config::where('env_local', env('APP_LOCAL'))->where('webservice', 'SAP')->first()->url);
 
 
-        $anoveic = json_decode($request->anomodelo);
         $cotacao = [
             "corretor" => ["correSusep" => Auth::user()->corretor->corresusep,
                 "correNomeRazao" => Auth::user()->corretor->corrnomerazao,
@@ -387,12 +413,13 @@ class CotacaoController extends Controller
                 "correEndCdUf" => Auth::user()->corretor->corrcduf],
             "segurado" => ["segCpfCnpj" => $request->cpfcnpj],
             "veiculo" => ["veiCodFipe" => $request->codefipe,
-                "veiAno" => $anoveic->ano,
+                "veiAno" => $request->anomodelo,
                 "veiIndZero" => $request->indautozero,
                 "veiCdTipo" => $request->tipoveiculo,
-                "veiCdCombust" => $anoveic->combus,
+                "veiCdCombust" => $request->combustivel,
             ],
             "idParceiro" => 99,
+            "renova" => $request->renova,
             "nmParceiro" => "Seguro AUTOPRATICO",
             "comissao" => (isset($request->comissao) ? $request->comissao : Auth::user()->corretor->corrcomissaopadrao)
         ];

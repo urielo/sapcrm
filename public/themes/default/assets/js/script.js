@@ -74,7 +74,7 @@ $(function () {
         var parcelas = [];
         $('meta').each(function () {
             if ($(this).attr('name') == 'forma-pagamento') {
-                parcelas_obg = gerarParcelas(vltotal, $(this).attr('data-maxparcela'), $(this).attr('data-parce-sem-juros'), $(this).attr('data-juros'), menorparc, $(this).attr('id-forma'))
+                parcelas_obg = gerarParcelas(vltotal, $(this).attr('data-maxparcela'), $(this).attr('data-parce-sem-juros'), $(this).attr('data-juros'), menorparc, $(this).attr('id-forma'), $('input[name="renova"]:checked').val())
                 var html_parcelas = ''
 
                 $.each(parcelas_obg, function (key, value) {
@@ -294,7 +294,7 @@ $(function () {
             });
         });
     };
-    function gerarParcelas(vltotal, maxparc, parcelasemjuros, taxajuros, menorparc, formapg) {
+    function gerarParcelas(vltotal, maxparc, parcelasemjuros, taxajuros, menorparc, formapg, renova) {
 
         maxparc = parseInt(maxparc)
         parcelasemjuros = parseInt(parcelasemjuros)
@@ -319,13 +319,13 @@ $(function () {
             var parcjuros = jurosComposto(vltotal, taxajuros, i);
 
 
-            if (i > parcelasemjuros && parcjuros < menorparc && formapg == 2) {
+            if (i > parcelasemjuros && parcjuros < menorparc && formapg == 2 && renova == 0) {
                 priparcela = menorparc;
                 demparcela = ((parcjuros * i) - menorparc) / (i - 1);
                 vlfinal = menorparc + demparcela * (i - 1);
                 juros_retorno = taxajuros.replace('.', ',')
 
-            } else if (i <= parcelasemjuros && vltotal / i < menorparc && formapg == 2) {
+            } else if (i <= parcelasemjuros && vltotal / i < menorparc && formapg == 2 && renova == 0) {
                 priparcela = menorparc;
                 demparcela = (vltotal - menorparc) / (i - 1);
                 vlfinal = menorparc + (demparcela * (i - 1));
@@ -405,7 +405,7 @@ $(function () {
 
     }
 
-   $.reusltAutoComplete = function (cdfipe) {
+    $.reusltAutoComplete = function (cdfipe) {
         $('#codefip-value').val(cdfipe);
         divano.fadeIn("slow");
 
@@ -587,6 +587,7 @@ $(function () {
     }
 
 
+    var opcionais = [];
     var change_produtos = function (input_id, tipo) {
 
         if (tipo == 'master') {
@@ -603,6 +604,8 @@ $(function () {
                 if ($(this).is(":checked")) {
 
                     $('#botton-cotacao').removeClass('hide')
+
+                    $('meta[name="produto-master"]').attr('value', $(this).val())
 
                     $.each(div, function (key, value) {
                         var id = '#' + value.id
@@ -634,6 +637,7 @@ $(function () {
 
 
                 } else {
+                    $('meta[name="produto-master"]').attr('value', '')
                     $('#botton-cotacao').addClass('hide')
 
                     $('#panelprodutosopcional').hide();
@@ -670,6 +674,19 @@ $(function () {
                 var tipo_seguro = $(this).attr('data-val-tiposeguro')
 
                 if ($(this).is(":checked")) {
+
+                    if ($('meta[name="produto-opcionais"]').attr('value') != '') {
+                        var opcionais = $.parseJSON($('meta[name="produto-opcionais"]').attr('value'))
+                    } else {
+                        opcionais = [];
+                    }
+
+                    if (opcionais.indexOf($(this).val()) < 0) {
+                        opcionais.push($(this).val())
+                    }
+
+                    $('meta[name="produto-opcionais"]').attr('value', JSON.stringify(opcionais))
+
                     if ($(this).attr('data-val-tipoproduto') == 'opcional') {
                         $.each(div, function (key, value) {
                             var id = '#' + value.id
@@ -692,6 +709,11 @@ $(function () {
                 } else {
 
                     if ($(this).attr('data-val-tipoproduto') == 'opcional') {
+
+                        opcionais.splice(opcionais.indexOf($(this).val()), 1)
+                        $('meta[name="produto-opcionais"]').attr('value', JSON.stringify(opcionais));
+
+
 
                         (menorparc > 0) ? menorparc -= parseFloat((menor > 0) ? menor : 0) : menorparc;
                         if (vltotal !== 0) {
@@ -723,12 +745,30 @@ $(function () {
     var set_produtos = function () {
         $('input:checkbox').each(function () {
             if ($(this).attr('name') == 'produtos[]' && $(this).attr('data-set') == 0) {
+                var id_produto = '#' + $(this).attr('id')
+
                 if ($(this).attr('data-val-tipoproduto') == "master") {
-                    change_produtos('#' + $(this).attr('id'), 'master')
+                    var produto_master_id = $('meta[name="produto-master"]').attr('value')
+                    change_produtos(id_produto, 'master')
+                    if ($(id_produto).val() == produto_master_id) {
+                        $(id_produto).prop('checked', true)
+                        $(id_produto).trigger('change')
+                    }
                     $(this).attr('data-set', 1)
                 } else if ($(this).attr('data-val-tipoproduto') == "opcional") {
-                    change_produtos('#' + $(this).attr('id'), 'opcional')
+
+                    change_produtos(id_produto, 'opcional')
                     $(this).attr('data-set', 1)
+
+                    if ($('meta[name="produto-opcionais"]').attr('value') != '') {
+                        var produto_opcionais_id = $.parseJSON($('meta[name="produto-opcionais"]').attr('value'));
+                        $.each(produto_opcionais_id, function (key, value) {
+                            if ($(id_produto).val() == value) {
+                                $(id_produto).prop('checked', true)
+                                $(id_produto).trigger('change')
+                            }
+                        })
+                    }
                 }
 
             }
@@ -742,13 +782,27 @@ $(function () {
     $("select[name=anomodelo]").on('change', function () {
         produtosvalores = []
         remove_class()
-        var djson = $.parseJSON($(this).val());
+        var meta_ano = $('meta[name="anomodelo"]');
+
+        if (meta_ano.attr('value') != '') {
+            $(this).val(meta_ano.attr('value'))
+            meta_ano.attr('value','');
+        }
+
+        var option = $('select[name=anomodelo] option:selected')
+        console.log(option.attr('data-valor'))
+
+        combus = option.attr('data-comustivel')
+        $('input[name="combustivel"]').val(combus)
+
         dados_produtos = {
             comissao: $('#comissao').val(),
             cdfipe: $('input[name=codefipe]').val(),
-            valor: djson.valor,
-            ano: djson.ano,
-            tipo: $('input[name=tipoveiculo]:checked').val()
+            valor: option.attr('data-valor'),
+            ano: $(this).val(),
+            tipo: $('select[name="tipoveiculo"]').val(),
+            renova: $('input[name="renova"]:checked').val()
+
         };
         $('#panelprodutosopcional').hide();
         $('#produtosopcionais').empty();
@@ -782,12 +836,15 @@ $(function () {
     })
 
 
-
-
     $('#veiculo').marcacomplete({
 
         delay: 0,
-        source: geturl() + 'modelo',
+        source: function (request, response) {
+            $.getJSON(
+                $('#veiculo').attr('data-url'),
+                {tipoveiculo: $('select[name="tipoveiculo"]').val(), term: request.term},
+                response);
+        },
         select: function (event, ui) {
 
             $('input:checkbox').each(function () {
@@ -1734,8 +1791,6 @@ $(function () {
 
     })
 
- 
-
 
     $('.forma-pagamento').on('click', function () {
 
@@ -1786,9 +1841,9 @@ $(function () {
     })
 
 
-    $('ul.nav li.dropdown').hover(function() {
+    $('ul.nav li.dropdown').hover(function () {
         $(this).find('.dropdown-menu').stop(true, true).delay(100).fadeIn(500);
-    }, function() {
+    }, function () {
         $(this).find('.dropdown-menu').stop(true, true).delay(100).fadeOut(500);
     });
 

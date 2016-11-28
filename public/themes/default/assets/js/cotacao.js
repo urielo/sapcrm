@@ -17,7 +17,7 @@ $(function () {
 
 
         var tamanho = $(this).val().length;
-        console.log(tamanho)
+        // console.log(tamanho)
         if (tamanho <= 11) {
             $(this).mask("999.999.999-999");
             mask_cpfcnpj = "999.999.999-999";
@@ -53,6 +53,22 @@ $(function () {
         })
 
     })
+    
+    if($('.fipe').val() != ''){
+        $('#search-fipe').trigger('click')
+        var key = $.Event('keyup')
+        key.which = 8
+        $('.cpfcnpj').trigger(key)
+    }
+
+    $('input[name="renova"]').on('change', function () {
+
+        $('#valortotal').trigger('change')
+
+        $('select[name="anomodelo"]').trigger('change')
+    })
+    
+    
 
 })
 /**

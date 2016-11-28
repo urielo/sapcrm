@@ -39,6 +39,15 @@
                                             aria-hidden="true"></span> PDF
 
                                 </a>
+
+                                <a class="btn btn-success"
+                                   href="{{route('cotacao.reemitir',$crypt::encrypt($cotacao->idcotacao))}}"
+                                   >
+                                    <span
+                                            class="glyphicon glyphicon glyphicon-edit"
+                                            aria-hidden="true"></span> Reemitir
+
+                                </a>
                                 @if(!$cotacao->proposta)
                                     <a class="btn btn-primary "
                                        href="{{route('proposta.index',$crypt::encrypt($cotacao->idcotacao))}}">

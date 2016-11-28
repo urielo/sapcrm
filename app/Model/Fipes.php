@@ -8,7 +8,7 @@ class Fipes extends Model
 {
 
     protected $table = 'fipe';
-    protected $fillable = ["marca", "codefipe", "modelo",'idstatus'];
+    protected $fillable = ["marca", "codefipe", "modelo",'idstatus','tipoveiculo_id'];
     protected $primaryKey = 'codefipe';
     public $incrementing = false;
 

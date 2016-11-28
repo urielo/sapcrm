@@ -8,7 +8,7 @@
 
     <div class="col-md-12 col-xs-12 apolice">
         <div class="table-responsive">
-            <table class="table table-hover table-condensed table-datatable">
+            <table class="table table-hover table-condensed  table-datatable">
                 <thead>
                 <tr>
                     <th>#ID</th>

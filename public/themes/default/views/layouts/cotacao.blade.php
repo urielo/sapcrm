@@ -6,13 +6,18 @@
 
 
     <div class="col-xs-12 col-sm-12 ">
-        <div class="panel panel-@yield('panelcolor')" style="margin-top: 10px;">
+
+
+        <div class="panel panel-@yield('panelcolor') black" style="margin-top: 10px;">
             <div class="panel-heading panel-heading-sm">
                 <h2 class="panel-title" style="text-align: center;">@yield('heading')</h2>
             </div>
+            {{--<h2 class="title-s" >@yield('heading')</h2>--}}
 
-            <div style="height: 450px; overflow-x: auto;" id="body-panel">
+            <div class="scroll" style="height: 450px; overflow-x: auto;" id="body-panel">
                 <div class="panel-body">
+
+
 
                     <div class="alert alert-danger hide" id="diverror">
                         <strong>Erro: </strong>

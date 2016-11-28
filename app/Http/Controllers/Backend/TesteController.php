@@ -52,14 +52,20 @@ class TesteController extends Controller
         $id = 7673;
 
 
-        echo ' <a href="'.route('proposta.index',['id'=>Crypt::encrypt($id)]).'">proposta</a>';
-        echo ' <a href="'.route('cotacao.sucesso', Crypt::encrypt($id)).'">sucesso</a>';
+        echo ' <a href="' . route('proposta.index', ['id' => Crypt::encrypt($id)]) . '">proposta</a>';
+        echo ' <a href="' . route('cotacao.sucesso', Crypt::encrypt($id)) . '">sucesso</a>';
+        $opcionais = [];
 
+//        $opcionais[] = 1;
+//        $opcionais[] = 2;
+        if (count($opcionais)) {
+            echo json_encode($opcionais);
+
+        }
         echo '<pre>';
-        print_r(geraParcelas(4505.56,13,3,2.5,349,2));
+//        print_r(geraParcelas(4505.56, 13, 3, 2.5, 349, 2));
         echo '</pre>';
         abort(404);
-
 
 
 //        echo $id_hidden = Crypt::encrypt($id);

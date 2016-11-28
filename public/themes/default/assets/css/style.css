@@ -6,7 +6,7 @@
 }
 
 /*@import url('bootstrap.min.css');*/
-body {
+html {
     /*filter: blur(1px);*/
     background: rgba(76, 175, 80, 0.3) url('../images/backgraund-1.jpg') no-repeat center center fixed;
 
@@ -18,6 +18,10 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+}
+
+body {
+    background: rgba(76, 175, 80, 0)  /*overflow: hidden;*/
 }
 
 .logo-autopratico h1 {
@@ -95,16 +99,17 @@ body {
 .footer {
     font-family: 'Sneakout';
     font-weight: normal;
-    background-color: rgba(176,196,222,0.2);
+    background-color: rgba(176, 196, 222, 0.2);
     text-align: center;
     color: #ffffff;
     font-size: 12px;
 
-
 }
+
 .footer span {
     font-family: 'Lucida Grande', sans-serif;
 }
+
 html {
     width: 100%;
     height: 100%;
@@ -560,7 +565,6 @@ body {
     padding: 5px;
 }
 
-
 .home-content h1 {
     font-family: Sneakout;
     font-weight: Normal;
@@ -600,7 +604,7 @@ body {
 
 }
 
-.home-content li>ul>li:before {
+.home-content li > ul > li:before {
     content: "\e127";
     font-size: 10px;
     float: left;
@@ -611,12 +615,12 @@ body {
 
 }
 
-.home-content li>ul>li {
+.home-content li > ul > li {
     font-size: 12px;
-    color:#000000;
+    color: #000000;
 }
 
-.text-altera-home{
+.text-altera-home {
     font-size: 12px;
     text-align: justify !important;
 }
@@ -639,9 +643,11 @@ body {
 .panel-default {
     background-color: rgba(245, 245, 245, 0.8);
 }
+
 .panel-success {
     background-color: rgba(245, 245, 245, 0.8);
 }
+
 .panel-info {
     background-color: rgba(245, 245, 245, 0.8);
 }
@@ -650,49 +656,62 @@ body {
     background: rgba(245, 245, 245, 0.8);
 }
 
-.input-nav input{
-    background: rgba(0, 0, 0, 0)!important;
+.input-nav input {
+    background: rgba(0, 0, 0, 0) !important;
     color: #ffffff;
 }
+
 .input-nav {
     padding: 10px;
 
 }
 
-.input-nav .bootstrap-select  {
-    background: transparent;
-
+.transparent {
+    background-color: rgba(0, 0, 0, .5);
+    border: none;
 
 }
+
+.input-nav .bootstrap-select {
+    background: transparent;
+
+}
+
+.input-group-btn .bootstrap-select{
+    background: transparent;
+
+}
+
+
 
 .btn-up button {
     margin-top: -3px;
 }
 
-.input-nav .bootstrap-select  button {
+.input-nav .bootstrap-select button {
     height: auto;
 
 }
-.input-nav .bootstrap-select  a {
+
+.input-nav .bootstrap-select a {
     font-size: 12px !important;
 
 }
 
-input {
-    background-color: rgba(245, 245, 245, 0.8) !important;
+/*input {*/
+    /*background-color: rgba(245, 245, 245, 0.8) !important;*/
 
-}
+/*}*/
 
-select {
-    background-color: rgba(245, 245, 245, 0.8) !important;
+/*select {*/
+    /*background-color: rgba(245, 245, 245, 0.8) !important;*/
 
-}
+/*}*/
 
 .navbar.navbar-inverse {
     background-color: rgba(0, 0, 0, 0.6) !important;
     color: #ffffff;
 }
-
 
 .placa {
     text-transform: uppercase;
@@ -709,4 +728,25 @@ select {
 .btn-secondary {
     background-color: rgba(245, 245, 245, 0.8) !important;
 
+}
+
+.title-s {
+    color: #00afef;
+    font-family: Sneakout;
+    font-weight: normal;
+    font-size: 20px;
+    text-align: center;
+
+    /*margin: 5px 0;*/
+    padding-top: 10px;
+
+}
+
+
+.black {
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.table-responsive .dataTables_wrapper {
+    color: #ffffff;
 }

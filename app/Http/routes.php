@@ -34,7 +34,7 @@ Route::group(['prefix' => 'grupos', 'middleware' => ['permission:altera-grupo']]
 
 Route::group(['prefix' => 'ajax'], function () {
 
-    Route::get('/modelo', ['as' => 'modelo', 'uses' => 'Backend\AjaxController@modelo']);
+    Route::get('/modelo', ['as' => 'ajax.modelo', 'uses' => 'Backend\AjaxController@modelo']);
     Route::get('/profissao', ['as' => 'profissao', 'uses' => 'Backend\AjaxController@profissao']);
     Route::get('/ramoatividade', ['as' => 'ramoatividade', 'uses' => 'Backend\AjaxController@ramoatividade']);
     Route::get('/anovalor', ['as' => 'anovalor', 'uses' => 'Backend\AjaxController@anovalor']);
@@ -131,7 +131,7 @@ Route::group(['prefix'=> 'apolices','middleware'=>'auth'],function (){
         'as' => 'apolices.download',
         'uses' => 'Backend\ApolicesController@download']);
 });
-Route::group(['prefix' => 'vendas', 'middleware' => 'auth'], function () {
+Route::group(['prefix' => 'cotacao', 'middleware' => 'auth'], function () {
 
     
     
@@ -145,11 +145,18 @@ Route::group(['prefix' => 'vendas', 'middleware' => 'auth'], function () {
         'middleware' => ['permission:vendas-negociacoes'],
         'as' => 'vendas.negociacoes',
         'uses' => 'Backend\CotacaoController@negociacoes']);
+    
+    
 
     Route::get('negociar/{idcotacao}', [
         'middleware' => ['permission:vendas-negociacoes-negociar'],
         'as' => 'vendas.negociar',
         'uses' => 'Backend\CotacaoController@negociar']);
+    
+    Route::get('reemitir/{cotacao_id}', [
+        'middleware' => ['permission:vendas-negociacoes-negociar'],
+        'as' => 'cotacao.reemitir',
+        'uses' => 'Backend\CotacaoController@reemitir']);
     
    
 

@@ -19,18 +19,24 @@
 
                         <div class="panel-body panel-body-sm">
                             <div class="col-md-4 col-xs-12 ">
-                                <strong class="radio" style="text-align: center;"> Tipos de veículos: </strong>
+                                <strong class="radio radio-label" style="text-align: center;"> Renova? </strong>
                             </div>
-                            @foreach($tipos::where('status_id',1)->get() as $index => $tipo)
-                                <div class="col-md-4 col-xs-4 {{ ($index == 0 ? 'col-md-offset-0 col-xs-offset-2': '') }}">
-                                    <div class="radio">
-                                        <label for="{{$tipo->desc}}">
-                                            {!! Form::radio('tipoveiculo',$tipo->idtipoveiculo, ($index == 0 ? true: false),['id'=>$tipo->desc]) !!}
-                                            {{$tipo->desc}}
-                                        </label>
-                                    </div>
+                            <div class="col-md-4 col-xs-4 col-md-offset-0 col-xs-offset-2">
+                                <div class="radio">
+                                    <label for="renova-sim">
+                                        {!! Form::radio('renova',1,false,['id'=>'renova-sim']) !!}
+                                        Sim
+                                    </label>
                                 </div>
-                            @endforeach
+                            </div>
+                            <div class="col-md-4 col-xs-4 ">
+                                <div class="radio">
+                                    <label for="renova-nao">
+                                        {!! Form::radio('renova',0,true,['id'=>'renova-nao']) !!}
+                                        Não
+                                    </label>
+                                </div>
+                            </div>
                         </div>
 
 
@@ -41,16 +47,17 @@
             </div>
 
             <div class="row">
-                <div class="col-md-4 col-xs-5 ">
+                <div class="col-md-3 col-xs-5 ">
                     {{Form::label('codefip-value','Fipe',['class'=>'label label-default'])}}
                     <div class=" form-group input-group input-group-sm">
 
-                        {!! Form::text('codefipe','',
+                        {!! Form::text('codefipe',($cotacao->veiculo->veiccodfipe ? $cotacao->veiculo->veiccodfipe : ''),
                         [
                             'class'=>'form-control form-control-xs fipe',
                             'id'=>'codefip-value',
                             'placeholder'=>'000000-0',
-                            'data-veiculo'=>'#veiculo'
+                            'data-veiculo'=>'#veiculo',
+
                           ]
                           ) !!}
 
@@ -67,11 +74,24 @@
 
                 </div>
 
-                <div class="col-md-8 col-xs-7">
+                <div class="col-md-9 col-xs-7">
 
                     <div class="form-group form-group-sm">
                         {{Form::label('veiculo','Veículo',['class'=>'label label-default'])}}
-                        {!! Form::text('veiculo','',['class'=>'form-control form-control-sm','id'=>'veiculo', 'placeholder'=>'Modelo do veículo']) !!}
+
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-btn">
+                                {{Form::select('tipoveiculo',
+                                    $tipos::where('status_id',1)->lists('desc', 'idtipoveiculo'),1,
+                                    ['class'=>'selectpicker form-control' ,'data-style'=>'btn-default btn-sm',])}}
+                            </span>
+                            {!! Form::text('veiculo','',[
+                            'class'=>'form-control form-control-sm',
+                            'id'=>'veiculo' ,'data-url'=>route('ajax.modelo'),
+                            'placeholder'=>'Modelo do veículo']) !!}
+
+                        </div>
+
                     </div>
                 </div>
 
@@ -80,9 +100,12 @@
                     <div class="form-group form-group-sm">
                         <label for="anomodelo" class="label label-default">Ano Modelo - Combustivel -
                             Valor</label>
+
+                        <meta name="anomodelo" value="{{($cotacao->veiculo->veicano ? $cotacao->veiculo->veicano : '')}}">
                         <select name="anomodelo" id="anomodelo" class="form-control form-control-sm">
                             <option value="0">Escolha um modelo...</option>
                         </select>
+                        {{Form::hidden('combustivel',null)}}
                     </div>
                 </div>
 
@@ -102,7 +125,7 @@
 
 
                         {{Form::label('cpfcnpj','CPF/CNPJ do Segurado',['class'=>'label label-default', 'id'=>'label-cpfcnpj'])}}
-                        {!! Form::text('cpfcnpj','',
+                        {!! Form::text('cpfcnpj',($cotacao->segurado->clicpfcnpj ? $cotacao->segurado->clicpfcnpj : ''),
                         ['class'=>'form-control form-control-sm cpfcnpj',
                         'id'=>'cpfcnpj',
                         'data-target-input' => '#input-cpfcnpj',
@@ -117,6 +140,10 @@
 
             <div class="row hide produto-pagamento">
                 <!--Incio - Escolha Produtos Master-->
+
+                <meta name="produto-master" value="{{(isset($produto_master) ? $produto_master : '')}}">
+                <meta name="produto-opcionais" value="{{(isset($produto_opcionais) ? json_encode($produto_opcionais, JSON_PRETTY_PRINT) : '')}}">
+                <meta name="produto-opcionais2" value="{{(isset($produto_opcionais) ? json_encode($produto_opcionais) : '')}}">
                 <div class="col-md-6 ">
                     <div class="panel panel-default " id="panelprodutosmaster">
                         <div class="panel-heading panel-heading-sm">
@@ -171,7 +198,7 @@
                                             <div class="input-group">
                                                 <select name="comissao" id="comissao"
                                                         class=" form-control form-control-sm"
-                                                        >
+                                                >
                                                     <option value="{{Auth::user()->corretor->corrcomissaopadrao}}"
                                                             selected>{{Auth::user()->corretor->corrcomissaopadrao}}</option>
                                                     <option value="{{Auth::user()->corretor->corrcomissaomin}}">{{Auth::user()->corretor->corrcomissaomin}}</option>
@@ -270,7 +297,7 @@
                             <tr>
                                 <td class="pull-right">
 
-                                    <div class="button-group btn-group-xs" >
+                                    <div class="button-group btn-group-xs">
 
                                         <button class="btn   btn-info button-cotacao-submit" type="submit"
                                                 id="salvar">Salvar e imprimir

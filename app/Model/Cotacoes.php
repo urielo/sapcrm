@@ -10,7 +10,7 @@ class Cotacoes extends Model
     protected $table = 'cotacao';
     protected $primaryKey = 'idcotacao';
     protected $fillable = [
-        'w',
+        'idcotacao',
         'idparceiro',
         'idcorretor',
         'clicpfcnpj',
@@ -22,6 +22,7 @@ class Cotacoes extends Model
         'dtcreate',
         'dtupdate',
         'usuario_id',
+        'renova',
     ];
     public $timestamps = FALSE;
     

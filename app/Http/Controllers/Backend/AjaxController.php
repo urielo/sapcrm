@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Model\Descontos;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Model\Fipes;
@@ -22,10 +23,12 @@ class AjaxController extends Controller
 
     public function modelo(Request $request)
     {
-
+        $tipo = $request->input('tipoveiculo');
         $like = $request->input('term');
-        $fipe = Fipes::where('modelo', 'ilike', "%{$like}%")
+        $fipe = Fipes::where('tipoveiculo_id', $tipo)
+            ->where('modelo', 'ilike', "%{$like}%")
             ->Orwhere('marca', 'ilike', "%{$like}%")
+            ->where('tipoveiculo_id', $tipo)
             ->take(100)
             ->orderBy('marca', 'ASC')
             ->orderBy('modelo', 'ASC')
@@ -95,7 +98,7 @@ class AjaxController extends Controller
         foreach ($anovalor as $value):
 
 
-            echo '<option value=\'' . json_encode(['ano' => $value->ano, 'combus' => $value->idcombustivel, 'valor' => $value->valor]) . '\'>' . $value->ano . ' - ' . ($value->idcombustivel == 1 ? 'Gasolina' : ($value->idcombustivel == 2 ? 'Alcool' : 'Disel')) . ' - R$ ' . number_format($value->valor, 2, ',', '.') . '</option>';
+            echo '<option data-comustivel="'.$value->idcombustivel.'"    data-valor="'.$value->valor.'" value="' . $value->ano . '">' . $value->ano . ' - ' . ($value->idcombustivel == 1 ? 'Gasolina' : ($value->idcombustivel == 2 ? 'Alcool' : 'Disel')) . ' - R$ ' . number_format($value->valor, 2, ',', '.') . '</option>';
 
         endforeach;
     }
@@ -126,6 +129,7 @@ class AjaxController extends Controller
         $cdfipe = $request->input('cdfipe');
         $valor = $request->input('valor');
         $comissao = $request->input('comissao');
+        $renova = $request->input('renova');
         $idade = date('Y') - ($request->input('ano') > 1 ? $request->input('ano') : date('Y'));
         $tipo = ($request->input('tipo') == 8 ? 1 : $request->input('tipo'));
         $categoria = CategoriaFipes::where('codefipe', '=', $cdfipe)
@@ -143,8 +147,15 @@ class AjaxController extends Controller
             foreach (Combos::whereIdprodutomaster($produto->idproduto)->get() as $combo) {
                 $combos['idproduto' . $combo->idprodutomaster][] = $combo->idprodutoopcional;
             }
+
+
             foreach (PrecoProdutos::where('idproduto', '=', $produto->idproduto)->get() as $preco):
                 $retorno[] = ['produtos' => $produto];
+
+                if($renova == 1){
+                    $preco->premioliquidoproduto = $preco->premioliquidoproduto - Descontos::where('tipo','renova')->first()->valor;
+                }
+
                 if ($tipo == $produto->idtipoveiculo):
                     if ($valor >= $preco->vlrfipeminimo && $valor <= $preco->vlrfipemaximo && $idade <= $preco->idadeaceitamax && $tipo == $preco->idtipoveiculo):
 
