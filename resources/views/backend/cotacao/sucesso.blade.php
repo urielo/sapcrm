@@ -37,9 +37,11 @@
                             </a>
                         </div>
 
-                        <div class="btn-group hide">
-                            <a href="#">
-                                <button type="button" href="#" class="btn btn-info"> <span class="glyphicon glyphicon glyphicon-send" aria-hidden="true"></span> Enviar Email</button>
+                        <div class="btn-group">
+                            <a type="button" class="btn btn-info " data-toggle="modal"
+                               data-target=".modal-show"
+                               href="{{route('cotacao.showemail',$crypt::encrypt($cotacao->idcotacao))}}"
+                               id="showinfo"><i class="glyphicon glyphicon-envelope"></i> Email
                             </a>
                         </div>
 
@@ -49,7 +51,14 @@
             </div>
 
         </div>
+        <div class="modal fade modal-show" tabindex="-1" role="dialog" aria-labelledby="Email"
+             aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
 
+                </div>
+            </div>
+        </div>
     @elseif($proposta)
 
         <div class="panel-body">
