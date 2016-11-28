@@ -295,14 +295,28 @@
                         <table class="table table-sm hide" style="margin-top: 0 " id="botton-cotacao">
                             <tbody>
                             <tr>
-                                <td class="pull-right">
+                                <td class="pull-left">
 
-                                    <div class="button-group btn-group-xs">
+                                    <div class="button-group btn-group">
 
                                         <button class="btn   btn-info button-cotacao-submit" type="submit"
-                                                id="salvar">Salvar e imprimir
-                                            ou email
+                                                id="salvar"><strong>Salvar, Imprimir
+                                            ou enviar email da cotação</strong>
                                         </button>
+
+
+                                    </div>
+
+
+                                </td>
+                                <td class="pull-right">
+
+                                    <div class="button-group btn-group">
+
+                                        {{--<button class="btn   btn-info button-cotacao-submit" type="submit"--}}
+                                                {{--id="salvar">Salvar e imprimir--}}
+                                            {{--ou email--}}
+                                        {{--</button>--}}
                                         <button class="btn btn-primary button-cotacao-submit" type="submit"
                                                 id="proposta">Emitir
                                             proposta

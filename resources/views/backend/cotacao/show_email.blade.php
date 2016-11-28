@@ -9,6 +9,8 @@
 <div class="modal-body">
     <div class="container-fluid">
 
+        <p>Informe o email para quem deseja enviar a cotação de nº: {{$cotacao->idcotacao}}</p>
+
         {!! Form::hidden('cotacao_id',Crypt::encrypt($cotacao->idcotacao)) !!}
 
         <div class="form-group">

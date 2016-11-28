@@ -224,11 +224,11 @@ class PropostaController extends Controller
         if (Auth::user()->can('ver-todos-cotacoes')) {
             $propostas = Propostas::whereHas('cotacao', function ($q){
                $q->where('idcorretor', Auth::user()->corretor->idcorretor);
-            })->whereNotIn('idstatus', [12,11,13])->orderby('idproposta','desc')->get();
+            })->whereNotIn('idstatus', [12,11,13,18])->orderby('idproposta','desc')->get();
         } else {
             $propostas = Propostas::whereHas('cotacao', function ($q){
                 $q->where('usuario_id', Auth::user()->id);
-            })->whereNotIn('idstatus', [12,11,13])->orderby('idcotacao','desc')->get();
+            })->whereNotIn('idstatus', [12,11,13,18])->orderby('idcotacao','desc')->get();
         }
 
 

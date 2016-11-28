@@ -112,9 +112,6 @@ $(function () {
     }
 
 
-    
-
-
     $(window).load(function () {
         $('#body').removeClass('blur')
         $('.bgloading').fadeOut()
@@ -658,8 +655,8 @@ $(function () {
 
                     (menorparc > 0) ? menorparc -= parseFloat((menor > 0) ? menor : 0) : menorparc;
                     if (vltotal != 0) {
-                        produtosvalores.splice($.inArray(valor, produtosvalores), 1);
                         produtosvalores = [];
+                        menorparc = 0
                     }
 
                     $.each(div, function (key, value) {
@@ -688,7 +685,7 @@ $(function () {
                 if ($(this).is(":checked")) {
 
                     if ($('meta[name="produto-opcionais"]').attr('value') != '') {
-                        var opcionais = $.parseJSON($('meta[name="produto-opcionais"]').attr('value'))
+                        opcionais = $.parseJSON($('meta[name="produto-opcionais"]').attr('value'))
                     } else {
                         opcionais = [];
                     }
@@ -722,14 +719,19 @@ $(function () {
 
                     if ($(this).attr('data-val-tipoproduto') == 'opcional') {
 
-                        opcionais.splice(opcionais.indexOf($(this).val()), 1)
+
+                        if ($.isArray(opcionais)) {
+                            opcionais.splice(opcionais.indexOf($(this).val()), 1);
+                        }
+
+
                         $('meta[name="produto-opcionais"]').attr('value', JSON.stringify(opcionais));
 
 
+                        // console.log(produtosvalores)
                         (menorparc > 0) ? menorparc -= parseFloat((menor > 0) ? menor : 0) : menorparc;
                         if (vltotal !== 0) {
-                            produtosvalores = [];
-                            menorparc = 0
+                            produtosvalores.splice(produtosvalores.indexOf(valor), 1);
                             $('#valortotal').trigger('change');
                         }
 

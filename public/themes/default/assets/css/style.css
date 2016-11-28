@@ -816,3 +816,29 @@ body {
 .black .modal {
     color: black;
 }
+
+.modal-title {
+    font-size: 14px;
+    margin: 0;
+    text-align: center;
+}
+
+.modal-header {
+    padding: 3px 5px;
+}
+
+.modal-content p {
+    font-size: 12px;
+}
+
+.black .table a {
+    color: #ffffff;
+
+}
+
+.black .table a:hover {
+    color: #000000;
+    font-weight: bold;
+}
+
+

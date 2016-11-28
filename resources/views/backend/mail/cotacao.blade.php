@@ -15,11 +15,11 @@
 
             <div class="row">
                 <div class="col-md-12 email-box-1">
-                    <h1> BEM VINDO!
+                    <h1> Agradecemos a sua confiança!
                     </h1>
                     <p>
-                        Estamos felizes por ter você conosco <br>
-                        Agradecemos pela confiança em nós depositada <br>
+                        Aguardamos a confirmação da sua proposta <br>
+                        E nos colocamos a dispocição para quaisquer esclarecimentos<br>
                         Muito obrigado! <br>
 
                     </p>
@@ -35,11 +35,11 @@
                     </p>
 
                     <h3>
-                        Em Caso de Roubo e Furto:
+                       Essa cotação tem validade até:
                     </h3>
 
                     <h1>
-                        0800 77 25099 <br> (11) 2770-1601
+                        {{date('d/m/Y', strtotime($cotacao->dtvalidade))}}
                     </h1>
 
                 </div>

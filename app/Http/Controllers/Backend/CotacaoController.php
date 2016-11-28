@@ -59,11 +59,11 @@ class CotacaoController extends Controller
         Cotacoes::where('dtvalidade', '<=', date('Y-m-d'))->where('idstatus', 9)->update(['idstatus' => 11]);
 
         if (Auth::user()->hasRole('admin')) {
-            $cotacoes = Cotacoes::whereIn('idstatus', [9, 10])->orderby('idcotacao', 'desc')->get();
+            $cotacoes = Cotacoes::whereIn('idstatus', [9])->orderby('idcotacao', 'desc')->get();
         } elseif (Auth::user()->can('ver-todos-cotacoes')) {
-            $cotacoes = Cotacoes::where('idcorretor', Auth::user()->corretor->idcorretor)->whereIn('idstatus', [9, 10])->orderby('idcotacao', 'desc')->get();
+            $cotacoes = Cotacoes::where('idcorretor', Auth::user()->corretor->idcorretor)->whereNotNull('usuario_id')->whereIn('idstatus', [9])->orderby('idcotacao', 'desc')->get();
         } else {
-            $cotacoes = Cotacoes::where('usuario_id', Auth::user()->id)->whereIn('idstatus', [9, 10])->orderby('idcotacao', 'desc')->get();
+            $cotacoes = Cotacoes::where('usuario_id', Auth::user()->id)->whereNotNull('usuario_id')->whereIn('idstatus', [9])->orderby('idcotacao', 'desc')->get();
         }
 
 
@@ -81,9 +81,9 @@ class CotacaoController extends Controller
         if (Auth::user()->hasRole('admin')) {
             $cotacoes = Cotacoes::whereNotIn('idstatus', [9, 10])->orderby('idcotacao', 'desc')->get();
         } elseif (Auth::user()->can('ver-todos-cotacoes')) {
-            $cotacoes = Cotacoes::where('idcorretor', Auth::user()->corretor->idcorretor)->whereNotIn('idstatus', [9, 10])->orderby('idcotacao', 'desc')->get();
+            $cotacoes = Cotacoes::where('idcorretor', Auth::user()->corretor->idcorretor)->whereNotNull('usuario_id')->whereNotIn('idstatus', [9, 10])->orderby('idcotacao', 'desc')->get();
         } else {
-            $cotacoes = Cotacoes::where('usuario_id', Auth::user()->id)->whereNotIn('idstatus', [9, 10])->orderby('idcotacao', 'desc')->get();
+            $cotacoes = Cotacoes::where('usuario_id', Auth::user()->id)->whereNotNull('usuario_id')->whereNotIn('idstatus', [9, 10])->orderby('idcotacao', 'desc')->get();
         }
 
 
@@ -349,8 +349,8 @@ class CotacaoController extends Controller
                 $formas[] = $parcelas;
             }
 
+            $cotacao->segurado()->update(['cliemail' => $request->email]);
 
-//        return view('backend.pdf.cotacao',compact('cotacao', 'formas'));
 
 
             error_reporting(E_ERROR);
@@ -359,11 +359,11 @@ class CotacaoController extends Controller
             $pdf->save(public_path('pdf/Cotacao.pdf'));
 
 
-            Mail::send('backend.mail.cotacao', compact('proposta'), function ($m) use ($cotacao, $request) {
-                $m->from('cotacao@seguroautopratico.com.br', 'Cotacões');
+            Mail::send('backend.mail.cotacao', compact('cotacao'), function ($m) use ($cotacao, $request) {
+                $m->from(Auth::user()->email, strtoupper(Auth::user()->nome));
                 $m->attach(public_path('pdf/Cotacao.pdf'));
                 $m->bcc('apolices_enviadas@seguroautopratico.com.br');
-                $m->replyTo('cotacao@seguroautopratico.com.br', 'Cotacões');
+                $m->replyTo(Auth::user()->email, strtoupper(Auth::user()->nome));
                 (strlen(Auth::user()->email) > 3 ? $m->cc(Auth::user()->email, strtoupper(Auth::user()->nome)) : NULL);
                 $m->to($request->email)->subject('Cotacao');
             });
@@ -383,10 +383,10 @@ class CotacaoController extends Controller
         } catch (DecryptException $e) {
             return abort(404);
         }
-        
+
         $cotacao = Cotacoes::find($cotacao_id);
-        
-        return view('backend.cotacao.show_email',compact('cotacao'));
+
+        return view('backend.cotacao.show_email', compact('cotacao'));
     }
 
     public function reemitir($cotacao_id, TipoUtilizacaoVeic $tipoutilizacao, TipoVeiculos $tipos, FormaPagamento $formas)
