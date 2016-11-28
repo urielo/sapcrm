@@ -1855,6 +1855,12 @@ $(function () {
         $(this).find('.dropdown-menu').stop(true, true).delay(100).fadeOut(500);
     });
 
+$('.tipo-consulta').on('change',function () {
+    var tipo_consulta = $(this);
 
+    if(tipo_consulta.placa == 'placa'){
+        $('.input-consulta').mask('AAA-9999')
+    }
+})
 });
 

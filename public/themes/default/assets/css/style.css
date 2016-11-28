@@ -8,7 +8,7 @@
 /*@import url('bootstrap.min.css');*/
 html {
     /*filter: blur(1px);*/
-    background: rgba(76, 175, 80, 0.3) url('../images/backgraund-1.jpg') no-repeat center center fixed;
+    background: rgba(76, 175, 80, 0.3) url('../images/bgs/backgraund-4.jpg') no-repeat center center fixed;
 
     /*-webkit-filter: blur(5px);*/
     /*-moz-filter: blur(5px);*/
@@ -572,6 +572,9 @@ body {
     font-size: 25px;
     text-align: center;
 }
+.home-content .panel {
+    margin-top: 25px;
+}
 
 .home-content li {
     list-style-type: none;
@@ -756,7 +759,7 @@ body {
 }
 
 .black {
-    background-color: rgba(0, 0, 0, .5);
+    background-color: rgba(0, 0, 0, .8);
     color: #ffffff;
 }
 

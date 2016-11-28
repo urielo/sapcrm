@@ -11,11 +11,11 @@
             <div class="col-md-12">
 
 
-                <h1>{{$textos::where('type','h1')->first()->title}}</h1>
-
+{{--<h1></h1>--}}
 
                 <div class="panel panel-info black">
                     <div class="panel-body">
+                        <h1>{{$textos::where('type','h1')->first()->title}}</h1>
 
                         <div class="row">
                             <div class="col-md-6 col-md-offset-3">

@@ -4,7 +4,7 @@
 @section('content')
 
     <div class="col-md-10 col-md-offset-1 content-body altera-homepage">
-        <div class="panel panel-default">
+        <div class="panel panel-default black">
 
 
             <div class="panel-body">

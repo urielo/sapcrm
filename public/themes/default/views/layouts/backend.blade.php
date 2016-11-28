@@ -153,18 +153,18 @@
                         <div class="input-group input-group-sm">
 
                                 <span class="input-group-btn">
-                                     <select id="tipo" class="selectpicker form-control"
+                                     <select id="tipo-consulta" class=" tipo-consulta selectpicker form-control"
                                              data-style='btn-default btn-sm'>
-                                        <option>Placa</option>
-                                        <option>CPF/CNPJ</option>
+                                        <option value="placa">Placa</option>
+                                        <option value="cpfcnpj">CPF/CNPJ</option>
                                     </select>
 
                                 </span>
 
-                                 <input class="form-control" type="text" placeholder="Search">
+                                 <input class="form-control input-consulta" type="text" placeholder="Placa">
                                 <span class="input-group-btn btn-up">
 
-                                    <button class="btn btn-xs btn-default" type="submit">Search</button>
+                                    <button class="btn btn-xs btn-default" type="submit">Consultar</button>
                                 </span>
 
                         </div>
