@@ -30,13 +30,6 @@
                                 <button type="button" class="btn btn-danger"> <span class="glyphicon glyphicon glyphicon-print" aria-hidden="true"></span> Imprimir PDF</button>
                             </a>
                         </div>
-
-                        <div class="btn-group">
-                            <a href="{{route('proposta.index',$crypt::encrypt($cotacao->idcotacao))}}" >
-                                <button type="button" class="btn btn-primary"> <span class="glyphicon glyphicon-expand" aria-hidden="true"></span> Emitir proposta</button>
-                            </a>
-                        </div>
-
                         <div class="btn-group">
                             <a type="button" class="btn btn-info " data-toggle="modal"
                                data-target=".modal-show"
@@ -44,6 +37,13 @@
                                id="showinfo"><i class="glyphicon glyphicon-envelope"></i> Email
                             </a>
                         </div>
+                        <div class="btn-group">
+                            <a href="{{route('proposta.index',$crypt::encrypt($cotacao->idcotacao))}}" >
+                                <button type="button" class="btn btn-primary"> <span class="glyphicon glyphicon-expand" aria-hidden="true"></span> Emitir proposta</button>
+                            </a>
+                        </div>
+
+
 
                     </center>
 
