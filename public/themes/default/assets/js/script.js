@@ -123,8 +123,8 @@ $(function () {
     });
 
 
-    $('#body-panel').height($(window).height() - 125);
-    var ttable = $(window).height() - 250;
+    $('#body-panel').height($(window).height() - 130);
+    var ttable = $(window).height() - 280;
     $(window).resize(function () {
         $('#body-panel').height($(window).height() - 125);
         ttable = $(window).height() - 250;
@@ -157,6 +157,7 @@ $(function () {
         },
         "scrollY": ttable,
         "scrollCollapse": true,
+        "order": [[1, "desc"]],
         "lengthMenu": [50, 100, 150, 200]
     })
 
@@ -714,10 +715,10 @@ $(function () {
                         $('meta[name="produto-opcionais"]').attr('value', JSON.stringify(opcionais));
 
 
-
                         (menorparc > 0) ? menorparc -= parseFloat((menor > 0) ? menor : 0) : menorparc;
                         if (vltotal !== 0) {
-                            produtosvalores.splice($.inArray(valor, produtosvalores), 1);
+                            produtosvalores = [];
+                            menorparc = 0
                             $('#valortotal').trigger('change');
                         }
 
@@ -781,16 +782,23 @@ $(function () {
 
     $("select[name=anomodelo]").on('change', function () {
         produtosvalores = []
+        menorparc = 0.0
         remove_class()
+        var meta_comissao = $('meta[name="comissao"]')
+        if (meta_comissao.attr('value')) {
+            $('#comissao').val(meta_comissao.attr('value'))
+            meta_comissao.attr('value', '')
+        }
+
         var meta_ano = $('meta[name="anomodelo"]');
 
         if (meta_ano.attr('value') != '') {
             $(this).val(meta_ano.attr('value'))
-            meta_ano.attr('value','');
+            meta_ano.attr('value', '');
         }
 
         var option = $('select[name=anomodelo] option:selected')
-        console.log(option.attr('data-valor'))
+        // console.log(option.attr('data-valor'))
 
         combus = option.attr('data-comustivel')
         $('input[name="combustivel"]').val(combus)

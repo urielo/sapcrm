@@ -187,7 +187,7 @@
                         <div class="panel-body ">
 
                             <div class="row">
-
+                                <meta name="comissao" value="{{$cotacao->comissao ? $cotacao->comissao :''}}">
                                 @if(Auth::user()->hasRole('altera-comissao'))
 
                                     @role('altera-comissao')

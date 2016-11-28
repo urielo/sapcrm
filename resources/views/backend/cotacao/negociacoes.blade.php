@@ -21,7 +21,7 @@
                 </thead>
                 <tbody>
                 @foreach ($cotacoes as $cotacao)
-                    <tr {!! date('d/m/Y', strtotime($cotacao->dtvalidade)) > date('d/m/Y') ? 'class="danger"': '' !!}>
+                    <tr>
                         <th><a href="#" class="">{{$cotacao->idcotacao}}</a></th>
                         <th><a href="#" class="">{{format('cpfcnpj',$cotacao->segurado->clicpfcnpj)}}</a></th>
                         <td>{!! date('d/m/Y', strtotime($cotacao->dtcreate)) !!}</td>
@@ -48,7 +48,7 @@
                                             aria-hidden="true"></span> Reemitir
 
                                 </a>
-                                @if(!$cotacao->proposta)
+                                @if(!$cotacao->proposta && $cotacao->idstatus == 9)
                                     <a class="btn btn-primary "
                                        href="{{route('proposta.index',$crypt::encrypt($cotacao->idcotacao))}}">
                                     <span

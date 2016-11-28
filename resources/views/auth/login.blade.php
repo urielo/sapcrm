@@ -7,7 +7,7 @@
 
     <div class="row vertical-center">
         <div class="col-md-4">
-            <div class="panel panel-{{ $errors->any() ? 'danger': 'default' }}">
+            <div class="panel panel-{{ $errors->any() ? 'danger': 'default' }} transparent">
                 {{--<div class="panel-heading">--}}
                 {{--<h2 class="panel-title">Bem Vindo ao SeguroAutoPratico</h2>--}}
                 {{--</div>--}}
@@ -31,21 +31,23 @@
                         </div>
                     @endif
                     {!! Form::open() !!}
+                    <div class="form-group">
 
                         {!! Form::label('email','Email',['class'=>'label label-info']) !!}
-                    <div class="input-group ">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <div class="input-group ">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 
-                        {!! Form::text('email', null, ['class' => 'form-control']) !!}
+                            {!! Form::text('email', null, ['class' => 'form-control']) !!}
+                        </div>
                     </div>
-
+                    <div class="form-group">
                         {!! Form::label('senha','Senha',['class'=>'label label-info']) !!}
-                    <div class="input-group ">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-asterisk"></i></span>
-                        {!! Form::password('password', ['class' => 'form-control']) !!}
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-asterisk"></i></span>
+                            {!! Form::password('password', ['class' => 'form-control']) !!}
+                        </div>
+
                     </div>
-
-
                     <button type="submit" class="btn btn-primary">Login</button>
 
                     <a href="register" class="btn btn-info">Cadastre-se</a>

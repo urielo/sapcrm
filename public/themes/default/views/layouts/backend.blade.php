@@ -54,8 +54,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle mouse-over-down" data-toggle="dropdown">
                         <span style="font-size:16px;"
-                              class="pull-left hidden-xs showopacity glyphicon glyphicon glyphicon-shopping-cart"></span>
-                        Cotação
+                              class="hidden-xs showopacity glyphicon glyphicon glyphicon-shopping-cart"></span>   Cotação
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu forAnimate" role="menu">
 
@@ -67,7 +66,7 @@
                         <li><a href="{{route('vendas.negociacoes')}}">Gestão</a></li>
                         @endpermission
                         @permission('vendas-negociacoes')
-                        <li><a href="{{route('vendas.negociacoes')}}">Vencidas</a></li>
+                        <li><a href="{{route('cotacao.vencidas')}}">Vencidas</a></li>
                         @endpermission
 
                     </ul>
@@ -77,18 +76,16 @@
                 @permission('menu-proposta')
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <span style="font-size:16px;"
-                              class="pull-left hidden-xs showopacity glyphicon glyphicon glyphicon-shopping-cart"></span>
-                        Proposta
+                        <span style="font-size:16px;" class="hidden-xs showopacity glyphicon glyphicon-briefcase"></span>    Proposta
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu forAnimate" role="menu">
 
-                        @permission('vendas-cotacao')
-                        <li><a href="{{route('cotacao.cotar')}}">Acompanhamento</a></li>
+                        @permission('proposta-acompanhamento')
+                        <li><a href="{{route('proposta.acompanhamento')}}">Acompanhamento</a></li>
                         @endpermission
 
-                        @permission('vendas-negociacoes')
-                        <li><a href="{{route('vendas.negociacoes')}}">Caceladas</a></li>
+                        @permission('proposta-acompanhamento')
+                        <li><a href="{{route('proposta.negativas')}}">Inativas</a></li>
                         @endpermission
 
 
@@ -98,8 +95,9 @@
 
                 @permission('menu-gestao')
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cobrança<span style="font-size:16px;"
-                                                                                             class="pull-left hidden-xs showopacity glyphicon glyphicon-list-alt"></span><span
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span style="font-size:16px;"
+                              class="hidden-xs showopacity glyphicon glyphicon-usd"></span>  Cobrança<span
                                 class="caret"></span></a>
                     <ul class="dropdown-menu forAnimate" role="menu">
                         <li><a href="{{route('gestao.cobranca')}}">Agendar</a></li>

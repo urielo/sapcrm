@@ -52,16 +52,31 @@ class CotacaoController extends Controller
 
     }
 
-    public function negociacoes()
+    public function cotacoes()
+    {
+
+        $crypt = Crypt::class;
+        Cotacoes::where('dtvalidade', '<=', date('Y-m-d'))->where('idstatus',9)->update(['idstatus' => 11]);
+
+        if (Auth::user()->can('ver-todos-cotacoes')) {
+            $cotacoes = Cotacoes::where('idcorretor', Auth::user()->corretor->idcorretor)->whereIn('idstatus', [9, 10])->orderby('idcotacao','desc')->get();
+        } else {
+            $cotacoes = Cotacoes::where('usuario_id', Auth::user()->id)->whereIn('idstatus', [9, 10])->orderby('idcotacao','desc')->get();
+        }
+
+
+        return view('backend.cotacao.negociacoes', compact('cotacoes', 'crypt'));
+    }
+    public function vencidas()
     {
 
         $crypt = Crypt::class;
         Cotacoes::where('dtvalidade', '<=', date('Y-m-d'))->update(['idstatus' => 11]);
 
         if (Auth::user()->can('ver-todos-cotacoes')) {
-            $cotacoes = Cotacoes::where('idcorretor', Auth::user()->corretor->idcorretor)->whereIn('idstatus', [9, 10])->get();
+            $cotacoes = Cotacoes::where('idcorretor', Auth::user()->corretor->idcorretor)->whereNotIn('idstatus', [9, 10])->orderby('idcotacao','desc')->get();
         } else {
-            $cotacoes = Cotacoes::where('usuario_id', Auth::user()->id)->whereIn('idstatus', [9, 10])->get();
+            $cotacoes = Cotacoes::where('usuario_id', Auth::user()->id)->whereNotIn('idstatus', [9, 10])->orderby('idcotacao','desc')->get();
         }
 
 

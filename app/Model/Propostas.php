@@ -66,8 +66,18 @@ class Propostas extends Model
     {
         return $this->hasOne('App\Model\Certificados','idproposta','idproposta');
     }
-    
-    
+
+    public function status(){
+        return $this->belongsTo('App\Model\Status','idstatus','id');
+
+    }
+
+    public function motivos(){
+        return $this->belongsTo('App\Model\Motivos','idmotivo','id');
+
+    }
+
+
     
     
     

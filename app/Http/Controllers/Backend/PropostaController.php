@@ -17,10 +17,11 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Redirect;
 
-class PorpostaController extends Controller
+class PropostaController extends Controller
 {
     public function index($cotacao_id)
     {
@@ -208,6 +209,55 @@ class PorpostaController extends Controller
             header("Content-Disposition: inline; filename=\"proposta_N{$proposta_id}.pdf\";");
             echo base64_decode($pdf->base64);
         }
+    }
+
+    public function acompanhamento()
+    {
+
+        $crypt = Crypt::class;
+        Propostas::where('dtvalidade', '<=', date('Y-m-d'))->where('idstatus',10)->update(['idstatus' => 11]);
+
+        $motivo = false;
+
+        $title = 'Acompanhamento';
+
+        if (Auth::user()->can('ver-todos-cotacoes')) {
+            $propostas = Propostas::whereHas('cotacao', function ($q){
+               $q->where('idcorretor', Auth::user()->corretor->idcorretor);
+            })->whereNotIn('idstatus', [12,11,13])->orderby('idproposta','desc')->get();
+        } else {
+            $propostas = Propostas::whereHas('cotacao', function ($q){
+                $q->where('usuario_id', Auth::user()->id);
+            })->whereNotIn('idstatus', [12,11,13])->orderby('idcotacao','desc')->get();
+        }
+
+
+
+        return view('backend.proposta.listas',compact('propostas','motivo','crypt','title'));
+    }
+
+    public function negativas()
+    {
+        $crypt = Crypt::class;
+        Propostas::where('dtvalidade', '<=', date('Y-m-d'))->where('idstatus',10)->update(['idstatus' => 11]);
+
+        $motivo = true;
+
+        $title = 'Canceladas, Recusadas e Vencidas';
+
+        if (Auth::user()->can('ver-todos-cotacoes')) {
+            $propostas = Propostas::whereHas('cotacao', function ($q){
+                $q->where('idcorretor', Auth::user()->corretor->idcorretor);
+            })->whereIn('idstatus', [12,11,13])->orderby('idproposta','desc')->get();
+        } else {
+            $propostas = Propostas::whereHas('cotacao', function ($q){
+                $q->where('usuario_id', Auth::user()->id);
+            })->whereIn('idstatus', [12,11,13])->orderby('idcotacao','desc')->get();
+        }
+
+
+
+        return view('backend.proposta.listas',compact('propostas','motivo','crypt','title'));
     }
 
 }

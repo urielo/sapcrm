@@ -14,7 +14,7 @@
                 <h1>{{$textos::where('type','h1')->first()->title}}</h1>
 
 
-                <div class="panel panel-info">
+                <div class="panel panel-info black">
                     <div class="panel-body">
 
                         <div class="row">
