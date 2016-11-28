@@ -65,7 +65,11 @@ $(function () {
 
         $('#valortotal').trigger('change')
 
-        $('select[name="anomodelo"]').trigger('change')
+
+        if($('select[name="anomodelo"]').val() != 1){
+            $('select[name="anomodelo"]').trigger('change')
+            
+        }
     })
     
     

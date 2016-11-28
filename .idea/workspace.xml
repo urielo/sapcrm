@@ -2,21 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="158326c0-4f81-4588-bf4f-593b4ab725fa" name="Default" comment="Alterações nos viwes e criacoes de novos models">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Model/Descontos.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Backend/AjaxController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/AjaxController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Backend/CotacaoController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/CotacaoController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Backend/TesteController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/TesteController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Model/Cotacoes.php" afterPath="$PROJECT_DIR$/app/Model/Cotacoes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Model/Fipes.php" afterPath="$PROJECT_DIR$/app/Model/Fipes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/themes/default/assets/css/style.css" afterPath="$PROJECT_DIR$/public/themes/default/assets/css/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/themes/default/assets/js/cotacao.js" afterPath="$PROJECT_DIR$/public/themes/default/assets/js/cotacao.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/themes/default/assets/js/script.js" afterPath="$PROJECT_DIR$/public/themes/default/assets/js/script.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/themes/default/views/layouts/cotacao.blade.php" afterPath="$PROJECT_DIR$/public/themes/default/views/layouts/cotacao.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/cotacao/cotar.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/cotacao/cotar.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/cotacao/negociacoes.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/cotacao/negociacoes.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/gestao/apolices.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/gestao/apolices.blade.php" />
     </list>
     <ignored path="sap.local.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,18 +29,21 @@
       <file leaf-file-name="cotacao.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/themes/default/assets/js/cotacao.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="31" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
+            <state relative-caret-position="330">
+              <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
               <folding>
+                <element signature="e#114#232#0" expanded="false" />
+                <element signature="e#257#749#0" expanded="false" />
+                <element signature="e#333#380#0" expanded="false" />
                 <element signature="e#525#628#0" expanded="false" />
+                <element signature="e#634#743#0" expanded="false" />
                 <element signature="e#799#1423#0" expanded="false" />
-                <element signature="e#1659#1767#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="script.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="script.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/themes/default/assets/js/script.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="389">
@@ -184,22 +175,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cotar.blade.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="cotar.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/backend/cotacao/cotar.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="145" column="116" selection-start-line="145" selection-start-column="116" selection-end-line="145" selection-end-column="116" />
+            <state relative-caret-position="330">
+              <caret line="109" column="22" selection-start-line="109" selection-start-column="22" selection-end-line="109" selection-end-column="22" />
               <folding>
-                <marker date="1480297599509" expanded="true" signature="2029:2443" ph="..." />
-                <marker date="1480297599509" expanded="true" signature="2041:2441" ph="..." />
-                <marker date="1480297599509" expanded="true" signature="2149:2413" ph="..." />
-                <marker date="1480297599509" expanded="true" signature="3327:3553" ph="..." />
-                <marker date="1480297599509" expanded="true" signature="3624:3864" ph="..." />
-                <marker date="1480297599509" expanded="true" signature="3636:3862" ph="..." />
-                <marker date="1480297599509" expanded="true" signature="3650:3861" ph="..." />
-                <marker date="1480297599509" expanded="true" signature="5334:5758" ph="..." />
-                <marker date="1480297599509" expanded="true" signature="5346:5756" ph="..." />
-                <marker date="1480297599509" expanded="true" signature="5453:5730" ph="..." />
+                <marker date="1480299014811" expanded="true" signature="2029:2443" ph="..." />
+                <marker date="1480299014811" expanded="true" signature="2041:2441" ph="..." />
+                <marker date="1480299014811" expanded="true" signature="2149:2413" ph="..." />
+                <marker date="1480299014811" expanded="true" signature="3327:3553" ph="..." />
+                <marker date="1480299014811" expanded="true" signature="3624:3864" ph="..." />
+                <marker date="1480299014811" expanded="true" signature="3636:3862" ph="..." />
+                <marker date="1480299014811" expanded="true" signature="3650:3861" ph="..." />
+                <marker date="1480299014811" expanded="true" signature="5334:5758" ph="..." />
+                <marker date="1480299014811" expanded="true" signature="5346:5756" ph="..." />
+                <marker date="1480299014811" expanded="true" signature="5453:5730" ph="..." />
               </folding>
             </state>
           </provider>
@@ -269,10 +260,10 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/TesteController.php" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/cotacao/negociacoes.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/backend/cotacao/cotar.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/CotacaoController.php" />
-        <option value="$PROJECT_DIR$/public/themes/default/assets/js/cotacao.js" />
         <option value="$PROJECT_DIR$/public/themes/default/assets/js/script.js" />
+        <option value="$PROJECT_DIR$/public/themes/default/assets/js/cotacao.js" />
+        <option value="$PROJECT_DIR$/resources/views/backend/cotacao/cotar.blade.php" />
       </list>
     </option>
   </component>
@@ -652,12 +643,12 @@
       <workItem from="1480176764773" duration="603000" />
       <workItem from="1480184691803" duration="13912000" />
       <workItem from="1480202038798" duration="6303000" />
-      <workItem from="1480283681212" duration="14698000" />
+      <workItem from="1480283681212" duration="15040000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1111981000" />
+    <option name="totallyTimeSpent" value="1112323000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -680,7 +671,7 @@
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32568806" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24941176" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18042813" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17944786" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930514" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297546" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1150,25 +1141,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/cotacao/cotar.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="145" column="116" selection-start-line="145" selection-start-column="116" selection-end-line="145" selection-end-column="116" />
-          <folding>
-            <marker date="1480297599509" expanded="true" signature="2029:2443" ph="..." />
-            <marker date="1480297599509" expanded="true" signature="2041:2441" ph="..." />
-            <marker date="1480297599509" expanded="true" signature="2149:2413" ph="..." />
-            <marker date="1480297599509" expanded="true" signature="3327:3553" ph="..." />
-            <marker date="1480297599509" expanded="true" signature="3624:3864" ph="..." />
-            <marker date="1480297599509" expanded="true" signature="3636:3862" ph="..." />
-            <marker date="1480297599509" expanded="true" signature="3650:3861" ph="..." />
-            <marker date="1480297599509" expanded="true" signature="5334:5758" ph="..." />
-            <marker date="1480297599509" expanded="true" signature="5346:5756" ph="..." />
-            <marker date="1480297599509" expanded="true" signature="5453:5730" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/CotacaoController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="212">
@@ -1181,18 +1153,6 @@
             <element signature="e#3763#5606#0#PHP" expanded="false" />
             <element signature="e#14909#16137#0#PHP" expanded="false" />
             <element signature="e#16370#20048#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/themes/default/assets/js/cotacao.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="31" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
-          <folding>
-            <element signature="e#525#628#0" expanded="false" />
-            <element signature="e#799#1423#0" expanded="false" />
-            <element signature="e#1659#1767#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1237,6 +1197,40 @@
             <element signature="e#50906#61528#0" expanded="false" />
             <element signature="e#61581#63503#0" expanded="false" />
             <marker date="1480298632331" expanded="false" signature="27468:28287" ph="{&quot;delay&quot;: 0...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/themes/default/assets/js/cotacao.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+          <folding>
+            <element signature="e#114#232#0" expanded="false" />
+            <element signature="e#257#749#0" expanded="false" />
+            <element signature="e#333#380#0" expanded="false" />
+            <element signature="e#525#628#0" expanded="false" />
+            <element signature="e#634#743#0" expanded="false" />
+            <element signature="e#799#1423#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/cotacao/cotar.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="109" column="22" selection-start-line="109" selection-start-column="22" selection-end-line="109" selection-end-column="22" />
+          <folding>
+            <marker date="1480299014811" expanded="true" signature="2029:2443" ph="..." />
+            <marker date="1480299014811" expanded="true" signature="2041:2441" ph="..." />
+            <marker date="1480299014811" expanded="true" signature="2149:2413" ph="..." />
+            <marker date="1480299014811" expanded="true" signature="3327:3553" ph="..." />
+            <marker date="1480299014811" expanded="true" signature="3624:3864" ph="..." />
+            <marker date="1480299014811" expanded="true" signature="3636:3862" ph="..." />
+            <marker date="1480299014811" expanded="true" signature="3650:3861" ph="..." />
+            <marker date="1480299014811" expanded="true" signature="5334:5758" ph="..." />
+            <marker date="1480299014811" expanded="true" signature="5346:5756" ph="..." />
+            <marker date="1480299014811" expanded="true" signature="5453:5730" ph="..." />
           </folding>
         </state>
       </provider>

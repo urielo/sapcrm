@@ -103,7 +103,7 @@
 
                         <meta name="anomodelo" value="{{($cotacao->veiculo->veicano ? $cotacao->veiculo->veicano : '')}}">
                         <select name="anomodelo" id="anomodelo" class="form-control form-control-sm">
-                            <option value="0">Escolha um modelo...</option>
+                            <option value="1">Escolha um modelo...</option>
                         </select>
                         {{Form::hidden('combustivel',null)}}
                     </div>
