@@ -54,33 +54,40 @@ class CotacaoController extends Controller
 
     public function cotacoes()
     {
-
+        $title = 'Ativas';
         $crypt = Crypt::class;
-        Cotacoes::where('dtvalidade', '<=', date('Y-m-d'))->where('idstatus',9)->update(['idstatus' => 11]);
+        Cotacoes::where('dtvalidade', '<=', date('Y-m-d'))->where('idstatus', 9)->update(['idstatus' => 11]);
 
-        if (Auth::user()->can('ver-todos-cotacoes')) {
-            $cotacoes = Cotacoes::where('idcorretor', Auth::user()->corretor->idcorretor)->whereIn('idstatus', [9, 10])->orderby('idcotacao','desc')->get();
+        if (Auth::user()->hasRole('admin')) {
+            $cotacoes = Cotacoes::whereIn('idstatus', [9, 10])->orderby('idcotacao', 'desc')->get();
+        } elseif (Auth::user()->can('ver-todos-cotacoes')) {
+            $cotacoes = Cotacoes::where('idcorretor', Auth::user()->corretor->idcorretor)->whereIn('idstatus', [9, 10])->orderby('idcotacao', 'desc')->get();
         } else {
-            $cotacoes = Cotacoes::where('usuario_id', Auth::user()->id)->whereIn('idstatus', [9, 10])->orderby('idcotacao','desc')->get();
+            $cotacoes = Cotacoes::where('usuario_id', Auth::user()->id)->whereIn('idstatus', [9, 10])->orderby('idcotacao', 'desc')->get();
         }
 
 
-        return view('backend.cotacao.negociacoes', compact('cotacoes', 'crypt'));
+        return view('backend.cotacao.negociacoes', compact('cotacoes', 'crypt', 'title'));
     }
+
     public function vencidas()
     {
 
         $crypt = Crypt::class;
         Cotacoes::where('dtvalidade', '<=', date('Y-m-d'))->update(['idstatus' => 11]);
+        $title = 'Canceladas ou Vencidas';
 
-        if (Auth::user()->can('ver-todos-cotacoes')) {
-            $cotacoes = Cotacoes::where('idcorretor', Auth::user()->corretor->idcorretor)->whereNotIn('idstatus', [9, 10])->orderby('idcotacao','desc')->get();
+
+        if (Auth::user()->hasRole('admin')) {
+            $cotacoes = Cotacoes::whereNotIn('idstatus', [9, 10])->orderby('idcotacao', 'desc')->get();
+        } elseif (Auth::user()->can('ver-todos-cotacoes')) {
+            $cotacoes = Cotacoes::where('idcorretor', Auth::user()->corretor->idcorretor)->whereNotIn('idstatus', [9, 10])->orderby('idcotacao', 'desc')->get();
         } else {
-            $cotacoes = Cotacoes::where('usuario_id', Auth::user()->id)->whereNotIn('idstatus', [9, 10])->orderby('idcotacao','desc')->get();
+            $cotacoes = Cotacoes::where('usuario_id', Auth::user()->id)->whereNotIn('idstatus', [9, 10])->orderby('idcotacao', 'desc')->get();
         }
 
 
-        return view('backend.cotacao.negociacoes', compact('cotacoes', 'crypt'));
+        return view('backend.cotacao.negociacoes', compact('cotacoes', 'crypt', 'title'));
     }
 
 
@@ -316,15 +323,70 @@ class CotacaoController extends Controller
     }
 
 
-    public function sendEmail()
+    public function sendEmail(Request $request)
     {
-//        Mail::
+        try {
+            $cotacao_id = Crypt::decrypt($request->cotacao_id);
+        } Catch (DecryptException $e) {
+            return abort(404);
+        }
+//        $this->validate($request, ['email' => 'required|email|max:255']);
+
+
+        $cotacao = Cotacoes::find($cotacao_id);
+        $formas = [];
+
+        if ($cotacao) {
+            $menor_parcela = 0;
+            foreach ($cotacao->produtos as $produto) {
+                $menor_parcela = $menor_parcela + $produto->produto->precoproduto()->where('idprecoproduto', $produto->idprecoproduto)->first()->vlrminprimparc;
+            }
+
+            foreach (FormaPagamento::All() as $forma) {
+                $parcelas = new \stdClass();
+                $parcelas->parcelas = geraParcelas($cotacao->premio, $forma->nummaxparc, $forma->numparcsemjuros, $forma->taxamesjuros, $menor_parcela, $forma->idformapgto, $cotacao->renova);
+                $parcelas->forma_pagamento = $forma->descformapgto;
+                $formas[] = $parcelas;
+            }
+
+
+//        return view('backend.pdf.cotacao',compact('cotacao', 'formas'));
+
+
+            error_reporting(E_ERROR);
+            $pdf = Pdf::loadView('backend.pdf.cotacao', compact('cotacao', 'formas'));
+            $pdf->SetProtection(['print'], '', '456');
+            $pdf->save(public_path('pdf/Cotacao.pdf'));
+
+
+            Mail::send('backend.mail.cotacao', compact('proposta'), function ($m) use ($cotacao, $request) {
+                $m->from('cotacao@seguroautopratico.com.br', 'Cotacões');
+                $m->attach(public_path('pdf/Cotacao.pdf'));
+                $m->bcc('apolices_enviadas@seguroautopratico.com.br');
+                $m->replyTo('cotacao@seguroautopratico.com.br', 'Cotacões');
+                (strlen(Auth::user()->email) > 3 ? $m->cc(Auth::user()->email, strtoupper(Auth::user()->nome)) : NULL);
+                $m->to($request->email)->subject('Cotacao');
+            });
+            unlink(public_path('pdf/Cotacao.pdf'));
+            return Redirect::back()->with('sucesso', 'Email enviado com sucesso! ');
+
+        } else {
+            return Redirect::back()->with('error', 'Cotação Invalida!');
+        }
 
     }
 
-    public function store()
+    public function showEmail($cotacao_id)
     {
-
+        try {
+            $cotacao_id = Crypt::decrypt($cotacao_id);
+        } catch (DecryptException $e) {
+            return abort(404);
+        }
+        
+        $cotacao = Cotacoes::find($cotacao_id);
+        
+        return view('backend.cotacao.show_email',compact('cotacao'));
     }
 
     public function reemitir($cotacao_id, TipoUtilizacaoVeic $tipoutilizacao, TipoVeiculos $tipos, FormaPagamento $formas)
@@ -345,7 +407,7 @@ class CotacaoController extends Controller
             if ($produto->produto->tipoproduto == 'master') {
                 $produto_master = $produto->produto->idproduto;
             } else {
-                $opcionais[] = (string) $produto->produto->idproduto ;
+                $opcionais[] = (string)$produto->produto->idproduto;
             }
         }
 

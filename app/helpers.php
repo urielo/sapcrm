@@ -396,7 +396,7 @@ endif;
 if (!function_exists('geraParcelas')):
     //gerarParcelas(vltotal, maxparc, parcelasemjuros, taxajuros, menorparc, formapg)
 
-    function geraParcelas($premio, $max_parcelas, $parcelas_sem_juros, $taxa_juros, $valor_menor_parcela, $id_forma)
+    function geraParcelas($premio, $max_parcelas, $parcelas_sem_juros, $taxa_juros, $valor_menor_parcela, $id_forma, $renova = 0)
     {
         $parcela = 1;
         $retorno = [];
@@ -411,12 +411,12 @@ if (!function_exists('geraParcelas')):
 
             $parcela_com_juros = jurosComposto($premio, $taxa_juros, $parcela);
 
-            if ($parcela > $parcelas_sem_juros && $parcela_com_juros < $valor_menor_parcela && $id_forma == 2) {
+            if ($parcela > $parcelas_sem_juros && $parcela_com_juros < $valor_menor_parcela && $id_forma == 2 && $renova == 0) {
                 $obj_retorno->primeira_parcela = $valor_menor_parcela;
                 $obj_retorno->demais_parcela = ((jurosComposto($premio, $taxa_juros, $parcela) * $parcela) - $valor_menor_parcela) / ($parcela - 1);
                 $obj_retorno->valor_final = $valor_menor_parcela + $obj_retorno->demais_parcela * ($parcela - 1);
                 $obj_retorno->taxa_juros = $taxa_juros;
-            } elseif ($parcela <= $parcelas_sem_juros && $premio / $parcela < $valor_menor_parcela && $id_forma == 2) {
+            } elseif ($parcela <= $parcelas_sem_juros && $premio / $parcela < $valor_menor_parcela && $id_forma == 2 && $renova == 0 ) {
                 $obj_retorno->primeira_parcela = $valor_menor_parcela;
                 $obj_retorno->demais_parcela = ($premio - $valor_menor_parcela) / ($parcela - 1);
                 $obj_retorno->valor_final = $valor_menor_parcela + ($obj_retorno->demais_parcela * ($parcela - 1));

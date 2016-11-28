@@ -174,12 +174,24 @@ Route::group(['prefix' => 'cotacao', 'middleware' => 'auth'], function () {
         'as' => 'cotacao.salvar',
         'uses' => 'Backend\CotacaoController@salvar'
     ]);
+    
+    Route::post('sendemail', [
+        'middleware' => ['permission:vendas-cotacao-gerar'],
+        'as' => 'cotacao.sendemail',
+        'uses' => 'Backend\CotacaoController@sendEmail'
+    ]);
 
 
-    Route::get('cotacao/pdf/{cotacao_id}', [
+    Route::get('pdf/{cotacao_id}', [
         'middleware' => ['permission:vendas-cotacao-pdf'],
         'as' => 'cotacao.pdf',
         'uses' => 'Backend\CotacaoController@pdf_cotacao'
+    ]);
+    
+    Route::get('email/{cotacao_id}', [
+        'middleware' => ['permission:vendas-cotacao-pdf'],
+        'as' => 'cotacao.showemail',
+        'uses' => 'Backend\CotacaoController@showEmail'
     ]);
 
 

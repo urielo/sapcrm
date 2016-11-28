@@ -175,8 +175,8 @@ class PropostaController extends Controller
         }
         
         $curl = curl_init();
-        $configws = Config::where('env_local', env('APP_LOCAL'))->where('webservice', 'SAP')->first();
-        $url = $configws->url;
+        $url =env('API_URL', Config::where('env_local', env('APP_LOCAL'))->where('webservice', 'SAP')->first()->url);
+
 
 
         curl_setopt_array($curl, array(

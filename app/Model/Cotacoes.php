@@ -58,6 +58,11 @@ class Cotacoes extends Model
         return $this->belongsTo('App\Model\Status','idstatus','id');
 
     }
+
+    public function usuario(){
+        return $this->belongsTo('App\User','usuario_id','id');
+
+    }
     
 
 }

@@ -7,13 +7,10 @@
 
 /*@import url('bootstrap.min.css');*/
 html {
-    /*filter: blur(1px);*/
+
     background: rgba(76, 175, 80, 0.3) url('../images/bgs/backgraund-4.jpg') no-repeat center center fixed;
 
-    /*-webkit-filter: blur(5px);*/
-    /*-moz-filter: blur(5px);*/
-    /*-o-filter: blur(5px);*/
-    /*-ms-filter: blur(5px);*/
+
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -493,7 +490,18 @@ body {
     width: 100%;
     opacity: .5;
     background: rgba(0, 0, 0, .48) url('../images/gear.gif') 50% 50% no-repeat;
+
+
     /*overflow: hidden;*/
+}
+
+.blur {
+    background: rgba(0, 0, 0, .48);
+    filter: blur(2px);
+    -webkit-filter: blur(2px);
+    -moz-filter: blur(2px);
+    -o-filter: blur(2px);
+    -ms-filter: blur(2px);
 }
 
 .detalhe p {
@@ -803,4 +811,8 @@ body {
 .black .bg-danger {
     background-color: rgba(255, 0, 0, 0.6) !important;
 
+}
+
+.black .modal {
+    color: black;
 }

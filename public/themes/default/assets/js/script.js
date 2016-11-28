@@ -112,14 +112,25 @@ $(function () {
     }
 
 
+    
+
+
+    $(window).load(function () {
+        $('#body').removeClass('blur')
+        $('.bgloading').fadeOut()
+
+    })
+
     $(document).ajaxStart(function () {
-        $('body').prepend('<div class="bgloading" id="loading"></div>')
+        $('.bgloading').fadeIn()
+        $('#body').addClass('blur')
         $('.modal-content').prepend('<div class="bgloading" id="loading"></div>')
     })
 
     $(document).ajaxStop(function () {
-        $('body').removeClass('bgloading')
-        $('.bgloading').remove()
+        $('.bgloading').fadeOut()
+        $('#body').removeClass('blur')
+        $('.modal-content .bgloading').remove()
     });
 
 
@@ -1855,12 +1866,12 @@ $(function () {
         $(this).find('.dropdown-menu').stop(true, true).delay(100).fadeOut(500);
     });
 
-$('.tipo-consulta').on('change',function () {
-    var tipo_consulta = $(this);
+    $('.tipo-consulta').on('change', function () {
+        var tipo_consulta = $(this);
 
-    if(tipo_consulta.placa == 'placa'){
-        $('.input-consulta').mask('AAA-9999')
-    }
-})
+        if (tipo_consulta.placa == 'placa') {
+            $('.input-consulta').mask('AAA-9999')
+        }
+    })
 });
 
