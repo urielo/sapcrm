@@ -19,7 +19,7 @@
                     </h1>
                     <p>
                         Aguardamos a confirmação da sua proposta <br>
-                        E nos colocamos a dispocição para quaisquer esclarecimentos<br>
+                        E nos colocamos a disposição para quaisquer esclarecimentos<br>
                         Muito obrigado! <br>
 
                     </p>

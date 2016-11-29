@@ -248,7 +248,7 @@
                                             <div class="input-group input-group-sm email">
                                                 <span class="input-group-addon">  <i
                                                             class="glyphicon glyphicon-envelope"></i> </span>
-                                                {!! Form::text('seg_email',(!empty($cotacao->segurado->cliemail) ? $cotacao->segurado->cliemail : NULL ),[
+                                                {!! Form::email('seg_email',(!empty($cotacao->segurado->cliemail) ? $cotacao->segurado->cliemail : NULL ),[
                                                 'class' =>'form-control form-control-sm ',
                                                 'id'=>'seg_email'
 

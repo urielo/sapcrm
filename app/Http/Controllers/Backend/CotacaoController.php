@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Mail;
 use App\Console\Commands\CotacaoCommand;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use Illuminate\Contracts\Validation\Validator;
 use App\Http\Requests;
 use App\Model\Segurado;
 use App\Model\Config;
@@ -325,12 +324,14 @@ class CotacaoController extends Controller
 
     public function sendEmail(Request $request)
     {
+        $this->validate($request, ['email' => 'required|email|max:255']);
+
         try {
             $cotacao_id = Crypt::decrypt($request->cotacao_id);
         } Catch (DecryptException $e) {
             return abort(404);
         }
-//        $this->validate($request, ['email' => 'required|email|max:255']);
+
 
 
         $cotacao = Cotacoes::find($cotacao_id);

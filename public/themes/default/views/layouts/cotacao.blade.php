@@ -18,7 +18,6 @@
                 <div class="panel-body">
 
 
-
                     <div class="alert alert-danger hide" id="diverror">
                         <strong>Erro: </strong>
                         <div id="messageerror">
@@ -32,6 +31,17 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                             {!! Session::get('sucesso')!!}
+                        </div>
+                    @elseif($errors->any())
+                        <div class="alert alert-danger" id="sucesso">
+                            <button type="button" class="close" aria-label="Close" id="fechasecesso">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
                         </div>
                     @elseif(Session::has('error'))
                         <div class="alert alert-danger" id="sucesso">

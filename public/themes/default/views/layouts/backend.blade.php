@@ -152,6 +152,7 @@
 
 
                 </ul>
+
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <form class="form-inline float-xs-right input-nav">
@@ -175,7 +176,7 @@
                             </div>
                         </form>
                     </li>
-                    <li><span class="navbar-text">Olá, {{Auth::user()->nome}}</span></li>
+                    <li><span class="navbar-text">Olá, {{ucfirst(primeiroNome(Auth::user()->nome))}}</span></li>
                     <li><a href="{{route('auth.logout')}}">Logout</a></li>
                 </ul>
 
