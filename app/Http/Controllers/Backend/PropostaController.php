@@ -56,8 +56,7 @@ class PropostaController extends Controller
     public function emitir(Request $request)
     {
 
-        $url =env('API_URL', Config::where('env_local', env('APP_LOCAL'))->where('webservice', 'SAP')->first()->url);
-
+        $url = env('API_URL', Config::where('env_local', env('APP_LOCAL'))->where('webservice', 'SAP')->first()->url);
 
 
         /*
@@ -173,10 +172,9 @@ class PropostaController extends Controller
 
             return abort(404);
         }
-        
-        $curl = curl_init();
-        $url =env('API_URL', Config::where('env_local', env('APP_LOCAL'))->where('webservice', 'SAP')->first()->url);
 
+        $curl = curl_init();
+        $url = env('API_URL', Config::where('env_local', env('APP_LOCAL'))->where('webservice', 'SAP')->first()->url);
 
 
         curl_setopt_array($curl, array(
@@ -215,49 +213,50 @@ class PropostaController extends Controller
     {
 
         $crypt = Crypt::class;
-        Propostas::where('dtvalidade', '<=', date('Y-m-d'))->where('idstatus',10)->update(['idstatus' => 11]);
+        Propostas::where('dtvalidade', '<=', date('Y-m-d'))->where('idstatus', 10)->update(['idstatus' => 11]);
 
         $motivo = false;
 
         $title = 'Acompanhamento';
 
-        if (Auth::user()->can('ver-todos-cotacoes')) {
-            $propostas = Propostas::whereHas('cotacao', function ($q){
-               $q->where('idcorretor', Auth::user()->corretor->idcorretor);
-            })->whereNotIn('idstatus', [12,11,13,18])->orderby('idproposta','desc')->get();
+        if (Auth::user()->hasRole('admin')) {
+            $propostas = Propostas::whereNotIn('idstatus', [12, 11, 13, 18])->orderby('idproposta', 'desc')->get();
+        } elseif (Auth::user()->can('ver-todos-cotacoes')) {
+            $propostas = Propostas::whereHas('cotacao', function ($q) {
+                $q->where('idcorretor', Auth::user()->corretor->idcorretor);
+            })->whereNotIn('idstatus', [12, 11, 13, 18])->orderby('idproposta', 'desc')->get();
         } else {
-            $propostas = Propostas::whereHas('cotacao', function ($q){
-                $q->where('usuario_id', Auth::user()->id);
-            })->whereNotIn('idstatus', [12,11,13,18])->orderby('idcotacao','desc')->get();
+            $propostas = Propostas::whereHas('cotacao', function ($q) {
+                $q->where('usuario_id', Auth::user()->id)->whereNotNull('usuario_id');
+
+            })->whereNotIn('idstatus', [12, 11, 13, 18])->orderby('idcotacao', 'desc')->get();
         }
 
 
-
-        return view('backend.proposta.listas',compact('propostas','motivo','crypt','title'));
+        return view('backend.proposta.listas', compact('propostas', 'motivo', 'crypt', 'title'));
     }
 
     public function negativas()
     {
         $crypt = Crypt::class;
-        Propostas::where('dtvalidade', '<=', date('Y-m-d'))->where('idstatus',10)->update(['idstatus' => 11]);
+        Propostas::where('dtvalidade', '<=', date('Y-m-d'))->where('idstatus', 10)->update(['idstatus' => 11]);
 
         $motivo = true;
 
         $title = 'Canceladas, Recusadas e Vencidas';
 
         if (Auth::user()->can('ver-todos-cotacoes')) {
-            $propostas = Propostas::whereHas('cotacao', function ($q){
+            $propostas = Propostas::whereHas('cotacao', function ($q) {
                 $q->where('idcorretor', Auth::user()->corretor->idcorretor);
-            })->whereIn('idstatus', [12,11,13])->orderby('idproposta','desc')->get();
+            })->whereIn('idstatus', [12, 11, 13])->orderby('idproposta', 'desc')->get();
         } else {
-            $propostas = Propostas::whereHas('cotacao', function ($q){
+            $propostas = Propostas::whereHas('cotacao', function ($q) {
                 $q->where('usuario_id', Auth::user()->id);
-            })->whereIn('idstatus', [12,11,13])->orderby('idcotacao','desc')->get();
+            })->whereIn('idstatus', [12, 11, 13])->orderby('idcotacao', 'desc')->get();
         }
 
 
-
-        return view('backend.proposta.listas',compact('propostas','motivo','crypt','title'));
+        return view('backend.proposta.listas', compact('propostas', 'motivo', 'crypt', 'title'));
     }
 
 }
