@@ -62,13 +62,14 @@
 
         </div>
 
-
         <div class="box-large">
 
             <div class="box-small alert alert-success text-justify">
                 Total a vista<br>
                 <strong>R$ {{format('real',$cotacao->premio)}}</strong>
             </div>
+
+            <h3>Formas de pagamento</h3>
             <table class="table table-striped td-no-border text-center">
                 <thead>
                 <tr>
@@ -90,7 +91,7 @@
                                     <th>Total</th>
                                 </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="nospace">
                                 @foreach($forma->parcelas as $key => $parcela)
                                     <tr {{($key % 2 == 0 ? 'class=formas_pagamento': null)}}>
                                         <td>{{$parcela->quantidade}}x</td>
@@ -112,6 +113,27 @@
             </table>
         </div>
 
+
+        <div class="box-large">
+            <h3>Fale com seu consultor</h3>
+
+            <table class="table table-condensed">
+                <thead>
+                <tr>
+                    <th>Corretor(a): <span class="normal">{{strtoupper($cotacao->corretor->corrnomerazao )}}</span></th>
+
+
+                </tr>
+                <tr>
+                    <th>Consultor(a): <span class="normal"> {{strtoupper($cotacao->usuario->nome)}}</span></th>
+                    <th>E-mail: <span class="normal"> <a href="mailto:{{$cotacao->usuario->email}}"></a>{{$cotacao->usuario->email}}</span>
+                    </th>
+                </tr>
+                </thead>
+            </table>
+
+
+        </div>
 
     </div>
 

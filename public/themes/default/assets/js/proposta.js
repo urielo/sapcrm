@@ -17,7 +17,6 @@ $(function () {
                 var parcela = $(this)
                 var value = $('input:radio[name="quant_parcela"]:checked').val()
 
-
                 if (parcela.attr('data-name') == data_target && parcela.val() == value) {
                     parcela.prop('checked', true)
                 }
@@ -116,7 +115,7 @@ $(function () {
     $('.ddd').mask("99")
     $('.cel').mask("9 9999-9999")
     $('.fixo').mask("9999-9999")
-    $('.placa').mask("AAA-99999")
+    $('.placa').mask("AAA-9999")
     
 
 

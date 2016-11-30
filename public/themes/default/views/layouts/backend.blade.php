@@ -198,8 +198,9 @@
                     </li>
                     @permission('setup')
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <span style="font-size:16px;"
-                                                                                          class="hidden-xs showopacity glyphicon glyphicon-cog"></span>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span style="font-size:16px;"
+                                  class="hidden-xs showopacity glyphicon glyphicon-cog"></span>
                             Setup <span
                                     class="caret"></span></a>
                         <ul class="dropdown-menu forAnimate" role="menu">
@@ -221,8 +222,10 @@
                             @endpermission
 
 
+
                         </ul>
                     </li>
+
                     @endpermission
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <span

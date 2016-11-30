@@ -454,7 +454,7 @@
                                         <div class="col-md-3 dados-proprietario hide">
                                             {!! Form::label('prop_data_nascimento_inscricao', 'Nascimento',['class'=>'label label-default']) !!}
                                             <div class="input-group input-group-sm date nascimento">
-                                                {!! Form::text('prop_data_nascimento_inscricao',  old('prop_data_nascimento_inscricao') ? old('prop_data_nascimento_inscricao') :  date('d/m/Y',strtotime('-18 year')),
+                                                {!! Form::text('prop_data_nascimento_inscricao',  old('prop_data_nascimento_inscricao') ? old('prop_data_nascimento_inscricao') :  date('d/m/Y',strtotime('-19 year')),
                                                                            ['class'=> 'form-control form-control-sm',
                                                                            'data-date-format'=> 'dd/mm/yyyy',
                                                                            'placeholder'=> 'DD/MM/YYYY',
@@ -640,10 +640,10 @@
                                     <div class="form-group form-group-sm">
                                         <label class="label label-default" for="veicultilizacao">Ultilização</label>
                                         <select name="veicultilizacao" id="veicultilizacao"
-                                                class="form-control form-control-sm" value="{{old('veicultilizacao')}}" >
+                                                class="form-control form-control-sm"  >
                                             @foreach($tipoultiveics::orderBy('idutilveiculo', 'ASC')->get() as $tipoulti)
-                                                <option value="{{$tipoulti->idutilveiculo}}"
-                                                        style="font-size: 12px;">{{$tipoulti->descutilveiculo}}</option>
+                                                <option value="{{$tipoulti->idutilveiculo}}" {{old('veicultilizacao') == $tipoulti->idutilveiculo ? 'selected':''}}
+                                                        >{{$tipoulti->descutilveiculo}}</option>
                                             @endforeach
                                         </select>
                                     </div>

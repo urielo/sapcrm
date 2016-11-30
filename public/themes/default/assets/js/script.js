@@ -122,7 +122,13 @@ $(function () {
     }
 
 
-    $(window).load(function () {
+    // $(window).load(function () {
+    //     $('#body').removeClass('blur')
+    //     $('.bgloading').fadeOut()
+    //
+    // })
+
+    $(document).ready(function () {
         $('#body').removeClass('blur')
         $('.bgloading').fadeOut()
 
