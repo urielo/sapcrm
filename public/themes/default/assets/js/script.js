@@ -66,6 +66,16 @@ $(function () {
     panelcondutor.hide();
     panelproprietario.hide();
 
+
+    $(window).on('unload',function () {
+        $('.bgloading').fadeIn()
+        $('#body').addClass('blur')
+    })
+
+    // $('a').on('click',function () {
+    //     $(window).trigger('unload')
+    // })
+
     var produto_master = false;
     var produto_opcional = false;
 

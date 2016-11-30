@@ -15,7 +15,7 @@ class RolesController extends Controller
     public function index(Request $request)
     {
         $roles = Role::All();
-        $permissions = Permission::All();
+        $permissions = Permission::orderby('display_name','asc')->get();
 
         return view('backend.user.roles',compact('roles','permissions','request'));
     }

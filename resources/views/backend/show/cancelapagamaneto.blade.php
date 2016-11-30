@@ -1,4 +1,4 @@
-{!!Form::open([ 'method' => 'post', 'route' => ['gestao.cancela']  ]) !!}
+{!!Form::open([ 'method' => 'post', 'route' => ['cobranca.cancela']  ]) !!}
 <div class="modal-header">
 
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">

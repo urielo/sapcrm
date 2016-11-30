@@ -150,7 +150,7 @@ class PropostaController extends Controller
                 $msg .= '<br> <strong>Mensagem: </strong> ' . $proposta_ws->message . '!';
             }
 
-            return Redirect::back()->with('error', $msg);
+            return Redirect::back()->with('error', $msg)->withInput();
         }
 
 

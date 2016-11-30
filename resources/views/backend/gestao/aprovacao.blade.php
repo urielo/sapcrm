@@ -52,7 +52,7 @@
                         </div>
 
                         <div class="btn-group" role="group">
-                            <a href="{{route('gestao.recusar',$proposta->proposta->idproposta)}}">
+                            <a href="{{route('cobranca.recusar',$proposta->proposta->idproposta)}}">
                                 <button type="button" class="btn btn-danger btn-xs"
                                         id="recusar">Recusar
                                 </button>

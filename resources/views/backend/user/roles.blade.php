@@ -64,7 +64,7 @@
                                     {!! Form::checkbox('permissions[]',$permission->id,
                                     ($role_permisson->perms()->where('id',$permission->id)->first()->id  ? true : false)
                                     ,['class'=>'form-check-input']) !!}
-                                    {{ $permission->name }}
+                                    {{ $permission->display_name }}
                                 </label>
                             </div>
                         </div>

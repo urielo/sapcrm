@@ -52,7 +52,7 @@
             <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-2">
                 <ul class="nav navbar-nav">
 
-                    @permission('menu-vendas')
+                    @permission('cotacao')
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle mouse-over-down" data-toggle="dropdown">
                         <span style="font-size:16px;"
@@ -60,22 +60,21 @@
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu forAnimate" role="menu">
 
-                            @permission('vendas-cotacao')
+                            @permission('cotacao-nova')
                             <li><a href="{{route('cotacao.cotar')}}">Nova</a></li>
                             @endpermission
 
-                            @permission('vendas-negociacoes')
+                            @permission('cotacao-gestao')
                             <li><a href="{{route('vendas.negociacoes')}}">Gestão</a></li>
-                            @endpermission
-                            @permission('vendas-negociacoes')
                             <li><a href="{{route('cotacao.vencidas')}}">Vencidas</a></li>
                             @endpermission
+
 
                         </ul>
                     </li>
                     @endpermission
 
-                    @permission('menu-proposta')
+                    @permission('proposta')
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <span style="font-size:16px;"
@@ -83,11 +82,8 @@
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu forAnimate" role="menu">
 
-                            @permission('proposta-acompanhamento')
+                            @permission('proposta-gestao')
                             <li><a href="{{route('proposta.acompanhamento')}}">Acompanhamento</a></li>
-                            @endpermission
-
-                            @permission('proposta-acompanhamento')
                             <li><a href="{{route('proposta.negativas')}}">Inativas</a></li>
                             @endpermission
 
@@ -96,55 +92,79 @@
                     </li>
                     @endpermission
 
-                    @permission('menu-gestao')
+                    @permission('vistoria')
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <span style="font-size:16px;"
-                              class="hidden-xs showopacity glyphicon glyphicon-usd"></span> Cobrança<span
-                                    class="caret"></span></a>
+                            <span style="font-size:16px;"
+                                  class="hidden-xs showopacity glyphicon glyphicon-list-alt"></span>
+                            Vistoria<span class="caret"></span></a>
                         <ul class="dropdown-menu forAnimate" role="menu">
-                            <li><a href="{{route('gestao.cobranca')}}">Agendar</a></li>
-
-                            <li><a href="{{route('gestao.aprovacao')}}">Aprovar</a></li>
-
+                            @permission('vistoria')
+                            <li><a href="#">Emitir</a></li> @endpermission
 
                         </ul>
                     </li>
                     @endpermission
 
-                    @permission('menu-gestao')
+
+                    @permission('apolices')
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <span style="font-size:16px;"
                                   class="hidden-xs showopacity glyphicon glyphicon-list-alt"></span>
                             Apolices<span class="caret"></span></a>
                         <ul class="dropdown-menu forAnimate" role="menu">
-                            <li><a href="{{route('apolices.aemitir')}}">Emitir</a></li>
-                            <li><a href="{{route('apolices.emitidas')}}">Gestão</a></li>
-                            <li><a href="{{route('apolices.emitidas')}}">Canceladas</a></li>
+                            @permission('apolices-emitir')
+                            <li><a href="{{route('apolices.aemitir')}}">Emitir</a></li> @endpermission
+                            @permission('apolices-emitdas')
+                            <li><a href="{{route('apolices.emitidas')}}">Gestão</a></li> @endpermission
+                            @permission('apolices-canceladas')
+                            <li><a href="{{route('apolices.emitidas')}}">Canceladas</a></li> @endpermission
 
                         </ul>
                     </li>
                     @endpermission
 
-                    @permission('menu-config')
+
+                    @permission('cobranca')
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <span
-                                    class="caret"></span><span
-                                    style="font-size:16px;"
-                                    class="pull-left hidden-xs showopacity glyphicon glyphicon-cog"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span style="font-size:16px;"
+                              class="hidden-xs showopacity glyphicon glyphicon-usd"></span> Cobrança<span
+                                    class="caret"></span></a>
                         <ul class="dropdown-menu forAnimate" role="menu">
+                            @permission('cobranca-agendar')
+                            <li><a href="{{route('cobranca.agendar')}}">Agendar</a></li>@endpermission
+                            @permission('cobranca-aprovar')
+                            <li><a href="{{route('cobranca.aprovar')}}">Aprovar</a></li>@endpermission
 
-                            @permission('usuarios-gestao')
-                            <li><a href="{{route('usuarios.gestao')}}">Usuários</a></li>
-                            @endpermission
+                        </ul>
+                    </li>
+                    @endpermission
 
-                            @permission('altera-grupo')
-                            <li><a href="{{route('grupos.index')}}">Grupos</a></li>
-                            @endpermission
+                    @permission('comissao')
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span style="font-size:16px;"
+                                  class="hidden-xs showopacity glyphicon glyphicon-list-alt"></span>
+                            Comissao<span class="caret"></span></a>
+                        <ul class="dropdown-menu forAnimate" role="menu">
+                            @permission('vistoria')
+                            <li><a href="#">Emitir</a></li> @endpermission
 
-                            <li><a href="{{route('backend.homepage')}}">Homepage</a></li>
+                        </ul>
+                    </li>
+                    @endpermission
 
+                    @permission('segurado')
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span style="font-size:16px;"
+                                  class="hidden-xs showopacity glyphicon glyphicon-list-alt"></span>
+                            Segurado<span class="caret"></span></a>
+                        <ul class="dropdown-menu forAnimate" role="menu">
+                            @permission('vistoria')
+                            <li><a href="#">Emitir</a></li> @endpermission
 
                         </ul>
                     </li>
@@ -176,8 +196,45 @@
                             </div>
                         </form>
                     </li>
-                    <li><span class="navbar-text">Olá, {{ucfirst(primeiroNome(Auth::user()->nome))}}</span></li>
-                    <li><a href="{{route('auth.logout')}}">Logout</a></li>
+                    @permission('setup')
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <span style="font-size:16px;"
+                                                                                          class="hidden-xs showopacity glyphicon glyphicon-cog"></span>
+                            Setup <span
+                                    class="caret"></span></a>
+                        <ul class="dropdown-menu forAnimate" role="menu">
+
+                            @permission('setup-usuarios')
+                            <li><a href="{{route('usuarios.gestao')}}">Usuários</a></li>
+                            @endpermission
+
+                            @permission('setup-grupo')
+                            <li><a href="{{route('grupos.index')}}">Grupos</a></li>
+                            @endpermission
+
+                            @permission('setup-homepage')
+                            <li><a href="{{route('backend.homepage')}}">Homepage</a></li>
+                            @endpermission
+
+                            @permission('corretor-edit')
+                            <li><a href="{{route('backend.homepage')}}">Dados da corretora</a></li>
+                            @endpermission
+
+
+                        </ul>
+                    </li>
+                    @endpermission
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <span
+                                    class=" hidden-xs showopacity  glyphicon glyphicon-user"></span> {{ucfirst(primeiroNome(Auth::user()->nome))}}
+                            <span
+                                    class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu forAnimate" role="menu">
+                            <li><a class="hidden" href="#">Editar</a></li>
+                            <li><a href="{{route('auth.logout')}}">Logout</a></li>
+                        </ul>
+                    </li>
                 </ul>
 
 

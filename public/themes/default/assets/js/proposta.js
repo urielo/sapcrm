@@ -219,6 +219,8 @@ $(function () {
         // return false
     })
 
+    $('select[name="ind_propritetario"]').trigger('change')
+
 })
 /**
  * Created by uriel on 21/11/16.

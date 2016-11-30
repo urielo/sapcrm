@@ -12,19 +12,11 @@ Route::get('/', [
 ]);
 
 
-Route::group(['prefix' => 'teste'], function () {
-    Route::get('/', 'Backend\TesteController@index');
-    Route::get('/mail', 'Backend\TesteController@mail');
 
-    Route::get('/post', ['as' => 'post.teste',
-        'uses' => 'Backend\TesteController@post_teste']);
-
-
-});
 
 Route::get('/certificado/{idproposta}', ['as' => 'certificado', 'uses' => 'Backend\ApolicesController@index']);
 
-Route::group(['prefix' => 'grupos', 'middleware' => ['permission:altera-grupo']], function () {
+Route::group(['prefix' => 'grupos', 'middleware' => ['permission:setup-grupo-altera']], function () {
     Route::get('/', ['as' => 'grupos.index', 'uses' => 'Backend\RolesController@index']);
     Route::post('/update', ['as' => 'grupos.update', 'uses' => 'Backend\RolesController@update']);
 });
@@ -50,33 +42,33 @@ Route::group(['prefix' => 'usuario', 'middleware' => 'auth'], function () {
 
     Route::get('/gestao', [
 
-            'middleware' => ['permission:usuarios-gestao'],
+            'middleware' => ['permission:setup-usuarios'],
             'as' => 'usuarios.gestao',
             'uses' => 'Backend\UserController@index'
         ]
     );
     Route::get('search/{searchterm?}', [
 
-            'middleware' => ['permission:usuarios-gestao'],
+            'middleware' => ['permission:setup-usuarios'],
             'as' => 'usuarios.search',
             'uses' => 'Backend\UserController@search'
         ]
     );
 
     Route::get('/alterstatus/{iduser}', [
-            'middleware' => ['permission:usuarios-gestao'],
+            'middleware' => ['permission:setup-usuarios'],
             'as' => 'usuarios.alterstatus',
             'uses' => 'Backend\UserController@alterStatus'
         ]
     );
     Route::get('/tipos/{iduser}', [
-            'middleware' => ['permission:usuarios-gestao'],
+            'middleware' => ['permission:setup-usuarios'],
             'as' => 'usuarios.tipos',
             'uses' => 'Backend\UserController@tipos'
         ]
     );
     Route::post('/alteratipos', [
-            'middleware' => ['permission:usuarios-gestao'],
+            'middleware' => ['permission:setup-usuarios'],
             'as' => 'usuarios.alteratipos',
             'uses' => 'Backend\UserController@alteratipos'
         ]
@@ -87,219 +79,192 @@ Route::group(['prefix' => 'usuario', 'middleware' => 'auth'], function () {
 
 Route::group(['prefix' => 'apolices', 'middleware' => 'auth'], function () {
 
-    Route::get('emitidas', [
-            'middleware' => 'permission:gesta-apolice',
-            'as' => 'apolices.emitidas',
-            'uses' => 'Backend\ApolicesController@emitidas']
-    );
+
 
     Route::get('emitir', [
-            'middleware' => 'permission:gesta-apolice',
-            'as' => 'apolices.aemitir',
-            'uses' => 'Backend\ApolicesController@aemitir']
-    );
+        'middleware' => 'permission:apolices-emitir',
+        'as' => 'apolices.aemitir',
+        'uses' => 'Backend\ApolicesController@aemitir']);
+    Route::post('emitir', [
+        'middleware' => ['permission:apolices-emitir'],
+        'as' => 'apolices.emitir',
+        'uses' => 'Backend\ApolicesController@emitir']);
+    Route::get('emitir/show/{idproposta}', [
+        'middleware' => ['permission:apolices-emitir'],
+        'as' => 'apolices.show',
+        'uses' => 'Backend\ApolicesController@showModal']);
+
+    Route::get('emitidas', [
+        'middleware' => 'permission:apolices-emitdas',
+        'as' => 'apolices.emitidas',
+        'uses' => 'Backend\ApolicesController@emitidas']    );
+    Route::get('emitidas/email/{idproposta}', [
+        'middleware' => ['permission:apolices-emitdas'],
+        'as' => 'apolices.email',
+        'uses' => 'Backend\ApolicesController@email']);
+    Route::get('emitidas/showemitidas/{idproposta}', [
+        'middleware' => ['permission:apolices-emitdas'],
+        'as' => 'apolices.showemiditas',
+        'uses' => 'Backend\ApolicesController@showModalApolices']);
+    Route::post('emitidas/download', [
+        'middleware' => ['permission:apolices-emitdas'],
+        'as' => 'apolices.download',
+        'uses' => 'Backend\ApolicesController@download']);
 
     Route::get('apolices', [
         'middleware' => ['permission:gesta-apolice'],
         'as' => 'gestao.apolices',
         'uses' => 'Backend\GestaoController@apolices']);
 
-    Route::get('apolices/show/{idproposta}', [
-        'middleware' => ['permission:gestao-apolice-emitir'],
-        'as' => 'apolices.show',
-        'uses' => 'Backend\ApolicesController@showModal']);
-
-    Route::get('apolices/email/{idproposta}', [
-        'middleware' => ['permission:gestao-apolice-emitir'],
-        'as' => 'apolices.email',
-        'uses' => 'Backend\ApolicesController@email']);
-
-    Route::get('apolices/showemitidas/{idproposta}', [
-        'middleware' => ['permission:gestao-apolice-emitir'],
-        'as' => 'apolices.showemiditas',
-        'uses' => 'Backend\ApolicesController@showModalApolices']);
-
-    Route::post('apolices/emitir', [
-        'middleware' => ['permission:gestao-apolice-emitir'],
-        'as' => 'apolices.emitir',
-        'uses' => 'Backend\ApolicesController@emitir']);
-
-    Route::post('apolices/download', [
-        'middleware' => ['permission:gestao-apolice-emitir'],
-        'as' => 'apolices.download',
-        'uses' => 'Backend\ApolicesController@download']);
 });
+
+
 Route::group(['prefix' => 'cotacao', 'middleware' => 'auth'], function () {
 
 
-    Route::post('gerar', [
-        'middleware' => ['permission:vendas-cotacao-gerar'],
-        'as' => 'cotacao.gerar',
-        'uses' => 'Backend\CotacaoController@gerar']);
 
     Route::get('/', [
 
-        'middleware' => ['permission:vendas-negociacoes'],
+        'middleware' => ['permission:cotacao-gestao'],
         'as' => 'vendas.negociacoes',
         'uses' => 'Backend\CotacaoController@cotacoes']);
 
     Route::get('/vencidas', [
 
-        'middleware' => ['permission:vendas-negociacoes'],
+        'middleware' => ['permission:cotacao-gestao'],
         'as' => 'cotacao.vencidas',
         'uses' => 'Backend\CotacaoController@vencidas']);
 
 
     Route::get('reemitir/{cotacao_id}', [
-        'middleware' => ['permission:vendas-negociacoes-negociar'],
+        'middleware' => ['permission:cotacao-nova'],
         'as' => 'cotacao.reemitir',
         'uses' => 'Backend\CotacaoController@reemitir']);
 
 
     Route::get('cotar', [
-        'middleware' => ['permission:vendas-cotacao'],
+        'middleware' => ['permission:cotacao-nova'],
         'as' => 'cotacao.cotar',
         'uses' => 'Backend\CotacaoController@index'
     ]);
 
 
-    Route::get('cotacao/sucesso/{idcotacao}', [
-        'middleware' => ['permission:vendas-cotacao-gerar'],
+    Route::get('sucesso/{idcotacao}', [
+        'middleware' => ['permission:cotacao-nova'],
         'as' => 'cotacao.sucesso',
         'uses' => 'Backend\CotacaoController@sucesso']);
 
 
-    Route::post('cotacao/salvar', [
-        'middleware' => ['permission:vendas-cotacao-gerar'],
+    Route::post('salvar', [
+        'middleware' => ['permission:cotacao-nova'],
         'as' => 'cotacao.salvar',
         'uses' => 'Backend\CotacaoController@salvar'
     ]);
-    
+
     Route::post('sendemail', [
-        'middleware' => ['permission:vendas-cotacao-gerar'],
+        'middleware' => ['permission:cotacao-gestao'],
         'as' => 'cotacao.sendemail',
         'uses' => 'Backend\CotacaoController@sendEmail'
     ]);
 
 
     Route::get('pdf/{cotacao_id}', [
-        'middleware' => ['permission:vendas-cotacao-pdf'],
+        'middleware' => ['permission:cotacao-gestao'],
         'as' => 'cotacao.pdf',
         'uses' => 'Backend\CotacaoController@pdf_cotacao'
     ]);
-    
+
     Route::get('email/{cotacao_id}', [
-        'middleware' => ['permission:vendas-cotacao-pdf'],
+        'middleware' => ['permission:cotacao-gestao'],
         'as' => 'cotacao.showemail',
         'uses' => 'Backend\CotacaoController@showEmail'
     ]);
-
 
 });
 
 
 Route::group(['prefix' => 'proposta', 'middleware' => 'auth'], function () {
+
     Route::get('emitir/{cotacao_id}', [
-        'middleware' => ['permission:vendas-cotacao'],
+        'middleware' => ['permission:proposta-emitir'],
         'as' => 'proposta.index',
         'uses' => 'Backend\PropostaController@index'
     ]);
 
     Route::post('emitir', [
-        'middleware' => ['permission:vendas-cotacao'],
+        'middleware' => ['permission:proposta-emitir'],
         'as' => 'proposta.emitir',
         'uses' => 'Backend\PropostaController@emitir'
     ]);
-
     Route::get('sucesso/{proposta_id}', [
-        'middleware' => ['permission:vendas-cotacao-gerar'],
+        'middleware' => ['permission:proposta-emitir'],
         'as' => 'proposta.sucesso',
         'uses' => 'Backend\PropostaController@sucesso']);
 
     Route::get('pdf/{proposta_id}', [
-        'middleware' => ['permission:vendas-cotacao-gerar'],
+        'middleware' => ['permission:proposta-gestao'],
         'as' => 'proposta.pdf',
         'uses' => 'Backend\PropostaController@pdf']);
 
     route::get('acompanhamento', [
-        'middleware' => 'permission:proposta-acompanhamento',
+        'middleware' => 'permission:proposta-gestao',
         'as' => 'proposta.acompanhamento',
         'uses' => 'Backend\PropostaController@acompanhamento'
     ]);
-    
     route::get('negativas', [
-        'middleware' => 'permission:proposta-acompanhamento',
+        'middleware' => 'permission:proposta-gestao',
         'as' => 'proposta.negativas',
         'uses' => 'Backend\PropostaController@negativas'
     ]);
-});
 
-
-Route::group(['prefix' => 'gestao', 'middleware' => 'auth'], function () {
-
-
-    Route::get('aprovacao', [
-        'middleware' => ['permission:gesta-aprovacao'],
-        'as' => 'gestao.aprovacao',
-        'uses' => 'Backend\GestaoController@aprovacao']);
-
-
-    Route::get('cobranca', [
-        'middleware' => ['permission:gestao-cobranca'],
-        'as' => 'gestao.cobranca',
-        'uses' => 'Backend\GestaoController@cobranca']);
-
-    Route::get('pagamento/recusar/{idproposta}', [
-        'middleware' => ['permission:gestao-aprovacao-recusar'],
-        'as' => 'gestao.recusar',
-        'uses' => 'Backend\GestaoController@recusapagamento']);
-
-    Route::post('cancela', [
-        'middleware' => ['permission:gestao-cobranca-cancelar'],
-        'as' => 'gestao.cancela',
-        'uses' => 'Backend\GestaoController@cancelar']);
-
-    Route::post('pagar', [
-        'middleware' => ['permission:gestao-cobranca-salvapagamento'],
-        'as' => 'gestao.salvarpga',
-        'uses' => 'Backend\GestaoController@salvarpagamento']);
-
-    Route::post('confirmapg', [
-        'middleware' => ['permission:gestao-aprovacao-comfirma'],
-        'as' => 'gestao.confirmapg',
-        'uses' => 'Backend\GestaoController@confirmapagamento']);
-
-
-});
-
-Route::group(['prefix' => 'show', 'middleware' => 'auth'], function () {
-
-    Route::get('segurado/{cpfcnpj}', [
-        'middleware' => ['permission:segurado-show'],
-        'as' => 'show.segurado',
-        'uses' => 'Backend\ShowsController@segurado']);
-
-    Route::get('proposta/{idproposta}', [
-        'middleware' => ['permission:show-proposta'],
+    Route::get('/{idproposta}', [
+        'middleware' => ['permission:proposta'],
         'as' => 'show.proposta',
         'uses' => 'Backend\ShowsController@proposta']);
 
-    Route::get('cancela/{idproposta}', [
+});
 
-        'middleware' => ['permission:gestao-cobranca-cancelar'],
-        'as' => 'show.cancelaproposta',
-        'uses' => 'Backend\ShowsController@cancela']);
 
-    Route::get('pagar/{idproposta}', [
-        'middleware' => ['permission:gestao-cobranca-salvapagamento'],
+Route::group(['prefix' => 'cobranca', 'middleware' => 'auth'], function () {
+
+
+    Route::get('agendar', [
+        'middleware' => ['permission:cobranca-agendar'],
+        'as' => 'cobranca.agendar',
+        'uses' => 'Backend\GestaoController@cobranca']);
+    Route::post('agendar', [
+        'middleware' => ['permission:cobranca-agendar'],
+        'as' => 'cobranca.salvarpga',
+        'uses' => 'Backend\GestaoController@salvarpagamento']);
+    Route::get('agenda/{idproposta}', [
+        'middleware' => ['permission:cobranca-agendar'],
         'as' => 'show.pagamento',
         'uses' => 'Backend\ShowsController@pagar']);
+    Route::get('pagamento/recusar/{idproposta}', [
+        'middleware' => ['permission:cobranca-recusar'],
+        'as' => 'cobranca.recusar',
+        'uses' => 'Backend\GestaoController@recusapagamento']);
 
-    Route::get('pagar/confirmar/{idproposta}', [
-        'middleware' => ['permission:gestao-aprovacao-comfirma'],
+    Route::get('aprovar', [
+        'middleware' => ['permission:cobranca-aprovar'],
+        'as' => 'cobranca.aprovar',
+        'uses' => 'Backend\GestaoController@aprovacao']);
+    Route::get('cancela/{idproposta}', [
+        'middleware' => ['permission:cobranca-cancelar'],
+        'as' => 'show.cancelaproposta',
+        'uses' => 'Backend\ShowsController@cancela']);
+    Route::post('cancela', [
+        'middleware' => ['permission:cobranca-cancelar'],
+        'as' => 'cobranca.cancela',
+        'uses' => 'Backend\GestaoController@cancelar']);
+    Route::post('aprovar', [
+        'middleware' => ['permission:cobranca-aprovar'],
+        'as' => 'cobranca.confirmapg',
+        'uses' => 'Backend\GestaoController@confirmapagamento']);
+    Route::get('confirmar/{idproposta}', [
+        'middleware' => ['permission:cobranca-aprovar'],
         'as' => 'show.confirmapgto',
         'uses' => 'Backend\ShowsController@confirmapgto']);
-
 
 });
 
@@ -308,28 +273,44 @@ Route::group(['prefix' => 'home', 'middleware' => 'auth'], function () {
 
     Route::get('alterar', [
         'as' => 'backend.homepage',
-        'middleware' => 'permission:homepage-edit',
+        'middleware' => 'permission:setup-homepage',
         'uses' => 'Backend\HomePageController@altera_get']);
 
     Route::post('alterar', [
         'as' => 'backend.altera',
-        'middleware' => 'permission:homepage-edit',
+        'middleware' => 'permission:setup-homepage',
         'uses' => 'Backend\HomePageController@altera_post']);
 
     Route::get('alterar/{type_id}', [
         'as' => 'homepage.modal',
-        'middleware' => 'permission:homepage-edit',
+        'middleware' => 'permission:setup-homepage',
         'uses' => 'Backend\HomePageController@modal']);
 
     Route::get('delete/{type_id}', [
         'as' => 'homepage.delete',
-        'middleware' => 'permission:homepage-edit',
+        'middleware' => 'permission:setup-homepage',
         'uses' => 'Backend\HomePageController@delete']);
 
 });
-//
-//Route::get('/', function () {
-//    return view('welcome');
-//});
+
+/*------------------------------------------------------------------------------------*/
 
 
+Route::group(['prefix' => 'show', 'middleware' => 'auth'], function () {
+
+    Route::get('segurado/{cpfcnpj}', [
+        'middleware' => ['permission:segurado'],
+        'as' => 'show.segurado',
+        'uses' => 'Backend\ShowsController@segurado']);
+
+});
+
+
+Route::group(['prefix' => 'teste'], function () {
+    Route::get('/', 'Backend\TesteController@index');
+    Route::get('/mail', 'Backend\TesteController@mail');
+
+    Route::get('/post', ['as' => 'post.teste',
+        'uses' => 'Backend\TesteController@post_teste']);
+
+});
