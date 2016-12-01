@@ -10,11 +10,12 @@
         <table class="table table-hover table-condensed table-datatable">
             <thead>
             <tr>
-                <th>Nº PROPOSTA</th>
-                <th>SEGURADO</th>
-                <th>DATA VENCIMENTO BOLETO</th>
-                <th>VEICULO</th>
-                <th>FORMA PGTO</th>
+                <th># Proposta</th>
+                <th>Segurado</th>
+                <th>Corretor</th>
+                <th>Data vencimento boleto</th>
+                <th>Primeira parcela</th>
+                <th>Forma de pagamento</th>
                 <th></th>
 
             </tr>
@@ -29,13 +30,13 @@
                            data-target=".modal-show"
                            id="linksegurado">{!! nomeCase($proposta->proposta->cotacao->segurado->clinomerazao) !!}</a>
                     </td>
+                    <td><a href="#" class="">{{$proposta->proposta->cotacao->corretor->corrnomerazao}}</a></td>
+
                     <td>
-
-
                         {!! ( empty($proposta->proposta->cobranca->dtvencimento) ? NULL : date('d/m/Y', strtotime($proposta->proposta->cobranca->dtvencimento))) !!}
 
                     </td>
-                    <td><a href="#" class="">{!! format('placa',$proposta->proposta->cotacao->veiculo->veicplaca) !!}</a></td>
+                    <td><a href="#" class="">R$ {!! format('real',$proposta->proposta->primeiraparc) !!}</a></td>
                     <td>{!! $proposta->proposta->formapg->descformapgto !!}</td>
                     <td>
 

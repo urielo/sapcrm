@@ -45,7 +45,7 @@
                     <th>Produto</th>
                     <th>Descrição</th>
                     <th>Cobertura</th>
-                    <th>Lmi</th>
+                    <th >LMI  <span class="info">*</span> </th>
                 </tr>
                 </thead>
                 <tbody class="text-justify">
@@ -59,6 +59,7 @@
                 @endforeach
                 </tbody>
             </table>
+            <div class="info"> <p>(*) LMI: Limite Máximo de Indenização</p> </div>
 
         </div>
 
@@ -133,6 +134,13 @@
             </table>
 
 
+        </div>
+
+        <div class="box-large obs">
+
+            <p> Consultar condições gerais do seguro em: <a href="wwww.seguroautopratico.com.br/contratos"> wwww.seguroautopratico.com.br/contratos</a></p>
+
+            <h4> <a href="wwww.seguroautopratico.com.br"> wwww.seguroautopratico.com.br</a></h4>
         </div>
 
     </div>
