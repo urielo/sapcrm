@@ -114,27 +114,6 @@ class ApolicesController extends Controller
         $seguradoras[$assitencia->idseguradora][$assitencia->idproduto] = $assitencia;
         $retorno = $seguradoras;
 
-//        foreach ($seguradoras as $seg_key=>$seg_value){
-//            foreach ($seg_value as $cust_key=>$cust_value){
-//                foreach ($cust_value->produto->seguradoras as $seg_produto){
-//                    if($seg_key == $seg_produto->idseguradora && (bool) $seg_produto->obg_mesma_seguradora ){
-//
-//                        foreach ($seguradoras as $seg_key_i=>$seg_value_i){
-//                            if($seg_key_i != $seg_key){
-//                                
-//                            }
-//
-//                        }
-//                        $retorno[] = $cust_value;
-//
-//
-//                    }
-//
-//                }
-//
-//            }
-//        }
-
 
         return view('backend.show.emitirapolices', compact('retorno', 'proposta'));
     }
@@ -193,5 +172,15 @@ class ApolicesController extends Controller
             ->get();
 
         return view('backend.gestao.apolices', compact('propostas'));
+    }
+
+    public function cancela($id)
+    {
+
+    }
+
+    public function cancelar($id)
+    {
+
     }
 }

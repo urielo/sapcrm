@@ -44,17 +44,35 @@
                                             href="{{route('apolices.show',$proposta->idproposta)}}"
                                             id="showinfo">Emitir
                                     </a>
+                                    <a type="button" class="btn btn-danger btn-sm"
+                                           {{--data-toggle="modal"--}}
+                                           {{--data-target=".modal-show"--}}
+                                           href="#"
+                                           id="">Cancelar
+                                    </a>
                                 @elseif($proposta->idstatus == 24)
                                     <a type="button" class="btn btn-info btn-sm" data-toggle="modal"
                                             data-target=".modal-show"
                                             href="{{route('apolices.show',$proposta->idproposta)}}"
                                             id="showinfo">Emitir
                                     </a>
+                                    <a type="button" class="btn btn-danger btn-sm"
+                                           {{--data-toggle="modal"--}}
+                                           {{--data-target=".modal-show"--}}
+                                           href="#"
+                                           id="">Cancelar
+                                    </a>
                                 @elseif($proposta->idstatus == 18)
                                     <a type="button" class="btn btn-success btn-sm" data-toggle="modal"
                                             data-target=".modal-show"
                                             href="{{route('apolices.showemiditas',$proposta->idproposta)}}"
                                             id="showinfo">Apolices
+                                    </a>
+                                    <a type="button" class="btn btn-danger btn-sm"
+                                       {{--data-toggle="modal"--}}
+                                       {{--data-target=".modal-show"--}}
+                                       href="#"
+                                       id="">Cancelar
                                     </a>
                                 @endif
 

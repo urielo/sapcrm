@@ -54,6 +54,7 @@ class CertificadoController extends Controller
         $certificado->dt_emissao = date('Y-m-d H:i:s');
         $certificado->dt_inicio_virgencia = $this->data_virgencia;
         $certificado->iof = $this->config->iof;
+        $certificado->status_id = 1;
         $certificado->save();
         $this->certificado = $certificado;
 

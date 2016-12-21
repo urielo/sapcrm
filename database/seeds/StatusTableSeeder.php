@@ -39,6 +39,9 @@ class StatusTableSeeder extends Seeder
             ["id" => 28, "descricao" => "Cancelado - Não Enviado"],
             ["id" => 30, "descricao" => "Cancelado - Enviado"],
             ["id" => 31, "descricao" => "Cancelado"],
+            ["id" => 32, "descricao" => "Enviado - Sem retorno"],
+            ["id" => 33, "descricao" => "Cancelado - Sem retorno"],
+            ["id" => 34, "descricao" => "Cancelado - Recusado"],
         ];
         
         foreach ($datas as $data){

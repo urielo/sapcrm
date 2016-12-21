@@ -68,7 +68,7 @@ class Propostas extends Model
     }
 
     public function status(){
-        return $this->belongsTo('App\Model\Status','idstatus','id');
+        return $this->belongsTo('App\Model\Status','idstatus','id')->where('status_id');
 
     }
 

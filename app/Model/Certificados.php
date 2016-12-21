@@ -14,6 +14,8 @@ class Certificados extends Model
         'dt_inicio_virgencia',
         'iof',
         'pdf_base64',
+        'id_motivo',
+        'status_id',
     ];
 
     public $timestamps = FALSE;

@@ -2,14 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="158326c0-4f81-4588-bf4f-593b4ab725fa" name="Default" comment="Alterações nos viwes e criacoes de novos models">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Model/MotivosCancelamentoCertificado.php" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/Certificado.pdf" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Model/Status.php" afterPath="$PROJECT_DIR$/app/Model/Status.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/helpers.php" afterPath="$PROJECT_DIR$/app/helpers.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/cotacao/negociacoes.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/cotacao/negociacoes.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Backend/ApolicesController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/ApolicesController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Backend/CertificadoController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/CertificadoController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Model/Certificados.php" afterPath="$PROJECT_DIR$/app/Model/Certificados.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Model/Propostas.php" afterPath="$PROJECT_DIR$/app/Model/Propostas.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/MotivosCancelamentoCertificadoTableSeeder.php" afterPath="$PROJECT_DIR$/database/seeds/MotivosCancelamentoCertificadoTableSeeder.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/StatusTableSeeder.php" afterPath="$PROJECT_DIR$/database/seeds/StatusTableSeeder.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/gestao/apolices.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/gestao/apolices.blade.php" />
     </list>
     <ignored path="sap.local.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,15 +37,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MotivosCancelamentoCertificadoTableSeeder.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/seeds/MotivosCancelamentoCertificadoTableSeeder.php">
+      <file leaf-file-name="ApolicesController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/ApolicesController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="19" column="130" selection-start-line="19" selection-start-column="130" selection-end-line="19" selection-end-column="130" />
-              <caret line="8" column="7" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
-              <folding>
-                <element signature="e#7#38#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="-604">
+              <caret line="115" column="0" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -54,50 +50,28 @@
       <file leaf-file-name="StatusTableSeeder.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/database/seeds/StatusTableSeeder.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="291">
-              <caret line="45" column="35" selection-start-line="45" selection-start-column="35" selection-end-line="45" selection-end-column="35" />
-              <folding>
-                <element signature="e#7#38#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Status.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Model/Status.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
+            <state relative-caret-position="355">
+              <caret line="41" column="52" selection-start-line="41" selection-start-column="52" selection-end-line="41" selection-end-column="52" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="2016_12_21_012848_alter_column_descricao_from_status_table.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/migrations/2016_12_21_012848_alter_column_descricao_from_status_table.php">
+      <file leaf-file-name="apolices.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/backend/gestao/apolices.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+            <state relative-caret-position="-60">
+              <caret line="62" column="47" selection-start-line="62" selection-start-column="47" selection-end-line="62" selection-end-column="47" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Parceiros.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Model/Parceiros.php">
+      <file leaf-file-name="Propostas.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Model/Propostas.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CotacoesSeguradora.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Model/CotacoesSeguradora.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="195">
+              <caret line="70" column="85" selection-start-line="70" selection-start-column="85" selection-end-line="70" selection-end-column="85" />
               <folding />
             </state>
           </provider>
@@ -118,16 +92,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DatabaseSeeder.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/seeds/DatabaseSeeder.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="37" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -160,16 +124,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/backend/home/altera_show.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/backend/gestao/apolices.blade.php" />
-        <option value="$PROJECT_DIR$/app/Model/Fipes.php" />
-        <option value="$PROJECT_DIR$/app/Model/Descontos.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/AjaxController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/TesteController.php" />
         <option value="$PROJECT_DIR$/public/themes/default/assets/js/cotacao.js" />
         <option value="$PROJECT_DIR$/resources/views/auth/login.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/user/home.blade.php" />
-        <option value="$PROJECT_DIR$/app/Model/Propostas.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/proposta/listas.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/home/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/home/alterar.blade.php" />
@@ -201,16 +160,21 @@
         <option value="$PROJECT_DIR$/app/helpers.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/cotacao/negociacoes.blade.php" />
         <option value="$PROJECT_DIR$/.env" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/ApolicesController.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/database/migrations/2016_12_21_003209_create_table_motivos_cancelamento_certificado.php" />
         <option value="$PROJECT_DIR$/database/migrations/2016_12_21_003407_add_column_cod_motivos_certificados_table.php" />
         <option value="$PROJECT_DIR$/app/Model/MotivosCancelamentoCertificado.php" />
-        <option value="$PROJECT_DIR$/database/seeds/MotivosCancelamentoCertificadoTableSeeder.php" />
         <option value="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
-        <option value="$PROJECT_DIR$/database/seeds/StatusTableSeeder.php" />
         <option value="$PROJECT_DIR$/app/Model/Status.php" />
         <option value="$PROJECT_DIR$/database/migrations/2016_12_21_012848_alter_column_descricao_from_status_table.php" />
+        <option value="$PROJECT_DIR$/app/Model/Propostas.php" />
+        <option value="$PROJECT_DIR$/app/Model/Certificados.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/ApolicesController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/CertificadoController.php" />
+        <option value="$PROJECT_DIR$/database/seeds/MotivosCancelamentoCertificadoTableSeeder.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2016_12_21_022231_add_column_dt_cancelamento_to_certificados_table.php" />
+        <option value="$PROJECT_DIR$/database/seeds/StatusTableSeeder.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/gestao/apolices.blade.php" />
       </list>
     </option>
   </component>
@@ -338,6 +302,24 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="database" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="migrations" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sap.local" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sap.local" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
@@ -356,7 +338,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Model" />
+              <option name="myItemId" value="Http" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -369,7 +351,7 @@
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../plataformaverde" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="2016_12_21_012848_alter_column_descricao_from_status_table&#9;FILE&#9;file:///var/www/Myproject/sap.local/database/migrations/2016_12_21_012848_alter_column_descricao_from_status_table.php&#10;2016_12_21_003407_add_column_cod_motivos_certificados_table&#9;FILE&#9;file:///var/www/Myproject/sap.local/database/migrations/2016_12_21_003407_add_column_cod_motivos_certificados_table.php&#10;2016_12_21_003209_create_table_motivos_cancelamento_certificado&#9;FILE&#9;file:///var/www/Myproject/sap.local/database/migrations/2016_12_21_003209_create_table_motivos_cancelamento_certificado.php&#10;help&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/helpers.php&#10;cotaco&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/CotacaoController.php&#10;gesta&#9;null&#9;null&#10;show&#9;null&#9;null&#10;route&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/routes.php&#10;pdf&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/css/pdf.css&#10;pro&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/js/proposta.js&#10;back&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/backend.blade.php&#10;pr&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/js/proposta.js&#10;scr&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/js/script.js&#10;jquery&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/js/jquery-ui.js&#10;proposta&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/js/proposta.js&#10;prop&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/PropostaController.php&#10;emit&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/proposta/emitir.blade.php&#10;cota&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/CotacaoController.php&#10;apo&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/gestao/apolices.blade.php&#10;Us&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/User.php&#10;ba&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/backend.blade.php&#10;routes&#9;null&#9;null&#10;apoli&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/ApolicesController.php&#10;sc&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/js/script.js&#10;em&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/proposta/emitir.blade.php&#10;cotacao.b&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/cotacao.blade.php&#10;c&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/mail/cotacao.blade.php&#10;log&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/auth/login.blade.php&#10;cotacao&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/mail/cotacao.blade.php&#10;Pro&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/PropostaController.php&#10;cotar&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/cotacao/cotar.blade.php&#10;suce&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/cotacao/sucesso.blade.php&#10;sty&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/css/style.css&#10;segur&#9;null&#9;null&#10;cotac&#9;null&#9;null&#10;cor&#9;null&#9;null&#10;neg&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/cotacao/negociacoes.blade.php&#10;apol&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/gestao/apolices.blade.php&#10;alte&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/home/alterar.blade.php&#10;st&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/css/style.css&#10;in&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/home/index.blade.php&#10;cot&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/CotacaoController.php&#10;tes&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/TesteController.php&#10;propo&#9;null&#9;null&#10;scri&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/js/script.js&#10;inde&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/home/index.blade.php&#10;backe&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/backend.blade.php&#10;login&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/auth/login.blade.php&#10;cotaca&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/js/cotacao.js&#10;teste&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="Propostas&#9;null&#9;null&#10;backend\gestao\apolices&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/gestao/apolices.blade.php&#10;2016_12_21_012848_alter_column_descricao_from_status_table&#9;FILE&#9;file:///var/www/Myproject/sap.local/database/migrations/2016_12_21_012848_alter_column_descricao_from_status_table.php&#10;2016_12_21_003407_add_column_cod_motivos_certificados_table&#9;FILE&#9;file:///var/www/Myproject/sap.local/database/migrations/2016_12_21_003407_add_column_cod_motivos_certificados_table.php&#10;2016_12_21_003209_create_table_motivos_cancelamento_certificado&#9;FILE&#9;file:///var/www/Myproject/sap.local/database/migrations/2016_12_21_003209_create_table_motivos_cancelamento_certificado.php&#10;help&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/helpers.php&#10;cotaco&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/CotacaoController.php&#10;gesta&#9;null&#9;null&#10;show&#9;null&#9;null&#10;route&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/routes.php&#10;pdf&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/css/pdf.css&#10;pro&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/js/proposta.js&#10;back&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/backend.blade.php&#10;pr&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/js/proposta.js&#10;scr&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/js/script.js&#10;jquery&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/js/jquery-ui.js&#10;proposta&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/js/proposta.js&#10;prop&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/PropostaController.php&#10;emit&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/proposta/emitir.blade.php&#10;cota&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/CotacaoController.php&#10;apo&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/gestao/apolices.blade.php&#10;Us&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/User.php&#10;ba&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/backend.blade.php&#10;routes&#9;null&#9;null&#10;apoli&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/ApolicesController.php&#10;sc&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/js/script.js&#10;em&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/proposta/emitir.blade.php&#10;cotacao.b&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/cotacao.blade.php&#10;c&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/mail/cotacao.blade.php&#10;log&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/auth/login.blade.php&#10;cotacao&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/mail/cotacao.blade.php&#10;Pro&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/PropostaController.php&#10;cotar&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/cotacao/cotar.blade.php&#10;suce&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/cotacao/sucesso.blade.php&#10;sty&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/css/style.css&#10;segur&#9;null&#9;null&#10;cotac&#9;null&#9;null&#10;cor&#9;null&#9;null&#10;neg&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/cotacao/negociacoes.blade.php&#10;apol&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/gestao/apolices.blade.php&#10;alte&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/home/alterar.blade.php&#10;st&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/css/style.css&#10;in&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/home/index.blade.php&#10;cot&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/CotacaoController.php&#10;tes&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/TesteController.php&#10;propo&#9;null&#9;null&#10;scri&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/js/script.js&#10;inde&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/home/index.blade.php&#10;backe&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/backend.blade.php&#10;login&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/auth/login.blade.php" />
     <property name="ToolWindowREST Client.ShowToolbar" value="false" />
     <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
     <property name="js.buildTools.gulp.gulp_package_dir" value="$PROJECT_DIR$/node_modules/gulp" />
@@ -688,12 +670,12 @@
       <workItem from="1482070104673" duration="117000" />
       <workItem from="1482073200304" duration="589000" />
       <workItem from="1482078874945" duration="348000" />
-      <workItem from="1482280203917" duration="3286000" />
+      <workItem from="1482280203917" duration="8065000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1180354000" />
+    <option name="totallyTimeSpent" value="1185133000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -716,7 +698,7 @@
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32568806" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24941176" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31651375" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33128834" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930514" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297546" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -785,27 +767,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/cotacao/sucesso.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="38" column="30" selection-start-line="38" selection-start-column="30" selection-end-line="38" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/mail/cotacao.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/cotacao/cotar.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4695">
-          <caret line="313" column="70" selection-start-line="313" selection-start-column="70" selection-end-line="313" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Controller.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -966,13 +927,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/gestao/apolices.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="840">
-          <caret line="56" column="66" selection-start-line="56" selection-start-column="66" selection-end-line="56" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/backend/gestao/aprovacao.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="570">
@@ -1028,14 +982,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
           <caret line="35" column="30" selection-start-line="35" selection-start-column="30" selection-end-line="35" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/ApolicesController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2205">
-          <caret line="162" column="73" selection-start-line="162" selection-start-column="73" selection-end-line="162" selection-end-column="73" />
           <folding />
         </state>
       </provider>
@@ -1104,16 +1050,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/CertificadoController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="57" column="42" selection-start-line="57" selection-start-column="42" selection-end-line="57" selection-end-column="42" />
-          <folding>
-            <marker date="1478810014176" expanded="true" signature="3926:3936" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2016_12_21_003209_create_table_motivos_cancelamento_certificado.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -1138,32 +1074,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/MotivosCancelamentoCertificadoTableSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="19" column="130" selection-start-line="19" selection-start-column="130" selection-end-line="19" selection-end-column="130" />
-          <caret line="8" column="7" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
-          <folding>
-            <element signature="e#7#38#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/seeds/DatabaseSeeder.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="20" column="37" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/StatusTableSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="45" column="35" selection-start-line="45" selection-start-column="35" selection-end-line="45" selection-end-column="35" />
-          <folding>
-            <element signature="e#7#38#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1215,10 +1130,78 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Model/Propostas.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="70" column="85" selection-start-line="70" selection-start-column="85" selection-end-line="70" selection-end-column="85" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Model/Certificados.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/seeds/MotivosCancelamentoCertificadoTableSeeder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="24" column="107" selection-start-line="24" selection-start-column="107" selection-end-line="24" selection-end-column="107" />
+          <folding>
+            <element signature="e#7#38#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/CertificadoController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="56" column="36" selection-start-line="56" selection-start-column="36" selection-end-line="56" selection-end-column="36" />
+          <folding>
+            <marker date="1482285031360" expanded="true" signature="3963:3973" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Model/Status.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/ApolicesController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-604">
+          <caret line="115" column="0" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2016_12_21_022231_add_column_dt_cancelamento_to_certificados_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="15" column="61" selection-start-line="15" selection-start-column="61" selection-end-line="15" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/seeds/StatusTableSeeder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="355">
+          <caret line="41" column="52" selection-start-line="41" selection-start-column="52" selection-end-line="41" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/gestao/apolices.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-60">
+          <caret line="62" column="47" selection-start-line="62" selection-start-column="47" selection-end-line="62" selection-end-column="47" />
           <folding />
         </state>
       </provider>
