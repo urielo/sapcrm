@@ -27,7 +27,7 @@
                 @foreach ($cotacoes as $cotacao)
                     <tr>
                         <th><a href="#" class="">{{$cotacao->idcotacao}}</a></th>
-                        <th><a href="#" class="">{{format('cpfcnpj',$cotacao->segurado->clicpfcnpj)}}</a></th>
+                        <th><a href="#" class=""> {{$cotacao->segurado->clicpfcnpj}}</a></th>
                         <td>{!! date('d/m/Y', strtotime($cotacao->dtcreate)) !!}</td>
                         <td>{!! date('d/m/Y', strtotime($cotacao->dtvalidade)) !!}</td>
                         <td>{!! strtoupper($cotacao->usuario->nome) !!}</td>

@@ -18,12 +18,12 @@ if (!function_exists('format')):
         else:
             switch ($tipo):
                 case 'cpfcnpj':
-                    if (strlen($string) > 11):
+                    if (strlen($string) == 14) {
                         $mask = "%s%s.%s%s%s.%s%s%s/%s%s%s%s-%s%s";
 
-                    else:
+                    } elseif(strlen($string) == 11) {
                         $mask = "%s%s%s.%s%s%s.%s%s%s-%s%s";
-                    endif;
+                    }
                     break;
                 case 'fone':
                     if (strlen($string) <= 8):
@@ -52,6 +52,7 @@ if (!function_exists('format')):
                 default :
                     return 'tipo invalida';
             endswitch;
+            
 
             return vsprintf($mask, str_split($string));
         endif;
