@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="158326c0-4f81-4588-bf4f-593b4ab725fa" name="Default" comment="Alterações nos viwes e criacoes de novos models">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Model/Tipocombustivel.php" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Model/Propostas.php" afterPath="$PROJECT_DIR$/app/Model/Propostas.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Backend/ApolicesController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/ApolicesController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Model/Certificados.php" afterPath="$PROJECT_DIR$/app/Model/Certificados.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/themes/default/views/layouts/backend.blade.php" afterPath="$PROJECT_DIR$/public/themes/default/views/layouts/backend.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/gestao/apolices.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/gestao/apolices.blade.php" />
     </list>
     <ignored path="sap.local.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,28 +39,38 @@
       <file leaf-file-name="ApolicesController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/ApolicesController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
+            <state relative-caret-position="240">
+              <caret line="190" column="61" selection-start-line="190" selection-start-column="37" selection-end-line="190" selection-end-column="61" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="apolices.blade.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="apolices.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/backend/gestao/apolices.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1170">
-              <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+            <state relative-caret-position="233">
+              <caret line="41" column="80" selection-start-line="41" selection-start-column="80" selection-end-line="41" selection-end-column="80" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Propostas.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Model/Propostas.php">
+      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="70" column="67" selection-start-line="70" selection-start-column="67" selection-end-line="70" selection-end-column="67" />
+            <state relative-caret-position="269">
+              <caret line="119" column="59" selection-start-line="119" selection-start-column="59" selection-end-line="119" selection-end-column="59" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="backend.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/themes/default/views/layouts/backend.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="229">
+              <caret line="120" column="41" selection-start-line="120" selection-start-column="41" selection-end-line="120" selection-end-column="60" />
               <folding />
             </state>
           </provider>
@@ -66,8 +79,28 @@
       <file leaf-file-name="PropostaController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/PropostaController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
+            <state relative-caret-position="-124">
               <caret line="235" column="29" selection-start-line="235" selection-start-column="29" selection-end-line="235" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Propostas.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Model/Propostas.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="69" column="4" selection-start-line="69" selection-start-column="4" selection-end-line="72" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Certificados.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Model/Certificados.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="325">
+              <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -85,26 +118,6 @@
       </file>
       <file leaf-file-name="TipoVeiculos.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Model/TipoVeiculos.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Config.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Model/Config.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Cartoes.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Model/Cartoes.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -163,13 +176,11 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/RolesController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/PropostaController.php" />
         <option value="$PROJECT_DIR$/public/themes/default/assets/js/script.js" />
-        <option value="$PROJECT_DIR$/public/themes/default/views/layouts/backend.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/proposta/emitir.blade.php" />
         <option value="$PROJECT_DIR$/public/themes/default/assets/js/proposta.js" />
         <option value="$PROJECT_DIR$/resources/views/backend/pdf/cotacao.blade.php" />
         <option value="$PROJECT_DIR$/public/themes/default/assets/css/pdf.css" />
         <option value="$PROJECT_DIR$/resources/views/backend/gestao/aprovacao.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/gestao/cobranca.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/show/efetuapagamento.blade.php" />
         <option value="$PROJECT_DIR$/app/helpers.php" />
@@ -182,15 +193,17 @@
         <option value="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
         <option value="$PROJECT_DIR$/app/Model/Status.php" />
         <option value="$PROJECT_DIR$/database/migrations/2016_12_21_012848_alter_column_descricao_from_status_table.php" />
-        <option value="$PROJECT_DIR$/app/Model/Certificados.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/ApolicesController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/CertificadoController.php" />
         <option value="$PROJECT_DIR$/database/seeds/MotivosCancelamentoCertificadoTableSeeder.php" />
         <option value="$PROJECT_DIR$/database/migrations/2016_12_21_022231_add_column_dt_cancelamento_to_certificados_table.php" />
         <option value="$PROJECT_DIR$/database/seeds/StatusTableSeeder.php" />
-        <option value="$PROJECT_DIR$/resources/views/backend/gestao/apolices.blade.php" />
         <option value="$PROJECT_DIR$/app/Model/Tipocombustivel.php" />
         <option value="$PROJECT_DIR$/app/Model/Propostas.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/ApolicesController.php" />
+        <option value="$PROJECT_DIR$/public/themes/default/views/layouts/backend.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/routes.php" />
+        <option value="$PROJECT_DIR$/app/Model/Certificados.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/gestao/apolices.blade.php" />
       </list>
     </option>
   </component>
@@ -288,56 +301,6 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="database" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sap.local" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sap.local" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="database" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="seeds" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sap.local" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sap.local" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="database" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="migrations" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sap.local" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sap.local" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
@@ -356,7 +319,55 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Model" />
+              <option name="myItemId" value="Http" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sap.local" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sap.local" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Http" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controllers" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sap.local" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sap.local" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Http" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controllers" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Backend" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -367,7 +378,7 @@
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../plataformaverde" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="proposta\listas&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/proposta/listas.blade.php&#10;Propostas&#9;null&#9;null&#10;backend\gestao\apolices&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/gestao/apolices.blade.php&#10;2016_12_21_012848_alter_column_descricao_from_status_table&#9;FILE&#9;file:///var/www/Myproject/sap.local/database/migrations/2016_12_21_012848_alter_column_descricao_from_status_table.php&#10;2016_12_21_003407_add_column_cod_motivos_certificados_table&#9;FILE&#9;file:///var/www/Myproject/sap.local/database/migrations/2016_12_21_003407_add_column_cod_motivos_certificados_table.php&#10;2016_12_21_003209_create_table_motivos_cancelamento_certificado&#9;FILE&#9;file:///var/www/Myproject/sap.local/database/migrations/2016_12_21_003209_create_table_motivos_cancelamento_certificado.php&#10;help&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/helpers.php&#10;cotaco&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/CotacaoController.php&#10;gesta&#9;null&#9;null&#10;show&#9;null&#9;null&#10;route&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/routes.php&#10;pdf&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/css/pdf.css&#10;pro&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/js/proposta.js&#10;back&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/backend.blade.php&#10;pr&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/js/proposta.js&#10;scr&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/js/script.js&#10;jquery&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/js/jquery-ui.js&#10;proposta&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/js/proposta.js&#10;prop&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/PropostaController.php&#10;emit&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/proposta/emitir.blade.php&#10;cota&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/CotacaoController.php&#10;apo&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/gestao/apolices.blade.php&#10;Us&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/User.php&#10;ba&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/backend.blade.php&#10;routes&#9;null&#9;null&#10;apoli&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/ApolicesController.php&#10;sc&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/js/script.js&#10;em&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/proposta/emitir.blade.php&#10;cotacao.b&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/cotacao.blade.php&#10;c&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/mail/cotacao.blade.php&#10;log&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/auth/login.blade.php&#10;cotacao&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/mail/cotacao.blade.php&#10;Pro&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/PropostaController.php&#10;cotar&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/cotacao/cotar.blade.php&#10;suce&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/cotacao/sucesso.blade.php&#10;sty&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/css/style.css&#10;segur&#9;null&#9;null&#10;cotac&#9;null&#9;null&#10;cor&#9;null&#9;null&#10;neg&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/cotacao/negociacoes.blade.php&#10;apol&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/gestao/apolices.blade.php&#10;alte&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/home/alterar.blade.php&#10;st&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/css/style.css&#10;in&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/home/index.blade.php&#10;cot&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/CotacaoController.php&#10;tes&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/TesteController.php&#10;propo&#9;null&#9;null&#10;scri&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/js/script.js&#10;inde&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/home/index.blade.php&#10;backe&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/backend.blade.php" />
+    <property name="SearchEverywhereHistoryKey" value="certificad&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Certificados.php&#10;propo&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Propostas.php&#10;ba&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/backend.blade.php&#10;routes&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/routes.php&#10;gestao\apo&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/gestao/apolices.blade.php&#10;proposta\listas&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/proposta/listas.blade.php&#10;Propostas&#9;null&#9;null&#10;backend\gestao\apolices&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/gestao/apolices.blade.php&#10;2016_12_21_012848_alter_column_descricao_from_status_table&#9;FILE&#9;file:///var/www/Myproject/sap.local/database/migrations/2016_12_21_012848_alter_column_descricao_from_status_table.php&#10;2016_12_21_003407_add_column_cod_motivos_certificados_table&#9;FILE&#9;file:///var/www/Myproject/sap.local/database/migrations/2016_12_21_003407_add_column_cod_motivos_certificados_table.php&#10;2016_12_21_003209_create_table_motivos_cancelamento_certificado&#9;FILE&#9;file:///var/www/Myproject/sap.local/database/migrations/2016_12_21_003209_create_table_motivos_cancelamento_certificado.php&#10;help&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/helpers.php&#10;cotaco&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/CotacaoController.php&#10;gesta&#9;null&#9;null&#10;show&#9;null&#9;null&#10;route&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/routes.php&#10;pdf&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/css/pdf.css&#10;pro&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/js/proposta.js&#10;back&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/backend.blade.php&#10;pr&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/js/proposta.js&#10;scr&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/js/script.js&#10;jquery&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/js/jquery-ui.js&#10;proposta&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/js/proposta.js&#10;prop&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/PropostaController.php&#10;emit&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/proposta/emitir.blade.php&#10;cota&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/CotacaoController.php&#10;apo&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/gestao/apolices.blade.php&#10;Us&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/User.php&#10;apoli&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/ApolicesController.php&#10;sc&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/js/script.js&#10;em&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/proposta/emitir.blade.php&#10;cotacao.b&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/cotacao.blade.php&#10;c&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/mail/cotacao.blade.php&#10;log&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/auth/login.blade.php&#10;cotacao&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/mail/cotacao.blade.php&#10;Pro&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/PropostaController.php&#10;cotar&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/cotacao/cotar.blade.php&#10;suce&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/cotacao/sucesso.blade.php&#10;sty&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/css/style.css&#10;segur&#9;null&#9;null&#10;cotac&#9;null&#9;null&#10;cor&#9;null&#9;null&#10;neg&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/cotacao/negociacoes.blade.php&#10;apol&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/gestao/apolices.blade.php&#10;alte&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/home/alterar.blade.php&#10;st&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/css/style.css&#10;in&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/home/index.blade.php&#10;cot&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/CotacaoController.php&#10;tes&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/TesteController.php&#10;scri&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/js/script.js" />
     <property name="ToolWindowREST Client.ShowToolbar" value="false" />
     <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
     <property name="js.buildTools.gulp.gulp_package_dir" value="$PROJECT_DIR$/node_modules/gulp" />
@@ -687,12 +698,12 @@
       <workItem from="1482073200304" duration="589000" />
       <workItem from="1482078874945" duration="348000" />
       <workItem from="1482280203917" duration="8901000" />
-      <workItem from="1482371902379" duration="340000" />
+      <workItem from="1482371902379" duration="2292000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1186309000" />
+    <option name="totallyTimeSpent" value="1188261000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -881,13 +892,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/themes/default/views/layouts/backend.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3525">
-          <caret line="235" column="49" selection-start-line="235" selection-start-column="49" selection-end-line="235" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/backend/proposta/emitir.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="10620">
@@ -927,13 +931,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="33" column="6" selection-start-line="33" selection-start-column="6" selection-end-line="33" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1830">
-          <caret line="236" column="17" selection-start-line="236" selection-start-column="17" selection-end-line="236" selection-end-column="35" />
         </state>
       </provider>
     </entry>
@@ -1082,13 +1079,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Model/Certificados.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/seeds/MotivosCancelamentoCertificadoTableSeeder.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
@@ -1100,6 +1090,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="217">
           <caret line="56" column="36" selection-start-line="56" selection-start-column="36" selection-end-line="56" selection-end-column="36" />
+          <folding>
+            <marker date="1482285031360" expanded="true" signature="3963:3973" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1121,22 +1114,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="600">
           <caret line="41" column="52" selection-start-line="41" selection-start-column="52" selection-end-line="41" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/gestao/apolices.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1170">
-          <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/ApolicesController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
           <folding />
         </state>
       </provider>
@@ -1165,14 +1142,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/PropostaController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="235" column="29" selection-start-line="235" selection-start-column="29" selection-end-line="235" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/backend/proposta/listas.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-360">
@@ -1181,10 +1150,58 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/PropostaController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-124">
+          <caret line="235" column="29" selection-start-line="235" selection-start-column="29" selection-end-line="235" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/themes/default/views/layouts/backend.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="120" column="41" selection-start-line="120" selection-start-column="41" selection-end-line="120" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="119" column="59" selection-start-line="119" selection-start-column="59" selection-end-line="119" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/ApolicesController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="190" column="61" selection-start-line="190" selection-start-column="37" selection-end-line="190" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Model/Propostas.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="70" column="67" selection-start-line="70" selection-start-column="67" selection-end-line="70" selection-end-column="67" />
+        <state relative-caret-position="135">
+          <caret line="69" column="4" selection-start-line="69" selection-start-column="4" selection-end-line="72" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Model/Certificados.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/gestao/apolices.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="41" column="80" selection-start-line="41" selection-start-column="80" selection-end-line="41" selection-end-column="80" />
           <folding />
         </state>
       </provider>

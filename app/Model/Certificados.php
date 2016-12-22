@@ -25,4 +25,9 @@ class Certificados extends Model
     {
         return $this->belongsToMany(CustoProduto::class, 'certificado_custo','certificado_id','custo_produto_id');
     }
+
+    public function status(){
+        return $this->belongsTo('App\Model\Status','status_id','id');
+
+    }
 }

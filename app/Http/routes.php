@@ -114,7 +114,12 @@ Route::group(['prefix' => 'apolices', 'middleware' => 'auth'], function () {
     Route::get('apolices', [
         'middleware' => ['permission:gesta-apolice'],
         'as' => 'gestao.apolices',
-        'uses' => 'Backend\GestaoController@apolices']);
+        'uses' => 'Backend\GestaoController@apolices']);    
+    
+    Route::get('canceladas/', [
+        'middleware' => ['permission:apolices-canceladas'],
+        'as' => 'apolices.canceladas',
+        'uses' => 'Backend\ApolicesController@canceladas']);
 
 });
 

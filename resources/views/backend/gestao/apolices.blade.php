@@ -14,9 +14,9 @@
                     <th>#ID</th>
                     <th>Segurado</th>
                     <th>Placa</th>
-                    <th>Data do pagamento</th>
+                    <th>Certificado</th>
                     <th class="hidden-xs">Corretor</th>
-                    <th></th>
+                    <th>{{isset($status) && $status ? 'Status': null}}</th>
                 </thead>
                 <tbody>
 
@@ -30,7 +30,7 @@
                         <td><a href="#{{$proposta->cotacao->veiculo->veicid}}">
                                 {{format('placa',$proposta->cotacao->veiculo->veicplaca)}}
                             </a></td>
-                        <td>{{( is_object($proposta->cobranca) ? showDate($proposta->cobranca->dtpagamento) : '||') }}</td>
+                        <td>{{$proposta->certificado->id}}</td>
                         <td><a href="#{{$proposta->cotacao->corretor->idcorretor}}">
                                 {{nomeCase($proposta->cotacao->corretor->corrnomerazao)}}
                             </a></td>
@@ -38,42 +38,47 @@
 
                             <div class="btn-group" role="group">
 
-                                @if($proposta->idstatus == 15)
-                                    <a type="button" class="btn btn-info btn-sm" data-toggle="modal"
-                                            data-target=".modal-show"
-                                            href="{{route('apolices.show',$proposta->idproposta)}}"
-                                            id="showinfo">Emitir
-                                    </a>
-                                    <a type="button" class="btn btn-danger btn-sm"
+                                @if($status)
+                                    {{$proposta->certificado->status->descricao }}
+                                @else
+                                    @if($proposta->idstatus == 15)
+                                        <a type="button" class="btn btn-info btn-sm" data-toggle="modal"
+                                           data-target=".modal-show"
+                                           href="{{route('apolices.show',$proposta->idproposta)}}"
+                                           id="showinfo">Emitir
+                                        </a>
+                                        <a type="button" class="btn btn-danger btn-sm"
                                            {{--data-toggle="modal"--}}
                                            {{--data-target=".modal-show"--}}
                                            href="#"
                                            id="">Cancelar
-                                    </a>
-                                @elseif($proposta->idstatus == 24)
-                                    <a type="button" class="btn btn-info btn-sm" data-toggle="modal"
-                                            data-target=".modal-show"
-                                            href="{{route('apolices.show',$proposta->idproposta)}}"
-                                            id="showinfo">Emitir
-                                    </a>
-                                    <a type="button" class="btn btn-danger btn-sm"
+                                        </a>
+                                    @elseif($proposta->idstatus == 24)
+                                        <a type="button" class="btn btn-info btn-sm" data-toggle="modal"
+                                           data-target=".modal-show"
+                                           href="{{route('apolices.show',$proposta->idproposta)}}"
+                                           id="showinfo">Emitir
+                                        </a>
+                                        <a type="button" class="btn btn-danger btn-sm"
                                            {{--data-toggle="modal"--}}
                                            {{--data-target=".modal-show"--}}
                                            href="#"
                                            id="">Cancelar
-                                    </a>
-                                @elseif($proposta->idstatus == 18)
-                                    <a type="button" class="btn btn-success btn-sm" data-toggle="modal"
-                                            data-target=".modal-show"
-                                            href="{{route('apolices.showemiditas',$proposta->idproposta)}}"
-                                            id="showinfo">Apolices
-                                    </a>
-                                    <a type="button" class="btn btn-danger btn-sm"
-                                       {{--data-toggle="modal"--}}
-                                       {{--data-target=".modal-show"--}}
-                                       href="#"
-                                       id="">Cancelar
-                                    </a>
+                                        </a>
+                                    @elseif($proposta->idstatus == 18)
+                                        <a type="button" class="btn btn-success btn-sm" data-toggle="modal"
+                                           data-target=".modal-show"
+                                           href="{{route('apolices.showemiditas',$proposta->idproposta)}}"
+                                           id="showinfo">Apolices
+                                        </a>
+                                        <a type="button" class="btn btn-danger btn-sm"
+                                           {{--data-toggle="modal"--}}
+                                           {{--data-target=".modal-show"--}}
+                                           href="#"
+                                           id="">Cancelar
+                                        </a>
+
+                                    @endif
                                 @endif
 
 

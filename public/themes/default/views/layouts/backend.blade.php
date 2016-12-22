@@ -119,7 +119,7 @@
                             @permission('apolices-emitdas')
                             <li><a href="{{route('apolices.emitidas')}}">Gestão</a></li> @endpermission
                             @permission('apolices-canceladas')
-                            <li><a href="{{route('apolices.emitidas')}}">Canceladas</a></li> @endpermission
+                            <li><a href="{{route('apolices.canceladas')}}">Canceladas</a></li> @endpermission
 
                         </ul>
                     </li>

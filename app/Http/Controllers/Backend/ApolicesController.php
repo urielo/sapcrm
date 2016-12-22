@@ -183,4 +183,16 @@ class ApolicesController extends Controller
     {
 
     }
+
+    public function canceladas()
+    {
+
+        $propostas = Propostas::whereHas('certificado', function ($q) {
+            $q->whereIn('status_id', [28, 30, 31, 33, 34, 12]);
+        })->orderBy('idproposta', 'asc')
+            ->get();
+        $status = true;
+        return view('backend.gestao.apolices', compact('propostas', 'status'));
+
+    }
 }
