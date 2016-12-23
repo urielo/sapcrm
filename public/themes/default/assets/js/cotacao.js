@@ -52,7 +52,7 @@ $(function () {
             }
         })
 
-    })
+    });
     
     if($('.fipe').val() != ''){
         $('#search-fipe').trigger('click')
@@ -63,11 +63,11 @@ $(function () {
 
     $('input[name="renova"]').on('change', function () {
 
-        $('#valortotal').trigger('change')
+        $('#valortotal').trigger('change');
 
 
         if($('select[name="anomodelo"]').val() != 1){
-            $('select[name="anomodelo"]').trigger('change')
+            $('select[name="anomodelo"]').trigger('change');
             
         }
     })

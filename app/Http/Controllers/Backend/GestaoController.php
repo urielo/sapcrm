@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Mail;
 use App\Console\Commands\CotacaoCommand;
 use Illuminate\Support\Facades\Auth;
@@ -276,8 +277,8 @@ class GestaoController extends Controller
             ->orderBy('idproposta', 'asc')
             ->get();
 
-
-        return view('backend.gestao.cobranca', compact('propostas'));
+        $crypt = Crypt::class;
+        return view('backend.gestao.cobranca', compact('propostas','crypt'));
     }
 
     public function aprovacao()

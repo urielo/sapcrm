@@ -67,7 +67,7 @@ $(function () {
     panelproprietario.hide();
 
 
-    $(window).on('unload',function () {
+    $(window).on('unload', function () {
         $('.bgloading').fadeIn()
         $('#body').addClass('blur')
     })
@@ -651,6 +651,8 @@ $(function () {
                             })
                             $('#panelprodutosopcional').show();
                             set_produtos()
+                            $('#comissao').trigger('change');
+
                         }
 
 
@@ -757,12 +759,16 @@ $(function () {
                                 $($(id).attr('data-target')).attr('disabled', false)
                                 $(id).show()
                             }
-                        })
+                        });
+                        $('#comissao').trigger('change');
+
                     }
                 }
 
                 $('#valortotal').trigger('change');
                 $('#valor-comissao').trigger('change');
+                $('#comissao').trigger('change');
+
 
             })
 
@@ -797,7 +803,9 @@ $(function () {
                                 $(id_produto).prop('checked', true)
                                 $(id_produto).trigger('change')
                             }
-                        })
+                        });
+                        $('#comissao').trigger('change');
+
                     }
                 }
 
@@ -1352,119 +1360,123 @@ $(function () {
 
     $(':button').on('click', function () {
 
-        if ($(this).attr('id') == 'showinfo') {
-            $('.modal-content').empty()
-            $.ajax({
-                url: $(this).attr('href'),
-                type: 'GET',
-                success: function (retorno) {
+        if ($(this).attr('data-toggle') && $(this).attr('data-toggle') == 'modal') {
 
-                    $('.modal-content').html(retorno);
+            if ($(this).attr('id') == 'showinfo') {
+                $('.modal-content').empty()
+                $.ajax({
+                    url: $(this).attr('href'),
+                    type: 'GET',
+                    success: function (retorno) {
 
-
-                    return false;
-                }
-
-            });
-        } else if ($(this).attr('id') == 'erro') {
-            var idmsg = '#' + $(this).attr('message')
-            $('#msgdeerro').text($(idmsg).val())
-
-        } else if ($(this).attr('id') == 'xml') {
-            var idmsg = '#' + $(this).attr('message')
-            $('#msgdeerro').text($(idmsg).val())
-
-        } else if ($(this).attr('id') == 'cancelar') {
-
-            $.ajax({
-                url: $(this).attr('href'),
-                type: 'GET',
-                success: function (retorno) {
-                    $('.modal-content').html(retorno);
-
-                }
-
-            });
-
-        } else if ($(this).attr('id') == 'pagar') {
-
-            $.ajax({
-                url: $(this).attr('href'),
-                type: 'GET',
-                success: function (retorno) {
-                    $('.modal-content').html(retorno);
-
-                    $('.modal-content').on('mouseover', function () {
-                        var d = new Date();
-                        $('#nnmcartao').mask('9999 9999 9999 9999');
-                        $('#cvvcartao').mask('999');
+                        $('.modal-content').html(retorno);
 
 
-                        $('#valcartao').datepicker({
-                            format: "mm/yyyy",
-                            startView: 1,
-                            startDate: "-",
-                            minViewMode: 1,
-                            language: "pt-BR",
-                            autoclose: true,
-                            defaultViewDate: {year: d.getFullYear(), month: d.getMonth()}
-                        });
-                        $('#dataprimeira').datepicker({
-                            format: "dd/mm/yyyy",
-                            startView: 0,
-                            language: "pt-BR",
-                            startDate: "-",
-                            autoclose: true,
-                            defaultViewDate: {year: d.getFullYear(), month: d.getMonth(), day: d.getDay()}
-                        });
-                        $('#datademais').datepicker({
-                            format: "dd",
-                            language: "pt-BR",
-                            autoclose: true,
-                            defaultViewDate: {year: d.getFullYear(), month: d.getMonth(), day: d.getDay()}
-                        });
-                    })
-                }
+                        return false;
+                    }
 
-            });
+                });
+            } else if ($(this).attr('id') == 'erro') {
+                var idmsg = '#' + $(this).attr('message')
+                $('#msgdeerro').text($(idmsg).val())
 
-        } else if ($(this).attr('id') == 'comfirmapgto') {
+            } else if ($(this).attr('id') == 'xml') {
+                var idmsg = '#' + $(this).attr('message')
+                $('#msgdeerro').text($(idmsg).val())
 
-            $.ajax({
-                url: $(this).attr('href'),
-                type: 'GET',
-                success: function (retorno) {
-                    $('.modal-content').html(retorno);
+            } else if ($(this).attr('id') == 'cancelar') {
 
-                    $('.modal-content').on('mouseover', function () {
+                $.ajax({
+                    url: $(this).attr('href'),
+                    type: 'GET',
+                    success: function (retorno) {
+                        $('.modal-content').html(retorno);
 
-                        $(':input').each(function () {
+                    }
 
-                            if ($(this).attr('tipoinput') == "data-pagamento-boleto") {
+                });
 
-                                $(this).attr('placeholder', 'DD/MM/YYYY');
-                                setDateP('#' + $(this).attr('id'), 'pagamento-boleto')
-                                $(this).mask('99/99/9999')
+            } else if ($(this).attr('id') == 'pagar') {
 
-                            }
+                $.ajax({
+                    url: $(this).attr('href'),
+                    type: 'GET',
+                    success: function (retorno) {
+                        $('.modal-content').html(retorno);
+
+                        $('.modal-content').on('mouseover', function () {
+                            var d = new Date();
+                            $('#nnmcartao').mask('9999 9999 9999 9999');
+                            $('#cvvcartao').mask('999');
+
+
+                            $('#valcartao').datepicker({
+                                format: "mm/yyyy",
+                                startView: 1,
+                                startDate: "-",
+                                minViewMode: 1,
+                                language: "pt-BR",
+                                autoclose: true,
+                                defaultViewDate: {year: d.getFullYear(), month: d.getMonth()}
+                            });
+                            $('#dataprimeira').datepicker({
+                                format: "dd/mm/yyyy",
+                                startView: 0,
+                                language: "pt-BR",
+                                startDate: "-",
+                                autoclose: true,
+                                defaultViewDate: {year: d.getFullYear(), month: d.getMonth(), day: d.getDay()}
+                            });
+                            $('#datademais').datepicker({
+                                format: "dd",
+                                language: "pt-BR",
+                                autoclose: true,
+                                defaultViewDate: {year: d.getFullYear(), month: d.getMonth(), day: d.getDay()}
+                            });
+                        })
+                    }
+
+                });
+
+            } else if ($(this).attr('id') == 'comfirmapgto') {
+
+                $.ajax({
+                    url: $(this).attr('href'),
+                    type: 'GET',
+                    success: function (retorno) {
+                        $('.modal-content').html(retorno);
+
+                        $('.modal-content').on('mouseover', function () {
+
+                            $(':input').each(function () {
+
+                                if ($(this).attr('tipoinput') == "data-pagamento-boleto") {
+
+                                    $(this).attr('placeholder', 'DD/MM/YYYY');
+                                    setDateP('#' + $(this).attr('id'), 'pagamento-boleto')
+                                    $(this).mask('99/99/9999')
+
+                                }
+                            })
+
+                            // $('#datapgto').datepicker({
+                            //     format: "dd/mm/yyyy",
+                            //     startView: 0,
+                            //     language: "pt-BR",
+                            //     startDate: "-",
+                            //     autoclose: true,
+                            //     defaultViewDate: {year: d.getFullYear(), month: d.getMonth(), day: d.getDay()}
+                            // });
+
                         })
 
-                        // $('#datapgto').datepicker({
-                        //     format: "dd/mm/yyyy",
-                        //     startView: 0,
-                        //     language: "pt-BR",
-                        //     startDate: "-",
-                        //     autoclose: true,
-                        //     defaultViewDate: {year: d.getFullYear(), month: d.getMonth(), day: d.getDay()}
-                        // });
 
-                    })
+                    }
+
+                });
 
 
-                }
-
-            });
-
+            }
         } else if ($(this).attr('id') == 'fechasecesso') {
 
             $('#sucesso').hide();
@@ -1513,6 +1525,8 @@ $(function () {
         }
 
     });
+
+    $('.modal-content').draggable({srcoll: false});
 
     $('.modal-content').on('mouseover', function () {
         $('.input-group.date').datepicker({

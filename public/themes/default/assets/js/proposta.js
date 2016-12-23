@@ -116,7 +116,6 @@ $(function () {
     $('.cel').mask("9 9999-9999")
     $('.fixo').mask("9999-9999")
     $('.placa').mask("AAA-9999")
-    
 
 
     $('.input-group.date.nascimento').datepicker({
@@ -211,7 +210,7 @@ $(function () {
         })
     })
 
-    $('.button-proposta-enviar').click( function () {
+    $('.button-proposta-enviar').click(function () {
         $('.cpfcnpj').unmask(mask_cpfcnpj)
 
 
