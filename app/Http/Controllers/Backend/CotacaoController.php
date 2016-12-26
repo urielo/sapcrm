@@ -51,18 +51,22 @@ class CotacaoController extends Controller
 
     }
 
-    public function cotacoes()
+    public function cotacoes(Request $request)
     {
+        ini_set('max_execution_time', 0);
         $title = 'Ativas';
         $crypt = Crypt::class;
-        Cotacoes::where('dtvalidade', '<=', date('Y-m-d'))->where('idstatus', 9)->update(['idstatus' => 11]);
+        $end_date = date('Y-m-d');
+        $start_date = date('Y-m-d',strtotime('-30 days'));
+
+
 
         if (Auth::user()->hasRole('admin')) {
-            $cotacoes = Cotacoes::whereIn('idstatus', [9])->orderby('idcotacao', 'desc')->get();
+           $cotacoes = Cotacoes::whereIn('idstatus', [9])->whereBetween('dtcreate',[$start_date ,$end_date])->orderby('idcotacao', 'desc')->get();
         } elseif (Auth::user()->can('ver-todos-cotacoes')) {
-            $cotacoes = Cotacoes::where('idcorretor', Auth::user()->corretor->idcorretor)->whereNotNull('usuario_id')->whereIn('idstatus', [9])->orderby('idcotacao', 'desc')->get();
+            $cotacoes = Cotacoes::where('idcorretor', Auth::user()->corretor->idcorretor)->whereBetween('dtcreate',[$start_date ,$end_date])->whereNotNull('usuario_id')->whereIn('idstatus', [9])->orderby('idcotacao', 'desc')->get();
         } else {
-            $cotacoes = Cotacoes::where('usuario_id', Auth::user()->id)->whereNotNull('usuario_id')->whereIn('idstatus', [9])->orderby('idcotacao', 'desc')->get();
+            $cotacoes = Cotacoes::where('usuario_id', Auth::user()->id)->whereBetween('dtcreate',[$start_date ,$end_date])->whereNotNull('usuario_id')->whereIn('idstatus', [9])->orderby('idcotacao', 'desc')->get();
         }
 
 
@@ -71,18 +75,19 @@ class CotacaoController extends Controller
 
     public function vencidas()
     {
-
+        ini_set('max_execution_time', 0);
         $crypt = Crypt::class;
-        Cotacoes::where('dtvalidade', '<=', date('Y-m-d'))->update(['idstatus' => 11]);
         $title = 'Canceladas ou Vencidas';
+        $end_date = date('Y-m-d');
+        $start_date = date('Y-m-d',strtotime('-30 days'));
 
 
         if (Auth::user()->hasRole('admin')) {
-            $cotacoes = Cotacoes::whereNotIn('idstatus', [9, 10])->orderby('idcotacao', 'desc')->get();
+            $cotacoes = Cotacoes::whereNotIn('idstatus', [9, 10])->whereBetween('dtcreate',[$start_date ,$end_date])->orderby('idcotacao', 'desc')->get();
         } elseif (Auth::user()->can('ver-todos-cotacoes')) {
-            $cotacoes = Cotacoes::where('idcorretor', Auth::user()->corretor->idcorretor)->whereNotNull('usuario_id')->whereNotIn('idstatus', [9, 10])->orderby('idcotacao', 'desc')->get();
+            $cotacoes = Cotacoes::where('idcorretor', Auth::user()->corretor->idcorretor)->whereBetween('dtcreate',[$start_date ,$end_date])->whereNotNull('usuario_id')->whereNotIn('idstatus', [9, 10])->orderby('idcotacao', 'desc')->get();
         } else {
-            $cotacoes = Cotacoes::where('usuario_id', Auth::user()->id)->whereNotNull('usuario_id')->whereNotIn('idstatus', [9, 10])->orderby('idcotacao', 'desc')->get();
+            $cotacoes = Cotacoes::where('usuario_id', Auth::user()->id)->whereBetween('dtcreate',[$start_date ,$end_date])->whereNotNull('usuario_id')->whereNotIn('idstatus', [9, 10])->orderby('idcotacao', 'desc')->get();
         }
 
 
@@ -98,8 +103,6 @@ class CotacaoController extends Controller
         } Catch (DecryptException $e) {
             return abort(404);
         }
-
-
 
         $cotacao = Cotacoes::find($cotacao_id);
         $formas = [];

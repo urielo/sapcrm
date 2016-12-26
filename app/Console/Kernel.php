@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         // Commands\Inspire::class,
+        Commands\AtualizaVencidos::class,
     ];
 
     /**
@@ -26,5 +27,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+
+        $schedule->command('verificar:vencidas')->dailyAt('01:00');
     }
 }

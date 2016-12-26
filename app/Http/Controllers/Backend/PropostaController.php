@@ -213,8 +213,6 @@ class PropostaController extends Controller
     {
 
         $crypt = Crypt::class;
-        Propostas::where('dtvalidade', '<=', date('Y-m-d'))->where('idstatus', 10)->update(['idstatus' => 11]);
-
         $motivo = false;
 
         $title = 'Acompanhamento';
