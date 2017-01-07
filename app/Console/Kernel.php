@@ -28,6 +28,6 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
 
-        $schedule->command('verificar:vencidas')->dailyAt('01:00');
+        $schedule->command('verificar:vencidas')->everyMinute();
     }
 }

@@ -42,7 +42,9 @@ class AtualizaVencidos extends Command
      */
     public function handle()
     {
-        Cotacoes::where('dtvalidade', '<=', date('Y-m-d'))->where('idstatus',9)->update(['idstatus' => 11]);
+        
+        Cotacoes::where('dtvalidade', '<=', date('Y-m-d'))->where('idstatus', 9)->update(['idstatus' => 11,
+            'dtupdate' => date('Y-m-d H:i:s')]);
         Propostas::where('dtvalidade', '<=', date('Y-m-d'))->where('idstatus', 10)->update(['idstatus' => 11]);
 
     }

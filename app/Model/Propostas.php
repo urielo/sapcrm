@@ -31,7 +31,7 @@ class Propostas extends Model
 
     public function cotacao()
     {
-        return $this->belongsTo('App\Model\Cotacoes', 'idcotacao', 'idcotacao');
+        return $this->belongsTo('App\Model\Cotacoes', 'idcotacao', 'idcotacao')->with('segurado','status','veiculo','corretor');
     }
 
     public function cotacaoseguradora()
@@ -75,6 +75,14 @@ class Propostas extends Model
     public function motivos(){
         return $this->belongsTo('App\Model\Motivos','idmotivo','id');
 
+    }
+
+    /**
+     * @return array
+     */
+    public function cancelado()
+    {
+        return $this->hasOne(Cancelamentos::class,'cancelado_id','idproposta')->with('motivo');
     }
 
 

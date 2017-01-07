@@ -176,12 +176,12 @@ class ApolicesController extends Controller
 
     public function cancela($id)
     {
-
+        
     }
 
     public function cancelar($id)
     {
-
+        MotivosCancelamentoCertificado::class;
     }
 
     public function canceladas()

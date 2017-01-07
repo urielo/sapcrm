@@ -138,6 +138,7 @@ class PropostaController extends Controller
         $proposta_ws = json_decode(webserviceProposta($proposta, $url));
 
         if ($proposta_ws->cdretorno == '000') {
+            Propostas::where('idproposta',$proposta_ws->retorno->idproposta)->update(['usuario_id'=>Auth::user()->id]);
             return Redirect::route('proposta.sucesso', Crypt::encrypt($proposta_ws->retorno->idproposta));
         } else {
             $msg = '<strong>Status: </strong> ' . $proposta_ws->status;
@@ -218,13 +219,13 @@ class PropostaController extends Controller
         $title = 'Acompanhamento';
 
         if (Auth::user()->hasRole('admin')) {
-            $propostas = Propostas::whereNotIn('idstatus', [12, 11, 13, 18])->orderby('idproposta', 'desc')->get();
+            $propostas = Propostas::with('cotacao.segurado','status','motivos')->whereNotIn('idstatus', [12, 11, 13, 18])->orderby('idproposta', 'desc')->get();
         } elseif (Auth::user()->can('ver-todos-cotacoes')) {
-            $propostas = Propostas::whereHas('cotacao', function ($q) {
+            $propostas = Propostas::with('cotacao.segurado','status','motivos')->whereHas('cotacao', function ($q) {
                 $q->where('idcorretor', Auth::user()->corretor->idcorretor);
             })->whereNotIn('idstatus', [12, 11, 13, 18])->orderby('idproposta', 'desc')->get();
         } else {
-            $propostas = Propostas::whereHas('cotacao', function ($q) {
+            $propostas = Propostas::with('cotacao.segurado','status','motivos')->whereHas('cotacao', function ($q) {
                 $q->where('usuario_id', Auth::user()->id)->whereNotNull('usuario_id');
 
             })->whereNotIn('idstatus', [12, 11, 13, 18])->orderby('idcotacao', 'desc')->get();
@@ -237,18 +238,17 @@ class PropostaController extends Controller
     public function negativas()
     {
         $crypt = Crypt::class;
-        Propostas::where('dtvalidade', '<=', date('Y-m-d'))->where('idstatus', 10)->update(['idstatus' => 11]);
-
+        
         $motivo = true;
 
         $title = 'Canceladas, Recusadas e Vencidas';
 
         if (Auth::user()->can('ver-todos-cotacoes')) {
-            $propostas = Propostas::whereHas('cotacao', function ($q) {
+            $propostas = Propostas::with('cotacao.segurado','status','motivos')->whereHas('cotacao', function ($q) {
                 $q->where('idcorretor', Auth::user()->corretor->idcorretor);
             })->whereIn('idstatus', [12, 11, 13])->orderby('idproposta', 'desc')->get();
         } else {
-            $propostas = Propostas::whereHas('cotacao', function ($q) {
+            $propostas = Propostas::with('cotacao.segurado','status','motivos')->whereHas('cotacao', function ($q) {
                 $q->where('usuario_id', Auth::user()->id);
             })->whereIn('idstatus', [12, 11, 13])->orderby('idcotacao', 'desc')->get();
         }
