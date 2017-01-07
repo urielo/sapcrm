@@ -33,6 +33,8 @@ class StatusTableSeeder extends Seeder
             ["id" => 23, "descricao" => "FIPE exige Contingencia (segundo rastreador)"],
             ["id" => 24, "descricao" => "Falha na geração da apólice"],
             ["id" => 25, "descricao" => "Fim de virgência"],
+            ["id" => 26, "descricao" => "Movimento - Enviado"],
+            ["id" => 27, "descricao" => "Movimento - Retorno"],
             ["id" => 30, "descricao" => "Enviado - Aguardando Retorno"],
             ["id" => 31, "descricao" => "Enviado - Aceito"],
             ["id" => 32, "descricao" => "Enviado - Recusado"],
