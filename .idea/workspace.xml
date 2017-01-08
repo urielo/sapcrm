@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="158326c0-4f81-4588-bf4f-593b4ab725fa" name="Default" comment="Alterações nos viwes e criacoes de novos models">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Console/Commands/AtualizaFipeCarro.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Console/Kernel.php" afterPath="$PROJECT_DIR$/app/Console/Kernel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Backend/ApolicesController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/ApolicesController.php" />
     </list>
     <ignored path="sap.local.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,31 +34,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="cancelaapolices.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/backend/show/cancelaapolices.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="35" selection-start-line="6" selection-start-column="35" selection-end-line="6" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ApolicesController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/ApolicesController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="183" column="46" selection-start-line="183" selection-start-column="46" selection-end-line="183" selection-end-column="46" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StatusTableSeeder.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/database/seeds/StatusTableSeeder.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="40" column="71" selection-start-line="40" selection-start-column="71" selection-end-line="40" selection-end-column="71" />
+            <state relative-caret-position="1882">
+              <caret line="183" column="31" selection-start-line="183" selection-start-column="31" selection-end-line="183" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -64,68 +47,169 @@
       <file leaf-file-name="2017_01_07_133405_create_table_cancelamentos.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/database/migrations/2017_01_07_133405_create_table_cancelamentos.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
+            <state relative-caret-position="52">
               <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Cancelamentos.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Model/Cancelamentos.php">
+      <file leaf-file-name="2016_12_27_012158_alter_trigger_function_certificados.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/database/migrations/2016_12_27_012158_alter_trigger_function_certificados.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="80" selection-start-line="18" selection-start-column="80" selection-end-line="18" selection-end-column="80" />
+            <state relative-caret-position="91">
+              <caret line="14" column="22" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="22" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CategoriaFipes.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Model/CategoriaFipes.php">
+      <file leaf-file-name="AtualizaFipeCarro.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Console/Commands/AtualizaFipeCarro.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+            <state relative-caret-position="-520">
+              <caret line="53" column="61" selection-start-line="53" selection-start-column="61" selection-end-line="53" selection-end-column="61" />
+              <folding>
+                <element signature="e#40#71#0#PHP" expanded="true" />
+                <marker date="1483847868308" expanded="true" signature="1347:1411" ph="ALTER TABLE fipedbf... " />
+                <marker date="1483847868308" expanded="true" signature="1449:1547" ph="UPDATE fiped... " />
+                <marker date="1483847868308" expanded="true" signature="1585:1666" ph="UPDATE fiped... " />
+                <marker date="1483847868308" expanded="true" signature="1704:1757" ph="UPDATE fiped... " />
+                <marker date="1483847868308" expanded="true" signature="1795:1853" ph="UPDATE fiped... " />
+                <marker date="1483847868308" expanded="true" signature="1891:1949" ph="UPDATE fiped... " />
+                <marker date="1483847868308" expanded="true" signature="1987:2045" ph="UPDATE fiped... " />
+                <marker date="1483847868308" expanded="true" signature="2120:2159" ph="CREATE TABLE... fipeanovalor_atualizada" />
+                <marker date="1483847868308" expanded="true" signature="2197:2579" ph="SELECT &quot;COD_... " />
+                <marker date="1483847868308" expanded="true" signature="2756:2818" ph="INSERT INTO fipeanovalor... " />
+                <marker date="1483847868308" expanded="true" signature="2781:2818" ph="SELECT * FRO... fipeanovalor_atualizada" />
+                <marker date="1483847868308" expanded="true" signature="2944:3647" ph="INSERT INTO fipe... " />
+                <marker date="1483847868308" expanded="true" signature="2997:3554" ph="SELECT DISTI... fipedbf" />
+                <marker date="1483847868308" expanded="true" signature="3722:3765" ph="DROP TABLE f... " />
+                <marker date="1483847868308" expanded="true" signature="3722:3766" ph="UPDATE fiped... " />
+                <marker date="1483847868308" expanded="true" signature="4018:4066" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="4018:6411" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="6410:6411" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="6663:6691" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="6663:6769" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="6807:6914" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="6952:8021" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="8059:8196" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="8234:8376" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="8414:8628" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="8666:8864" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="8902:9046" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="9084:9226" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="9264:9426" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="9464:9607" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="9645:9893" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="9931:10075" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="10113:10254" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="10292:10434" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="10472:10655" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="10693:10872" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="10910:11051" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="11089:11351" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="11389:11529" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="11567:11848" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="11886:12027" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="12065:12208" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="12246:12410" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="12448:12590" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="12628:12856" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="12894:13035" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="13073:13215" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="13450:13594" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="13632:13776" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="13814:13977" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="14015:14159" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="14197:14361" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="14399:14567" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="14606:14790" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="14828:14970" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="15008:15281" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="15319:15508" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="15546:15714" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="15753:15920" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="15959:16105" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="16143:16397" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="16192:16396" ph="select codef... fipe" />
+                <marker date="1483847868308" expanded="true" signature="16435:16576" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="16614:16807" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="16845:16992" ph="update FIPE " />
+                <marker date="1483847868308" expanded="true" signature="17139:17207" ph="ALTER TABLE fipedbfmoto... " />
+                <marker date="1483847868308" expanded="true" signature="17245:17347" ph="UPDATE fiped... " />
+                <marker date="1483847868308" expanded="true" signature="17385:17470" ph="UPDATE fiped... " />
+                <marker date="1483847868308" expanded="true" signature="17508:17565" ph="UPDATE fiped... " />
+                <marker date="1483847868308" expanded="true" signature="17603:17665" ph="UPDATE fiped... " />
+                <marker date="1483847868308" expanded="true" signature="17703:17765" ph="UPDATE fiped... " />
+                <marker date="1483847868308" expanded="true" signature="17803:17865" ph="UPDATE fiped... " />
+                <marker date="1483847868308" expanded="true" signature="17940:17979" ph="CREATE TABLE... fipeanovalor_atualizada" />
+                <marker date="1483847868308" expanded="true" signature="18017:18403" ph="SELECT &quot;COD_... fipedbfmoto" />
+                <marker date="1483847868308" expanded="true" signature="18477:18539" ph="INSERT INTO fipeanovalor... " />
+                <marker date="1483847868308" expanded="true" signature="18502:18539" ph="SELECT * FRO... fipeanovalor_atualizada" />
+                <marker date="1483847868308" expanded="true" signature="18577:19284" ph="INSERT INTO fipe... " />
+                <marker date="1483847868308" expanded="true" signature="18630:19191" ph="SELECT DISTI... fipedbfmoto" />
+                <marker date="1483847868308" expanded="true" signature="19359:19406" ph="DROP TABLE f... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CotacaoCommand.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Console/Commands/CotacaoCommand.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Propostas.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Model/Propostas.php">
+      <file leaf-file-name="2016_12_23_024051_create_triggers_tables_certificados_propostas.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/database/migrations/2016_12_23_024051_create_triggers_tables_certificados_propostas.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1260">
-              <caret line="84" column="95" selection-start-line="84" selection-start-column="95" selection-end-line="84" selection-end-column="95" />
+            <state relative-caret-position="285">
+              <caret line="20" column="35" selection-start-line="20" selection-start-column="35" selection-end-line="20" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MotivosCancelamentoCertificado.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Model/MotivosCancelamentoCertificado.php">
+      <file leaf-file-name="StatusTableSeeder.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/database/seeds/StatusTableSeeder.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="36" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="36" />
+            <state relative-caret-position="622">
+              <caret line="51" column="9" selection-start-line="51" selection-start-column="9" selection-end-line="51" selection-end-column="9" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cancelapagamaneto.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/backend/show/cancelapagamaneto.blade.php">
+      <file leaf-file-name="Kernel.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Kernel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="690">
-              <caret line="46" column="19" selection-start-line="0" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+            <state relative-caret-position="-128">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <file leaf-file-name="Kernel.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Console/Kernel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1935">
-              <caret line="129" column="58" selection-start-line="129" selection-start-column="58" selection-end-line="129" selection-end-column="58" />
+            <state relative-caret-position="157">
+              <caret line="17" column="34" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AtualizaVencidos.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Console/Commands/AtualizaVencidos.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="307">
+              <caret line="45" column="51" selection-start-line="45" selection-start-column="51" selection-end-line="45" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -148,7 +232,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/backend/cotacao/show_email.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/cotacao/cotar.blade.php" />
         <option value="$PROJECT_DIR$/public/themes/default/assets/css/style.css" />
         <option value="$PROJECT_DIR$/resources/views/errors/503.blade.php" />
@@ -189,16 +272,17 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/CotacaoController.php" />
         <option value="$PROJECT_DIR$/database/migrations/2016_12_23_024051_create_triggers_tables_certificados_propostas.php" />
         <option value="$PROJECT_DIR$/database/migrations/2016_12_27_012158_alter_trigger_function_certificados.php" />
-        <option value="$PROJECT_DIR$/app/Console/Kernel.php" />
         <option value="$PROJECT_DIR$/app/Console/Commands/AtualizaVencidos.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/PropostaController.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/show/cancelaapolices.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/ApolicesController.php" />
         <option value="$PROJECT_DIR$/database/migrations/2017_01_07_133405_create_table_cancelamentos.php" />
         <option value="$PROJECT_DIR$/app/Model/Propostas.php" />
         <option value="$PROJECT_DIR$/app/Model/Cancelamentos.php" />
         <option value="$PROJECT_DIR$/database/seeds/StatusTableSeeder.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/ApolicesController.php" />
+        <option value="$PROJECT_DIR$/app/Console/Kernel.php" />
+        <option value="$PROJECT_DIR$/app/Console/Commands/AtualizaFipeCarro.php" />
       </list>
     </option>
   </component>
@@ -328,7 +412,83 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="database" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="migrations" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sap.local" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sap.local" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sap.local" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sap.local" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Http" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sap.local" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sap.local" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Console" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sap.local" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sap.local" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Console" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Commands" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -669,11 +829,15 @@
       <workItem from="1483744223093" duration="1970000" />
       <workItem from="1483793779616" duration="3875000" />
       <workItem from="1483797988993" duration="916000" />
+      <workItem from="1483799359112" duration="197000" />
+      <workItem from="1483803190604" duration="107000" />
+      <workItem from="1483830394860" duration="1885000" />
+      <workItem from="1483836374524" duration="10960000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1213382000" />
+    <option name="totallyTimeSpent" value="1226531000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -686,17 +850,17 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1366" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24981017" sideWeight="0.5051395" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25302115" sideWeight="0.4948605" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26812688" sideWeight="0.4948605" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32668713" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5927052" sideWeight="0.5027451" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930514" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32568806" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24941176" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17737003" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20336391" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930514" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297546" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -775,20 +939,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/helpers.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3570">
-          <caret line="238" column="20" selection-start-line="238" selection-start-column="20" selection-end-line="238" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/cotacao/negociacoes.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="35" column="30" selection-start-line="35" selection-start-column="30" selection-end-line="35" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/mail.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="855">
@@ -980,45 +1130,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2016_12_27_012158_alter_trigger_function_certificados.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="40" column="10" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2016_12_23_024051_create_triggers_tables_certificados_propostas.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="41" column="48" selection-start-line="41" selection-start-column="40" selection-end-line="41" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Console/Kernel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="30" column="64" selection-start-line="30" selection-start-column="64" selection-end-line="30" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Console/Commands/AtualizaVencidos.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="44" column="8" selection-start-line="44" selection-start-column="8" selection-end-line="44" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/CotacaoController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3071">
           <caret line="77" column="41" selection-start-line="77" selection-start-column="41" selection-end-line="77" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Console/Commands/CotacaoCommand.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-90">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1107,7 +1222,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1137,16 +1251,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Model/MotivosCancelamentoCertificado.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="36" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="36" />
+        <state relative-caret-position="135">
+          <caret line="9" column="37" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="37" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2017_01_07_133405_create_table_cancelamentos.php">
+    <entry file="file://$PROJECT_DIR$/app/Model/Propostas.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+        <state relative-caret-position="1260">
+          <caret line="84" column="95" selection-start-line="84" selection-start-column="95" selection-end-line="84" selection-end-column="95" />
           <folding />
         </state>
       </provider>
@@ -1167,27 +1281,164 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Model/Propostas.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Kernel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1260">
-          <caret line="84" column="95" selection-start-line="84" selection-start-column="95" selection-end-line="84" selection-end-column="95" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/ApolicesController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="183" column="46" selection-start-line="183" selection-start-column="46" selection-end-line="183" selection-end-column="46" />
+        <state relative-caret-position="-128">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/database/seeds/StatusTableSeeder.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="40" column="71" selection-start-line="40" selection-start-column="71" selection-end-line="40" selection-end-column="71" />
+        <state relative-caret-position="622">
+          <caret line="51" column="9" selection-start-line="51" selection-start-column="9" selection-end-line="51" selection-end-column="9" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2016_12_23_024051_create_triggers_tables_certificados_propostas.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="20" column="35" selection-start-line="20" selection-start-column="35" selection-end-line="20" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/ApolicesController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1882">
+          <caret line="183" column="31" selection-start-line="183" selection-start-column="31" selection-end-line="183" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2017_01_07_133405_create_table_cancelamentos.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="52">
+          <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2016_12_27_012158_alter_trigger_function_certificados.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="91">
+          <caret line="14" column="22" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Console/Kernel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="17" column="34" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Console/Commands/CotacaoCommand.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Console/Commands/AtualizaVencidos.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="45" column="51" selection-start-line="45" selection-start-column="51" selection-end-line="45" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Console/Commands/AtualizaFipeCarro.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-520">
+          <caret line="53" column="61" selection-start-line="53" selection-start-column="61" selection-end-line="53" selection-end-column="61" />
+          <folding>
+            <element signature="e#40#71#0#PHP" expanded="true" />
+            <marker date="1483847868308" expanded="true" signature="1347:1411" ph="ALTER TABLE fipedbf... " />
+            <marker date="1483847868308" expanded="true" signature="1449:1547" ph="UPDATE fiped... " />
+            <marker date="1483847868308" expanded="true" signature="1585:1666" ph="UPDATE fiped... " />
+            <marker date="1483847868308" expanded="true" signature="1704:1757" ph="UPDATE fiped... " />
+            <marker date="1483847868308" expanded="true" signature="1795:1853" ph="UPDATE fiped... " />
+            <marker date="1483847868308" expanded="true" signature="1891:1949" ph="UPDATE fiped... " />
+            <marker date="1483847868308" expanded="true" signature="1987:2045" ph="UPDATE fiped... " />
+            <marker date="1483847868308" expanded="true" signature="2120:2159" ph="CREATE TABLE... fipeanovalor_atualizada" />
+            <marker date="1483847868308" expanded="true" signature="2197:2579" ph="SELECT &quot;COD_... " />
+            <marker date="1483847868308" expanded="true" signature="2756:2818" ph="INSERT INTO fipeanovalor... " />
+            <marker date="1483847868308" expanded="true" signature="2781:2818" ph="SELECT * FRO... fipeanovalor_atualizada" />
+            <marker date="1483847868308" expanded="true" signature="2944:3647" ph="INSERT INTO fipe... " />
+            <marker date="1483847868308" expanded="true" signature="2997:3554" ph="SELECT DISTI... fipedbf" />
+            <marker date="1483847868308" expanded="true" signature="3722:3765" ph="DROP TABLE f... " />
+            <marker date="1483847868308" expanded="true" signature="3722:3766" ph="UPDATE fiped... " />
+            <marker date="1483847868308" expanded="true" signature="4018:4066" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="4018:6411" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="6410:6411" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="6663:6691" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="6663:6769" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="6807:6914" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="6952:8021" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="8059:8196" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="8234:8376" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="8414:8628" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="8666:8864" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="8902:9046" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="9084:9226" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="9264:9426" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="9464:9607" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="9645:9893" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="9931:10075" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="10113:10254" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="10292:10434" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="10472:10655" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="10693:10872" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="10910:11051" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="11089:11351" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="11389:11529" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="11567:11848" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="11886:12027" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="12065:12208" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="12246:12410" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="12448:12590" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="12628:12856" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="12894:13035" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="13073:13215" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="13450:13594" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="13632:13776" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="13814:13977" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="14015:14159" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="14197:14361" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="14399:14567" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="14606:14790" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="14828:14970" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="15008:15281" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="15319:15508" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="15546:15714" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="15753:15920" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="15959:16105" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="16143:16397" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="16192:16396" ph="select codef... fipe" />
+            <marker date="1483847868308" expanded="true" signature="16435:16576" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="16614:16807" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="16845:16992" ph="update FIPE " />
+            <marker date="1483847868308" expanded="true" signature="17139:17207" ph="ALTER TABLE fipedbfmoto... " />
+            <marker date="1483847868308" expanded="true" signature="17245:17347" ph="UPDATE fiped... " />
+            <marker date="1483847868308" expanded="true" signature="17385:17470" ph="UPDATE fiped... " />
+            <marker date="1483847868308" expanded="true" signature="17508:17565" ph="UPDATE fiped... " />
+            <marker date="1483847868308" expanded="true" signature="17603:17665" ph="UPDATE fiped... " />
+            <marker date="1483847868308" expanded="true" signature="17703:17765" ph="UPDATE fiped... " />
+            <marker date="1483847868308" expanded="true" signature="17803:17865" ph="UPDATE fiped... " />
+            <marker date="1483847868308" expanded="true" signature="17940:17979" ph="CREATE TABLE... fipeanovalor_atualizada" />
+            <marker date="1483847868308" expanded="true" signature="18017:18403" ph="SELECT &quot;COD_... fipedbfmoto" />
+            <marker date="1483847868308" expanded="true" signature="18477:18539" ph="INSERT INTO fipeanovalor... " />
+            <marker date="1483847868308" expanded="true" signature="18502:18539" ph="SELECT * FRO... fipeanovalor_atualizada" />
+            <marker date="1483847868308" expanded="true" signature="18577:19284" ph="INSERT INTO fipe... " />
+            <marker date="1483847868308" expanded="true" signature="18630:19191" ph="SELECT DISTI... fipedbfmoto" />
+            <marker date="1483847868308" expanded="true" signature="19359:19406" ph="DROP TABLE f... " />
+          </folding>
         </state>
       </provider>
     </entry>
