@@ -149,14 +149,14 @@ class AjaxController extends Controller
             }
 
 
-            foreach (PrecoProdutos::where('idproduto', '=', $produto->idproduto)->get() as $preco):
+            foreach ($produto->precoproduto as $preco):
                 $retorno[] = ['produtos' => $produto];
 
                 if($renova == 1){
                     $preco->premioliquidoproduto = $preco->premioliquidoproduto - Descontos::where('tipo','renova')->first()->valor;
                 }
 
-                if ($tipo == $produto->idtipoveiculo):
+                if ($tipo == $preco->idtipoveiculo):
                     if ($valor >= $preco->vlrfipeminimo && $valor <= $preco->vlrfipemaximo && $idade <= $preco->idadeaceitamax && $tipo == $preco->idtipoveiculo):
 
                         if ( $produto->idproduto == 1) {
@@ -178,7 +178,7 @@ class AjaxController extends Controller
 
 
                     endif;
-                elseif ($preco->idcategoria == $categoria):
+                elseif ($preco->idcategoria == $categoria && $tipo == $preco->idtipoveiculo):
                     $retorno[] = [
                         'html' => (string) view('backend.produto.div',compact('preco','produto')),
                         'acordion' => '#acordion' . $produto->idproduto,
@@ -189,7 +189,7 @@ class AjaxController extends Controller
                         'span' => "span-".$produto->idproduto."-".$preco->idprecoproduto,
                     ];
 
-                elseif ($tipo == $produto->idtipoveiculo):
+                elseif ($tipo == $preco->idtipoveiculo):
                     if ($idade >= $preco->idadeaceitamin && $idade <= $preco->idadeaceitamax && $tipo == $preco->idtipoveiculo):
                         $retorno[] = [
                             'html' => (string) view('backend.produto.div',compact('preco','produto')),
@@ -237,7 +237,7 @@ class AjaxController extends Controller
                     $preco;
                     #$retorno[] = ['produtos' => $produto];
 
-                    if ($valor >= $preco->vlrfipeminimo && $tipo == $produto->idtipoveiculo && $preco->idcategoria == ($preco->idcategoria == $categoria ? $categoria : null) && $valor <= $preco->vlrfipemaximo && $idade <= $preco->idadeaceitamax && $tipo == $preco->idtipoveiculo):
+                    if ($valor >= $preco->vlrfipeminimo && $tipo == $preco->idtipoveiculo && $preco->idcategoria == ($preco->idcategoria == $categoria ? $categoria : null) && $valor <= $preco->vlrfipemaximo && $idade <= $preco->idadeaceitamax && $tipo == $preco->idtipoveiculo):
 
                         $retorno[] = [
                             'html' => (string) view('backend.produto.div',compact('preco','produto')),
@@ -251,7 +251,7 @@ class AjaxController extends Controller
                         ];
 
 
-                    elseif ($tipo == $produto->idtipoveiculo && $preco->vlrfipeminimo == null && $preco->idcategoria == null && $idade >= $preco->idadeaceitamin && $idade <= $preco->idadeaceitamax && $tipo == $preco->idtipoveiculo):
+                    elseif ($tipo == $preco->idtipoveiculo && $preco->vlrfipeminimo == null && $preco->idcategoria == null && $idade >= $preco->idadeaceitamin && $idade <= $preco->idadeaceitamax && $tipo == $preco->idtipoveiculo):
                         $retorno[] = [
                             'html' => (string) view('backend.produto.div',compact('preco','produto')),
                             'acordion' => '#acordion' . $produto->idproduto,

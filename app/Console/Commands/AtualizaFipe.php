@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Mockery\CountValidator\Exception;
 
-class AtualizaFipeCarro extends Command
+class AtualizaFipe extends Command
 {
     /**
      * The name and signature of the console command.

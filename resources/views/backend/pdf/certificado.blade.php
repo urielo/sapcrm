@@ -524,10 +524,15 @@
                     </ol>
                 </li>
                 <li><b>Sinistros</b>
-                    <p>Ocorrendo sinistro, a <b>Central de Atendimento QBE (0800 723 2886) </b>deve ser comunicada
-                        direta e
-                        imediatamente pelos beneficiários do seguro e deverão enviar os seguintes documentos necessários
-                        para a análise dos eventos:</p>
+                    <p>Ocorrendo sinistro, a <b>Central de Atendimento SKYPROTECTION (0800 7725 099)</b> deve ser <b>comunicada
+                            direta e imediatamente</b> pelos beneficiários do seguro e se dentro do prazo de 15 dias,
+                        não for
+                        localizado seu veículo, os beneficiários deverão ligar para a <b>Central de Atendimento QBE
+                            (0800
+                            723 2886)</b> – <b>opção ”3” = “SINISTRO” </b>e depois <b>opção “2” = “DAR ENTRADA EM SEU
+                            SINISTRO”</b> – para dar
+                        entrada no seu SINISTRO, assim como deverão enviar os seguintes documentos necessários para a
+                        análise dos eventos:</p>
                     <p><b>Para a abertura do sinistro enviar os seguintes documentos básicos:</b>
                     <ol type="a">
                         <li>Cópia simples do RG, CPF ou CNH do segurado reclamante;</li>
@@ -579,7 +584,9 @@
                             seguradora;
                         </li>
                     </ol>
+
                     </p>
+
 
                     <p>
                         <b>Além dos documentos básicos, o segurado deverá apresentar ainda de acordo com a cobertura de
@@ -618,6 +625,10 @@
                         </li>
                     </ol>
                     </p>
+
+                    <p>A documentação deverá ser enviada como CARTA REGISTRADA ou via SEDEX para QBE BRASIL SEGUROS,
+                        Praça General Gentil Falcão, N.108 – 1º. And. Bairro Cidade Monções – São Paulo/SP – CEP
+                        04571-150</p>
 
                     <p><b> A documentação citada acima é referencial, pois, durante a análise e regulação do sinistro,
                             outros documentos poderão ser solicitados para a elucidação e/ou comprovação do sinistro,

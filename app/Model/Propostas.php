@@ -82,7 +82,7 @@ class Propostas extends Model
      */
     public function cancelado()
     {
-        return $this->hasOne(Cancelamentos::class,'cancelado_id','idproposta')->with('motivo');
+        return $this->hasOne(Cancelamentos::class,'cancelado_id','idproposta')->where('cancelado_desc','proposta')->with('motivo');
     }
 
 

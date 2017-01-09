@@ -37,7 +37,7 @@
 
                         <td>
                             <div class="btn-group btn-group-xs">
-                                <a class="btn btn-danger"
+                                <a class="btn btn-info"
                                    href="{{route('proposta.pdf',$crypt::encrypt($proposta->idproposta))}}"
                                    target="_blank">
                                     <span
@@ -45,6 +45,15 @@
                                             aria-hidden="true"></span> PDF
 
                                 </a>
+
+                                @if($proposta->idstatus == 10)
+                                    <a class="btn btn-danger"
+                                       href="{{route('proposta.cancela',$crypt::encrypt($proposta->idproposta))}}"
+                                       target="_blank">
+                                        Cancelar
+
+                                    </a>
+                                @endif
 
                                 {{--<a class="btn btn-success"--}}
                                 {{--href="{{route('cotacao.reemitir',$crypt::encrypt($cotacao->idcotacao))}}"--}}

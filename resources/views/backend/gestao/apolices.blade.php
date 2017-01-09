@@ -14,79 +14,98 @@
                     <th>#ID</th>
                     <th>Segurado</th>
                     <th>Placa</th>
-                    <th>Certificado</th>
+                    @if($apolices)
+                        <th>Proposta</th>
+                        <th>Certificado</th>
+                    @endif
                     <th class="hidden-xs">Corretor</th>
                     <th>{{isset($status) && $status ? 'Status': null}}</th>
                 </thead>
                 <tbody>
 
+                @if($propostas)
+                    @foreach($propostas as $proposta)
+                        <tr>
+                            <th>{{$proposta->idproposta}}</th>
+                            <td><a href="#{{$proposta->cotacao->segurado->clicpfcnpj}}">
+                                    {{nomeCase($proposta->cotacao->segurado->clinomerazao)}}
+                                </a></td>
+                            <td><a href="#{{$proposta->cotacao->veiculo->veicid}}">
+                                    {{format('placa',$proposta->cotacao->veiculo->veicplaca)}}
+                                </a></td>
+                            <td><a href="#{{$proposta->cotacao->corretor->idcorretor}}">
+                                    {{nomeCase($proposta->cotacao->corretor->corrnomerazao)}}
+                                </a></td>
+                            <td>
 
-                @foreach($propostas as $proposta)
-                    <tr>
-                        <th>{{$proposta->idproposta}}</th>
-                        <td><a href="#{{$proposta->cotacao->segurado->clicpfcnpj}}">
-                                {{nomeCase($proposta->cotacao->segurado->clinomerazao)}}
-                            </a></td>
-                        <td><a href="#{{$proposta->cotacao->veiculo->veicid}}">
-                                {{format('placa',$proposta->cotacao->veiculo->veicplaca)}}
-                            </a></td>
-                        <td>{{$proposta->certificado->id}}</td>
-                        <td><a href="#{{$proposta->cotacao->corretor->idcorretor}}">
-                                {{nomeCase($proposta->cotacao->corretor->corrnomerazao)}}
-                            </a></td>
-                        <td>
+                                <div class="btn-group" role="group">
+                                    <a type="button" class="btn btn-info btn-sm" data-toggle="modal"
+                                       data-target=".modal-show"
+                                       href="{{route('apolices.show',$proposta->idproposta)}}"
+                                       id="showinfo">Emitir
+                                    </a>
+                                    <a type="button" class="btn btn-danger btn-sm"
+                                       data-toggle="modal"
+                                       data-target=".modal-show"
+                                       href="{{route('proposta.cancela',$crypt::encrypt($proposta->idproposta))}}"
+                                       id="">Cancelar
+                                    </a>
+                                </div>
 
-                            <div class="btn-group" role="group">
+                            </td>
+                        </tr>
+                    @endforeach
+                @elseif($apolices)
+                    @foreach($apolices as $apolice)
+                        <tr>
+                            <th>{{$apolice->id}}</th>
+                            <td><a href="#{{$apolice->proposta->cotacao->segurado->clicpfcnpj}}">
+                                    {{nomeCase($apolice->proposta->cotacao->segurado->clinomerazao)}}
+                                </a>
+                            </td>
+                            <td><a href="#{{$apolice->proposta->cotacao->veiculo->veicid}}">
+                                    {{format('placa',$apolice->proposta->cotacao->veiculo->veicplaca)}}
+                                </a>
+                            </td>
+                            <td><a href="#">
+                                    {{$apolice->id_proposta_sap}}
+                                </a>
+                            </td>
+                            <td><a href="#">
+                                    {{$apolice->id_apolice_seguradora}}
+                                </a>
+                            </td>
+                            <td><a href="#{{$apolice->proposta->cotacao->corretor->idcorretor}}">
+                                    {{nomeCase($apolice->proposta->cotacao->corretor->corrnomerazao)}}
+                                </a>
+                            </td>
+
+                            <td>
 
                                 @if($status)
-                                    {{$proposta->certificado->status->descricao }}
+                                    {{$apolice->cancelado->motivo->descricao}}
                                 @else
-                                    @if($proposta->idstatus == 15)
-                                        <a type="button" class="btn btn-info btn-sm" data-toggle="modal"
-                                           data-target=".modal-show"
-                                           href="{{route('apolices.show',$proposta->idproposta)}}"
-                                           id="showinfo">Emitir
-                                        </a>
-                                        <a type="button" class="btn btn-danger btn-sm"
-                                           {{--data-toggle="modal"--}}
-                                           {{--data-target=".modal-show"--}}
-                                           href="#"
-                                           id="">Cancelar
-                                        </a>
-                                    @elseif($proposta->idstatus == 24)
-                                        <a type="button" class="btn btn-info btn-sm" data-toggle="modal"
-                                           data-target=".modal-show"
-                                           href="{{route('apolices.show',$proposta->idproposta)}}"
-                                           id="showinfo">Emitir
-                                        </a>
-                                        <a type="button" class="btn btn-danger btn-sm"
-                                           {{--data-toggle="modal"--}}
-                                           {{--data-target=".modal-show"--}}
-                                           href="#"
-                                           id="">Cancelar
-                                        </a>
-                                    @elseif($proposta->idstatus == 18)
+                                    <div class="btn-group" role="group">
                                         <a type="button" class="btn btn-success btn-sm" data-toggle="modal"
                                            data-target=".modal-show"
-                                           href="{{route('apolices.showemiditas',$proposta->idproposta)}}"
+                                           href="{{route('apolices.showemiditas',$apolice->id_proposta_sap)}}"
                                            id="showinfo">Apolices
                                         </a>
                                         <a type="button" class="btn btn-danger btn-sm"
-                                           {{--data-toggle="modal"--}}
-                                           {{--data-target=".modal-show"--}}
-                                           href="#"
+                                           data-toggle="modal"
+                                           data-target=".modal-show"
+                                           href="{{route('apolices.cancela',$crypt::encrypt($apolice->id))}}"
                                            id="">Cancelar
                                         </a>
-
-                                    @endif
+                                    </div>
                                 @endif
+                            </td>
+                        </tr>
+                    @endforeach
+
+                @endif
 
 
-                            </div>
-
-                        </td>
-                    </tr>
-                @endforeach
                 </tbody>
             </table>
         </div>

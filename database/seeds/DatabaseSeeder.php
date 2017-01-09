@@ -19,5 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ConfigTablesConfigs::class);
         $this->call(MotivosCancelamentoCertificadoTableSeeder::class);
         $this->call(StatusTableSeeder::class);
+        $this->call(PrecoProdutoTableSeeder::class);
+        $this->call(CreateTriggersFuntionsSeeder::class);
     }
 }

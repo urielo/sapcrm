@@ -73,6 +73,7 @@ class CertificadoController extends Controller
         $apolice->dt_instalacao_rastreador = $date;
         $apolice->dt_ativa_rastreador = $date;
         $apolice->dt_inicio_comodato = $date;
+        $apolice->status_id = 18;
         $apolice->dt_fim_comodato = date('Ymd', strtotime('+1 year', strtotime($this->certificado->dt_inicio_virgencia)));
 
         $this->proposta->apoliceseguradora()->save($apolice);

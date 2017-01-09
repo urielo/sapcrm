@@ -2,7 +2,13 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Model\Cancelamentos;
+use App\Model\MotivosCancelamentoCertificado;
+use App\Model\Status;
+use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
 use Illuminate\Support\Facades\Redirect;
@@ -18,6 +24,7 @@ use App\Http\Requests;
 
 use App\Http\Controllers\Controller;
 use App\Model\FipeAnoValor;
+use Illuminate\View\View;
 
 class ApolicesController extends Controller
 {
@@ -162,7 +169,10 @@ class ApolicesController extends Controller
             ->orderBy('idproposta', 'asc')
             ->get();
 
-        return view('backend.gestao.apolices', compact('propostas'));
+        $apolices = ApolicesSeguradora::where('status_id',18)->with('proposta','certificado')->get();
+        $crypt = Crypt::class;
+
+        return view('backend.gestao.apolices', compact('apolices','crypt'));
     }
 
     public function aemitir()
@@ -170,29 +180,80 @@ class ApolicesController extends Controller
         $propostas = Propostas::whereIn('idstatus', [15, 24])
             ->orderBy('idproposta', 'asc')
             ->get();
+        $crypt = Crypt::class;
 
-        return view('backend.gestao.apolices', compact('propostas'));
+        return view('backend.gestao.apolices', compact('propostas','crypt'));
     }
 
     public function cancela($id)
     {
+       
+        try{
+            $motivos = MotivosCancelamentoCertificado::lists('descricao','id');
+
+            $apolice = ApolicesSeguradora::find(Crypt::decrypt($id));
+            $route= 'apolices.cancelar';
+            $tipo = 'Apolice';
+            if($apolice){
+                
+                return view('backend.show.cancelaapolices',compact('apolice','motivos','route','tipo'));
+
+            }else{
+                return 0 ;
+            }            
+        }catch (DecryptException $e){
+            return 0 ;
+        }
         
+
+
+
     }
 
-    public function cancelar($id)
+    public function cancelar(Request $request)
     {
-        MotivosCancelamentoCertificado::lists('');
+        try{
+            DB::beginTransaction();
+            $apolice = ApolicesSeguradora::find($request->id);
+            $cancelamento = new Cancelamentos;
+            $cancelamento->motivo_id = $request->motivo;
+            $cancelamento->cancelado_desc = 'apolice';
+            $apolice->cancelado()->save($cancelamento);
+            $apolice->status_id = 12;
+
+            if($apolice->certificado->status_id == 1){
+                $apolice->certificado->status_id = 12;
+            } else{
+                $apolice->certificado->status_id = 40;
+            }
+            $apolice->certificado->save();
+            $apolice->save();
+
+
+            DB::commit();
+
+            return Redirect::back()->with('sucesso','Operação realizada com sucesso!');
+
+        }catch (QueryException $e){
+
+            DB::rollback();
+            return Redirect::back()->with('Error','Erro ao tentar cancelar por favor tente novamente mais tarde!');
+        }
     }
 
     public function canceladas()
     {
 
-        $propostas = Propostas::whereHas('certificado', function ($q) {
-            $q->whereIn('status_id', [28, 30, 31, 33, 34, 12]);
-        })->orderBy('idproposta', 'asc')
-            ->get();
+        $status = Status::where('descricao','ilike','%cancelad%')
+            ->orWhere('descricao','ilike','%inati%')
+            ->orWhere('descricao','ilike','%vencid%')
+            ->orWhere('descricao','ilike','%recusad%')
+            ->lists('id');
+
+        $apolices = ApolicesSeguradora::whereIn('status_id',$status)->with('proposta','certificado','cancelado')->orderBy('id', 'asc')->get();
+
         $status = true;
-        return view('backend.gestao.apolices', compact('propostas', 'status'));
+        return view('backend.gestao.apolices', compact('apolices', 'status'));
 
     }
 }

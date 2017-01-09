@@ -124,7 +124,7 @@ Route::group(['prefix' => 'apolices', 'middleware' => 'auth'], function () {
         'middleware' => ['permission:apolices-canceladas'],
         'as' => 'apolices.cancela',
         'uses' => 'Backend\ApolicesController@cancela']);
-    Route::get('cancelar/', [
+    Route::post('cancelar/', [
         'middleware' => ['permission:apolices-canceladas'],
         'as' => 'apolices.cancelar',
         'uses' => 'Backend\ApolicesController@cancelar']);
@@ -234,6 +234,15 @@ Route::group(['prefix' => 'proposta', 'middleware' => 'auth'], function () {
         'middleware' => ['permission:proposta'],
         'as' => 'show.proposta',
         'uses' => 'Backend\ShowsController@proposta']);
+
+    Route::get('cancela/{id}', [
+        'middleware' => ['permission:apolices-canceladas'],
+        'as' => 'proposta.cancela',
+        'uses' => 'Backend\PropostaController@cancela']);
+    Route::post('cancelar/', [
+        'middleware' => ['permission:apolices-canceladas'],
+        'as' => 'proposta.cancelar',
+        'uses' => 'Backend\PropostaController@cancelar']);
 
 });
 

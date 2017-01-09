@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Model\PrecoProdutos;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Backend\Controller;
@@ -34,45 +35,10 @@ class TesteController extends Controller
     public function index(TipoUtilizacaoVeic $tipoutilizacao, TipoVeiculos $tipos, FormaPagamento $formas)
     {
 
+        echo'<pre>';
+        var_dump(PrecoProdutos::orderBy('idproduto','ASC')->orderBy('idprecoproduto','ASC')->get()->toArray());
+        echo'</pre>';
 
-//        $a = 0;
-//        $b = 1;
-//        echo $a . '<br>';
-//        echo $b . '<br><b>';
-//        while ($b < 5000) {
-//            $c = $a + $b;
-//            echo $c . '<br>';
-//            $a = $b;
-//            $b = $c;
-//
-//        }
-//
-//        echo '<br>';
-
-        $id = 7673;
-
-
-        echo ' <a href="' . route('proposta.index', ['id' => Crypt::encrypt($id)]) . '">proposta</a>';
-        echo ' <a href="' . route('cotacao.sucesso', Crypt::encrypt($id)) . '">sucesso</a>';
-        $opcionais = [];
-
-//        $opcionais[] = 1;
-//        $opcionais[] = 2;
-        if (count($opcionais)) {
-            echo json_encode($opcionais);
-
-        }
-        echo '<pre>';
-//        print_r(geraParcelas(4505.56, 13, 3, 2.5, 349, 2));
-        echo '</pre>';
-        abort(404);
-
-
-//        echo $id_hidden = Crypt::encrypt($id);
-//        echo '<br>';
-//        echo Crypt::decrypt($id_hidden);
-
-//        return view('backend.cotacao.cotar',compact('tipos','tipoutilizacao', 'formas'));
 
     }
 

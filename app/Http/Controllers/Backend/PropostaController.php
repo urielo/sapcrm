@@ -2,23 +2,28 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Model\Cancelamentos;
 use App\Model\Config;
 use App\Model\Cotacoes;
 use App\Model\EstadosCivis;
 use App\Model\FormaPagamento;
+use App\Model\MotivosCancelamentoCertificado;
 use App\Model\OrgaoEmissors;
 use App\Model\Profissoes;
 use App\Model\Propostas;
 use App\Model\RamoAtividades;
+use App\Model\Status;
 use App\Model\TipoUtilizacaoVeic;
 use App\Model\Uf;
 use Illuminate\Contracts\Encryption\DecryptException;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
 class PropostaController extends Controller
@@ -138,7 +143,7 @@ class PropostaController extends Controller
         $proposta_ws = json_decode(webserviceProposta($proposta, $url));
 
         if ($proposta_ws->cdretorno == '000') {
-            Propostas::where('idproposta',$proposta_ws->retorno->idproposta)->update(['usuario_id'=>Auth::user()->id]);
+            Propostas::where('idproposta', $proposta_ws->retorno->idproposta)->update(['usuario_id' => Auth::user()->id]);
             return Redirect::route('proposta.sucesso', Crypt::encrypt($proposta_ws->retorno->idproposta));
         } else {
             $msg = '<strong>Status: </strong> ' . $proposta_ws->status;
@@ -218,17 +223,23 @@ class PropostaController extends Controller
 
         $title = 'Acompanhamento';
 
+        $status = Status::where('descricao','ilike','%cancelad%')
+            ->orWhere('descricao','ilike','%inati%')
+            ->orWhere('descricao','ilike','%vencida%')
+            ->orWhere('descricao','ilike','%recusad%')
+            ->lists('id');
+
         if (Auth::user()->hasRole('admin')) {
-            $propostas = Propostas::with('cotacao.segurado','status','motivos')->whereNotIn('idstatus', [12, 11, 13, 18])->orderby('idproposta', 'desc')->get();
+            $propostas = Propostas::with('cotacao.segurado', 'status', 'motivos')->whereNotIn('idstatus', $status)->orderby('idproposta', 'desc')->get();
         } elseif (Auth::user()->can('ver-todos-cotacoes')) {
-            $propostas = Propostas::with('cotacao.segurado','status','motivos')->whereHas('cotacao', function ($q) {
+            $propostas = Propostas::with('cotacao.segurado', 'status', 'motivos')->whereHas('cotacao', function ($q) {
                 $q->where('idcorretor', Auth::user()->corretor->idcorretor);
-            })->whereNotIn('idstatus', [12, 11, 13, 18])->orderby('idproposta', 'desc')->get();
+            })->whereNotIn('idstatus', $status)->orderby('idproposta', 'desc')->get();
         } else {
-            $propostas = Propostas::with('cotacao.segurado','status','motivos')->whereHas('cotacao', function ($q) {
+            $propostas = Propostas::with('cotacao.segurado', 'status', 'motivos')->whereHas('cotacao', function ($q) {
                 $q->where('usuario_id', Auth::user()->id)->whereNotNull('usuario_id');
 
-            })->whereNotIn('idstatus', [12, 11, 13, 18])->orderby('idcotacao', 'desc')->get();
+            })->whereNotIn('idstatus', $status)->orderby('idcotacao', 'desc')->get();
         }
 
 
@@ -238,23 +249,74 @@ class PropostaController extends Controller
     public function negativas()
     {
         $crypt = Crypt::class;
-        
+
         $motivo = true;
+
+        $status = Status::where('descricao','ilike','%cancelad%')
+            ->orWhere('descricao','ilike','%inati%')
+            ->orWhere('descricao','ilike','%vencid%')
+            ->orWhere('descricao','ilike','%recusad%')
+            ->lists('id');
 
         $title = 'Canceladas, Recusadas e Vencidas';
 
         if (Auth::user()->can('ver-todos-cotacoes')) {
-            $propostas = Propostas::with('cotacao.segurado','status','motivos')->whereHas('cotacao', function ($q) {
+            $propostas = Propostas::with('cotacao.segurado', 'status', 'motivos','cancelado')->whereHas('cotacao', function ($q) {
                 $q->where('idcorretor', Auth::user()->corretor->idcorretor);
-            })->whereIn('idstatus', [12, 11, 13])->orderby('idproposta', 'desc')->get();
+            })->whereIn('idstatus', $status)->orderby('idproposta', 'desc')->get();
         } else {
-            $propostas = Propostas::with('cotacao.segurado','status','motivos')->whereHas('cotacao', function ($q) {
+            $propostas = Propostas::with('cotacao.segurado', 'status', 'motivos','cancelado')->whereHas('cotacao', function ($q) {
                 $q->where('usuario_id', Auth::user()->id);
-            })->whereIn('idstatus', [12, 11, 13])->orderby('idcotacao', 'desc')->get();
+            })->whereIn('idstatus', $status)->orderby('idcotacao', 'desc')->get();
         }
 
 
         return view('backend.proposta.listas', compact('propostas', 'motivo', 'crypt', 'title'));
     }
 
+    public function cancela($id)
+    {
+        try{
+
+            $motivos = MotivosCancelamentoCertificado::lists('descricao','id');
+
+            $proposta = Propostas::find(Crypt::decrypt($id));
+            $route= 'proposta.cancelar';
+            $tipo = 'Proposta';
+
+            if($proposta){
+
+                return view('backend.show.cancelaapolices',compact('proposta','motivos','route','tipo'));
+
+            }else{
+                return 0 ;
+            }
+        }catch (DecryptException $e){
+            return 0 ;
+        }
+    }
+
+    public function cancelar(Request $request)
+    {
+        try{
+            DB::beginTransaction();
+            $proposta = Propostas::find($request->id);
+            $cancelamento = new Cancelamentos;
+            $cancelamento->motivo_id = $request->motivo;
+            $cancelamento->cancelado_desc = 'proposta';
+            $proposta->cancelado()->save($cancelamento);
+            $proposta->idstatus = 12;
+            $proposta->save();
+
+            DB::commit();
+            return Redirect::back()->with('sucesso','Operação realizada com sucesso!');
+
+
+        }catch (QueryException $e){
+
+            DB::rollback();
+            return Redirect::back()->with('Error','Erro ao tentar cancelar por favor tente novamente mais tarde!');
+
+        }
+    }
 }
