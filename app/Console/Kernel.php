@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
         // Commands\Inspire::class,
         Commands\AtualizaVencidos::class,
         Commands\AtualizaFipe::class,
+        Commands\GenerateKeyTeste::class,
     ];
 
     /**

@@ -46,7 +46,7 @@
 
                                 </a>
 
-                                @if($proposta->idstatus == 10)
+                                @if(in_array($proposta->idstatus,[10,14]))
                                     <a class="btn btn-danger"
                                        href="{{route('proposta.cancela',$crypt::encrypt($proposta->idproposta))}}"
                                        target="_blank">

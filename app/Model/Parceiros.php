@@ -34,6 +34,11 @@ class Parceiros extends Model
         $this->hasMany('App\Model\Corretores', 'idparceiro', 'idparceiro');
     }
 
+    public function key()
+    {
+        return $this->hasOne('App\Model\Key','user_id','idparceiro');
+    }
+
 
 
 
