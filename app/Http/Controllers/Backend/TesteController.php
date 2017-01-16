@@ -35,9 +35,12 @@ class TesteController extends Controller
     public function index(TipoUtilizacaoVeic $tipoutilizacao, TipoVeiculos $tipos, FormaPagamento $formas)
     {
 
-        echo'<pre>';
-        var_dump(PrecoProdutos::orderBy('idproduto','ASC')->orderBy('idprecoproduto','ASC')->get()->toArray());
-        echo'</pre>';
+        echo '<pre>';
+//        var_dump(PrecoProdutos::orderBy('idproduto','ASC')->orderBy('idprecoproduto','ASC')->get()->toArray());
+
+
+        echo json_encode(json_decode(Logs::find(56398)->params), JSON_PRETTY_PRINT);
+        echo '</pre>';
 
 
     }

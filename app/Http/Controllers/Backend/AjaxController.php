@@ -29,6 +29,7 @@ class AjaxController extends Controller
             ->where('modelo', 'ilike', "%{$like}%")
             ->Orwhere('marca', 'ilike', "%{$like}%")
             ->where('tipoveiculo_id', $tipo)
+            ->where('idstatus','!=',29)
             ->take(100)
             ->orderBy('marca', 'ASC')
             ->orderBy('modelo', 'ASC')
