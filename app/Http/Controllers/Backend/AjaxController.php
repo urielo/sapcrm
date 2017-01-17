@@ -27,6 +27,8 @@ class AjaxController extends Controller
         $like = $request->input('term');
         $fipe = Fipes::where('tipoveiculo_id', $tipo)
             ->where('modelo', 'ilike', "%{$like}%")
+            ->where('idstatus','!=',29)
+            ->where('tipoveiculo_id', $tipo)
             ->Orwhere('marca', 'ilike', "%{$like}%")
             ->where('tipoveiculo_id', $tipo)
             ->where('idstatus','!=',29)
