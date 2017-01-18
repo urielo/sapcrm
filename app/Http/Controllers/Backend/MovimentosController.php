@@ -13,6 +13,7 @@ class MovimentosController extends Controller
     public function emitidos()
     {
         $movimentos = Movimentos::where('tipo_envio','emitidos')->get();
+        $title = 'Emitidos';
 
         $dados = [];
         foreach ($movimentos as $movimento){
@@ -47,13 +48,15 @@ class MovimentosController extends Controller
 
         }
 
-        return view('backend.movimentos.listas', compact('dados'));
+        return view('backend.movimentos.listas', compact('dados','title'));
 
 
     }
     public function cancelados()
     {
         $movimentos = Movimentos::where('tipo_envio','!=','emitidos')->get();
+        $title = 'Cancelados';
+
 
         $dados = [];
         foreach ($movimentos as $movimento){
@@ -88,7 +91,7 @@ class MovimentosController extends Controller
 
         }
 
-        return view('backend.movimentos.listas', compact('dados'));
+        return view('backend.movimentos.listas', compact('dados','title'));
 
 
     }

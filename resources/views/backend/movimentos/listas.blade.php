@@ -2,7 +2,7 @@
 
 
 @section('panelcolor','info')
-@section('heading','Movimentos')
+@section('heading','Movimentos ' . $title)
 @section('contentSeg')
 
     <div class="col-md-12">
