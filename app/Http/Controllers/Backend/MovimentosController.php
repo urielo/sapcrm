@@ -10,13 +10,86 @@ use App\Http\Controllers\Controller;
 
 class MovimentosController extends Controller
 {
-    public function index()
+    public function emitidos()
     {
-        $movimentos = Movimentos::all();
+        $movimentos = Movimentos::where('tipo_envio','emitidos')->get();
 
-
+        $dados = [];
         foreach ($movimentos as $movimento){
-            
+            $envados = json_decode($movimento->datas_enviadas);
+            foreach ($envados->retorno as  $enviado){
+                $dados[(int)$enviado->numero_certificado]['certificado']= (int)$enviado->numero_certificado;
+                $dados[(int)$enviado->numero_certificado]['lote']= $movimento->id;
+                $dados[(int)$enviado->numero_certificado]['placa']= format('placa',$enviado->placa);
+                $dados[(int)$enviado->numero_certificado]['segurado']= nomeCase($enviado->nome);
+                $dados[(int)$enviado->numero_certificado]['enviado']= showDate($movimento->dt_envio);
+                $dados[(int)$enviado->numero_certificado]['retorno']= '';
+                $dados[(int)$enviado->numero_certificado]['desc_retorno']= '';
+                $dados[(int)$enviado->numero_certificado]['tipo']= ucfirst($movimento->tipo_envio);
+                $dados[(int)$enviado->numero_certificado]['status']= 'Movimento - Enviado';
+
+            }
+
+            if($movimento->status_id != 26 ){
+                $datas = json_decode($movimento->datas_recebidas);
+                $retornos = isset($datas->retorno) ? $datas->retorno : $datas;
+
+                foreach ($retornos as $retorno){
+                    $dados[(int)$retorno->numero_certificado]['status']= 'Movimento - Retorno';
+                    $dados[(int)$retorno->numero_certificado]['desc_retorno']= strlen($retorno->texto) > 1 ? $retorno->texto : 'Sucesso';
+                    $dados[(int)$retorno->numero_certificado]['retorno']= showDate($movimento->dt_envio);
+
+                }
+
+            }
+
+
+
         }
+
+        return view('backend.movimentos.listas', compact('dados'));
+
+
+    }
+    public function cancelados()
+    {
+        $movimentos = Movimentos::where('tipo_envio','!=','emitidos')->get();
+
+        $dados = [];
+        foreach ($movimentos as $movimento){
+            $envados = json_decode($movimento->datas_enviadas);
+            foreach ($envados->retorno as  $enviado){
+                $dados[(int)$enviado->numero_certificado]['certificado']= (int)$enviado->numero_certificado;
+                $dados[(int)$enviado->numero_certificado]['lote']= $movimento->id;
+                $dados[(int)$enviado->numero_certificado]['placa']= format('placa',$enviado->placa);
+                $dados[(int)$enviado->numero_certificado]['segurado']= nomeCase($enviado->nome);
+                $dados[(int)$enviado->numero_certificado]['enviado']= showDate($movimento->dt_envio);
+                $dados[(int)$enviado->numero_certificado]['retorno']= '';
+                $dados[(int)$enviado->numero_certificado]['desc_retorno']= '';
+                $dados[(int)$enviado->numero_certificado]['tipo']= ucfirst($movimento->tipo_envio);
+                $dados[(int)$enviado->numero_certificado]['status']= 'Movimento - Enviado';
+
+            }
+
+            if($movimento->status_id != 26 ){
+                $datas = json_decode($movimento->datas_recebidas);
+                $retornos = isset($datas->retorno) ? $datas->retorno : $datas;
+
+                foreach ($retornos as $retorno){
+                    $dados[(int)$retorno->numero_certificado]['status']= 'Movimento - Retorno';
+                    $dados[(int)$retorno->numero_certificado]['desc_retorno']= strlen($retorno->texto) > 1 ? $retorno->texto : 'Sucesso';
+                    $dados[(int)$retorno->numero_certificado]['retorno']= showDate($movimento->dt_envio);
+
+                }
+
+            }
+
+
+
+        }
+
+        return view('backend.movimentos.listas', compact('dados'));
+
+
     }
 }

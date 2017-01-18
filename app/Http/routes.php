@@ -135,7 +135,6 @@ Route::group(['prefix' => 'apolices', 'middleware' => 'auth'], function () {
 Route::group(['prefix' => 'cotacao', 'middleware' => 'auth'], function () {
 
 
-
     Route::get('/', [
 
         'middleware' => ['permission:cotacao-gestao'],
@@ -335,4 +334,15 @@ Route::group(['prefix' => 'teste'], function () {
     Route::get('/post', ['as' => 'post.teste',
         'uses' => 'Backend\TesteController@post_teste']);
 
+});
+
+Route::group(['prefix'=>'movimentos', 'middleware' => 'auth'],function(){
+    Route::get('/emitidos',[
+        'middleware'=>['permission:movimento'],
+        'as'=>'movimentos.emitidos',
+        'uses'=>'Backend\MovimentosController@emitidos']);
+    Route::get('/cancelados',[
+        'middleware'=>['permission:movimento'],
+        'as'=>'movimentos.cancelados',
+        'uses'=>'Backend\MovimentosController@cancelados']);
 });

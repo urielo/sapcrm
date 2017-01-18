@@ -124,6 +124,19 @@
                         </ul>
                     </li>
                     @endpermission
+                    @permission('movimento')
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span style="font-size:16px;"
+                                  class="hidden-xs showopacity glyphicon glyphicon-transfer"></span>
+                            Movimentos<span class="caret"></span></a>
+                        <ul class="dropdown-menu forAnimate" role="menu">
+                            <li><a href="{{route('movimentos.emitidos')}}">Emitidos</a></li>
+                            <li><a href="{{route('movimentos.cancelados')}}">Cancelados</a></li>
+
+                        </ul>
+                    </li>
+                    @endpermission
 
 
                     @permission('cobranca')
@@ -174,7 +187,7 @@
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
+                    <li class="hide">
                         <form class="form-inline float-xs-right input-nav">
                             <div class="input-group input-group-sm">
 
