@@ -64,16 +64,7 @@ class PropostaController extends Controller
         $url = env('API_URL', Config::where('env_local', env('APP_LOCAL'))->where('webservice', 'SAP')->first()->url);
 
 
-        /*
-        $request->formapagamento,
-        $request->quant_parcela,
-        $request->forma_cartao_numero,
-        $request->forma_cartao_nome,
-        $request->forma_cartao_bandeira,
-        $request->forma_cartao_validade,
-        $request->form_boleto_primeiro,
-        $request->form_boleto_dia_demais,
-         * */
+
 
         $proposta = [
             "idParceiro" => 99,
@@ -88,6 +79,7 @@ class PropostaController extends Controller
             "diaDemaisBoleto" => $request->form_boleto_dia_demais,
             "titularCartao" => $request->forma_cartao_nome,
             "indProprietVeic" => $request->ind_propritetario,
+            "renova" => $request->renova,
         ];
 
         $proposta['veiculo'] = [

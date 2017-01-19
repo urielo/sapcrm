@@ -12,6 +12,7 @@
     {!!  Form::hidden('autozero',$cotacao->veiculo->veicautozero)!!}
     {!!  Form::hidden('tipoveiculo',$cotacao->veiculo->veiccdveitipo)!!}
     {!!  Form::hidden('cotacao_id',$cotacao->idcotacao)!!}
+    {!!  Form::hidden('renova',$cotacao->renova)!!}
 
     <div class="row proposta-form">
         <div class="col-md-6 col-xs-12">

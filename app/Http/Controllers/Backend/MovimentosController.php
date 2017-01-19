@@ -47,6 +47,7 @@ class MovimentosController extends Controller
 
 
         }
+        ksort($dados);
 
         return view('backend.movimentos.listas', compact('dados','title'));
 
@@ -86,10 +87,9 @@ class MovimentosController extends Controller
                 }
 
             }
-
-
-
         }
+
+        ksort($dados);
 
         return view('backend.movimentos.listas', compact('dados','title'));
 
