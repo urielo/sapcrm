@@ -7,8 +7,11 @@
         <div class="col-md-4">
             <b>Proposta:</b> {{$proposta->idproposta}}
         </div>
-        <div class="col-md-8"><b>Corretor(a): </b>{{nomeCase($proposta->cotacao->corretor->corrnomerazao)}}</div>
-        <div class="col-md-8"><b>Segurado(a): </b>{{nomeCase($proposta->cotacao->segurado->clinomerazao)}}</div>
+        <div class="col-md-4">
+            <b>Certificado:</b> {{$proposta->certificado->id}}
+        </div>
+        <div class="col-md-10"><b>Corretor(a): </b>{{nomeCase($proposta->cotacao->corretor->corrnomerazao)}}</div>
+        <div class="col-md-10"><b>Segurado(a): </b>{{nomeCase($proposta->cotacao->segurado->clinomerazao)}}</div>
     </div>
 
 
@@ -36,6 +39,12 @@
                 <div class="btn-group">
                     <a href="{{ route('apolices.email',$proposta->idproposta) }}">
                         <button type="submit" class="btn btn-success btn-sm"> <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Enviar Email</button>
+                    </a>
+                </div>
+
+                <div class="btn-group">
+                    <a  class="btn btn-info btn-sm" href="{{ route('certificado.pdf.update',$proposta->certificado->id) }}">
+                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Reejustar PDF
                     </a>
                 </div>
             </div>

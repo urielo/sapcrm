@@ -7,6 +7,9 @@ use App\Model\Certificados;
 use App\Model\Propostas;
 use App\Model\CustoProduto;
 use App\Model\ApolicesSeguradora;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
+use Mockery\CountValidator\Exception;
 use niklasravnsborg\LaravelPdf\Facades\Pdf as PDF;
 
 use App\Model\SeguradoraProduto;
@@ -147,6 +150,28 @@ class CertificadoController extends Controller
 
         $this->certificado->pdf_base64 = chunk_split(base64_encode($pdf->output()));
         $this->certificado->save();
+    }
+
+    public function updatePDF($id)
+    {
+        DB::beginTransaction();
+        try {
+
+            $this->certificado = Certificados::findOrFail($id);
+            $this->proposta = Propostas::findOrFail($this->certificado->idproposta);
+            $this->certificado->status_id = 1;
+            $this->pdf();
+
+            DB::commit();
+
+            return Redirect::back()->with('sucesso', 'Operação realizada com sucesso!');
+
+        } catch (Exception $e) {
+            DB::rollback();
+
+            return Redirect::back()->with('error', 'Error ao tentar atualizar o pdf');
+
+        }
     }
 
 

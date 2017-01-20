@@ -25,7 +25,7 @@
                 <tbody>
                 @foreach ($dados as $movimento)
                     <tr>
-                        <th>#{{$movimento['certificado']}}</th>
+                        <th>{{$movimento['certificado']}}</th>
                         <td>{{$movimento['segurado']}}</td>
                         <td>{{$movimento['placa']}}</td>
                         <td>{{$movimento['enviado']}}</td>

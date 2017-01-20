@@ -62,11 +62,11 @@ class CotacaoController extends Controller
 
 
         if (Auth::user()->hasRole('admin')) {
-           $cotacoes = Cotacoes::whereIn('idstatus', [9])->whereBetween('dtcreate',[$start_date ,$end_date])->orderby('idcotacao', 'desc')->get();
+           $cotacoes = Cotacoes::with(['segurado','veiculo.fipe.anovalor','veiculo.combustivel','corretor'])->whereIn('idstatus', [9])->whereBetween('dtcreate',[$start_date ,$end_date])->orderby('idcotacao', 'desc')->get();
         } elseif (Auth::user()->can('ver-todos-cotacoes')) {
-            $cotacoes = Cotacoes::where('idcorretor', Auth::user()->corretor->idcorretor)->whereBetween('dtcreate',[$start_date ,$end_date])->whereNotNull('usuario_id')->whereIn('idstatus', [9])->orderby('idcotacao', 'desc')->get();
+            $cotacoes = Cotacoes::with(['segurado','veiculo.fipe.anovalor','veiculo.combustivel','corretor'])->where('idcorretor', Auth::user()->corretor->idcorretor)->whereBetween('dtcreate',[$start_date ,$end_date])->whereNotNull('usuario_id')->whereIn('idstatus', [9])->orderby('idcotacao', 'desc')->get();
         } else {
-            $cotacoes = Cotacoes::where('usuario_id', Auth::user()->id)->whereBetween('dtcreate',[$start_date ,$end_date])->whereNotNull('usuario_id')->whereIn('idstatus', [9])->orderby('idcotacao', 'desc')->get();
+            $cotacoes = Cotacoes::with(['segurado','veiculo.fipe.anovalor','veiculo.combustivel','corretor'])->where('usuario_id', Auth::user()->id)->whereBetween('dtcreate',[$start_date ,$end_date])->whereNotNull('usuario_id')->whereIn('idstatus', [9])->orderby('idcotacao', 'desc')->get();
         }
 
 
@@ -83,11 +83,11 @@ class CotacaoController extends Controller
 
 
         if (Auth::user()->hasRole('admin')) {
-            $cotacoes = Cotacoes::whereNotIn('idstatus', [9, 10])->whereBetween('dtcreate',[$start_date ,$end_date])->orderby('idcotacao', 'desc')->get();
+            $cotacoes = Cotacoes::with(['segurado','veiculo.fipe.anovalor','veiculo.combustivel','corretor'])->whereNotIn('idstatus', [9, 10])->whereBetween('dtcreate',[$start_date ,$end_date])->orderby('idcotacao', 'desc')->get();
         } elseif (Auth::user()->can('ver-todos-cotacoes')) {
-            $cotacoes = Cotacoes::where('idcorretor', Auth::user()->corretor->idcorretor)->whereBetween('dtcreate',[$start_date ,$end_date])->whereNotNull('usuario_id')->whereNotIn('idstatus', [9, 10])->orderby('idcotacao', 'desc')->get();
+            $cotacoes = Cotacoes::with(['segurado','veiculo.fipe.anovalor','veiculo.combustivel','corretor'])->where('idcorretor', Auth::user()->corretor->idcorretor)->whereBetween('dtcreate',[$start_date ,$end_date])->whereNotNull('usuario_id')->whereNotIn('idstatus', [9, 10])->orderby('idcotacao', 'desc')->get();
         } else {
-            $cotacoes = Cotacoes::where('usuario_id', Auth::user()->id)->whereBetween('dtcreate',[$start_date ,$end_date])->whereNotNull('usuario_id')->whereNotIn('idstatus', [9, 10])->orderby('idcotacao', 'desc')->get();
+            $cotacoes = Cotacoes::with(['segurado','veiculo.fipe.anovalor','veiculo.combustivel','corretor'])->where('usuario_id', Auth::user()->id)->whereBetween('dtcreate',[$start_date ,$end_date])->whereNotNull('usuario_id')->whereNotIn('idstatus', [9, 10])->orderby('idcotacao', 'desc')->get();
         }
 
 

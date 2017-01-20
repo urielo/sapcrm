@@ -128,6 +128,12 @@ Route::group(['prefix' => 'apolices', 'middleware' => 'auth'], function () {
         'middleware' => ['permission:apolices-canceladas'],
         'as' => 'apolices.cancelar',
         'uses' => 'Backend\ApolicesController@cancelar']);
+   
+    Route::get('/certificado/update/{id}', 
+        ['middleware' => ['permission:apolices-emitir'],
+         'as' => 'certificado.pdf.update',
+         'uses' => 'Backend\CertificadoController@updatePDF']);
+
 
 });
 
