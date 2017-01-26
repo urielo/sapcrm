@@ -8,10 +8,12 @@ class Combos extends Model
 {
     protected $table = 'produtos_combos';
     protected $primaryKey = 'idprodutomaster';
+    public $timestamps = false;
     protected $fillable = [
 
         "idprodutoopcional",
         "idprodutomaster",
+        "tipo_veiculo_id",
 
     ];
     public $incrementing = false;

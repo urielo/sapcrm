@@ -21,5 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(StatusTableSeeder::class);
         $this->call(PrecoProdutoTableSeeder::class);
         $this->call(CreateTriggersFuntionsSeeder::class);
+        $this->call(CombosProdutosSeeder::class);
+        $this->call(TipoVeiculosSeeder::class);
     }
 }

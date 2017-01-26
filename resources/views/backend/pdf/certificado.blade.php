@@ -28,7 +28,7 @@
                             <tr class="spacing">
                                 <td><b>Proposta: </b> {{$proposta->idproposta}}</td>
                                 <td><b>Apólice: </b> 3620</td>
-                                <td><b>Certificado: </b> {{$certificado->id}}</td>
+                                <td><b>Certificado: </b> {{str_pad($certificado->id,20,0,STR_PAD_LEFT)}}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -205,9 +205,8 @@
                                 <td><b>{!!  $custos[1]->custo !!} </b></td>
                                 <td><b>Não Há</b></td>
                                 <td><b> Não Há </b></td>
-                                <td rowspan="2"><b>100% do valor referenciado pela Tabela FIPE *, exceto para
-                                        Taxi e
-                                        veículos salvados**.</b></td>
+                                <td rowspan="2"><b>Automóvel: 100 % do valor referenciado pela Tabela FIPE*, exceto para Taxi e veículos salvados**.
+                                        Moto: 90 % do valor referenciado pela Tabela FIPE, exceto salvados*</br></td>
                             </tr>
                             <tr class="">
                                 <td><b>Indenização Integral por Colisão </b></td>

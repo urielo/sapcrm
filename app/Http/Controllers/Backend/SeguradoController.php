@@ -11,6 +11,8 @@ use App\Model\OrgaoEmissors;
 use App\Model\FormaPagamento;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Crypt;
+use Mockery\CountValidator\Exception;
 
 class SeguradoController extends Controller
 {
@@ -54,9 +56,17 @@ public function __construct(OrgaoEmissors $orgaoemissors, EstadosCivis $estadosc
         
     }
 
-    public function edit()
+    public function edit($cpfcnpj)
     {
-        
+        try {
+
+            Crypt::class;
+
+
+        }catch (Exception $e){
+            
+            
+        }
     }
     
     public function update()

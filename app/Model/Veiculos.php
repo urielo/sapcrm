@@ -50,6 +50,11 @@ class Veiculos extends Model
     /**
      * @return array
      */
+
+    public function tipo()
+    {
+        return $this->belongsTo(TipoVeiculos::class,'veiccdveitipo','idtipoveiculo');
+    }
     public function fipe_ano_valor()
     {
         return $this->hasMany('App\Model\FipeAnoValor', 'codefipe', 'veiccodfipe');

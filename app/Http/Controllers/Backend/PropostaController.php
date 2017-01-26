@@ -42,8 +42,11 @@ class PropostaController extends Controller
 
         if ($cotacao) {
             $menor_parcela = 0;
-            foreach ($cotacao->produtos as $produto) {
-                $menor_parcela = $menor_parcela + $produto->produto->precoproduto()->where('idprecoproduto', $produto->idprecoproduto)->first()->vlrminprimparc;
+
+            if($cotacao->renova == 0 ){
+                foreach ($cotacao->produtos as $produto) {
+                    $menor_parcela = $menor_parcela + $produto->produto->precoproduto()->where('idprecoproduto', $produto->idprecoproduto)->first()->vlrminprimparc;
+                }
             }
 
             foreach (FormaPagamento::All() as $forma) {

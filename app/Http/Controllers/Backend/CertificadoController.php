@@ -100,12 +100,15 @@ class CertificadoController extends Controller
 
         }
 
-        $custo = CustoProduto::whereIdproduto(4)
-            ->whereIdprecoproduto(1)
-            ->whereIdseguradora($this->idseguradora)->first();
+        if ($this->proposta->cotacao->veiculo->veiccdveitipo == 1) {
+            $custo = CustoProduto::whereIdproduto(4)
+                ->whereIdprecoproduto(1)
+                ->whereIdseguradora($this->idseguradora)->first();
 
 
-        $custos[] = $custo->id;
+            $custos[] = $custo->id;
+        }
+
 
         $this->certificado->custos()->sync($custos);
 
@@ -141,6 +144,13 @@ class CertificadoController extends Controller
 
         }
 
+        if ($this->proposta->cotacao->veiculo->veiccdveitipo == 4) {
+            $valores = new \stdClass();
+            $valores->idproduto = 19;
+            $valores->custo = 'R$ 0,0';
+            $custos[19] = $valores;
+        }
+
         $custos['premioLiquido'] = $custos['premioTotal'] - ($custos['premioTotal'] * $this->certificado->iof / 100);
 
 
@@ -159,7 +169,12 @@ class CertificadoController extends Controller
 
             $this->certificado = Certificados::findOrFail($id);
             $this->proposta = Propostas::findOrFail($this->certificado->idproposta);
-            $this->certificado->status_id = 1;
+
+            if ($this->certificado->status_id == 32) {
+                $this->certificado->status_id = 1;
+            }
+            
+            $this->idseguradora = 3;
             $this->pdf();
 
             DB::commit();

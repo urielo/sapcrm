@@ -352,3 +352,23 @@ Route::group(['prefix'=>'movimentos', 'middleware' => 'auth'],function(){
         'as'=>'movimentos.cancelados',
         'uses'=>'Backend\MovimentosController@cancelados']);
 });
+
+Route::group(['prefix'=>'segurados','middleware'=>'auth'],function (){
+    Route::get('/edit/{cpfcnpj}',[
+        'as'=>'segurado.edit',
+        'uses'=>'Backend\SeguradoController@edit'
+    ]);
+    Route::post('/update',[
+        'as'=>'segurado.update',
+        'uses'=>'Backend\SeguradoController@update'
+    ]);
+    Route::get('/create',[
+        'as'=>'segurado.create',
+        'uses'=>'Backend\SeguradoController@create'
+    ]);
+    Route::post('/update',[
+        'as'=>'segurado.store',
+        'uses'=>'Backend\SeguradoController@store'
+    ]);
+
+});

@@ -46,7 +46,7 @@ class ApolicesController extends Controller
         header("Content-Disposition: attachment; filename=\"certificado_N{$idproposta}.pdf\";");
         echo base64_decode($cetificado);
 
-//        return ;
+
 
     }
 

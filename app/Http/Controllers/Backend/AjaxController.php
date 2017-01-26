@@ -231,7 +231,7 @@ class AjaxController extends Controller
         $retorno = [];
 
 
-        foreach (Combos::whereIdprodutomaster($idproduto)->get() as $combo):
+        foreach (Combos::whereIdprodutomaster($idproduto)->where('tipo_veiculo_id',$tipo)->get() as $combo):
             $produto = Produtos::whereIdproduto($combo->idprodutoopcional)->whereCodstatus(1)->first();
             
             if($produto){
