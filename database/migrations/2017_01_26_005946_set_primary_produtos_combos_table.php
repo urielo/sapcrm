@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddColumnTipoVeiculoIdToProtudoCombosTable extends Migration
+class SetPrimaryProdutosCombosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,7 @@ class AddColumnTipoVeiculoIdToProtudoCombosTable extends Migration
     public function up()
     {
         Schema::table('produtos_combos', function (Blueprint $table) {
-          $table->integer('tipo_veiculo_id')->default(1);
-          $table->dropPrimary('idprodutomaster');
-          $table->dropPrimary('idprodutoopcional');
+            $table->primary(['idprodutomaster','idprodutoopcional','tipo_veiculo_id']);
         });
     }
 
