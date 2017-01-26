@@ -19,6 +19,7 @@
                     <th>Tipo</th>
                     <th>Status</th>
                     <th>Lote</th>
+                    <th></th>
 
                 </tr>
                 </thead>
@@ -34,6 +35,16 @@
                         <td>{{$movimento['tipo']}}</td>
                         <td>{{$movimento['status']}}</td>
                         <td>{{$movimento['lote']}}</td>
+                        <td>
+                            @if(!in_array($movimento['desc_retorno'],['','Sucesso']) )
+                                <div class="btn-group">
+                                    <a class="btn btn-info btn-sm"
+                                       href="{{ route('certificado.pdf.update',$proposta->certificado->id) }}">
+                                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Reejustar PDF
+                                    </a>
+                                </div>
+                            @endif
+                        </td>
                     </tr>
 
                 @endforeach

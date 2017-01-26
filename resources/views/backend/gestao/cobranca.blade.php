@@ -23,7 +23,8 @@
                             <div class="btn-group">
                             <a href="{{route('show.proposta',$proposta->idproposta)}}" class="" data-toggle="modal"
                                data-target=".modal-show"
-                               id="showinfo">{{$proposta->idproposta}}</a>
+                               id="showinfo">{{$proposta->idproposta}}
+                            </a>
                                 <a href="{{route('proposta.pdf',$crypt::encrypt($proposta->idproposta))}}" target="_blank">
                                     <button type="button" class="btn btn-primary btn-xs">PDF</button>
                                 </a>
