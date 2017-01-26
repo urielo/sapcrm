@@ -14,7 +14,7 @@ class AddColumnTipoVeiculoIdToProtudoCombosTable extends Migration
     {
         Schema::table('produtos_combos', function (Blueprint $table) {
           $table->integer('tipo_veiculo_id')->default(1);
-          $table->primary(['idprodutomaster','idprodutoopcional','tipo_veiculo_id']);
+          $table->primary('tipo_veiculo_id');
         });
     }
 
