@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="158326c0-4f81-4588-bf4f-593b4ab725fa" name="Default" comment="Alterações nos viwes e criacoes de novos models">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/gestao/cobranca.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/gestao/cobranca.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/movimentos/listas.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/movimentos/listas.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Console/Commands/AtualizaFipe.php" afterPath="$PROJECT_DIR$/app/Console/Commands/AtualizaFipe.php" />
     </list>
     <ignored path="sap.local.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,10 +32,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CertificadoController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CertificadoController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/CertificadoController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-585">
+            <state relative-caret-position="15">
               <caret line="37" column="52" selection-start-line="37" selection-start-column="39" selection-end-line="37" selection-end-column="52" />
               <folding>
                 <marker date="1485386256488" expanded="true" signature="4207:4217" ph="..." />
@@ -45,24 +44,110 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ApolicesController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/ApolicesController.php">
+      <file leaf-file-name="CotacaoCommand.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Console/Commands/CotacaoCommand.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="65" column="77" selection-start-line="65" selection-start-column="77" selection-end-line="65" selection-end-column="77" />
+            <state relative-caret-position="-180">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CombosProdutosSeeder.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/seeds/CombosProdutosSeeder.php">
+      <file leaf-file-name="AtualizaFipe.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Console/Commands/AtualizaFipe.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="31" selection-start-line="2" selection-start-column="31" selection-end-line="2" selection-end-column="31" />
+            <state relative-caret-position="-4384">
+              <caret line="428" column="76" selection-start-line="428" selection-start-column="76" selection-end-line="428" selection-end-column="76" />
               <folding>
-                <element signature="e#6#28#0#PHP" expanded="true" />
+                <marker date="1485475183613" expanded="true" signature="1337:1401" ph="ALTER TABLE fipedbf... " />
+                <marker date="1485475183613" expanded="true" signature="1439:1537" ph="UPDATE fiped... " />
+                <marker date="1485475183613" expanded="true" signature="1575:1656" ph="UPDATE fiped... " />
+                <marker date="1485475183613" expanded="true" signature="1694:1747" ph="UPDATE fiped... " />
+                <marker date="1485475183613" expanded="true" signature="1785:1843" ph="UPDATE fiped... " />
+                <marker date="1485475183613" expanded="true" signature="1881:1939" ph="UPDATE fiped... " />
+                <marker date="1485475183613" expanded="true" signature="1977:2035" ph="UPDATE fiped... " />
+                <marker date="1485475183613" expanded="true" signature="2110:2149" ph="CREATE TABLE... fipeanovalor_atualizada" />
+                <marker date="1485475183613" expanded="true" signature="2187:2569" ph="SELECT &quot;COD_... fipedbf" />
+                <marker date="1485475183613" expanded="true" signature="2746:2808" ph="INSERT INTO fipeanovalor... " />
+                <marker date="1485475183613" expanded="true" signature="2771:2808" ph="SELECT * FRO... fipeanovalor_atualizada" />
+                <marker date="1485475183613" expanded="true" signature="2934:3637" ph="INSERT INTO fipe... " />
+                <marker date="1485475183613" expanded="true" signature="2987:3544" ph="SELECT DISTI... fipedbf" />
+                <marker date="1485475183613" expanded="true" signature="3712:3755" ph="DROP TABLE f... " />
+                <marker date="1485475183613" expanded="true" signature="4008:6401" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="6653:6759" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="6797:6904" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="6942:8011" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="8049:8186" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="8224:8366" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="8404:8618" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="8656:8854" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="8892:9036" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="9074:9216" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="9254:9416" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="9454:9597" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="9635:9883" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="9921:10065" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="10103:10244" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="10282:10424" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="10462:10645" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="10683:10862" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="10900:11041" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="11079:11341" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="11379:11519" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="11557:11838" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="11876:12017" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="12055:12198" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="12236:12400" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="12438:12580" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="12618:12846" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="12884:13025" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="13063:13205" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="13440:13584" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="13622:13766" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="13804:13967" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="14005:14149" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="14187:14351" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="14389:14557" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="14596:14780" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="14818:14960" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="14998:15271" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="15309:15498" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="15536:15704" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="15743:15910" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="15949:16095" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="16133:16387" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="16182:16386" ph="select codef... fipe" />
+                <marker date="1485475183613" expanded="true" signature="16425:16566" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="16604:16797" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="16835:16982" ph="update FIPE " />
+                <marker date="1485475183613" expanded="true" signature="17129:17197" ph="ALTER TABLE fipedbfmoto... " />
+                <marker date="1485475183613" expanded="true" signature="17235:17337" ph="UPDATE fiped... " />
+                <marker date="1485475183613" expanded="true" signature="17375:17460" ph="UPDATE fiped... " />
+                <marker date="1485475183613" expanded="true" signature="17498:17555" ph="UPDATE fiped... " />
+                <marker date="1485475183613" expanded="true" signature="17593:17655" ph="UPDATE fiped... " />
+                <marker date="1485475183613" expanded="true" signature="17693:17755" ph="UPDATE fiped... " />
+                <marker date="1485475183613" expanded="true" signature="17793:17855" ph="UPDATE fiped... " />
+                <marker date="1485475183613" expanded="true" signature="17930:17969" ph="CREATE TABLE... fipeanovalor_atualizada" />
+                <marker date="1485475183613" expanded="true" signature="18007:18393" ph="SELECT &quot;COD_... fipedbfmoto" />
+                <marker date="1485475183613" expanded="true" signature="18467:18529" ph="INSERT INTO fipeanovalor... " />
+                <marker date="1485475183613" expanded="true" signature="18492:18529" ph="SELECT * FRO... fipeanovalor_atualizada" />
+                <marker date="1485475183613" expanded="true" signature="18567:19274" ph="INSERT INTO fipe... " />
+                <marker date="1485475183613" expanded="true" signature="18620:19181" ph="SELECT DISTI... fipedbfmoto" />
+                <marker date="1485475183613" expanded="true" signature="18620:19274" ph="SELECT DISTI... fipedbfmoto" />
+                <marker date="1485475183613" expanded="true" signature="19349:19396" ph="DROP TABLE f... " />
+                <marker date="1485475183613" expanded="true" signature="19622:53199" ph="update FIPE " />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ApolicesController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/ApolicesController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="645">
+              <caret line="65" column="77" selection-start-line="65" selection-start-column="77" selection-end-line="65" selection-end-column="77" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -70,7 +155,7 @@
       <file leaf-file-name="listas.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/backend/proposta/listas.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="125">
+            <state relative-caret-position="735">
               <caret line="49" column="35" selection-start-line="49" selection-start-column="35" selection-end-line="54" selection-end-column="40" />
               <folding />
             </state>
@@ -90,7 +175,7 @@
       <file leaf-file-name="cobranca.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/backend/gestao/cobranca.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
+            <state relative-caret-position="390">
               <caret line="26" column="32" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
               <folding />
             </state>
@@ -100,7 +185,7 @@
       <file leaf-file-name="baixarapolices.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/backend/show/baixarapolices.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
+            <state relative-caret-position="660">
               <caret line="44" column="16" selection-start-line="44" selection-start-column="16" selection-end-line="48" selection-end-column="22" />
               <folding />
             </state>
@@ -112,26 +197,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="162">
               <caret line="83" column="113" selection-start-line="83" selection-start-column="113" selection-end-line="83" selection-end-column="113" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SeguradoController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/SeguradoController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="16" column="24" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".env" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.env">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -165,7 +230,6 @@
         <option value="$PROJECT_DIR$/app/Console/Commands/AtualizaVencidos.php" />
         <option value="$PROJECT_DIR$/database/migrations/2017_01_07_133405_create_table_cancelamentos.php" />
         <option value="$PROJECT_DIR$/app/Console/Commands/AtualizaFipeCarro.php" />
-        <option value="$PROJECT_DIR$/app/Console/Commands/AtualizaFipe.php" />
         <option value="$PROJECT_DIR$/database/seeds/StatusTableSeeder.php" />
         <option value="$PROJECT_DIR$/database/seeds/PrecoProdutoTableSeeder.php" />
         <option value="$PROJECT_DIR$/app/Model/Cancelamentos.php" />
@@ -205,6 +269,7 @@
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/resources/views/backend/movimentos/listas.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/gestao/cobranca.blade.php" />
+        <option value="$PROJECT_DIR$/app/Console/Commands/AtualizaFipe.php" />
       </list>
     </option>
   </component>
@@ -300,164 +365,6 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sap.local" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sap.local" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="backend" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sap.local" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sap.local" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="backend" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="show" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sap.local" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sap.local" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="backend" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="proposta" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sap.local" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sap.local" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="backend" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="movimentos" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sap.local" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sap.local" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="backend" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gestao" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sap.local" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sap.local" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sap.local" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sap.local" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
@@ -476,7 +383,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Http" />
+              <option name="myItemId" value="Console" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -494,50 +401,24 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Http" />
+              <option name="myItemId" value="Console" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sap.local" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sap.local" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Http" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Backend" />
+              <option name="myItemId" value="Commands" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../plataformaverde" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="route&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/routes.php&#10;TipoVeiculos&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/TipoVeiculos.php&#10;ti&#9;FILE&#9;file:///var/www/Myproject/sap.local/database/seeds/TipoVeiculosSeeder.php&#10;certif&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/pdf/certificado.blade.php&#10;2017_01_25_232050_add_column_codigo_to_table_tipoveiculo&#9;FILE&#9;file:///var/www/Myproject/sap.local/database/migrations/2017_01_25_232050_add_column_codigo_to_table_tipoveiculo.php&#10;cert&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Certificados.php&#10;routes&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/routes.php&#10;backend\pdf\certificado&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/pdf/certificado.blade.php&#10;cer&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/CertificadoController.php&#10;2017_01_23_234326_add_column_tipo_veiculo_id_to_protudo_combos_table&#9;FILE&#9;file:///var/www/Myproject/sap.local/database/migrations/2017_01_23_234326_add_column_tipo_veiculo_id_to_protudo_combos_table.php&#10;aja&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/AjaxController.php&#10;segura&#9;null&#9;null&#10;fipes&#9;null&#9;null&#10;veic&#9;null&#9;null&#10;cota&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/CotacaoController.php&#10;cotaca&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/cotacao.blade.php&#10;Pro&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Propostas.php&#10;movimentos\listas&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/movimentos/listas.blade.php&#10;Mo&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/MovimentosController.php&#10;backend\proposta\emitir&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/proposta/emitir.blade.php&#10;pro&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/PropostaController.php&#10;hel&#9;FILE&#9;file:///var/www/Myproject/sap.local/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php&#10;listas&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/proposta/listas.blade.php&#10;tes&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/TesteController.php&#10;prop&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/PropostaController.php&#10;apo&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/ApolicesSeguradora.php&#10;certificado&#9;null&#9;null&#10;Propostas&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Propostas.php&#10;Pr&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/PropostaController.php&#10;propo&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/PropostaController.php&#10;propostas&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Propostas.php&#10;proposta\listas&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/proposta/listas.blade.php&#10;ca&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Cancelamentos.php&#10;cancelaapolices&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/show/cancelaapolices.blade.php&#10;model&#9;null&#9;null&#10;backend\gestao\apolices&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/gestao/apolices.blade.php&#10;apoli&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/ApolicesController.php&#10;PropostaCont&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/PropostaController.php&#10;teste&#9;null&#9;null&#10;scr&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/js/script.js&#10;2017_01_07_133405_create_table_cancelamentos&#9;FILE&#9;file:///var/www/Myproject/sap.local/database/migrations/2017_01_07_133405_create_table_cancelamentos.php&#10;apol&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/ApolicesController.php&#10;backend\proposta\listas&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/proposta/listas.blade.php&#10;2016_12_27_012158_alter_trigger_function_certificados&#9;null&#9;null&#10;kernel&#9;null&#9;null&#10;AtualizaVencidos&#9;null&#9;null&#10;gestao\aprovacao&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/gestao/aprovacao.blade.php&#10;GestaoController&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/GestaoController.php&#10;2016_12_23_024051_create_triggers_tables_certificados_propostas&#9;FILE&#9;file:///var/www/Myproject/sap.local/database/migrations/2016_12_23_024051_create_triggers_tables_certificados_propostas.php&#10;scri&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/js/script.js" />
+    <property name="SearchEverywhereHistoryKey" value=".e&#9;FILE&#9;file:///var/www/Myproject/sap.local/.env&#10;route&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/routes.php&#10;TipoVeiculos&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/TipoVeiculos.php&#10;ti&#9;FILE&#9;file:///var/www/Myproject/sap.local/database/seeds/TipoVeiculosSeeder.php&#10;certif&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/pdf/certificado.blade.php&#10;2017_01_25_232050_add_column_codigo_to_table_tipoveiculo&#9;FILE&#9;file:///var/www/Myproject/sap.local/database/migrations/2017_01_25_232050_add_column_codigo_to_table_tipoveiculo.php&#10;cert&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Certificados.php&#10;routes&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/routes.php&#10;backend\pdf\certificado&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/pdf/certificado.blade.php&#10;cer&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/CertificadoController.php&#10;2017_01_23_234326_add_column_tipo_veiculo_id_to_protudo_combos_table&#9;FILE&#9;file:///var/www/Myproject/sap.local/database/migrations/2017_01_23_234326_add_column_tipo_veiculo_id_to_protudo_combos_table.php&#10;aja&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/AjaxController.php&#10;segura&#9;null&#9;null&#10;fipes&#9;null&#9;null&#10;veic&#9;null&#9;null&#10;cota&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/CotacaoController.php&#10;cotaca&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/cotacao.blade.php&#10;Pro&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Propostas.php&#10;movimentos\listas&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/movimentos/listas.blade.php&#10;Mo&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/MovimentosController.php&#10;backend\proposta\emitir&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/proposta/emitir.blade.php&#10;pro&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/PropostaController.php&#10;hel&#9;FILE&#9;file:///var/www/Myproject/sap.local/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php&#10;listas&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/proposta/listas.blade.php&#10;tes&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/TesteController.php&#10;prop&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/PropostaController.php&#10;apo&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/ApolicesSeguradora.php&#10;certificado&#9;null&#9;null&#10;Propostas&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Propostas.php&#10;Pr&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/PropostaController.php&#10;propo&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/PropostaController.php&#10;propostas&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Propostas.php&#10;proposta\listas&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/proposta/listas.blade.php&#10;ca&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Cancelamentos.php&#10;cancelaapolices&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/show/cancelaapolices.blade.php&#10;model&#9;null&#9;null&#10;backend\gestao\apolices&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/gestao/apolices.blade.php&#10;apoli&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/ApolicesController.php&#10;PropostaCont&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/PropostaController.php&#10;teste&#9;null&#9;null&#10;scr&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/js/script.js&#10;2017_01_07_133405_create_table_cancelamentos&#9;FILE&#9;file:///var/www/Myproject/sap.local/database/migrations/2017_01_07_133405_create_table_cancelamentos.php&#10;apol&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/ApolicesController.php&#10;backend\proposta\listas&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/proposta/listas.blade.php&#10;2016_12_27_012158_alter_trigger_function_certificados&#9;null&#9;null&#10;kernel&#9;null&#9;null&#10;AtualizaVencidos&#9;null&#9;null&#10;gestao\aprovacao&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/gestao/aprovacao.blade.php&#10;GestaoController&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/GestaoController.php&#10;2016_12_23_024051_create_triggers_tables_certificados_propostas&#9;FILE&#9;file:///var/www/Myproject/sap.local/database/migrations/2016_12_23_024051_create_triggers_tables_certificados_propostas.php" />
     <property name="ToolWindowREST Client.ShowToolbar" value="false" />
     <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
     <property name="js.buildTools.gulp.gulp_package_dir" value="$PROJECT_DIR$/node_modules/gulp" />
@@ -893,11 +774,12 @@
       <workItem from="1485388831741" duration="656000" />
       <workItem from="1485389720009" duration="4223000" />
       <workItem from="1485394117859" duration="1850000" />
+      <workItem from="1485472915243" duration="2350000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1321769000" />
+    <option name="totallyTimeSpent" value="1324119000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -913,14 +795,14 @@
     <editor active="false" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24981017" sideWeight="0.5051395" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3202417" sideWeight="0.4948605" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0" sideWeight="0.4948605" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32668713" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5927052" sideWeight="0.5027451" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930514" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32568806" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24941176" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24006116" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24079755" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930514" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297546" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -999,20 +881,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Model/HomePage.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Relations/HasOne.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-235">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -1250,7 +1118,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="424">
           <caret line="56" column="5" selection-start-line="53" selection-start-column="3" selection-end-line="56" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1258,7 +1125,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1273,7 +1139,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5550">
           <caret line="370" column="14" selection-start-line="370" selection-start-column="14" selection-end-line="370" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1289,7 +1154,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="14" column="38" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1297,39 +1161,30 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="15" column="57" selection-start-line="15" selection-start-column="57" selection-end-line="15" selection-end-column="57" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/database/seeds/CombosProdutosSeeder.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
+        <state relative-caret-position="15">
           <caret line="2" column="31" selection-start-line="2" selection-start-column="31" selection-end-line="2" selection-end-column="31" />
           <folding>
-            <element signature="e#6#28#0#PHP" expanded="true" />
+            <element signature="e#6#28#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/backend/proposta/listas.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
+        <state relative-caret-position="735">
           <caret line="49" column="35" selection-start-line="49" selection-start-column="35" selection-end-line="54" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/backend/gestao/cobranca.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
+        <state relative-caret-position="390">
           <caret line="26" column="32" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
           <folding />
         </state>
@@ -1345,8 +1200,42 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/backend/show/baixarapolices.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
+        <state relative-caret-position="660">
           <caret line="44" column="16" selection-start-line="44" selection-start-column="16" selection-end-line="48" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/ApolicesController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="645">
+          <caret line="65" column="77" selection-start-line="65" selection-start-column="77" selection-end-line="65" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/CertificadoController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="37" column="52" selection-start-line="37" selection-start-column="39" selection-end-line="37" selection-end-column="52" />
+          <folding>
+            <marker date="1485386256488" expanded="true" signature="4207:4217" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Console/Commands/CotacaoCommand.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-180">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
           <folding />
         </state>
       </provider>
@@ -1359,20 +1248,88 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/ApolicesController.php">
+    <entry file="file://$PROJECT_DIR$/app/Console/Commands/AtualizaFipe.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="65" column="77" selection-start-line="65" selection-start-column="77" selection-end-line="65" selection-end-column="77" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/CertificadoController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-585">
-          <caret line="37" column="52" selection-start-line="37" selection-start-column="39" selection-end-line="37" selection-end-column="52" />
+        <state relative-caret-position="-4384">
+          <caret line="428" column="76" selection-start-line="428" selection-start-column="76" selection-end-line="428" selection-end-column="76" />
           <folding>
-            <marker date="1485386256488" expanded="true" signature="4207:4217" ph="..." />
+            <marker date="1485475183613" expanded="true" signature="1337:1401" ph="ALTER TABLE fipedbf... " />
+            <marker date="1485475183613" expanded="true" signature="1439:1537" ph="UPDATE fiped... " />
+            <marker date="1485475183613" expanded="true" signature="1575:1656" ph="UPDATE fiped... " />
+            <marker date="1485475183613" expanded="true" signature="1694:1747" ph="UPDATE fiped... " />
+            <marker date="1485475183613" expanded="true" signature="1785:1843" ph="UPDATE fiped... " />
+            <marker date="1485475183613" expanded="true" signature="1881:1939" ph="UPDATE fiped... " />
+            <marker date="1485475183613" expanded="true" signature="1977:2035" ph="UPDATE fiped... " />
+            <marker date="1485475183613" expanded="true" signature="2110:2149" ph="CREATE TABLE... fipeanovalor_atualizada" />
+            <marker date="1485475183613" expanded="true" signature="2187:2569" ph="SELECT &quot;COD_... fipedbf" />
+            <marker date="1485475183613" expanded="true" signature="2746:2808" ph="INSERT INTO fipeanovalor... " />
+            <marker date="1485475183613" expanded="true" signature="2771:2808" ph="SELECT * FRO... fipeanovalor_atualizada" />
+            <marker date="1485475183613" expanded="true" signature="2934:3637" ph="INSERT INTO fipe... " />
+            <marker date="1485475183613" expanded="true" signature="2987:3544" ph="SELECT DISTI... fipedbf" />
+            <marker date="1485475183613" expanded="true" signature="3712:3755" ph="DROP TABLE f... " />
+            <marker date="1485475183613" expanded="true" signature="4008:6401" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="6653:6759" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="6797:6904" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="6942:8011" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="8049:8186" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="8224:8366" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="8404:8618" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="8656:8854" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="8892:9036" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="9074:9216" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="9254:9416" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="9454:9597" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="9635:9883" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="9921:10065" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="10103:10244" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="10282:10424" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="10462:10645" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="10683:10862" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="10900:11041" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="11079:11341" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="11379:11519" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="11557:11838" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="11876:12017" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="12055:12198" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="12236:12400" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="12438:12580" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="12618:12846" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="12884:13025" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="13063:13205" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="13440:13584" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="13622:13766" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="13804:13967" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="14005:14149" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="14187:14351" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="14389:14557" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="14596:14780" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="14818:14960" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="14998:15271" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="15309:15498" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="15536:15704" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="15743:15910" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="15949:16095" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="16133:16387" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="16182:16386" ph="select codef... fipe" />
+            <marker date="1485475183613" expanded="true" signature="16425:16566" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="16604:16797" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="16835:16982" ph="update FIPE " />
+            <marker date="1485475183613" expanded="true" signature="17129:17197" ph="ALTER TABLE fipedbfmoto... " />
+            <marker date="1485475183613" expanded="true" signature="17235:17337" ph="UPDATE fiped... " />
+            <marker date="1485475183613" expanded="true" signature="17375:17460" ph="UPDATE fiped... " />
+            <marker date="1485475183613" expanded="true" signature="17498:17555" ph="UPDATE fiped... " />
+            <marker date="1485475183613" expanded="true" signature="17593:17655" ph="UPDATE fiped... " />
+            <marker date="1485475183613" expanded="true" signature="17693:17755" ph="UPDATE fiped... " />
+            <marker date="1485475183613" expanded="true" signature="17793:17855" ph="UPDATE fiped... " />
+            <marker date="1485475183613" expanded="true" signature="17930:17969" ph="CREATE TABLE... fipeanovalor_atualizada" />
+            <marker date="1485475183613" expanded="true" signature="18007:18393" ph="SELECT &quot;COD_... fipedbfmoto" />
+            <marker date="1485475183613" expanded="true" signature="18467:18529" ph="INSERT INTO fipeanovalor... " />
+            <marker date="1485475183613" expanded="true" signature="18492:18529" ph="SELECT * FRO... fipeanovalor_atualizada" />
+            <marker date="1485475183613" expanded="true" signature="18567:19274" ph="INSERT INTO fipe... " />
+            <marker date="1485475183613" expanded="true" signature="18620:19181" ph="SELECT DISTI... fipedbfmoto" />
+            <marker date="1485475183613" expanded="true" signature="18620:19274" ph="SELECT DISTI... fipedbfmoto" />
+            <marker date="1485475183613" expanded="true" signature="19349:19396" ph="DROP TABLE f... " />
+            <marker date="1485475183613" expanded="true" signature="19622:53199" ph="update FIPE " />
           </folding>
         </state>
       </provider>
