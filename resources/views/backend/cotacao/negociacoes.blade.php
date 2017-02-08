@@ -6,6 +6,16 @@
 @section('contentSeg')
 
     <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-2">
+                <p>Mostrando as últimas 500 cotações</p>
+            </div>
+            <div class="col-md-6 btn-group">
+                <button type="button" class="btn-primary btn-xs pull-right load-more" data-url="{{$url}}" data-offset="0" data-sum="500">Carregar mais 500</button>
+            </div>
+
+        </div>
+
         <div class="table-responsive apolice">
             <table class="table table-hover table-condensed table-datatable">
                 <thead>

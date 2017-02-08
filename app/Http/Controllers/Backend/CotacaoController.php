@@ -56,22 +56,48 @@ class CotacaoController extends Controller
         ini_set('max_execution_time', 0);
         $title = 'Ativas';
         $crypt = Crypt::class;
-        $end_date = date('Y-m-d');
-        $start_date = date('Y-m-d',strtotime('-30 days'));
+        $limit = 500;
+        $offset = 0;
 
+        $url = route('cotacao.ajaxativas');
 
 
         if (Auth::user()->hasRole('admin')) {
-           $cotacoes = Cotacoes::with(['segurado','veiculo.fipe.anovalor','veiculo.combustivel','corretor'])->whereIn('idstatus', [9])->whereBetween('dtcreate',[$start_date ,$end_date])->orderby('idcotacao', 'desc')->get();
+            $cotacoes = Cotacoes::skip($offset)->take($limit)->with(['segurado', 'veiculo.fipe.anovalor', 'veiculo.combustivel', 'corretor'])->whereIn('idstatus', [9])->orderby('dtcreate', 'desc')->get();
         } elseif (Auth::user()->can('ver-todos-cotacoes')) {
-            $cotacoes = Cotacoes::with(['segurado','veiculo.fipe.anovalor','veiculo.combustivel','corretor'])->where('idcorretor', Auth::user()->corretor->idcorretor)->whereBetween('dtcreate',[$start_date ,$end_date])->whereNotNull('usuario_id')->whereIn('idstatus', [9])->orderby('idcotacao', 'desc')->get();
+            $cotacoes = Cotacoes::skip($offset)->take($limit)->with(['segurado', 'veiculo.fipe.anovalor', 'veiculo.combustivel', 'corretor'])->where('idcorretor', Auth::user()->corretor->idcorretor)->whereNotNull('usuario_id')->whereIn('idstatus', [9])->orderby('dtcreate', 'desc')->get();
         } else {
-            $cotacoes = Cotacoes::with(['segurado','veiculo.fipe.anovalor','veiculo.combustivel','corretor'])->where('usuario_id', Auth::user()->id)->whereBetween('dtcreate',[$start_date ,$end_date])->whereNotNull('usuario_id')->whereIn('idstatus', [9])->orderby('idcotacao', 'desc')->get();
+            $cotacoes = Cotacoes::skip($offset)->take($limit)->with(['segurado', 'veiculo.fipe.anovalor', 'veiculo.combustivel', 'corretor'])->where('usuario_id', Auth::user()->id)->whereNotNull('usuario_id')->whereIn('idstatus', [9])->orderby('dtcreate', 'desc')->get();
         }
 
 
-        return view('backend.cotacao.negociacoes', compact('cotacoes', 'crypt', 'title'));
+        return view('backend.cotacao.negociacoes', compact('cotacoes', 'crypt', 'title','url'));
     }
+
+    public function cotacoesAjax(Request $request)
+    {
+        ini_set('max_execution_time', 0);
+        if (isset($request->offset)) {
+            $title = 'Ativas';
+            $crypt = Crypt::class;
+            $limit = 500;
+            $offset = $request->offset;
+
+
+            if (Auth::user()->hasRole('admin')) {
+                $cotacoes = Cotacoes::skip($offset)->take($limit)->with(['segurado', 'veiculo.fipe.anovalor', 'veiculo.combustivel', 'corretor'])->whereIn('idstatus', [9])->orderby('dtcreate', 'desc')->get();
+            } elseif (Auth::user()->can('ver-todos-cotacoes')) {
+                $cotacoes = Cotacoes::skip($offset)->take($limit)->with(['segurado', 'veiculo.fipe.anovalor', 'veiculo.combustivel', 'corretor'])->where('idcorretor', Auth::user()->corretor->idcorretor)->whereNotNull('usuario_id')->whereIn('idstatus', [9])->orderby('dtcreate', 'desc')->get();
+            } else {
+                $cotacoes = Cotacoes::skip($offset)->take($limit)->with(['segurado', 'veiculo.fipe.anovalor', 'veiculo.combustivel', 'corretor'])->where('usuario_id', Auth::user()->id)->whereNotNull('usuario_id')->whereIn('idstatus', [9])->orderby('dtcreate', 'desc')->get();
+            }
+
+
+            return view('backend.cotacao.cotacoes_ajax', compact('cotacoes', 'crypt', 'title'));
+        }
+
+    }
+
 
     public function vencidas()
     {
@@ -79,21 +105,21 @@ class CotacaoController extends Controller
         $crypt = Crypt::class;
         $title = 'Canceladas ou Vencidas';
         $end_date = date('Y-m-d');
-        $start_date = date('Y-m-d',strtotime('-30 days'));
+        $start_date = date('Y-m-d', strtotime('-15 days'));
 
 
         if (Auth::user()->hasRole('admin')) {
-            $cotacoes = Cotacoes::with(['segurado','veiculo.fipe.anovalor','veiculo.combustivel','corretor'])->whereNotIn('idstatus', [9, 10])->whereBetween('dtcreate',[$start_date ,$end_date])->orderby('idcotacao', 'desc')->get();
+            $cotacoes = Cotacoes::with(['segurado', 'veiculo.fipe.anovalor', 'veiculo.combustivel', 'corretor'])->whereNotIn('idstatus', [9, 10])->whereBetween('dtcreate', [$start_date, $end_date])->orderby('idcotacao', 'desc')->get();
         } elseif (Auth::user()->can('ver-todos-cotacoes')) {
-            $cotacoes = Cotacoes::with(['segurado','veiculo.fipe.anovalor','veiculo.combustivel','corretor'])->where('idcorretor', Auth::user()->corretor->idcorretor)->whereBetween('dtcreate',[$start_date ,$end_date])->whereNotNull('usuario_id')->whereNotIn('idstatus', [9, 10])->orderby('idcotacao', 'desc')->get();
+            $cotacoes = Cotacoes::with(['segurado', 'veiculo.fipe.anovalor', 'veiculo.combustivel', 'corretor'])->where('idcorretor', Auth::user()->corretor->idcorretor)->whereBetween('dtcreate', [$start_date, $end_date])->whereNotNull('usuario_id')->whereNotIn('idstatus', [9, 10])->orderby('idcotacao', 'desc')->get();
         } else {
-            $cotacoes = Cotacoes::with(['segurado','veiculo.fipe.anovalor','veiculo.combustivel','corretor'])->where('usuario_id', Auth::user()->id)->whereBetween('dtcreate',[$start_date ,$end_date])->whereNotNull('usuario_id')->whereNotIn('idstatus', [9, 10])->orderby('idcotacao', 'desc')->get();
+            $cotacoes = Cotacoes::with(['segurado', 'veiculo.fipe.anovalor', 'veiculo.combustivel', 'corretor'])->where('usuario_id', Auth::user()->id)->whereBetween('dtcreate', [$start_date, $end_date])->whereNotNull('usuario_id')->whereNotIn('idstatus', [9, 10])->orderby('idcotacao', 'desc')->get();
         }
 
 
         return view('backend.cotacao.negociacoes', compact('cotacoes', 'crypt', 'title'));
     }
-    
+
     public function sendEmail(Request $request)
     {
         $this->validate($request, ['email' => 'required|email|max:255']);
@@ -121,7 +147,6 @@ class CotacaoController extends Controller
             }
 
             $cotacao->segurado()->update(['cliemail' => $request->email]);
-
 
 
             error_reporting(E_ERROR);
@@ -260,7 +285,8 @@ class CotacaoController extends Controller
                 "correEndCidade" => Auth::user()->corretor->corrnmcidade,
                 "correEndCdUf" => Auth::user()->corretor->corrcduf],
             "segurado" => ["segCpfCnpj" => $request->cpfcnpj],
-            "veiculo" => ["veiCodFipe" => $request->codefipe,
+            "veiculo" => [
+                "veiCodFipe" => $request->codefipe,
                 "veiAno" => $request->anomodelo,
                 "veiIndZero" => $request->indautozero,
                 "veiCdTipo" => $request->tipoveiculo,

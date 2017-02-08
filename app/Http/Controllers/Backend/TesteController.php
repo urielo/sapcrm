@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Model\PrecoProdutos;
+use App\Model\SeguradoraProduto;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Backend\Controller;
@@ -34,6 +35,14 @@ class TesteController extends Controller
 
     public function index(TipoUtilizacaoVeic $tipoutilizacao, TipoVeiculos $tipos, FormaPagamento $formas)
     {
+
+        $produtos = Produtos::with('precoproduto')->where('idproduto',1)->first();
+        
+        $seguradora =  SeguradoraProduto::where('idproduto',1)->get();
+
+        return $produtos->precoproduto->max('vlrfipemaximo');
+
+
 
         echo '<pre>';
 //        var_dump(PrecoProdutos::orderBy('idproduto','ASC')->orderBy('idprecoproduto','ASC')->get()->toArray());

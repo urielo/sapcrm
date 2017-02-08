@@ -147,6 +147,12 @@ Route::group(['prefix' => 'cotacao', 'middleware' => 'auth'], function () {
         'as' => 'vendas.negociacoes',
         'uses' => 'Backend\CotacaoController@cotacoes']);
 
+    Route::get('/cotacaoAjax', [
+
+        'middleware' => ['permission:cotacao-gestao'],
+        'as' => 'cotacao.ajaxativas',
+        'uses' => 'Backend\CotacaoController@cotacoesAjax']);
+
     Route::get('/vencidas', [
 
         'middleware' => ['permission:cotacao-gestao'],
@@ -354,7 +360,7 @@ Route::group(['prefix'=>'movimentos', 'middleware' => 'auth'],function(){
 });
 
 Route::group(['prefix'=>'segurados','middleware'=>'auth'],function (){
-    Route::get('/edit/{cpfcnpj}',[
+    Route::get('/edit/{id}',[
         'as'=>'segurado.edit',
         'uses'=>'Backend\SeguradoController@edit'
     ]);

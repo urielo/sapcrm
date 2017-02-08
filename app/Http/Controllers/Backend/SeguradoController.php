@@ -12,38 +12,30 @@ use App\Model\FormaPagamento;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Redirect;
 use Mockery\CountValidator\Exception;
 
 class SeguradoController extends Controller
 {
-public function __construct(OrgaoEmissors $orgaoemissors, EstadosCivis $estadoscivis, Segurado $segurados, Veiculos $veiculos, TipoVeiculos $tipos, Uf $ufs, TipoUtilizacaoVeic $tipoultiveics)
-{   $this->tipos = $tipos;
-    $this->segurado = $segurados;
-    $this->veiculo = $veiculos;
-    $this->ufs = $ufs;
-    $this->tipoultiveics = $tipoultiveics;
-    $this->estadoscivis = $estadoscivis;
-    $this->orgaoemissors = $orgaoemissors;
+public function __construct()
+{   
     parent::__construct();
 }
     public function index()
-    {   
-        $segurados = $this->segurado->paginate(10);
-        return view('backend.segurado.home', compact('segurados','veiculos'));
+    {
+        $segurados = Segurado::all();
+        
+        $crypt = Crypt::class;
+
+        return view('backend.segurado.home', compact('segurados','crypt'));
     }
     
     public function create()
     {
-        $veiculos = $this->veiculo;
-        $segurados = $this->segurado;
-        $tipos = $this->tipos;
-        $ufs = $this->ufs;
-        $tipoultiveics = $this->tipoultiveics;
-        $estadoscivis = $this->estadoscivis;      
-        $orgaoemissors = $this->orgaoemissors;      
+       $segurados = Segurado::all();
         
         
-        return view('backend.segurado.form', compact('segurados', 'orgaoemissors', 'veiculos', 'tipos', 'ufs', 'tipoultiveics', 'estadoscivis'));
+        return view('backend.segurado.home', compact('segurados'));
     }
     
     public function store( $request)
@@ -56,15 +48,27 @@ public function __construct(OrgaoEmissors $orgaoemissors, EstadosCivis $estadosc
         
     }
 
-    public function edit($cpfcnpj)
+    public function edit($id)
     {
         try {
 
-            Crypt::class;
+
+            $segurado = Segurado::find(Crypt::decrypt($id));
+            $formas = [];
+            $ufs = Uf::lists('nm_uf', 'cd_uf');
+            $estados_civis = EstadosCivis::lists('nmestadocivil', 'idestadocivil');
+            $profissoes = Profissoes::lists('nm_ocupacao', 'id_ocupacao');
+            $ramos_atividades = RamoAtividades::lists('nome_atividade', 'id_ramo_atividade');
+            $tipoultiveics = TipoUtilizacaoVeic::class;
+            $orgaos_emissores = OrgaoEmissors::lists('desc_oe', 'cd_oe');
+
+
+            return view('backend.segurado.edit_modal', compact('segurado', 'formas', 'ufs', 'estados_civis', 'tipoultiveics', 'ramos_atividades', 'profissoes', 'orgaos_emissores'));
 
 
         }catch (Exception $e){
-            
+            return Redirect::back()->with('error', 'Segurado não encontrado');
+
             
         }
     }

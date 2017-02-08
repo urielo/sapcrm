@@ -67,10 +67,10 @@ $(function () {
     panelproprietario.hide();
 
 
-    $(window).on('unload', function () {
-        $('.bgloading').fadeIn()
-        $('#body').addClass('blur')
-    })
+    // $(window).on('unload', function () {
+    //     $('.bgloading').fadeIn()
+    //     $('#body').addClass('blur')
+    // });
 
     // $('a').on('click',function () {
     //     $(window).trigger('unload')
@@ -155,7 +155,7 @@ $(function () {
     })
 
 
-    $('.table-datatable').dataTable({
+  var table =  $('.table-datatable').dataTable({
         language: {
             sEmptyTable: "Nenhum registro encontrado",
             sInfo: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
@@ -182,8 +182,11 @@ $(function () {
         "scrollY": ttable,
         "scrollCollapse": true,
         "order": [[1, "desc"]],
-        "lengthMenu": [50, 100, 150, 200]
-    })
+        "bDestroy": true,
+        "fnDestroy": true,
+        "fnDraw": true,
+      "lengthMenu": [50, 100, 150, 200]
+    });
 
 
     function jurosComposto(valor, taxa, parcelas) {
@@ -1480,7 +1483,7 @@ $(function () {
         } else if ($(this).attr('id') == 'fechasecesso') {
 
             $('#sucesso').hide();
-        } else {
+        } else if($(this).attr('data-target') !='undefined'){
             $('.modal-content').empty()
 
             $.ajax({
@@ -1498,12 +1501,40 @@ $(function () {
 
         }
 
+        // return false;
+
     });
 
     function menssageError(message, idmessage) {
         return '<small><div class="col-md-6 col-md-offset-3 alert alert-danger" id="' + idmessage + '">' + message + '</div></small>'
 
     }
+
+    $('.load-more').on('click',function(){
+        var dTable = table;
+        var _this = $(this);
+        var _offset = parseInt(_this.attr('data-offset')) + parseInt(_this.attr('data-sum'));
+        var _url = _this.attr('data-url');
+        _this.attr('data-offset',parseInt(_this.attr('data-offset')) + parseInt(_this.attr('data-sum')));
+
+        $.ajax({
+            data: {offset:_offset},
+            url: _url,
+            success:function (retorno) {
+                table.fnDestroy();
+
+                $('tbody').append(retorno)
+
+                
+
+
+
+                // console.log(retorno);
+            }
+
+        });
+
+    });
 
 
     $('a').click(function () {
@@ -1904,6 +1935,8 @@ $(function () {
         if (tipo_consulta.placa == 'placa') {
             $('.input-consulta').mask('AAA-9999')
         }
-    })
+    });
+    
+
 });
 

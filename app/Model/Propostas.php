@@ -20,18 +20,29 @@ class Propostas extends Model
         'nmbandeira',
         'numcartao',
         'validadecartao',
+        'cvvcartao',
         'idmotivo',
         'premiototal',
         'primeiraparc',
         'demaisparc',
         'usuario_id',
+        'titularcartao',
+        'veiculo_id',
+        'created_at',
+        'updated_at',
 
     ];
-    public $timestamps = FALSE;
 
     public function cotacao()
     {
         return $this->belongsTo('App\Model\Cotacoes', 'idcotacao', 'idcotacao')->with('segurado','status','veiculo','corretor');
+    }
+    
+    
+
+    public function veiculo()
+    {
+        return $this->belongsTo('App\Model\Veiculos','veiculo_id','veicid');
     }
 
     public function cotacaoseguradora()

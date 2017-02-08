@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class SetPrimaryProdutosCombosTable extends Migration
+class AddColumnVeiculoIdToPropostaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,9 @@ class SetPrimaryProdutosCombosTable extends Migration
      */
     public function up()
     {
-        Schema::table('produtos_combos', function (Blueprint $table) {
-//            $table->primary(['idprodutomaster','idprodutoopcional','tipo_veiculo_id']);
+        Schema::table('proposta', function (Blueprint $table) {
+            $table->integer('veiculo_id')->default(0);
+            $table->timestamps();
         });
     }
 
@@ -24,7 +25,7 @@ class SetPrimaryProdutosCombosTable extends Migration
      */
     public function down()
     {
-        Schema::table('produtos_combos', function (Blueprint $table) {
+        Schema::table('proposta', function (Blueprint $table) {
             //
         });
     }

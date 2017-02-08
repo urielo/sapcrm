@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class SetPrimaryProdutosCombosTable extends Migration
+class AlterColumnClicpfcnpjToSeguradoIdOnCotacao extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,8 @@ class SetPrimaryProdutosCombosTable extends Migration
      */
     public function up()
     {
-        Schema::table('produtos_combos', function (Blueprint $table) {
-//            $table->primary(['idprodutomaster','idprodutoopcional','tipo_veiculo_id']);
+        Schema::table('cotacao', function (Blueprint $table) {
+            $table->renameColumn('clicpfcnpj','segurado_id');
         });
     }
 
@@ -24,7 +24,7 @@ class SetPrimaryProdutosCombosTable extends Migration
      */
     public function down()
     {
-        Schema::table('produtos_combos', function (Blueprint $table) {
+        Schema::table('cotacao', function (Blueprint $table) {
             //
         });
     }
