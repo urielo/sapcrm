@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Backend;
+use App\Model\Profissoes;
+use App\Model\RamoAtividades;
 use App\Model\Segurado;
 use App\Model\TipoVeiculos;
 use App\Model\Veiculos;
@@ -52,7 +54,6 @@ public function __construct()
     {
         try {
 
-
             $segurado = Segurado::find(Crypt::decrypt($id));
             $formas = [];
             $ufs = Uf::lists('nm_uf', 'cd_uf');
@@ -75,6 +76,30 @@ public function __construct()
     
     public function update()
     {
+
+//        
+//        "segNomeRazao" => $request->seg_nomerazao,
+//            "segCpfCnpj" => getDataReady($request->seg_cpfnpj),
+//            "segDtNasci" => getDateFormat($request->seg_data_nascimento_inscricao, 'nascimento'),
+//            "segCdSexo" => $request->seg_sexo,
+//            "segCdEstCivl" => $request->seg_estado_civil,
+//            "segProfRamoAtivi" => $request->seg_profissao_ramo,
+//            "segEmail" => $request->seg_email,
+//            "segCelDdd" => getDataReady($request->seg_cel_ddd),
+//            "segCelNum" => getDataReady($request->seg_cel_numero),
+//            "segFoneDdd" => getDataReady($request->seg_fixo_ddd),
+//            "segFoneNum" => getDataReady($request->seg_fixo_numero),
+//            "segEnd" => $request->seg_end_log,
+//            "segEndNum" => $request->seg_end_num,
+//            "segEndCompl" => $request->seg_end_complemento,
+//            "segEndCep" => getDataReady($request->seg_end_cep),
+//            "segEndCidade" => $request->seg_end_cidade,
+//            "segEndCdUf" => $request->seg_end_uf,
+//            "segNumRg" => getDataReady($request->seg_rg_numero),
+//            "segDtEmissaoRg" => ($request->seg_rg_emissao ? getDateFormat($request->seg_rg_emissao, 'nascimento') : NULL),
+//            "segEmissorRg" => $request->seg_rg_org,
+//            "segBairro" => $request->seg_end_bairro,
+//            "segCdUfRg" => $request->seg_rg_uf,
         
     }
     

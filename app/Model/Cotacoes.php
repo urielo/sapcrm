@@ -40,6 +40,10 @@ class Cotacoes extends Model
     {
         return $this->belongsTo('App\Model\Corretores','idcorretor','idcorretor');
     }
+    public function fipe()
+    {
+        return $this->belongsTo('App\Model\Fipes','code_fipe','codefipe');
+    }
     public function segurado()
     {
         return $this->belongsTo('App\Model\Segurado','segurado_id','id');
@@ -67,6 +71,17 @@ class Cotacoes extends Model
     public function usuario(){
         return $this->belongsTo('App\User','usuario_id','id');
 
+    }
+
+    public function tipo()
+    {
+        return $this->belongsTo(TipoVeiculos::class,'tipo_veiculo_id','idtipoveiculo');
+    }
+
+
+    public function combustivel()
+    {
+        return $this->belongsTo('App\Model\Combustivel', 'combustivel_id', 'id_auto_comb');
     }
     
 

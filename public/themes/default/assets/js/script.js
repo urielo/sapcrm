@@ -67,14 +67,7 @@ $(function () {
     panelproprietario.hide();
 
 
-    // $(window).on('unload', function () {
-    //     $('.bgloading').fadeIn()
-    //     $('#body').addClass('blur')
-    // });
 
-    // $('a').on('click',function () {
-    //     $(window).trigger('unload')
-    // })
 
     var produto_master = false;
     var produto_opcional = false;
@@ -122,23 +115,18 @@ $(function () {
     }
 
 
-    // $(window).load(function () {
-    //     $('#body').removeClass('blur')
-    //     $('.bgloading').fadeOut()
-    //
-    // })
 
     $(document).ready(function () {
         $('#body').removeClass('blur')
         $('.bgloading').fadeOut()
 
-    })
+    });
 
     $(document).ajaxStart(function () {
         $('.bgloading').fadeIn()
         $('#body').addClass('blur')
         $('.modal-content').prepend('<div class="bgloading" id="loading"></div>')
-    })
+    });
 
     $(document).ajaxStop(function () {
         $('.bgloading').fadeOut()
@@ -152,10 +140,387 @@ $(function () {
     $(window).resize(function () {
         $('#body-panel').height($(window).height() - 125);
         ttable = $(window).height() - 250;
-    })
+    });
+    $.widget("custom.marcacomplete", $.ui.autocomplete, {
+        _create: function () {
+            this._super();
+            this.widget().menu("option", "items", "> :not(.ui-autocomplete-category)");
+        },
+        _renderMenu: function (ul, items) {
+            var that = this,
+                currentCategory = "";
+            $.each(items, function (index, item) {
+                var li;
+                if (item.category != currentCategory) {
+                    ul.append("<li class='ui-autocomplete-category'>" + item.category + "</li>");
+                    currentCategory = item.category;
+                }
+                li = that._renderItemData(ul, item);
+                if (item.category) {
+                    li.attr("aria-label", item.category + " : " + item.label);
+                }
+            });
+        }
+    });
+
+    $.apllyFilters = function () {
 
 
-  var table =  $('.table-datatable').dataTable({
+        $('.date-virgencia').datepicker({
+            format: "dd/mm/yyyy",
+            clearBtn: true,
+            language: "pt-BR",
+            orientation: "auto"
+        });
+
+        buscaCep('#segcep', '#segenduf', '#segendlog', '#segendcidade');
+        buscaCep('#propcep', '#propenduf', '#propendlog', '#propendcidade');
+        buscaCep('#cep', '#uf', '#logradouro', '#cidade');
+
+        $('#veiculo').marcacomplete({
+
+            delay: 0,
+            source: function (request, response) {
+                $.getJSON(
+                    $('#veiculo').attr('data-url'),
+                    {tipoveiculo: $('select[name="tipoveiculo"]').val(), term: request.term},
+                    response);
+            },
+            select: function (event, ui) {
+
+                $('input:checkbox').each(function () {
+                    if ($(this).attr('name') == 'produtos[]' && $(this).is(':checked')) {
+                        $(this).removeAttr('checked')
+                        $(this).trigger('change')
+
+                    }
+                })
+                produtos.empty();
+                btnproposta.hide();
+                panelprodutos.hide();
+                // produtosvalores = [];
+                // $('#valortotal').trigger('change');
+                reusltAutoComplete(ui.item.id);
+
+
+            }
+        });
+
+        $('#segprofissao').autocomplete({
+            delay: 0,
+            source: geturl() + 'profissao',
+            select: function (event, ui) {
+                $('#segcdprofissao').val(ui.item.id);
+
+            }
+        });
+        $('#segramoatividade').autocomplete({
+            delay: 0,
+            source: geturl() + 'ramoatividade',
+            select: function (event, ui) {
+                $('#segcdramoatividade').val(ui.item.id);
+
+            }
+        });
+        $('.input-group.date').datepicker({
+            format: "dd/mm/yyyy",
+            clearBtn: true,
+            language: "pt-BR",
+            orientation: "auto",
+            endDate: "+Infinity",
+            autoclose: true
+        });
+
+        $(':input').each(function () {
+
+            if ($(this).attr('tipoinput') == 'cpf' && $(this).attr('stats')) {
+                $(this).attr('placeholder', '999.999.999-00');
+                $(this).mask('999.999.999-99');
+
+                var idmsg = 'msg' + $(this).attr('id');
+                var pessoa = $(this).attr('pessoa');
+
+                $(this).focusout(function () {
+                    var value = $(this).val();
+                    if (!validate_cpf($(this).val()) && value.length > 0) {
+                        ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
+                        $(this).after(menssageError('CPF: Invalido', idmsg))
+                        $(this).focus();
+                    } else if (validate_cpf($(this).val())) {
+                        ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
+                        value = value.replace('.', '');
+                        value = value.replace('.', '');
+                        value = value.replace('-', '');
+                        var dados = {'cpfcnpj': value, 'elemento': pessoa, 'tipo': $('#tipopessoa').val()}
+
+                        $.ajax({
+                            data: dados,
+                            url: geturl() + 'complete',
+                            dataType: "json",
+                            type: 'GET',
+                            success: function (retorno) {
+                                if (retorno.status) {
+
+                                    $.each(retorno, function (key, value) {
+
+                                        $('#' + key).val(value)
+                                        $('#' + key).trigger('focusout')
+
+                                    })
+                                } else {
+                                    return false
+                                }
+
+                            },
+                            error: function (retorno) {
+                                console.log(retorno);
+                                console.log('error');
+                            }
+                        });
+
+                    } else {
+                        ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
+                    }
+                });
+
+                $(this).removeAttr('stats')
+
+
+            } else if ($(this).attr('tipoinput') == 'cnpj' && $(this).attr('stats')) {
+                $(this).attr('placeholder', '99.999.999/9999-00');
+                $(this).mask('99.999.999/9999-00');
+
+                var idmsg = 'msg' + $(this).attr('id');
+                $(this).focusout(function () {
+                    var value = $(this).val();
+                    if (!validate_cnpj($(this).val()) && value.length > 0) {
+                        ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
+                        $(this).after(menssageError('CNPJ: Invalido', idmsg))
+                        $(this).focus();
+                    } else if (validate_cnpj($(this).val())) {
+                        ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
+                        ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
+                        value = value.replace('.', '');
+                        value = value.replace('.', '');
+                        value = value.replace('-', '');
+                        value = value.replace('/', '');
+
+                        var dados = {'cpfcnpj': value, 'elemento': pessoa, 'tipo': $('#tipopessoa').val()}
+
+                        $.ajax({
+                            data: dados,
+                            url: geturl() + 'complete',
+                            dataType: "json",
+                            type: 'GET',
+                            success: function (retorno) {
+                                if (retorno.status) {
+
+                                    $.each(retorno, function (key, value) {
+
+                                        $('#' + key).val(value)
+                                        $('#' + key).trigger('focusout')
+
+                                    })
+                                } else {
+                                    return false
+                                }
+
+                            },
+                            error: function (retorno) {
+                                console.log(retorno);
+                                console.log('error');
+                            }
+                        });
+                    } else {
+                        ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
+                    }
+                });
+
+                $(this).removeAttr('stats')
+            } else if ($(this).attr('tipoinput') == 'cpfcnpj' && $(this).attr('stats')) {
+                $(this).attr('placeholder', 'CPF ou CNPJ');
+                // $(this).mask('99.999.999/9999-00');
+
+                $(this).keyup(function () {
+                    var val = $(this).val();
+
+                    $(this).unmask();
+
+                    if (val.length < 15 && val.length > 3) {
+                        $(this).unmask();
+                        $(this).mask('999.999.999-999');
+                    } else {
+                        $(this).unmask();
+                        $(this).mask('99.999.999/9999-00');
+                    }
+
+                })
+
+
+                var idmsg = 'msg-' + $(this).attr('id');
+                $(this).focusout(function () {
+                    $(this).trigger('keyup')
+                    var val = $(this).val();
+
+                    if (val.length > 2) {
+
+                        var value = $(this).cleanVal();
+                        if (value.length > 11) {
+                            if (!validate_cnpj($(this).val()) && value.length > 0) {
+                                ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
+                                $(this).after(menssageError('CNPJ: Invalido', idmsg))
+                                $(this).focus();
+                                return false;
+                            } else if (validate_cnpj($(this).val())) {
+                                ($('#' + idmsg) ? $('#' + idmsg).remove() : '');
+
+
+                            } else {
+                                ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
+                            }
+                        } else {
+                            if (!validate_cpf($(this).val()) && value.length > 0) {
+                                ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
+                                $(this).after(menssageError('CPF: Invalido', idmsg))
+                                $(this).focus();
+                                return false
+                            } else if (validate_cnpj($(this).val())) {
+                                ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
+
+
+                            } else {
+                                ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
+                            }
+                        }
+                    }
+
+
+                });
+
+                $(this).removeAttr('stats')
+            } else if ($(this).attr('tipoinput') == "chassi" && $(this).attr('stats')) {
+                $(this).attr('placeholder', '9AAAA99AA99999999');
+                $(this).mask('XXXXXXXXXXXXXXXXX', {'translation': {X: {pattern: /[A-Za-z0-9]/}}})
+                $(this).keyup(function () {
+                    $(this).val($(this).val().toUpperCase())
+                })
+                $(this).removeAttr('stats')
+            } else if ($(this).attr('tipoinput') == "placa" && $(this).attr('stats')) {
+                $(this).attr('placeholder', 'AAA-9999');
+                $(this).mask('AAA-9999')
+
+                $(this).keyup(function () {
+                    $(this).val($(this).val().toUpperCase())
+                })
+
+                $(this).focusout(function () {
+                    $(this).val($(this).val().toUpperCase())
+
+                })
+
+                $(this).removeAttr('stats')
+            } else if ($(this).attr('tipoinput') == "ddd" && $(this).attr('stats')) {
+
+                $(this).attr('placeholder', '99');
+                $(this).mask('99')
+                $(this).removeAttr('stats')
+            } else if ($(this).attr('tipoinput') == "cel" && $(this).attr('stats')) {
+
+                $(this).attr('placeholder', '99999-9999');
+                $(this).mask('99999-9999')
+                $(this).removeAttr('stats')
+            } else if ($(this).attr('tipoinput') == "fone" && $(this).attr('stats')) {
+
+                $(this).attr('placeholder', '9999-9999');
+                $(this).mask('9999-9999')
+                $(this).removeAttr('stats')
+            } else if ($(this).attr('tipoinput') == "data-nascimento" && $(this).attr('stats')) {
+
+                $(this).attr('placeholder', 'DD/MM/YYYY');
+                setDateP('#' + $(this).attr('id'), 'nascimento')
+                $(this).mask('99/99/9999')
+                $(this).removeAttr('stats')
+            } else if ($(this).attr('tipoinput') == "data-normal" && $(this).attr('stats')) {
+
+                $(this).attr('placeholder', 'DD/MM/YYYY');
+                setDateP('#' + $(this).attr('id'), null)
+                $(this).mask('99/99/9999')
+                $(this).removeAttr('stats')
+
+            } else if ($(this).attr('tipoinput') == "data-pagamento-boleto" && $(this).attr('stats')) {
+
+                $(this).attr('placeholder', 'DD/MM/YYYY');
+                setDateP('#' + $(this).attr('id'), 'pagamento-boleto')
+                $(this).mask('99/99/9999')
+                $(this).removeAttr('stats')
+
+            } else if ($(this).attr('tipoinput') == "data-validade-cartao" && $(this).attr('stats')) {
+
+                $(this).attr('placeholder', 'MM/YYYY');
+                setDateP('#' + $(this).attr('id'), 'valcartao')
+                $(this).mask('99/9999')
+                $(this).removeAttr('stats')
+            } else if ($(this).attr('tipoinput') == "cep" && $(this).attr('stats')) {
+
+                $(this).attr('placeholder', '00000-000');
+                $(this).mask('99999-999')
+                $(this).removeAttr('stats')
+            } else if ($(this).attr('tipoinput') == "renavan" && $(this).attr('stats')) {
+
+                $(this).attr('placeholder', '00000000000');
+                $(this).mask('99999999999')
+                $(this).removeAttr('stats')
+            } else if ($(this).attr('tipoinput') == "num-cartao" && $(this).attr('stats')) {
+
+                $(this).attr('placeholder', '0000 0000 0000 0000');
+                $(this).mask('9999 9999 9999 9999')
+                $(this).removeAttr('stats')
+            }
+            // console.log($(this).attr('data'));
+        });
+
+        var d = new Date();
+        $('#nnmcartao').mask('9999 9999 9999 9999');
+        $('#cvvcartao').mask('999');
+
+
+        $('#valcartao').datepicker({
+            format: "mm/yyyy",
+            startView: 1,
+            startDate: "-",
+            minViewMode: 1,
+            language: "pt-BR",
+            autoclose: true,
+            defaultViewDate: {year: d.getFullYear(), month: d.getMonth()}
+        });
+        $('#dataprimeira').datepicker({
+            format: "dd/mm/yyyy",
+            startView: 0,
+            language: "pt-BR",
+            startDate: "-",
+            autoclose: true,
+            defaultViewDate: {year: d.getFullYear(), month: d.getMonth(), day: d.getDay()}
+        });
+        $('#datademais').datepicker({
+            format: "dd",
+            language: "pt-BR",
+            autoclose: true,
+            defaultViewDate: {year: d.getFullYear(), month: d.getMonth(), day: d.getDay()}
+        });
+        $(':input').each(function () {
+
+            if ($(this).attr('tipoinput') == "data-pagamento-boleto") {
+
+                $(this).attr('placeholder', 'DD/MM/YYYY');
+                setDateP('#' + $(this).attr('id'), 'pagamento-boleto')
+                $(this).mask('99/99/9999')
+
+            }
+        });
+
+    }
+
+    var table = $('.table-datatable').dataTable({
         language: {
             sEmptyTable: "Nenhum registro encontrado",
             sInfo: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
@@ -181,12 +546,15 @@ $(function () {
         },
         "scrollY": ttable,
         "scrollCollapse": true,
-        "order": [[1, "desc"]],
-        "bDestroy": true,
-        "fnDestroy": true,
+        "destroy": true,
+        "fnDestroy": false,
         "fnDraw": true,
-      "lengthMenu": [50, 100, 150, 200]
+        "lengthMenu": [50, 100, 150, 200]
     });
+
+    $.apllyFilters();
+
+
 
 
     function jurosComposto(valor, taxa, parcelas) {
@@ -218,12 +586,7 @@ $(function () {
 
     }
 
-    $('.date-virgencia').datepicker({
-        format: "dd/mm/yyyy",
-        clearBtn: true,
-        language: "pt-BR",
-        orientation: "auto"
-    })
+
 
     function setDateP(idinput, tipo) {
         var d = new Date();
@@ -384,27 +747,7 @@ $(function () {
                 })
 
 
-            // if (i == 1) {
-            //    
-            //    
-            //     retorno.push(
-            //         {
-            //             "valorfinal": vlfinal,
-            //             "quantidade": i,
-            //             "primeira": priparcela,
-            //             "demais": demparcela,
-            //             "juros": juros,
-            //            
-            //         }
-            //     )
-            //    
-            //     retorno.push('<label style="font-size: 10px;"><input type="radio" data-vlfinal="' + vlfinal + '" name="quantparcela" id="formapagamento" value="' + i + '">' + i + 'x de R$ ' + priparcela + ' (' + textojuroc + ') </label><br>')
-            // } else if (formapg == 1) {
-            //     retorno.push('<label style="font-size: 10px;"><input type="radio" data-vlfinal="' + vlfinal + '" name="quantparcela" id="formapagamento" value="' + i + '">' + i + 'x de R$ ' + priparcela + ' (' + textojuroc + ') </label><br>')
-            // } else {
-            //     var ii = i - 1;
-            //     retorno.push('<label style="font-size: 10px;"><input type="radio" data-vlfinal="' + vlfinal + '" name="quantparcela" id="formapagamento" value="' + i + '">' + i + 'x (1x de R$ ' + priparcela + ' e ' + ii + 'x de  R$ ' + demparcela + ' ' + textojuros + ') </label><br>')
-            // }
+
         }
 
         return retorno;
@@ -557,32 +900,9 @@ $(function () {
         return false;
     }
 
-    buscaCep('#segcep', '#segenduf', '#segendlog', '#segendcidade');
-    buscaCep('#propcep', '#propenduf', '#propendlog', '#propendcidade');
-    buscaCep('#cep', '#uf', '#logradouro', '#cidade');
 
 
-    $.widget("custom.marcacomplete", $.ui.autocomplete, {
-        _create: function () {
-            this._super();
-            this.widget().menu("option", "items", "> :not(.ui-autocomplete-category)");
-        },
-        _renderMenu: function (ul, items) {
-            var that = this,
-                currentCategory = "";
-            $.each(items, function (index, item) {
-                var li;
-                if (item.category != currentCategory) {
-                    ul.append("<li class='ui-autocomplete-category'>" + item.category + "</li>");
-                    currentCategory = item.category;
-                }
-                li = that._renderItemData(ul, item);
-                if (item.category) {
-                    li.attr("aria-label", item.category + " : " + item.label);
-                }
-            });
-        }
-    });
+
 
 
     if ($('select[name=comissao]')) {
@@ -655,6 +975,8 @@ $(function () {
                             $('#panelprodutosopcional').show();
                             set_produtos()
                             $('#comissao').trigger('change');
+                            $.apllyFilters();
+
 
                         }
 
@@ -863,6 +1185,7 @@ $(function () {
             success: function (retorno) {
                 produtos.empty();
                 produtopagamento.fadeIn();
+                $.apllyFilters();
 
 
                 $.each(retorno, function (key, value) {
@@ -884,51 +1207,7 @@ $(function () {
     })
 
 
-    $('#veiculo').marcacomplete({
 
-        delay: 0,
-        source: function (request, response) {
-            $.getJSON(
-                $('#veiculo').attr('data-url'),
-                {tipoveiculo: $('select[name="tipoveiculo"]').val(), term: request.term},
-                response);
-        },
-        select: function (event, ui) {
-
-            $('input:checkbox').each(function () {
-                if ($(this).attr('name') == 'produtos[]' && $(this).is(':checked')) {
-                    $(this).removeAttr('checked')
-                    $(this).trigger('change')
-
-                }
-            })
-            produtos.empty();
-            btnproposta.hide();
-            panelprodutos.hide();
-            // produtosvalores = [];
-            // $('#valortotal').trigger('change');
-            reusltAutoComplete(ui.item.id);
-
-
-        }
-    });
-
-    $('#segprofissao').autocomplete({
-        delay: 0,
-        source: geturl() + 'profissao',
-        select: function (event, ui) {
-            $('#segcdprofissao').val(ui.item.id);
-
-        }
-    });
-    $('#segramoatividade').autocomplete({
-        delay: 0,
-        source: geturl() + 'ramoatividade',
-        select: function (event, ui) {
-            $('#segcdramoatividade').val(ui.item.id);
-
-        }
-    });
 
 
     $('#btnvender').on('click', function () {
@@ -1361,175 +1640,171 @@ $(function () {
     });
 
 
-    $(':button').on('click', function () {
-
-        if ($(this).attr('data-toggle') && $(this).attr('data-toggle') == 'modal') {
-
-            if ($(this).attr('id') == 'showinfo') {
-                $('.modal-content').empty()
-                $.ajax({
-                    url: $(this).attr('href'),
-                    type: 'GET',
-                    success: function (retorno) {
-
-                        $('.modal-content').html(retorno);
-
-
-                        return false;
-                    }
-
-                });
-            } else if ($(this).attr('id') == 'erro') {
-                var idmsg = '#' + $(this).attr('message')
-                $('#msgdeerro').text($(idmsg).val())
-
-            } else if ($(this).attr('id') == 'xml') {
-                var idmsg = '#' + $(this).attr('message')
-                $('#msgdeerro').text($(idmsg).val())
-
-            } else if ($(this).attr('id') == 'cancelar') {
-
-                $.ajax({
-                    url: $(this).attr('href'),
-                    type: 'GET',
-                    success: function (retorno) {
-                        $('.modal-content').html(retorno);
-
-                    }
-
-                });
-
-            } else if ($(this).attr('id') == 'pagar') {
-
-                $.ajax({
-                    url: $(this).attr('href'),
-                    type: 'GET',
-                    success: function (retorno) {
-                        $('.modal-content').html(retorno);
-
-                        $('.modal-content').on('mouseover', function () {
-                            var d = new Date();
-                            $('#nnmcartao').mask('9999 9999 9999 9999');
-                            $('#cvvcartao').mask('999');
-
-
-                            $('#valcartao').datepicker({
-                                format: "mm/yyyy",
-                                startView: 1,
-                                startDate: "-",
-                                minViewMode: 1,
-                                language: "pt-BR",
-                                autoclose: true,
-                                defaultViewDate: {year: d.getFullYear(), month: d.getMonth()}
-                            });
-                            $('#dataprimeira').datepicker({
-                                format: "dd/mm/yyyy",
-                                startView: 0,
-                                language: "pt-BR",
-                                startDate: "-",
-                                autoclose: true,
-                                defaultViewDate: {year: d.getFullYear(), month: d.getMonth(), day: d.getDay()}
-                            });
-                            $('#datademais').datepicker({
-                                format: "dd",
-                                language: "pt-BR",
-                                autoclose: true,
-                                defaultViewDate: {year: d.getFullYear(), month: d.getMonth(), day: d.getDay()}
-                            });
-                        })
-                    }
-
-                });
-
-            } else if ($(this).attr('id') == 'comfirmapgto') {
-
-                $.ajax({
-                    url: $(this).attr('href'),
-                    type: 'GET',
-                    success: function (retorno) {
-                        $('.modal-content').html(retorno);
-
-                        $('.modal-content').on('mouseover', function () {
-
-                            $(':input').each(function () {
-
-                                if ($(this).attr('tipoinput') == "data-pagamento-boleto") {
-
-                                    $(this).attr('placeholder', 'DD/MM/YYYY');
-                                    setDateP('#' + $(this).attr('id'), 'pagamento-boleto')
-                                    $(this).mask('99/99/9999')
-
-                                }
-                            })
-
-                            // $('#datapgto').datepicker({
-                            //     format: "dd/mm/yyyy",
-                            //     startView: 0,
-                            //     language: "pt-BR",
-                            //     startDate: "-",
-                            //     autoclose: true,
-                            //     defaultViewDate: {year: d.getFullYear(), month: d.getMonth(), day: d.getDay()}
-                            // });
-
-                        })
-
-
-                    }
-
-                });
-
-
-            }
-        } else if ($(this).attr('id') == 'fechasecesso') {
-
-            $('#sucesso').hide();
-        } else if($(this).attr('data-target') !='undefined'){
-            $('.modal-content').empty()
-
-            $.ajax({
-                url: $(this).attr('href'),
-                type: 'GET',
-                success: function (retorno) {
-
-                    $('.modal-content').html(retorno);
-
-
-                    return false;
-                }
-
-            });
-
-        }
-
-        // return false;
-
-    });
+    // $(':button').on('click', function () {
+    //
+    //     if ($(this).attr('data-toggle') && $(this).attr('data-toggle') == 'modal') {
+    //
+    //         if ($(this).attr('id') == 'showinfo') {
+    //             $('.modal-content').empty()
+    //             $.ajax({
+    //                 url: $(this).attr('href'),
+    //                 type: 'GET',
+    //                 success: function (retorno) {
+    //
+    //                     $('.modal-content').html(retorno);
+    //                     $.apllyFilters();
+    //
+    //
+    //
+    //                     return false;
+    //                 }
+    //
+    //             });
+    //         } else if ($(this).attr('id') == 'erro') {
+    //             var idmsg = '#' + $(this).attr('message')
+    //             $('#msgdeerro').text($(idmsg).val())
+    //
+    //         } else if ($(this).attr('id') == 'xml') {
+    //             var idmsg = '#' + $(this).attr('message')
+    //             $('#msgdeerro').text($(idmsg).val())
+    //
+    //         } else if ($(this).attr('id') == 'cancelar') {
+    //
+    //             $.ajax({
+    //                 url: $(this).attr('href'),
+    //                 type: 'GET',
+    //                 success: function (retorno) {
+    //                     $('.modal-content').html(retorno);
+    //                     $.apllyFilters();
+    //
+    //
+    //                 }
+    //
+    //             });
+    //
+    //         } else if ($(this).attr('id') == 'pagar') {
+    //
+    //             $.ajax({
+    //                 url: $(this).attr('href'),
+    //                 type: 'GET',
+    //                 success: function (retorno) {
+    //                     $('.modal-content').html(retorno);
+    //                     $.apllyFilters();
+    //
+    //
+    //                 }
+    //
+    //             });
+    //
+    //         } else if ($(this).attr('id') == 'comfirmapgto') {
+    //
+    //             $.ajax({
+    //                 url: $(this).attr('href'),
+    //                 type: 'GET',
+    //                 success: function (retorno) {
+    //                     $('.modal-content').html(retorno);
+    //                     $.apllyFilters();
+    //
+    //
+    //
+    //
+    //                 }
+    //
+    //             });
+    //
+    //
+    //         }
+    //     } else if ($(this).attr('id') == 'fechasecesso') {
+    //
+    //         $('#sucesso').hide();
+    //     } else if ($(this).attr('data-target') != 'undefined') {
+    //         $('.modal-content').empty()
+    //
+    //         $.ajax({
+    //             url: $(this).attr('href'),
+    //             type: 'GET',
+    //             success: function (retorno) {
+    //
+    //                 $('.modal-content').html(retorno);
+    //                 $.apllyFilters();
+    //
+    //
+    //
+    //                 return false;
+    //             }
+    //
+    //         });
+    //
+    //     }
+    //
+    //     // return false;
+    //
+    // });
 
     function menssageError(message, idmessage) {
         return '<small><div class="col-md-6 col-md-offset-3 alert alert-danger" id="' + idmessage + '">' + message + '</div></small>'
 
     }
 
-    $('.load-more').on('click',function(){
-        var dTable = table;
+    $('.load-more').on('click', function () {
+        // var table = $('.table-datatable').dataTable({});
         var _this = $(this);
         var _offset = parseInt(_this.attr('data-offset')) + parseInt(_this.attr('data-sum'));
         var _url = _this.attr('data-url');
-        _this.attr('data-offset',parseInt(_this.attr('data-offset')) + parseInt(_this.attr('data-sum')));
+        _this.attr('data-offset', parseInt(_this.attr('data-offset')) + parseInt(_this.attr('data-sum')));
 
         $.ajax({
-            data: {offset:_offset},
+            data: {offset: _offset},
             url: _url,
-            success:function (retorno) {
+            success: function (retorno) {
+
+
+
+                $('.panel-body').append('<div class="hide temp_table">'+retorno+'</div>');
+
+
+
+
+                var tr = $('.temp_table').find('tbody').children();
+
                 table.fnDestroy();
 
-                $('tbody').append(retorno)
+                $('tbody').append(tr);
+                $('.table-datatable').dataTable({
+                    language: {
+                        sEmptyTable: "Nenhum registro encontrado",
+                        sInfo: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                        sInfoEmpty: "Mostrando 0 até 0 de 0 registros",
+                        sInfoFiltered: "(Filtrados de _MAX_ registros)",
+                        sInfoPostFix: "",
+                        sInfoThousands: ".",
+                        sLengthMenu: "_MENU_ resultados por página",
+                        sLoadingRecords: "Carregando...",
+                        sProcessing: "Processando...",
+                        sZeroRecords: "Nenhum registro encontrado",
+                        sSearch: "Pesquisar",
+                        oPaginate: {
+                            sNext: "Próximo",
+                            sPrevious: "Anterior",
+                            sFirst: "Primeiro",
+                            sLast: "Último"
+                        },
+                        oAria: {
+                            sSortAscending: ": Ordenar colunas de forma ascendente",
+                            sSortDescending: ": Ordenar colunas de forma descendente"
+                        }
+                    },
+                    "scrollY": ttable,
+                    "scrollCollapse": true,
+                    "destroy": true,
+                    "fnDestroy": false,
+                    "fnDraw": true,
+                    "lengthMenu": [50, 100, 150, 200]
+                });
+                $('.temp_table').remove();
 
-                
 
 
-
-                // console.log(retorno);
             }
 
         });
@@ -1537,293 +1812,34 @@ $(function () {
     });
 
 
-    $('a').click(function () {
-
-        if ($(this).attr('id') == 'showinfo') {
-            $('.modal-content').empty()
-            $.ajax({
-                url: $(this).attr('href'),
-                type: 'GET',
-                success: function (retorno) {
-                    $('.modal-content').html(retorno);
-
-                    $('.modal-content').trigger('click');
-
-                    return false;
-                }
-
-            });
-        }
-
-    });
+    // $('a').click(function () {
+    //
+    //
+    //     if ($(this).attr('id') == 'showinfo') {
+    //         $('.modal-content').empty()
+    //         $.ajax({
+    //             url: $(this).attr('href'),
+    //             type: 'GET',
+    //             success: function (retorno) {
+    //                 $('.modal-content').html(retorno);
+    //
+    //                 $('.modal-content').trigger('click');
+    //
+    //                 return false;
+    //             }
+    //
+    //         });
+    //     }
+    //
+    // });
 
     $('.modal-content').draggable({srcoll: false});
 
     $('.modal-content').on('mouseover', function () {
-        $('.input-group.date').datepicker({
-            format: "dd/mm/yyyy",
-            clearBtn: true,
-            language: "pt-BR",
-            orientation: "auto",
-            endDate: "+Infinity",
-            autoclose: true
-        })
+
     })
 
-    $('body').on('mouseover', function () {
 
-        // $("input,select,textarea").not("[type=submit]").jqBootstrapValidation();
-
-        $(':input').each(function () {
-
-            if ($(this).attr('tipoinput') == 'cpf' && $(this).attr('stats')) {
-                $(this).attr('placeholder', '999.999.999-00');
-                $(this).mask('999.999.999-99');
-
-                var idmsg = 'msg' + $(this).attr('id');
-                var pessoa = $(this).attr('pessoa');
-
-                $(this).focusout(function () {
-                    var value = $(this).val();
-                    if (!validate_cpf($(this).val()) && value.length > 0) {
-                        ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
-                        $(this).after(menssageError('CPF: Invalido', idmsg))
-                        $(this).focus();
-                    } else if (validate_cpf($(this).val())) {
-                        ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
-                        value = value.replace('.', '');
-                        value = value.replace('.', '');
-                        value = value.replace('-', '');
-                        var dados = {'cpfcnpj': value, 'elemento': pessoa, 'tipo': $('#tipopessoa').val()}
-
-                        $.ajax({
-                            data: dados,
-                            url: geturl() + 'complete',
-                            dataType: "json",
-                            type: 'GET',
-                            success: function (retorno) {
-                                if (retorno.status) {
-
-                                    $.each(retorno, function (key, value) {
-
-                                        $('#' + key).val(value)
-                                        $('#' + key).trigger('focusout')
-
-                                    })
-                                } else {
-                                    return false
-                                }
-
-                            },
-                            error: function (retorno) {
-                                console.log(retorno);
-                                console.log('error');
-                            }
-                        });
-
-                    } else {
-                        ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
-                    }
-                });
-
-                $(this).removeAttr('stats')
-
-
-            } else if ($(this).attr('tipoinput') == 'cnpj' && $(this).attr('stats')) {
-                $(this).attr('placeholder', '99.999.999/9999-00');
-                $(this).mask('99.999.999/9999-00');
-
-                var idmsg = 'msg' + $(this).attr('id');
-                $(this).focusout(function () {
-                    var value = $(this).val();
-                    if (!validate_cnpj($(this).val()) && value.length > 0) {
-                        ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
-                        $(this).after(menssageError('CNPJ: Invalido', idmsg))
-                        $(this).focus();
-                    } else if (validate_cnpj($(this).val())) {
-                        ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
-                        ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
-                        value = value.replace('.', '');
-                        value = value.replace('.', '');
-                        value = value.replace('-', '');
-                        value = value.replace('/', '');
-
-                        var dados = {'cpfcnpj': value, 'elemento': pessoa, 'tipo': $('#tipopessoa').val()}
-
-                        $.ajax({
-                            data: dados,
-                            url: geturl() + 'complete',
-                            dataType: "json",
-                            type: 'GET',
-                            success: function (retorno) {
-                                if (retorno.status) {
-
-                                    $.each(retorno, function (key, value) {
-
-                                        $('#' + key).val(value)
-                                        $('#' + key).trigger('focusout')
-
-                                    })
-                                } else {
-                                    return false
-                                }
-
-                            },
-                            error: function (retorno) {
-                                console.log(retorno);
-                                console.log('error');
-                            }
-                        });
-                    } else {
-                        ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
-                    }
-                });
-
-                $(this).removeAttr('stats')
-            } else if ($(this).attr('tipoinput') == 'cpfcnpj' && $(this).attr('stats')) {
-                $(this).attr('placeholder', 'CPF ou CNPJ');
-                // $(this).mask('99.999.999/9999-00');
-
-                $(this).keyup(function () {
-                    var val = $(this).val();
-
-                    $(this).unmask();
-
-                    if (val.length < 15 && val.length > 3) {
-                        $(this).unmask();
-                        $(this).mask('999.999.999-999');
-                    } else {
-                        $(this).unmask();
-                        $(this).mask('99.999.999/9999-00');
-                    }
-
-                })
-
-
-                var idmsg = 'msg-' + $(this).attr('id');
-                $(this).focusout(function () {
-                    $(this).trigger('keyup')
-                    var val = $(this).val();
-
-                    if (val.length > 2) {
-
-                        var value = $(this).cleanVal();
-                        if (value.length > 11) {
-                            if (!validate_cnpj($(this).val()) && value.length > 0) {
-                                ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
-                                $(this).after(menssageError('CNPJ: Invalido', idmsg))
-                                $(this).focus();
-                                return false;
-                            } else if (validate_cnpj($(this).val())) {
-                                ($('#' + idmsg) ? $('#' + idmsg).remove() : '');
-
-
-                            } else {
-                                ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
-                            }
-                        } else {
-                            if (!validate_cpf($(this).val()) && value.length > 0) {
-                                ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
-                                $(this).after(menssageError('CPF: Invalido', idmsg))
-                                $(this).focus();
-                                return false
-                            } else if (validate_cnpj($(this).val())) {
-                                ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
-
-
-                            } else {
-                                ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
-                            }
-                        }
-                    }
-
-
-                });
-
-                $(this).removeAttr('stats')
-            } else if ($(this).attr('tipoinput') == "chassi" && $(this).attr('stats')) {
-                $(this).attr('placeholder', '9AAAA99AA99999999');
-                $(this).mask('XXXXXXXXXXXXXXXXX', {'translation': {X: {pattern: /[A-Za-z0-9]/}}})
-                $(this).keyup(function () {
-                    $(this).val($(this).val().toUpperCase())
-                })
-                $(this).removeAttr('stats')
-            } else if ($(this).attr('tipoinput') == "placa" && $(this).attr('stats')) {
-                $(this).attr('placeholder', 'AAA-9999');
-                $(this).mask('AAA-9999')
-
-                $(this).keyup(function () {
-                    $(this).val($(this).val().toUpperCase())
-                })
-
-                $(this).focusout(function () {
-                    $(this).val($(this).val().toUpperCase())
-
-                })
-
-                $(this).removeAttr('stats')
-            } else if ($(this).attr('tipoinput') == "ddd" && $(this).attr('stats')) {
-
-                $(this).attr('placeholder', '99');
-                $(this).mask('99')
-                $(this).removeAttr('stats')
-            } else if ($(this).attr('tipoinput') == "cel" && $(this).attr('stats')) {
-
-                $(this).attr('placeholder', '99999-9999');
-                $(this).mask('99999-9999')
-                $(this).removeAttr('stats')
-            } else if ($(this).attr('tipoinput') == "fone" && $(this).attr('stats')) {
-
-                $(this).attr('placeholder', '9999-9999');
-                $(this).mask('9999-9999')
-                $(this).removeAttr('stats')
-            } else if ($(this).attr('tipoinput') == "data-nascimento" && $(this).attr('stats')) {
-
-                $(this).attr('placeholder', 'DD/MM/YYYY');
-                setDateP('#' + $(this).attr('id'), 'nascimento')
-                $(this).mask('99/99/9999')
-                $(this).removeAttr('stats')
-            } else if ($(this).attr('tipoinput') == "data-normal" && $(this).attr('stats')) {
-
-                $(this).attr('placeholder', 'DD/MM/YYYY');
-                setDateP('#' + $(this).attr('id'), null)
-                $(this).mask('99/99/9999')
-                $(this).removeAttr('stats')
-
-            } else if ($(this).attr('tipoinput') == "data-pagamento-boleto" && $(this).attr('stats')) {
-
-                $(this).attr('placeholder', 'DD/MM/YYYY');
-                setDateP('#' + $(this).attr('id'), 'pagamento-boleto')
-                $(this).mask('99/99/9999')
-                $(this).removeAttr('stats')
-
-            } else if ($(this).attr('tipoinput') == "data-validade-cartao" && $(this).attr('stats')) {
-
-                $(this).attr('placeholder', 'MM/YYYY');
-                setDateP('#' + $(this).attr('id'), 'valcartao')
-                $(this).mask('99/9999')
-                $(this).removeAttr('stats')
-            } else if ($(this).attr('tipoinput') == "cep" && $(this).attr('stats')) {
-
-                $(this).attr('placeholder', '00000-000');
-                $(this).mask('99999-999')
-                $(this).removeAttr('stats')
-            } else if ($(this).attr('tipoinput') == "renavan" && $(this).attr('stats')) {
-
-                $(this).attr('placeholder', '00000000000');
-                $(this).mask('99999999999')
-                $(this).removeAttr('stats')
-            } else if ($(this).attr('tipoinput') == "num-cartao" && $(this).attr('stats')) {
-
-                $(this).attr('placeholder', '0000 0000 0000 0000');
-                $(this).mask('9999 9999 9999 9999')
-                $(this).removeAttr('stats')
-            }
-            // console.log($(this).attr('data'));
-        })
-
-
-    });
 
     $('.cpfcnpj2').focusout(function () {
         var val = $(this).val();
@@ -1936,7 +1952,7 @@ $(function () {
             $('.input-consulta').mask('AAA-9999')
         }
     });
-    
+
 
 });
 

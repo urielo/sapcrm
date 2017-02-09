@@ -364,17 +364,37 @@ Route::group(['prefix'=>'segurados','middleware'=>'auth'],function (){
         'as'=>'segurado.edit',
         'uses'=>'Backend\SeguradoController@edit'
     ]);
+    Route::get('/',[
+        'as'=>'segurado.home',
+        'uses'=>'Backend\SeguradoController@index'
+    ]);
     Route::post('/update',[
-        'as'=>'segurado.update',
+        'as'=>'segurado.update_',
         'uses'=>'Backend\SeguradoController@update'
     ]);
     Route::get('/create',[
         'as'=>'segurado.create',
         'uses'=>'Backend\SeguradoController@create'
     ]);
+
+});
+
+Route::group(['prefix'=>'veiculos','middleware'=>'auth'],function (){
+    Route::get('/edit/{id}',[
+        'as'=>'veiculo.edit',
+        'uses'=>'Backend\veiculoController@edit'
+    ]);
+    Route::get('/',[
+        'as'=>'veiculo.home',
+        'uses'=>'Backend\veiculoController@index'
+    ]);
     Route::post('/update',[
-        'as'=>'segurado.store',
-        'uses'=>'Backend\SeguradoController@store'
+        'as'=>'veiculo.update_',
+        'uses'=>'Backend\veiculoController@update'
+    ]);
+    Route::get('/create',[
+        'as'=>'veiculo.create',
+        'uses'=>'Backend\veiculoController@create'
     ]);
 
 });

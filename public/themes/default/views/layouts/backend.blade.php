@@ -176,8 +176,9 @@
                                   class="hidden-xs showopacity glyphicon glyphicon-list-alt"></span>
                             Segurado<span class="caret"></span></a>
                         <ul class="dropdown-menu forAnimate" role="menu">
-                            @permission('vistoria')
-                            <li><a href="#">Emitir</a></li> @endpermission
+
+                            <li><a href="{{route('segurado.home')}}">Segurado</a></li>
+                            <li><a href="#">Veiculos</a></li>
 
                         </ul>
                     </li>
@@ -285,7 +286,8 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <span>&copy;</span> Seguro AUTOPRATICO {{date('Y')}}
+                    <span>&copy;</span> Seguro AUTOPRATICO - {{date('Y')}}
+                    <small>Version - 3.0 b.2</small>
                 </div>
             </div>
         </div>

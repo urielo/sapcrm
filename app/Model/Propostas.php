@@ -35,7 +35,7 @@ class Propostas extends Model
 
     public function cotacao()
     {
-        return $this->belongsTo('App\Model\Cotacoes', 'idcotacao', 'idcotacao')->with('segurado','status','veiculo','corretor');
+        return $this->belongsTo('App\Model\Cotacoes', 'idcotacao', 'idcotacao')->with('segurado','status','corretor');
     }
     
     

@@ -55,15 +55,15 @@ class Veiculos extends Model
     {
         return $this->belongsTo(TipoVeiculos::class,'veiccdveitipo','idtipoveiculo');
     }
-    public function fipe_ano_valor()
-    {
-        return $this->hasMany('App\Model\FipeAnoValor', 'codefipe', 'veiccodfipe');
-    }
+
 
     public function combustivel()
     {
         return $this->belongsTo('App\Model\Combustivel', 'veictipocombus', 'id_auto_comb');
     }
 
-
+    public function fipe_ano_valor()
+    {
+        return $this->hasMany('App\Model\FipeAnoValor', 'codefipe', 'veiccodfipe');
+    }
 }

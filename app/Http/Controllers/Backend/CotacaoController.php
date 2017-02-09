@@ -63,15 +63,15 @@ class CotacaoController extends Controller
 
 
         if (Auth::user()->hasRole('admin')) {
-            $cotacoes = Cotacoes::skip($offset)->take($limit)->with(['segurado', 'veiculo.fipe.anovalor', 'veiculo.combustivel', 'corretor'])->whereIn('idstatus', [9])->orderby('dtcreate', 'desc')->get();
+            $cotacoes = Cotacoes::skip($offset)->take($limit)->with(['segurado', 'corretor'])->whereIn('idstatus', [9])->orderby('dtcreate', 'desc')->get();
         } elseif (Auth::user()->can('ver-todos-cotacoes')) {
-            $cotacoes = Cotacoes::skip($offset)->take($limit)->with(['segurado', 'veiculo.fipe.anovalor', 'veiculo.combustivel', 'corretor'])->where('idcorretor', Auth::user()->corretor->idcorretor)->whereNotNull('usuario_id')->whereIn('idstatus', [9])->orderby('dtcreate', 'desc')->get();
+            $cotacoes = Cotacoes::skip($offset)->take($limit)->with(['segurado', 'corretor'])->where('idcorretor', Auth::user()->corretor->idcorretor)->whereNotNull('usuario_id')->whereIn('idstatus', [9])->orderby('dtcreate', 'desc')->get();
         } else {
-            $cotacoes = Cotacoes::skip($offset)->take($limit)->with(['segurado', 'veiculo.fipe.anovalor', 'veiculo.combustivel', 'corretor'])->where('usuario_id', Auth::user()->id)->whereNotNull('usuario_id')->whereIn('idstatus', [9])->orderby('dtcreate', 'desc')->get();
+            $cotacoes = Cotacoes::skip($offset)->take($limit)->with(['segurado', 'corretor'])->where('usuario_id', Auth::user()->id)->whereNotNull('usuario_id')->whereIn('idstatus', [9])->orderby('dtcreate', 'desc')->get();
         }
 
 
-        return view('backend.cotacao.negociacoes', compact('cotacoes', 'crypt', 'title','url'));
+        return view('backend.cotacao.negociacoes', compact('cotacoes', 'crypt', 'title', 'url'));
     }
 
     public function cotacoesAjax(Request $request)
@@ -85,11 +85,11 @@ class CotacaoController extends Controller
 
 
             if (Auth::user()->hasRole('admin')) {
-                $cotacoes = Cotacoes::skip($offset)->take($limit)->with(['segurado', 'veiculo.fipe.anovalor', 'veiculo.combustivel', 'corretor'])->whereIn('idstatus', [9])->orderby('dtcreate', 'desc')->get();
+                $cotacoes = Cotacoes::skip($offset)->take($limit)->with(['segurado', 'corretor'])->whereIn('idstatus', [9])->orderby('dtcreate', 'desc')->get();
             } elseif (Auth::user()->can('ver-todos-cotacoes')) {
-                $cotacoes = Cotacoes::skip($offset)->take($limit)->with(['segurado', 'veiculo.fipe.anovalor', 'veiculo.combustivel', 'corretor'])->where('idcorretor', Auth::user()->corretor->idcorretor)->whereNotNull('usuario_id')->whereIn('idstatus', [9])->orderby('dtcreate', 'desc')->get();
+                $cotacoes = Cotacoes::skip($offset)->take($limit)->with(['segurado', 'corretor'])->where('idcorretor', Auth::user()->corretor->idcorretor)->whereNotNull('usuario_id')->whereIn('idstatus', [9])->orderby('dtcreate', 'desc')->get();
             } else {
-                $cotacoes = Cotacoes::skip($offset)->take($limit)->with(['segurado', 'veiculo.fipe.anovalor', 'veiculo.combustivel', 'corretor'])->where('usuario_id', Auth::user()->id)->whereNotNull('usuario_id')->whereIn('idstatus', [9])->orderby('dtcreate', 'desc')->get();
+                $cotacoes = Cotacoes::skip($offset)->take($limit)->with(['segurado', 'corretor'])->where('usuario_id', Auth::user()->id)->whereNotNull('usuario_id')->whereIn('idstatus', [9])->orderby('dtcreate', 'desc')->get();
             }
 
 
@@ -109,11 +109,11 @@ class CotacaoController extends Controller
 
 
         if (Auth::user()->hasRole('admin')) {
-            $cotacoes = Cotacoes::with(['segurado', 'veiculo.fipe.anovalor', 'veiculo.combustivel', 'corretor'])->whereNotIn('idstatus', [9, 10])->whereBetween('dtcreate', [$start_date, $end_date])->orderby('idcotacao', 'desc')->get();
+            $cotacoes = Cotacoes::with(['segurado', 'corretor'])->whereNotIn('idstatus', [9, 10])->whereBetween('dtcreate', [$start_date, $end_date])->orderby('idcotacao', 'desc')->get();
         } elseif (Auth::user()->can('ver-todos-cotacoes')) {
-            $cotacoes = Cotacoes::with(['segurado', 'veiculo.fipe.anovalor', 'veiculo.combustivel', 'corretor'])->where('idcorretor', Auth::user()->corretor->idcorretor)->whereBetween('dtcreate', [$start_date, $end_date])->whereNotNull('usuario_id')->whereNotIn('idstatus', [9, 10])->orderby('idcotacao', 'desc')->get();
+            $cotacoes = Cotacoes::with(['segurado', 'corretor'])->where('idcorretor', Auth::user()->corretor->idcorretor)->whereBetween('dtcreate', [$start_date, $end_date])->whereNotNull('usuario_id')->whereNotIn('idstatus', [9, 10])->orderby('idcotacao', 'desc')->get();
         } else {
-            $cotacoes = Cotacoes::with(['segurado', 'veiculo.fipe.anovalor', 'veiculo.combustivel', 'corretor'])->where('usuario_id', Auth::user()->id)->whereBetween('dtcreate', [$start_date, $end_date])->whereNotNull('usuario_id')->whereNotIn('idstatus', [9, 10])->orderby('idcotacao', 'desc')->get();
+            $cotacoes = Cotacoes::with(['segurado', 'corretor'])->where('usuario_id', Auth::user()->id)->whereBetween('dtcreate', [$start_date, $end_date])->whereNotNull('usuario_id')->whereNotIn('idstatus', [9, 10])->orderby('idcotacao', 'desc')->get();
         }
 
 
@@ -151,7 +151,7 @@ class CotacaoController extends Controller
 
             error_reporting(E_ERROR);
             $pdf = Pdf::loadView('backend.pdf.cotacao', compact('cotacao', 'formas'));
-            $pdf->SetProtection(['print'], '', '456');
+            $pdf->SetProtection(['print'], '456');
             $pdf->save(public_path('pdf/Cotacao.pdf'));
 
 
@@ -241,7 +241,7 @@ class CotacaoController extends Controller
 
             error_reporting(E_ERROR);
             $pdf = Pdf::loadView('backend.pdf.cotacao', compact('cotacao', 'formas'));
-            $pdf->SetProtection(['print'], '', '456');
+            $pdf->SetProtection(['print'], '456');
             return $pdf->stream('Cotacao');
         } else {
             return Redirect::back()->with('error', 'Cotação Invalida!');

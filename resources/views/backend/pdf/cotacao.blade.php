@@ -21,8 +21,8 @@
                 <thead>
                 <tr>
                     <th>Cotação nº: <span class="normal">{{$cotacao->idcotacao}}</span></th>
-                    <th>Data inicio: <span class="normal"> {{date('d/m/Y', strtotime($cotacao->dtcreate))}}</span></th>
-                    <th>Data validade: <span class="normal"> {{date('d/m/Y', strtotime($cotacao->dtvalidade))}}</span>
+                    <th>Data inicio: <span class="normal"> {{date('d/m/Y', strtotime($cotacao->created_at))}}</span></th>
+                    <th>Data validade: <span class="normal"> {{date('d/m/Y', strtotime($cotacao->validade))}}</span>
                     </th>
 
                 </tr>
@@ -32,9 +32,9 @@
 
         <div class="box-large">
             <p>
-                {{$cotacao->veiculo->veiccodfipe}} / {{$cotacao->veiculo->fipe->marca}}
-                / {{$cotacao->veiculo->fipe->modelo}}, {{$cotacao->veiculo->veicano}},
-                 {{$cotacao->veiculo->combustivel->nm_comb}} | valor na fipe R$ {{format('real',$cotacao->veiculo->fipe->anovalor()->where('idcombustivel',$cotacao->veiculo->veictipocombus)->where('ano',$cotacao->veiculo->veicano)->first()->valor)}}
+                {{$cotacao->code_fipe}} / {{$cotacao->fipe->marca}}
+                / {{$cotacao->fipe->modelo}}, {{$cotacao->ano_veiculo}},
+                 {{$cotacao->combustivel->nm_comb}} | valor na fipe R$ {{format('real',$cotacao->fipe->anovalor()->where('idcombustivel',$cotacao->combustivel_id)->where('ano',$cotacao->ano_veiculo)->first()->valor)}}
 
             </p>
         </div>

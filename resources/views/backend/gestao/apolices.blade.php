@@ -30,8 +30,8 @@
                             <td><a href="#{{$proposta->cotacao->segurado->clicpfcnpj}}">
                                     {{nomeCase($proposta->cotacao->segurado->clinomerazao)}}
                                 </a></td>
-                            <td><a href="#{{$proposta->cotacao->veiculo->veicid}}">
-                                    {{format('placa',$proposta->cotacao->veiculo->veicplaca)}}
+                            <td><a href="#{{$proposta->veiculo->veicid}}">
+                                    {{format('placa',$proposta->veiculo->veicplaca)}}
                                 </a></td>
                             <td><a href="#{{$proposta->cotacao->corretor->idcorretor}}">
                                     {{nomeCase($proposta->cotacao->corretor->corrnomerazao)}}
@@ -63,8 +63,8 @@
                                     {{nomeCase($apolice->proposta->cotacao->segurado->clinomerazao)}}
                                 </a>
                             </td>
-                            <td><a href="#{{$apolice->proposta->cotacao->veiculo->veicid}}">
-                                    {{format('placa',$apolice->proposta->cotacao->veiculo->veicplaca)}}
+                            <td><a href="#{{$apolice->proposta->veiculo->veicid}}">
+                                    {{format('placa',$apolice->proposta->veiculo->veicplaca)}}
                                 </a>
                             </td>
                             <td><a href="#">
