@@ -111,10 +111,12 @@ public function __construct()
           $segurado->cliemissorrg = $request->seg_rg_org;
 
         $segurado->save();
+          DB::commit();
           return Redirect::back()->with('sucesso','Operação realizada com sucesso!');
 
 
       }catch (Exception $e){
+          DB::rollBack();
           return Redirect::back()->with('error', 'Ops! Ocorreu um erro ao tentar atualizar o segurado!');
 
       }

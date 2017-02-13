@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use League\Flysystem\Exception;
 
@@ -62,7 +63,34 @@ class VeiculoController extends Controller
     }
 
     public function update(Request $request){
-        return $request->all();
+
+        try{
+            DB::beginTransaction();
+
+            $veiculo = Veiculos::find($request->id);
+            $veiculo->veicplaca = getDataReady($request->placa);
+            $veiculo->veicmunicplaca = $request->munplaca ;
+            $veiculo->veiccdufplaca = $request->placa_uf ;
+            $veiculo->veianofab = $request->anof ;
+            $veiculo->veicrenavam = $request->renavan ;
+            $veiculo->veicanorenavam = $request->anorenav ;
+            $veiculo->veicchassi = $request->chassi ;
+            $veiculo->veicor = $request->veiccor ;
+            $veiculo->veiccdutilizaco = $request->veicultilizacao ;
+            $veiculo->veicchassiremar = $request->indcahssiremarc ;
+            $veiculo->veicleilao = $request->indleilao ;
+            $veiculo->save();
+
+            return Redirect::back()->with('sucesso','Operação realizada com sucesso!');
+            DB::commit();
+
+        }catch (Exception $e){
+            DB::rollBack();
+            return Redirect::back()->with('error', 'Ops! Ocorreu um erro ao tentar atualizar o veiculo!');
+
+        }
+
+
     }
     public function searchVeiculo(Request $request)
     {
