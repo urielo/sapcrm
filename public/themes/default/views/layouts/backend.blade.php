@@ -174,11 +174,12 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <span style="font-size:16px;"
                                   class="hidden-xs showopacity glyphicon glyphicon-list-alt"></span>
-                            Segurado<span class="caret"></span></a>
+                            Cadastros<span class="caret"></span></a>
                         <ul class="dropdown-menu forAnimate" role="menu">
 
                             <li><a href="{{route('segurado.home')}}">Segurado</a></li>
-                            <li><a href="#">Veiculos</a></li>
+                            <li><a href="{{route('veiculo.home')}}">Veiculos</a></li>
+                            <li><a href="#">Buscar</a></li>
 
                         </ul>
                     </li>

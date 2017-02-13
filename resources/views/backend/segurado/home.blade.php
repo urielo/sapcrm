@@ -6,6 +6,15 @@
 @section('contentSeg')
 
     <div class="col-md-12">
+
+        <div class="row">
+            <div class="col-md-4 col-md-offset-2">
+                <p class="mostrando" data-show="{{$offset}}" data-nome="segurados">Mostrando as últimas {{$offset}} segurados</p>
+            </div>
+            <div class="col-md-6 btn-group">
+                <button type="button" class="btn-primary btn-xs pull-right load-more" data-mostrando=".mostrando" data-url="{{$url}}" data-offset="0" data-sum="{{$offset}}">Carregar mais {{$offset}}</button>
+            </div>
+        </div>
         <div class="table-responsive apolice">
             <table class="table table-hover table-condensed table-datatable">
                 <thead>
@@ -27,9 +36,9 @@
                         <td>{{$segurado->cliemail}}</td>
                         <td><div class="btn-group" role="group">
 
-                                <button type="button" class="btn btn-primary btn-xs" data-toggle="modal"
+                                <button type="button" class="btn btn-primary btn-xs modal-call" data-toggle="modal"
                                         data-target=".modal-show"
-                                        href="{{route('segurado.edit',$crypt::encrypt($segurado->id))}}"
+                                        data-url="{{route('segurado.edit',$crypt::encrypt($segurado->id))}}"
                                         id="editar">Editar
                                 </button>
 
@@ -51,6 +60,10 @@
         </div>
 
     </div>
+@stop
+
+@section('script')
+{{--    <script src="{{ theme('js/cotacao.js') }}"></script>--}}
 @stop
 
 

@@ -8,10 +8,10 @@
     <div class="col-md-12">
         <div class="row">
             <div class="col-md-4 col-md-offset-2">
-                <p>Mostrando as últimas 500 cotações</p>
+                <p class="mostrando" data-show="{{$offset}}" data-nome="cotações">Mostrando as últimas {{$offset}} cotações</p>
             </div>
             <div class="col-md-6 btn-group">
-                <button type="button" class="btn-primary btn-xs pull-right load-more" data-url="{{$url}}" data-offset="0" data-sum="500">Carregar mais 500</button>
+                <button type="button" class="btn-primary btn-xs pull-right load-more" data-mostrando=".mostrando" data-url="{{$url}}" data-offset="0" data-sum="{{$offset}}">Carregar mais 500</button>
             </div>
 
         </div>

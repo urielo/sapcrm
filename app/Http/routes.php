@@ -368,6 +368,10 @@ Route::group(['prefix'=>'segurados','middleware'=>'auth'],function (){
         'as'=>'segurado.home',
         'uses'=>'Backend\SeguradoController@index'
     ]);
+    Route::get('/loadmore',[
+        'as'=>'segurado.loadmore',
+        'uses'=>'Backend\SeguradoController@seguradoAjax'
+    ]);
     Route::post('/update',[
         'as'=>'segurado.update_',
         'uses'=>'Backend\SeguradoController@update'
@@ -382,19 +386,24 @@ Route::group(['prefix'=>'segurados','middleware'=>'auth'],function (){
 Route::group(['prefix'=>'veiculos','middleware'=>'auth'],function (){
     Route::get('/edit/{id}',[
         'as'=>'veiculo.edit',
-        'uses'=>'Backend\veiculoController@edit'
+        'uses'=>'Backend\VeiculoController@edit'
     ]);
     Route::get('/',[
         'as'=>'veiculo.home',
-        'uses'=>'Backend\veiculoController@index'
+        'uses'=>'Backend\VeiculoController@index'
+    ]);
+
+    Route::get('/loadmore',[
+        'as'=>'veiculo.loadmore',
+        'uses'=>'Backend\VeiculoController@veiculoAjax'
     ]);
     Route::post('/update',[
         'as'=>'veiculo.update_',
-        'uses'=>'Backend\veiculoController@update'
+        'uses'=>'Backend\VeiculoController@update'
     ]);
     Route::get('/create',[
         'as'=>'veiculo.create',
-        'uses'=>'Backend\veiculoController@create'
+        'uses'=>'Backend\VeiculoController@create'
     ]);
 
 });

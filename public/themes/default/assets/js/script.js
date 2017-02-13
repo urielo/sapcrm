@@ -67,8 +67,6 @@ $(function () {
     panelproprietario.hide();
 
 
-
-
     var produto_master = false;
     var produto_opcional = false;
 
@@ -113,7 +111,6 @@ $(function () {
 
         })
     }
-
 
 
     $(document).ready(function () {
@@ -164,6 +161,12 @@ $(function () {
     });
 
     $.apllyFilters = function () {
+
+
+        $(".selectpicker").selectpicker();
+
+
+        $('input.cep').mask('99999-999')
 
 
         $('.date-virgencia').datepicker({
@@ -518,6 +521,42 @@ $(function () {
             }
         });
 
+
+        $('.cpfcnpj').on('focusin', function () {
+            $(this).unmask()
+            var key = $.Event('keyup')
+            key.which = 8
+            $(this).trigger(key)
+        }).keyup(function (event) {
+
+            if (event.which != 8 && isNaN(String.fromCharCode(event.which))) {
+                event.preventDefault();
+            }
+
+            $(this).unmask(mask_cpfcnpj);
+
+
+            var tamanho = $(this).val().length;
+            // console.log(tamanho)
+            if (tamanho <= 11) {
+                $(this).mask("999.999.999-999");
+                mask_cpfcnpj = "999.999.999-999";
+
+            } else {
+                mask_cpfcnpj = "99.999.999/9999-99";
+
+                $(this).mask("99.999.999/9999-99");
+            }
+        });
+
+        $('.selectpicker').selectpicker('refresh');
+
+        $('.ddd').mask("99");
+        $('.cel').mask("9 9999-9999");
+        $('.fixo').mask("9999-9999");
+        $('.placa').mask("AAA-9999");
+
+
     }
 
     var table = $('.table-datatable').dataTable({
@@ -555,8 +594,6 @@ $(function () {
     $.apllyFilters();
 
 
-
-
     function jurosComposto(valor, taxa, parcelas) {
         taxa = taxa / 100;
         var potencia = valor * taxa * Math.pow((taxa + 1), parcelas) / (Math.pow((taxa + 1), parcelas) - 1);
@@ -585,7 +622,6 @@ $(function () {
         }
 
     }
-
 
 
     function setDateP(idinput, tipo) {
@@ -747,7 +783,6 @@ $(function () {
                 })
 
 
-
         }
 
         return retorno;
@@ -899,10 +934,6 @@ $(function () {
 
         return false;
     }
-
-
-
-
 
 
     if ($('select[name=comissao]')) {
@@ -1205,9 +1236,6 @@ $(function () {
         });
 
     })
-
-
-
 
 
     $('#btnvender').on('click', function () {
@@ -1638,6 +1666,31 @@ $(function () {
 
 
     });
+    $('table').delegate('.modal-call','click', function () {
+        var this_ = $(this);
+        var url = this_.attr('data-url');
+        var target = $(this_.attr('data-target'));
+        $(".selectpicker").selectpicker();
+
+        $.ajax({
+            url: url,
+            success: function (retorno) {
+                console.log('ok');
+                target.find('.modal-content').empty().html(retorno);
+                $.apllyFilters();
+                $('.modal-header').trigger('change');
+
+
+            }
+        });
+    });
+
+
+    // $('.modal-call').on('click', function () {
+    //
+    //
+    //
+    // });
 
 
     // $(':button').on('click', function () {
@@ -1746,24 +1799,26 @@ $(function () {
 
     }
 
+
+
     $('.load-more').on('click', function () {
         // var table = $('.table-datatable').dataTable({});
         var _this = $(this);
         var _offset = parseInt(_this.attr('data-offset')) + parseInt(_this.attr('data-sum'));
         var _url = _this.attr('data-url');
+        var _mostrando = $(_this.attr('data-mostrando'));
+        var show = parseInt(_mostrando.attr('data-show')) + parseInt(_this.attr('data-sum'));
+        var who = _mostrando.attr('data-nome');
         _this.attr('data-offset', parseInt(_this.attr('data-offset')) + parseInt(_this.attr('data-sum')));
 
         $.ajax({
             data: {offset: _offset},
             url: _url,
             success: function (retorno) {
+                _mostrando.empty().attr('data-show',show).text('Mostrando últimas(os) '+show+ ' '+who);
 
 
-
-                $('.panel-body').append('<div class="hide temp_table">'+retorno+'</div>');
-
-
-
+                $('.panel-body').append('<div class="hide temp_table">' + retorno + '</div>');
 
                 var tr = $('.temp_table').find('tbody').children();
 
@@ -1804,7 +1859,6 @@ $(function () {
                 $('.temp_table').remove();
 
 
-
             }
 
         });
@@ -1838,7 +1892,6 @@ $(function () {
     $('.modal-content').on('mouseover', function () {
 
     })
-
 
 
     $('.cpfcnpj2').focusout(function () {
@@ -1951,6 +2004,49 @@ $(function () {
         if (tipo_consulta.placa == 'placa') {
             $('.input-consulta').mask('AAA-9999')
         }
+    });
+    
+    
+    $('.modal-content').delegate('button.cep', 'click', function () {
+        var input = $('input.cep ');
+
+        var cep = (input.val()).replace('-', '')
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://viacep.com.br/ws/" + cep + "/json/",
+            "method": "GET",
+            "dataType": "jsonp",
+        }
+
+        var logradouro = $(input.attr('data-target-logradouro'))
+        var bairro = $(input.attr('data-target-bairro'))
+        var cidade = $(input.attr('data-target-cidade'))
+        var ufs = $(input.attr('data-target-uf') + 'option')
+        var uf = $(input.attr('data-target-uf'))
+
+
+        $.ajax(settings).done(function (response) {
+
+
+            $.each(ufs, function (key, value) {
+                if (response.uf == value.id) {
+                    uf.val(value.value);
+                }
+            });
+            logradouro.val(response.logradouro);
+            bairro.val(response.bairro);
+            cidade.val(response.localidade);
+
+        });
+
+    })
+
+    $('.modal-content').delegate('.modal-header','change',function(){
+        $('.cpfcnpj').trigger('focusin');
+        $('button.cep').trigger('click');
+
+
     });
 
 

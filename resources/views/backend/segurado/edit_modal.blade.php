@@ -10,6 +10,8 @@
 <div class="modal-body">
     <div class="container-fluid">
 
+        {{Form::hidden('id',$segurado->id)}}
+
         @if(strlen($segurado->clicpfcnpj) > 11)
 
 
@@ -21,7 +23,7 @@
                         {{--<label class="label label-default" for="segcpf">CPF</label>--}}
                         {!! Form::text('seg_cpfnpj', $segurado->clicpfcnpj,[
                         'class' =>'form-control form-control-sm cpfcnpj',
-                        'readonly'=>true,
+                        'required'=>true
 
                         ]) !!}
 
@@ -35,6 +37,7 @@
                         {{--<label class="label label-default" for="segcpf">CPF</label>--}}
                         {!! Form::text('seg_nomerazao',( old('seg_nomerazao') ? old('seg_nomerazao'): strlen($segurado->clinomerazao) > 5 ? $segurado->clinomerazao : NULL ),[
                         'class' =>'form-control form-control-sm',
+                        'required'=>true
                         ]) !!}
 
                     </div>
@@ -57,7 +60,7 @@
             </div>
             <div class="row">
 
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="form-group form-group-sm">
                         {!! Form::label('seg_profissao_ramo','Romo Atividade',['class'=>'label label-default']) !!}
                         {!! Form::select('seg_profissao_ramo',$ramos_atividades,
@@ -79,8 +82,6 @@
                         {!! Form::label('seg_cpfnpj','CPF',['class'=>'label label-default']) !!}
                         {!! Form::text('seg_cpfnpj',$segurado->clicpfcnpj,[
                         'class' =>'form-control form-control-sm cpfcnpj',
-                        'readonly'=>true,
-
                         ]) !!}
 
                     </div>
@@ -92,6 +93,7 @@
                         {!! Form::label('seg_nomerazao','Nome',['class'=>'label label-default']) !!}
                         {!! Form::text('seg_nomerazao', old('seg_nomerazao') ? old('seg_nomerazao') :  (strlen($segurado->clinomerazao) > 5 ? $segurado->clinomerazao : NULL ),[
                         'class' =>'form-control form-control-sm',
+                        'required'=>true
                         ]) !!}
 
                     </div>
@@ -316,7 +318,8 @@
                             {!! Form::label('seg_end_log','Logradouro',['class'=>'label label-default']) !!}
                             {!! Form::text('seg_end_log',(old('seg_end_log') ? old('seg_end_log') : !empty($segurado->clinmend) ? $segurado->clinmend : NULL ),[
                             'class' =>'form-control form-control-sm',
-                            'id'=>'seg_end_log'
+                            'id'=>'seg_end_log',
+                            'required'=>true,
 
                             ]) !!}
 
@@ -328,7 +331,8 @@
                             {!! Form::label('seg_end_num','Numero',['class'=>'label label-default']) !!}
                             {!! Form::text('seg_end_num',(old('seg_end_num') ? old('seg_end_num') :  !empty($segurado->clinumero) ? $segurado->clinumero : NULL ),[
                             'class' =>'form-control form-control-sm',
-                            'id'=>'seg_end_num'
+                            'id'=>'seg_end_num',
+                            'required'=>true
 
                             ]) !!}
 
@@ -340,7 +344,8 @@
                             {!! Form::label('seg_end_cidade','Cidade',['class'=>'label label-default']) !!}
                             {!! Form::text('seg_end_cidade',(old('seg_end_cidade') ? old('seg_end_cidade') : !empty($segurado->clinmcidade)  ? $segurado->clinmcidade : NULL ),[
                             'class' =>'form-control form-control-sm',
-                            'id'=>'seg_end_cidade'
+                            'id'=>'seg_end_cidade',
+                            'required'=>true,
                             ]) !!}
 
                         </div>
@@ -368,6 +373,7 @@
                             'data-live-search'=>'true',
                             'data-style'=>'btn-secondary btn-sm',
                             'id'=>'seg_end_uf',
+                            'required'=>true,
                              'data-size'=>"5"]) !!}
                         </div>
                     </div>

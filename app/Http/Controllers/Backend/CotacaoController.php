@@ -69,9 +69,11 @@ class CotacaoController extends Controller
         } else {
             $cotacoes = Cotacoes::skip($offset)->take($limit)->with(['segurado', 'corretor'])->where('usuario_id', Auth::user()->id)->whereNotNull('usuario_id')->whereIn('idstatus', [9])->orderby('dtcreate', 'desc')->get();
         }
+        $offset = 500;
 
 
-        return view('backend.cotacao.negociacoes', compact('cotacoes', 'crypt', 'title', 'url'));
+
+        return view('backend.cotacao.negociacoes', compact('cotacoes', 'crypt', 'title', 'url','offset'));
     }
 
     public function cotacoesAjax(Request $request)

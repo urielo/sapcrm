@@ -16,6 +16,7 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Redirect;
 use Mockery\CountValidator\Exception;
+use Illuminate\Support\Facades\DB;
 
 class SeguradoController extends Controller
 {
@@ -25,19 +26,25 @@ public function __construct()
 }
     public function index()
     {
-        $segurados = Segurado::all();
+        $segurados = Segurado::limit(200)->orderBy('clinomerazao')->get();
         
         $crypt = Crypt::class;
+        
+        $offset = 200;
+        $url = route('segurado.loadmore');
+        
+        
 
-        return view('backend.segurado.home', compact('segurados','crypt'));
+        return view('backend.segurado.home', compact('segurados','crypt','url','offset'));
     }
-    
-    public function create()
+
+    public function seguradoAjax(Request $request)
     {
-       $segurados = Segurado::all();
-        
-        
-        return view('backend.segurado.home', compact('segurados'));
+        $segurados = Segurado::skip($request->offset)->limit(200)->orderBy('clinomerazao')->get();
+
+        $crypt = Crypt::class;
+
+        return view('backend.segurado.segurado_ajax', compact('segurados','crypt'));
     }
     
     public function store( $request)
@@ -74,33 +81,48 @@ public function __construct()
         }
     }
     
-    public function update()
+    public function update(Request $request)
     {
+      try{
+          DB::beginTransaction();
+          $segurado = Segurado::find($request->id);
 
-//        
-//        "segNomeRazao" => $request->seg_nomerazao,
-//            "segCpfCnpj" => getDataReady($request->seg_cpfnpj),
-//            "segDtNasci" => getDateFormat($request->seg_data_nascimento_inscricao, 'nascimento'),
-//            "segCdSexo" => $request->seg_sexo,
-//            "segCdEstCivl" => $request->seg_estado_civil,
-//            "segProfRamoAtivi" => $request->seg_profissao_ramo,
-//            "segEmail" => $request->seg_email,
-//            "segCelDdd" => getDataReady($request->seg_cel_ddd),
-//            "segCelNum" => getDataReady($request->seg_cel_numero),
-//            "segFoneDdd" => getDataReady($request->seg_fixo_ddd),
-//            "segFoneNum" => getDataReady($request->seg_fixo_numero),
-//            "segEnd" => $request->seg_end_log,
-//            "segEndNum" => $request->seg_end_num,
-//            "segEndCompl" => $request->seg_end_complemento,
-//            "segEndCep" => getDataReady($request->seg_end_cep),
-//            "segEndCidade" => $request->seg_end_cidade,
-//            "segEndCdUf" => $request->seg_end_uf,
-//            "segNumRg" => getDataReady($request->seg_rg_numero),
-//            "segDtEmissaoRg" => ($request->seg_rg_emissao ? getDateFormat($request->seg_rg_emissao, 'nascimento') : NULL),
-//            "segEmissorRg" => $request->seg_rg_org,
-//            "segBairro" => $request->seg_end_bairro,
-//            "segCdUfRg" => $request->seg_rg_uf,
+          $segurado->clicpfcnpj = getDataReady($request->seg_cpfnpj);
+          $segurado->clinomerazao = strtoupper($request->seg_nomerazao);
+          $segurado->clidtnasc = getDateFormat($request->seg_data_nascimento_inscricao, 'nascimento');
+          $segurado->clicdprofiramoatividade = $request->seg_profissao_ramo;
+          $segurado->cliemail = $request->seg_email;
+          $segurado->clidddcel = getDataReady($request->seg_cel_ddd);
+          $segurado->clinmcel = getDataReady($request->seg_cel_numero);
+          $segurado->clidddfone = getDataReady($request->seg_fixo_ddd);
+          $segurado->clinmfone = getDataReady($request->seg_fixo_numero);
+          $segurado->clicep = getDataReady($request->seg_end_cep);
+          $segurado->clinmend = $request->seg_end_log;
+          $segurado->clinumero = $request->seg_end_num;
+          $segurado->clinmcidade = $request->seg_end_cidade;
+          $segurado->bairro = $request->seg_end_bairro;
+          $segurado->clicduf = $request->seg_end_uf;
+          $segurado->cliendcomplet = $request->seg_end_complemento;
+          $segurado->clicdsexo = $request->seg_sexo;
+          $segurado->clicdestadocivil = $request->seg_estado_civil;
+          $segurado->clinumrg = $request->seg_rg_numero;
+          $segurado->clicdufemissaorg = $request->seg_rg_uf;
+          $segurado->clidtemissaorg = ($request->seg_rg_emissao ? getDateFormat($request->seg_rg_emissao, 'nascimento') : NULL);
+          $segurado->cliemissorrg = $request->seg_rg_org;
+
+        $segurado->save();
+          return Redirect::back()->with('sucesso','Operação realizada com sucesso!');
+
+
+      }catch (Exception $e){
+          return Redirect::back()->with('error', 'Ops! Ocorreu um erro ao tentar atualizar o segurado!');
+
+      }
         
+
+
+
+        return $segurado->toArray();
     }
     
     public function destroy()

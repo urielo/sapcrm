@@ -56,6 +56,10 @@ class Veiculos extends Model
         return $this->belongsTo(TipoVeiculos::class,'veiccdveitipo','idtipoveiculo');
     }
 
+    public function status(){
+        return $this->belongsTo('App\Model\Status','idstatus','id');
+
+    }
 
     public function combustivel()
     {
