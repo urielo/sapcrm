@@ -81,8 +81,8 @@ class VeiculoController extends Controller
             $veiculo->veicleilao = $request->indleilao ;
             $veiculo->save();
 
-            return Redirect::back()->with('sucesso','Operação realizada com sucesso!');
             DB::commit();
+            return Redirect::back()->with('sucesso','Operação realizada com sucesso!');
 
         }catch (Exception $e){
             DB::rollBack();
