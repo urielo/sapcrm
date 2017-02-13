@@ -56,16 +56,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="home.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/backend/veiculo/home.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="467">
-              <caret line="48" column="58" selection-start-line="48" selection-start-column="58" selection-end-line="48" selection-end-column="58" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="veiculo_ajax.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/backend/veiculo/veiculo_ajax.blade.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -86,13 +76,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="2017_01_31_220424_update_cotacao_veiculos_dados.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="2017_01_31_220424_update_cotacao_veiculos_dados.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/database/migrations/2017_01_31_220424_update_cotacao_veiculos_dados.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="21" column="91" selection-start-line="14" selection-start-column="24" selection-end-line="21" selection-end-column="91" />
+            <state relative-caret-position="195">
+              <caret line="14" column="10" selection-start-line="14" selection-start-column="10" selection-end-line="21" selection-end-column="96" />
               <folding>
-                <marker date="1485900969378" expanded="true" signature="274:808" ph="UPDATE cotac... " />
+                <marker date="1487024951071" expanded="true" signature="276:824" ph="UPDATE cotac... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="2017_01_30_233737_update_cotacao_segurado_id.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/database/migrations/2017_01_30_233737_update_cotacao_segurado_id.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="14" column="122" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="122" />
+              <folding>
+                <marker date="1485819625389" expanded="true" signature="271:368" ph="UPDATE cotac... " />
               </folding>
             </state>
           </provider>
@@ -231,7 +233,6 @@
         <option value="$PROJECT_DIR$/database/migrations/2017_01_30_232430_alter_column_clicpfcnpj_to_segurado_id_on_cotacao.php" />
         <option value="$PROJECT_DIR$/database/migrations/2017_01_30_233737_update_cotacao_segurado_id.php" />
         <option value="$PROJECT_DIR$/database/migrations/2017_01_31_215329_add_columns_veiculos_on_cotacao_table.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2017_01_31_220424_update_cotacao_veiculos_dados.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/TesteController.php" />
         <option value="$PROJECT_DIR$/database/migrations/2017_02_07_000049_add_column_veiculo__id_to_proposta_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2017_02_07_000823_update_proposta_table_id_veiculo.php" />
@@ -257,6 +258,7 @@
         <option value="$PROJECT_DIR$/resources/views/backend/veiculo/edit_modal.blade.php" />
         <option value="$PROJECT_DIR$/public/themes/default/assets/js/script.js" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/VeiculoController.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2017_01_31_220424_update_cotacao_veiculos_dados.php" />
       </list>
     </option>
   </component>
@@ -847,12 +849,12 @@
       <workItem from="1486686121512" duration="144000" />
       <workItem from="1486834035461" duration="124000" />
       <workItem from="1487000241955" duration="947000" />
-      <workItem from="1487011223284" duration="12457000" />
+      <workItem from="1487011223284" duration="13153000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1377984000" />
+    <option name="totallyTimeSpent" value="1378680000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -865,10 +867,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1366" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24981017" sideWeight="0.5051395" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30438066" sideWeight="0.4948605" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30438066" sideWeight="0.4948605" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32668713" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5927052" sideWeight="0.5027451" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930514" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -953,13 +955,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="156">
           <caret line="16" column="11" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2017_01_30_233737_update_cotacao_segurado_id.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1585,10 +1580,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2017_01_31_220424_update_cotacao_veiculos_dados.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="21" column="91" selection-start-line="14" selection-start-column="24" selection-end-line="21" selection-end-column="91" />
+        <state relative-caret-position="195">
+          <caret line="14" column="10" selection-start-line="14" selection-start-column="10" selection-end-line="21" selection-end-column="96" />
           <folding>
-            <marker date="1485900969378" expanded="true" signature="274:808" ph="UPDATE cotac... " />
+            <marker date="1487024951071" expanded="true" signature="276:824" ph="UPDATE cotac... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2017_01_30_233737_update_cotacao_segurado_id.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="14" column="122" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="122" />
+          <folding>
+            <marker date="1485819625389" expanded="true" signature="271:368" ph="UPDATE cotac... " />
           </folding>
         </state>
       </provider>
