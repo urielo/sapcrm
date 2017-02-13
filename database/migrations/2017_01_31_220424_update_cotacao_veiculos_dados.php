@@ -12,14 +12,14 @@ class UpdateCotacaoVeiculosDados extends Migration
      */
     public function up()
     {
-        DB::unprepared('UPDATE cotacao SET code_fipe = veiculosegurado.veiccodfipe,
-                        ano_veiculo = veiculosegurado.veicano,
-                        combustivel_id = veiculosegurado.veictipocombus, 
-                        tipo_veiculo_id = veiculosegurado.veiccdveitipo,
-                        ind_veiculo_zero = veiculosegurado.veicautozero,
-                        validade = dtvalidade,
-                        created_at = cotacao.dtcreate
-                        from veiculosegurado where cotacao.veicid = veiculosegurado.veicid;');
+//        DB::unprepared('UPDATE cotacao SET code_fipe = veiculosegurado.veiccodfipe,
+//                        ano_veiculo = veiculosegurado.veicano,
+//                        combustivel_id = veiculosegurado.veictipocombus, 
+//                        tipo_veiculo_id = veiculosegurado.veiccdveitipo,
+//                        ind_veiculo_zero = veiculosegurado.veicautozero,
+//                        validade = dtvalidade,
+//                        created_at = cotacao.dtcreate
+//                        from veiculosegurado where cotacao.veicid = veiculosegurado.veicid;');
 
     }
 
