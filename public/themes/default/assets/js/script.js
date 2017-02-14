@@ -163,7 +163,6 @@ $(function () {
     $.apllyFilters = function () {
 
 
-        $(".selectpicker").selectpicker();
 
 
         $('input.cep').mask('99999-999')
@@ -548,8 +547,12 @@ $(function () {
                 $(this).mask("99.999.999/9999-99");
             }
         });
+        
+        if($('.selectpicker')){
+            $(".selectpicker").selectpicker();
+            $('.selectpicker').selectpicker('refresh');
+        }
 
-        $('.selectpicker').selectpicker('refresh');
 
         $('.ddd').mask("99");
         $('.cel').mask("9 9999-9999");
@@ -557,6 +560,8 @@ $(function () {
         $('.placa').mask("AAA-9999");
 
 
+        $('.cpfcnpj').trigger('focusin');
+        console.log('ok');
     }
 
     var table = $('.table-datatable').dataTable({

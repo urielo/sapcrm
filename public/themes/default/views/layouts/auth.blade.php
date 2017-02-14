@@ -7,6 +7,7 @@
     <title>@yield('title') &mdash; Seguro Auto Pratico</title>
     <link rel="stylesheet" href="{{ theme('css/jquery-ui.min.css') }}">
     <link rel="stylesheet" href="{{ theme('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ theme('css/bootstrap-select.min.css') }}">
     <link rel="stylesheet" href="{{ theme('css/bootstrap-theme.min.css') }}">
     <link rel="stylesheet" href="{{ theme('css/datepicker.css') }}">
     <link rel="stylesheet" href="{{ theme('datatables/datatables.min.css') }}">
@@ -21,9 +22,10 @@
 
 </div>
 
-
 <script src="{{ theme('js/jquery.js') }}"></script>
 <script src="{{ theme('js/bootstrap.min.js') }}"></script>
+<script src="{{ theme('js/bootstrap-select.min.js') }}"></script>
+
 <script src="{{ theme('js/jquery-ui.js') }}"></script>
 <script src="{{ theme('js/bootstrap-datepicker.js') }}"></script>
 <script src="{{ theme('js/bootstrap-validation.min.js') }}"></script>

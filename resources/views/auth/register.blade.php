@@ -50,7 +50,7 @@
                                 <div class="form-group form-group-sm{{ $errors->has('email') ? ' has-error' : '' }} col-md-6">
 
                                     {!! Form::label('email','Email',['class'=>'label label-info']) !!}
-                                    {!! Form::text('email', old('email'), ['class' => 'form-control form-control-sm','id'=>'email']) !!}
+                                    {!! Form::email('email', old('email'), ['class' => 'form-control form-control-sm required','id'=>'email']) !!}
 
                                     @if ($errors->has('email'))
                                         <span class="help-block">

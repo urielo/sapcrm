@@ -3,6 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="158326c0-4f81-4588-bf4f-593b4ab725fa" name="Default" comment="Alterações nos viwes e criacoes de novos models">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Backend/MovimentosController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/MovimentosController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/themes/default/assets/js/script.js" afterPath="$PROJECT_DIR$/public/themes/default/assets/js/script.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/themes/default/views/layouts/auth.blade.php" afterPath="$PROJECT_DIR$/public/themes/default/views/layouts/auth.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/auth/formusers/corretor.blade.php" afterPath="$PROJECT_DIR$/resources/views/auth/formusers/corretor.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/movimentos/listas.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/movimentos/listas.blade.php" />
     </list>
     <ignored path="sap.local.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,8 +40,8 @@
       <file leaf-file-name="VeiculoController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/VeiculoController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="31" column="11" selection-start-line="31" selection-start-column="11" selection-end-line="31" selection-end-column="11" />
+            <state relative-caret-position="225">
+              <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
               <folding>
                 <element signature="e#47#67#0#PHP" expanded="true" />
                 <element signature="e#1057#1510#0#PHP" expanded="false" />
@@ -44,72 +50,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="2017_01_30_233737_update_cotacao_segurado_id.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/migrations/2017_01_30_233737_update_cotacao_segurado_id.php">
+      <file leaf-file-name="listas.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/backend/movimentos/listas.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
+            <state relative-caret-position="195">
+              <caret line="13" column="33" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="33" />
               <folding>
-                <marker date="1487028698771" expanded="true" signature="273:370" ph="UPDATE cotac... " />
+                <element signature="e#366#3021#0#HTML" expanded="false" />
+                <element signature="e#3034#5682#0#HTML" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SeguradoController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/SeguradoController.php">
+      <file leaf-file-name="MovimentosController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/MovimentosController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1770">
-              <caret line="118" column="0" selection-start-line="118" selection-start-column="0" selection-end-line="119" selection-end-column="104" />
-              <folding>
-                <element signature="e#47#72#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PropostaController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/PropostaController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="975">
-              <caret line="87" column="0" selection-start-line="87" selection-start-column="0" selection-end-line="104" selection-end-column="10" />
-              <folding>
-                <element signature="e#8505#9864#0#PHP" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="veiculo_ajax.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/backend/veiculo/veiculo_ajax.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="30" column="56" selection-start-line="30" selection-start-column="56" selection-end-line="30" selection-end-column="56" />
+            <state relative-caret-position="390">
+              <caret line="42" column="38" selection-start-line="42" selection-start-column="38" selection-end-line="42" selection-end-column="38" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="helpers.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/helpers.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="30" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="edit_modal.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/backend/veiculo/edit_modal.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2040">
-              <caret line="136" column="34" selection-start-line="136" selection-start-column="34" selection-end-line="136" selection-end-column="34" />
-              <folding>
-                <marker date="1487024151025" expanded="true" signature="4893:5370" ph="..." />
-                <marker date="1487024151025" expanded="true" signature="4907:5368" ph="..." />
-                <marker date="1487024151025" expanded="true" signature="5123:5367" ph="..." />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -117,70 +76,91 @@
       <file leaf-file-name="script.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/themes/default/assets/js/script.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="233">
-              <caret line="1668" column="59" selection-start-line="1668" selection-start-column="59" selection-end-line="1668" selection-end-column="59" />
+            <state relative-caret-position="484">
+              <caret line="1672" column="7" selection-start-line="1672" selection-start-column="7" selection-end-line="1672" selection-end-column="7" />
               <folding>
                 <element signature="e#2078#3728#0" expanded="false" />
                 <element signature="e#4519#5307#0" expanded="false" />
-                <element signature="e#5476#5612#0" expanded="false" />
-                <element signature="e#5862#6769#0" expanded="false" />
-                <element signature="e#6813#7002#0" expanded="false" />
-                <element signature="e#7049#7246#0" expanded="false" />
-                <element signature="e#7291#7490#0" expanded="false" />
-                <element signature="e#7531#18153#0" expanded="false" />
-                <element signature="e#19697#19752#0" expanded="false" />
-                <element signature="e#20444#21367#0" expanded="false" />
-                <element signature="e#21630#21800#0" expanded="false" />
-                <element signature="e#21827#22110#0" expanded="false" />
-                <element signature="e#22139#22392#0" expanded="false" />
-                <element signature="e#22432#24334#0" expanded="false" />
-                <element signature="e#24383#24674#0" expanded="false" />
-                <element signature="e#24742#25513#0" expanded="false" />
-                <element signature="e#25616#27908#0" expanded="false" />
-                <element signature="e#27932#28081#0" expanded="false" />
-                <element signature="e#28123#28469#0" expanded="false" />
-                <element signature="e#28516#28862#0" expanded="false" />
-                <element signature="e#28900#29084#0" expanded="false" />
-                <element signature="e#29118#30297#0" expanded="false" />
-                <element signature="e#30330#31434#0" expanded="false" />
-                <element signature="e#31473#31793#0" expanded="false" />
-                <element signature="e#31831#32372#0" expanded="false" />
-                <element signature="e#32451#38268#0" expanded="false" />
-                <element signature="e#33554#34049#0" expanded="false" />
-                <element signature="e#38306#39857#0" expanded="false" />
-                <element signature="e#38353#39822#0" expanded="false" />
-                <element signature="e#39917#41708#0" expanded="false" />
-                <element signature="e#41756#43443#0" expanded="false" />
-                <element signature="e#43500#52034#0" expanded="false" />
-                <element signature="e#52078#55484#0" expanded="false" />
-                <element signature="e#55534#56033#0" expanded="false" />
-                <element signature="e#56067#56394#0" expanded="false" />
-                <element signature="e#56437#57894#0" expanded="false" />
-                <element signature="e#57932#58361#0" expanded="false" />
-                <element signature="e#58423#58897#0" expanded="false" />
-                <element signature="e#64817#64846#0" expanded="false" />
-                <element signature="e#65512#67434#0" expanded="false" />
-                <element signature="e#67488#67773#0" expanded="false" />
-                <element signature="e#68014#68978#0" expanded="false" />
-                <element signature="e#69028#69115#0" expanded="false" />
-                <element signature="e#69270#69421#0" expanded="false" />
-                <element signature="e#69502#70483#0" expanded="false" />
+                <element signature="e#5433#5569#0" expanded="false" />
+                <element signature="e#5819#6726#0" expanded="false" />
+                <element signature="e#6770#6959#0" expanded="false" />
+                <element signature="e#7006#7203#0" expanded="false" />
+                <element signature="e#7248#7447#0" expanded="false" />
+                <element signature="e#7488#18110#0" expanded="false" />
+                <element signature="e#19654#19709#0" expanded="false" />
+                <element signature="e#20572#21495#0" expanded="false" />
+                <element signature="e#21758#21928#0" expanded="false" />
+                <element signature="e#21955#22238#0" expanded="false" />
+                <element signature="e#22267#22520#0" expanded="false" />
+                <element signature="e#22560#24462#0" expanded="false" />
+                <element signature="e#24511#24802#0" expanded="false" />
+                <element signature="e#24870#25641#0" expanded="false" />
+                <element signature="e#25744#28036#0" expanded="false" />
+                <element signature="e#28060#28209#0" expanded="false" />
+                <element signature="e#28251#28597#0" expanded="false" />
+                <element signature="e#28644#28990#0" expanded="false" />
+                <element signature="e#29028#29212#0" expanded="false" />
+                <element signature="e#29246#30425#0" expanded="false" />
+                <element signature="e#30458#31562#0" expanded="false" />
+                <element signature="e#31601#31921#0" expanded="false" />
+                <element signature="e#31959#32500#0" expanded="false" />
+                <element signature="e#32579#38396#0" expanded="false" />
+                <element signature="e#33682#34177#0" expanded="false" />
+                <element signature="e#38434#39985#0" expanded="false" />
+                <element signature="e#38481#39950#0" expanded="false" />
+                <element signature="e#40045#41836#0" expanded="false" />
+                <element signature="e#41884#43571#0" expanded="false" />
+                <element signature="e#43628#52162#0" expanded="false" />
+                <element signature="e#52206#55612#0" expanded="false" />
+                <element signature="e#55662#56161#0" expanded="false" />
+                <element signature="e#56195#56522#0" expanded="false" />
+                <element signature="e#56565#58022#0" expanded="false" />
+                <element signature="e#58060#58489#0" expanded="false" />
+                <element signature="e#58551#59025#0" expanded="false" />
+                <element signature="e#62318#64936#0" expanded="false" />
+                <element signature="e#64945#64974#0" expanded="false" />
+                <element signature="e#65640#67562#0" expanded="false" />
+                <element signature="e#67616#67901#0" expanded="false" />
+                <element signature="e#68142#69106#0" expanded="false" />
+                <element signature="e#69156#69243#0" expanded="false" />
+                <element signature="e#69398#69549#0" expanded="false" />
+                <element signature="e#69630#70611#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Propostas.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Model/Propostas.php">
+      <file leaf-file-name="cotacao.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/themes/default/views/layouts/cotacao.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="107">
-              <caret line="42" column="4" selection-start-line="42" selection-start-column="4" selection-end-line="45" selection-end-column="5" />
+            <state relative-caret-position="-807">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="2017_02_07_000823_update_proposta_table_id_veiculo.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="backend.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/themes/default/views/layouts/backend.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="auth.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/themes/default/views/layouts/auth.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="405">
+              <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="2017_02_07_000823_update_proposta_table_id_veiculo.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/database/migrations/2017_02_07_000823_update_proposta_table_id_veiculo.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="255">
@@ -188,6 +168,30 @@
               <folding>
                 <marker date="1486426425205" expanded="true" signature="312:417" ph="UPDATE propo... " />
                 <marker date="1486426425205" expanded="true" signature="446:487" ph="UPDATE propo... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="register.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/auth/register.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="23" column="46" selection-start-line="23" selection-start-column="46" selection-end-line="23" selection-end-column="69" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="corretor.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/auth/formusers/corretor.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" column="99" selection-start-line="3" selection-start-column="99" selection-end-line="3" selection-end-column="99" />
+              <folding>
+                <marker date="1487030634165" expanded="true" signature="7497:7934" ph="..." />
+                <marker date="1487030634165" expanded="true" signature="7511:7932" ph="..." />
+                <marker date="1487030634165" expanded="true" signature="7517:7855" ph="..." />
               </folding>
             </state>
           </provider>
@@ -210,10 +214,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/MovimentosController.php" />
-        <option value="$PROJECT_DIR$/resources/views/backend/proposta/emitir.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/backend/proposta/listas.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/backend/show/baixarapolices.blade.php" />
         <option value="$PROJECT_DIR$/database/seeds/CombosProdutosSeeder.php" />
         <option value="$PROJECT_DIR$/app/Model/Combos.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/AjaxController.php" />
@@ -227,7 +227,6 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/PropostaController.php" />
         <option value="$PROJECT_DIR$/database/migrations/2017_01_23_234326_add_column_tipo_veiculo_id_to_protudo_combos_table.php" />
         <option value="$PROJECT_DIR$/.env" />
-        <option value="$PROJECT_DIR$/resources/views/backend/movimentos/listas.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/gestao/cobranca.blade.php" />
         <option value="$PROJECT_DIR$/app/Console/Commands/AtualizaFipe.php" />
         <option value="$PROJECT_DIR$/database/migrations/2017_01_30_232046_add_column_id_to_segurado.php" />
@@ -256,11 +255,16 @@
         <option value="$PROJECT_DIR$/resources/views/backend/veiculo/home.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/veiculo/veiculo_ajax.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/veiculo/edit_modal.blade.php" />
-        <option value="$PROJECT_DIR$/public/themes/default/assets/js/script.js" />
-        <option value="$PROJECT_DIR$/database/migrations/2017_01_31_220424_update_cotacao_veiculos_dados.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/SeguradoController.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2017_01_30_233737_update_cotacao_segurado_id.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/VeiculoController.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2017_01_30_233737_update_cotacao_segurado_id.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2017_01_31_220424_update_cotacao_veiculos_dados.php" />
+        <option value="$PROJECT_DIR$/resources/views/auth/register.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/auth/formusers/corretor.blade.php" />
+        <option value="$PROJECT_DIR$/public/themes/default/assets/js/script.js" />
+        <option value="$PROJECT_DIR$/public/themes/default/views/layouts/auth.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/MovimentosController.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/movimentos/listas.blade.php" />
       </list>
     </option>
   </component>
@@ -408,7 +412,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="veiculo" />
+              <option name="myItemId" value="movimentos" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -436,20 +440,6 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="database" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sap.local" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sap.local" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
@@ -463,7 +453,7 @@
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../plataformaverde" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="Propos&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Propostas.php&#10;se&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/SeguradoController.php&#10;vei&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Veiculos.php&#10;propos&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/PropostaController.php&#10;cotacao&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/CotacaoController.php&#10;seg&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/SeguradoController.php&#10;scrip&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/js/script.js&#10;sc&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/src/js/script.js&#10;fi&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Fipes.php&#10;rou&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/routes.php&#10;Status&#9;null&#9;null&#10;prop&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Propostas.php&#10;pro&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/PropostaController.php&#10;veiculos&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Veiculos.php&#10;helpers&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/helpers.php&#10;route&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/routes.php&#10;back&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/backend.blade.php&#10;veiculo&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Veiculos.php&#10;cota&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/CotacaoController.php&#10;propostaC&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/PropostaController.php&#10;styl&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/css/style.css&#10;sty&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/src/css/style.css&#10;cotac&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/CotacaoController.php&#10;proposta.js&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/js/proposta.js&#10;segurado&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Segurado.php&#10;cotacao.js&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/js/cotacao.js&#10;backe&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/backend.blade.php&#10;veic&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Veiculos.php&#10;CotacaoController&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/CotacaoController.php&#10;rout&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/routes.php&#10;propostaCo&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/PropostaController.php&#10;2017_02_08_002330_add_columns_to_propostas_table&#9;FILE&#9;file:///var/www/Myproject/sap.local/database/migrations/2017_02_08_002330_add_columns_to_propostas_table.php&#10;2017_02_06_235856_add_column_veiculo_id_to_proposta_table&#9;FILE&#9;file:///var/www/Myproject/sap.local/database/migrations/2017_02_06_235856_add_column_veiculo_id_to_proposta_table.php&#10;aja&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/AjaxController.php&#10;teste&#9;null&#9;null&#10;2017_01_31_220424_update_cotacao_veiculos_dados&#9;FILE&#9;file:///var/www/Myproject/sap.local/database/migrations/2017_01_31_220424_update_cotacao_veiculos_dados.php&#10;2017_01_31_215329_add_columns_veiculos_on_cotacao_table&#9;FILE&#9;file:///var/www/Myproject/sap.local/database/migrations/2017_01_31_215329_add_columns_veiculos_on_cotacao_table.php&#10;scr&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/js/script.js&#10;2017_01_30_233737_update_cotacao_segurado_id&#9;FILE&#9;file:///var/www/Myproject/sap.local/database/migrations/2017_01_30_233737_update_cotacao_segurado_id.php&#10;2017_01_30_232430_alter_column_clicpfcnpj_to_segurado_id_on_cotacao&#9;FILE&#9;file:///var/www/Myproject/sap.local/database/migrations/2017_01_30_232430_alter_column_clicpfcnpj_to_segurado_id_on_cotacao.php&#10;2017_01_30_232046_add_column_id_to_segurado&#9;FILE&#9;file:///var/www/Myproject/sap.local/database/migrations/2017_01_30_232046_add_column_id_to_segurado.php&#10;.e&#9;FILE&#9;file:///var/www/Myproject/sap.local/.env&#10;TipoVeiculos&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/TipoVeiculos.php&#10;ti&#9;FILE&#9;file:///var/www/Myproject/sap.local/database/seeds/TipoVeiculosSeeder.php&#10;certif&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/pdf/certificado.blade.php&#10;2017_01_25_232050_add_column_codigo_to_table_tipoveiculo&#9;FILE&#9;file:///var/www/Myproject/sap.local/database/migrations/2017_01_25_232050_add_column_codigo_to_table_tipoveiculo.php&#10;cert&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Certificados.php&#10;routes&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/routes.php&#10;backend\pdf\certificado&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/pdf/certificado.blade.php&#10;cer&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/CertificadoController.php" />
+    <property name="SearchEverywhereHistoryKey" value="movi&#9;null&#9;null&#10;Propos&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Propostas.php&#10;se&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/SeguradoController.php&#10;vei&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Veiculos.php&#10;propos&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/PropostaController.php&#10;cotacao&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/CotacaoController.php&#10;seg&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/SeguradoController.php&#10;scrip&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/js/script.js&#10;sc&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/src/js/script.js&#10;fi&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Fipes.php&#10;rou&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/routes.php&#10;Status&#9;null&#9;null&#10;prop&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Propostas.php&#10;pro&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/PropostaController.php&#10;veiculos&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Veiculos.php&#10;helpers&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/helpers.php&#10;route&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/routes.php&#10;back&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/backend.blade.php&#10;veiculo&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Veiculos.php&#10;cota&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/CotacaoController.php&#10;propostaC&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/PropostaController.php&#10;styl&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/css/style.css&#10;sty&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/src/css/style.css&#10;cotac&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/CotacaoController.php&#10;proposta.js&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/js/proposta.js&#10;segurado&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Segurado.php&#10;cotacao.js&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/js/cotacao.js&#10;backe&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/views/layouts/backend.blade.php&#10;veic&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Veiculos.php&#10;CotacaoController&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/CotacaoController.php&#10;rout&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/routes.php&#10;propostaCo&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/PropostaController.php&#10;2017_02_08_002330_add_columns_to_propostas_table&#9;FILE&#9;file:///var/www/Myproject/sap.local/database/migrations/2017_02_08_002330_add_columns_to_propostas_table.php&#10;2017_02_06_235856_add_column_veiculo_id_to_proposta_table&#9;FILE&#9;file:///var/www/Myproject/sap.local/database/migrations/2017_02_06_235856_add_column_veiculo_id_to_proposta_table.php&#10;aja&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/Controllers/Backend/AjaxController.php&#10;teste&#9;null&#9;null&#10;2017_01_31_220424_update_cotacao_veiculos_dados&#9;FILE&#9;file:///var/www/Myproject/sap.local/database/migrations/2017_01_31_220424_update_cotacao_veiculos_dados.php&#10;2017_01_31_215329_add_columns_veiculos_on_cotacao_table&#9;FILE&#9;file:///var/www/Myproject/sap.local/database/migrations/2017_01_31_215329_add_columns_veiculos_on_cotacao_table.php&#10;scr&#9;FILE&#9;file:///var/www/Myproject/sap.local/public/themes/default/assets/js/script.js&#10;2017_01_30_233737_update_cotacao_segurado_id&#9;FILE&#9;file:///var/www/Myproject/sap.local/database/migrations/2017_01_30_233737_update_cotacao_segurado_id.php&#10;2017_01_30_232430_alter_column_clicpfcnpj_to_segurado_id_on_cotacao&#9;FILE&#9;file:///var/www/Myproject/sap.local/database/migrations/2017_01_30_232430_alter_column_clicpfcnpj_to_segurado_id_on_cotacao.php&#10;2017_01_30_232046_add_column_id_to_segurado&#9;FILE&#9;file:///var/www/Myproject/sap.local/database/migrations/2017_01_30_232046_add_column_id_to_segurado.php&#10;.e&#9;FILE&#9;file:///var/www/Myproject/sap.local/.env&#10;TipoVeiculos&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/TipoVeiculos.php&#10;ti&#9;FILE&#9;file:///var/www/Myproject/sap.local/database/seeds/TipoVeiculosSeeder.php&#10;certif&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/pdf/certificado.blade.php&#10;2017_01_25_232050_add_column_codigo_to_table_tipoveiculo&#9;FILE&#9;file:///var/www/Myproject/sap.local/database/migrations/2017_01_25_232050_add_column_codigo_to_table_tipoveiculo.php&#10;cert&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Model/Certificados.php&#10;routes&#9;FILE&#9;file:///var/www/Myproject/sap.local/app/Http/routes.php&#10;backend\pdf\certificado&#9;FILE&#9;file:///var/www/Myproject/sap.local/resources/views/backend/pdf/certificado.blade.php" />
     <property name="ToolWindowREST Client.ShowToolbar" value="false" />
     <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
     <property name="js.buildTools.gulp.gulp_package_dir" value="$PROJECT_DIR$/node_modules/gulp" />
@@ -834,12 +824,12 @@
       <workItem from="1486834035461" duration="124000" />
       <workItem from="1487000241955" duration="947000" />
       <workItem from="1487011223284" duration="15066000" />
-      <workItem from="1487029726568" duration="593000" />
+      <workItem from="1487029726568" duration="2877000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1381186000" />
+    <option name="totallyTimeSpent" value="1383470000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -852,17 +842,17 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1366" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24981017" sideWeight="0.5051395" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3089124" sideWeight="0.4948605" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2839879" sideWeight="0.4948605" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32668713" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5927052" sideWeight="0.5027451" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930514" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32568806" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24941176" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33639145" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33639145" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930514" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297546" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -927,7 +917,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/public/themes/default/assets/js/script.js</url>
-          <line>1868</line>
+          <line>1873</line>
           <option name="timeStamp" value="56" />
         </line-breakpoint>
       </breakpoints>
@@ -936,50 +926,7 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/database/migrations/2017_01_30_232430_alter_column_clicpfcnpj_to_segurado_id_on_cotacao.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="16" column="11" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2017_01_31_215329_add_columns_veiculos_on_cotacao_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="19" column="45" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Model/Produtos.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="42" column="32" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2017_02_06_235856_add_column_veiculo_id_to_proposta_table.php" />
-    <entry file="file://$PROJECT_DIR$/database/migrations/2016_12_21_022231_add_column_dt_cancelamento_to_certificados_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2016_12_27_012158_alter_trigger_function_certificados.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="14" column="22" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2017_02_08_002330_add_columns_to_propostas_table.php" />
-    <entry file="file://$PROJECT_DIR$/database/migrations/2017_02_07_000049_add_column_veiculo__id_to_proposta_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="16" column="31" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/AjaxController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -1097,6 +1044,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="511">
           <caret line="66" column="1" selection-start-line="66" selection-start-column="1" selection-end-line="66" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1202,6 +1150,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="737">
           <caret line="845" column="22" selection-start-line="845" selection-start-column="22" selection-end-line="845" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1369,6 +1318,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" column="45" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="45" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1376,14 +1326,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="467">
           <caret line="48" column="58" selection-start-line="48" selection-start-column="58" selection-end-line="48" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/themes/default/views/layouts/backend.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2700">
-          <caret line="180" column="72" selection-start-line="180" selection-start-column="72" selection-end-line="180" selection-end-column="72" />
           <folding />
         </state>
       </provider>
@@ -1425,20 +1367,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2017_01_31_220424_update_cotacao_veiculos_dados.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="14" column="10" selection-start-line="14" selection-start-column="10" selection-end-line="21" selection-end-column="96" />
-          <folding>
-            <marker date="1487024951071" expanded="true" signature="276:824" ph="UPDATE cotac... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Model/Veiculos.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="496">
           <caret line="35" column="20" selection-start-line="12" selection-start-column="8" selection-end-line="35" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1470,85 +1403,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2017_01_30_233737_update_cotacao_segurado_id.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
-          <folding>
-            <marker date="1487028698771" expanded="true" signature="273:370" ph="UPDATE cotac... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/VeiculoController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" column="11" selection-start-line="31" selection-start-column="11" selection-end-line="31" selection-end-column="11" />
-          <folding>
-            <element signature="e#47#67#0#PHP" expanded="true" />
-            <element signature="e#1057#1510#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/themes/default/assets/js/script.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="1668" column="59" selection-start-line="1668" selection-start-column="59" selection-end-line="1668" selection-end-column="59" />
-          <folding>
-            <element signature="e#2078#3728#0" expanded="false" />
-            <element signature="e#4519#5307#0" expanded="false" />
-            <element signature="e#5476#5612#0" expanded="false" />
-            <element signature="e#5862#6769#0" expanded="false" />
-            <element signature="e#6813#7002#0" expanded="false" />
-            <element signature="e#7049#7246#0" expanded="false" />
-            <element signature="e#7291#7490#0" expanded="false" />
-            <element signature="e#7531#18153#0" expanded="false" />
-            <element signature="e#19697#19752#0" expanded="false" />
-            <element signature="e#20444#21367#0" expanded="false" />
-            <element signature="e#21630#21800#0" expanded="false" />
-            <element signature="e#21827#22110#0" expanded="false" />
-            <element signature="e#22139#22392#0" expanded="false" />
-            <element signature="e#22432#24334#0" expanded="false" />
-            <element signature="e#24383#24674#0" expanded="false" />
-            <element signature="e#24742#25513#0" expanded="false" />
-            <element signature="e#25616#27908#0" expanded="false" />
-            <element signature="e#27932#28081#0" expanded="false" />
-            <element signature="e#28123#28469#0" expanded="false" />
-            <element signature="e#28516#28862#0" expanded="false" />
-            <element signature="e#28900#29084#0" expanded="false" />
-            <element signature="e#29118#30297#0" expanded="false" />
-            <element signature="e#30330#31434#0" expanded="false" />
-            <element signature="e#31473#31793#0" expanded="false" />
-            <element signature="e#31831#32372#0" expanded="false" />
-            <element signature="e#32451#38268#0" expanded="false" />
-            <element signature="e#33554#34049#0" expanded="false" />
-            <element signature="e#38306#39857#0" expanded="false" />
-            <element signature="e#38353#39822#0" expanded="false" />
-            <element signature="e#39917#41708#0" expanded="false" />
-            <element signature="e#41756#43443#0" expanded="false" />
-            <element signature="e#43500#52034#0" expanded="false" />
-            <element signature="e#52078#55484#0" expanded="false" />
-            <element signature="e#55534#56033#0" expanded="false" />
-            <element signature="e#56067#56394#0" expanded="false" />
-            <element signature="e#56437#57894#0" expanded="false" />
-            <element signature="e#57932#58361#0" expanded="false" />
-            <element signature="e#58423#58897#0" expanded="false" />
-            <element signature="e#64817#64846#0" expanded="false" />
-            <element signature="e#65512#67434#0" expanded="false" />
-            <element signature="e#67488#67773#0" expanded="false" />
-            <element signature="e#68014#68978#0" expanded="false" />
-            <element signature="e#69028#69115#0" expanded="false" />
-            <element signature="e#69270#69421#0" expanded="false" />
-            <element signature="e#69502#70483#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Model/Propostas.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="107">
           <caret line="42" column="4" selection-start-line="42" selection-start-column="4" selection-end-line="45" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2017_01_30_233737_update_cotacao_segurado_id.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="14" column="100" selection-start-line="14" selection-start-column="100" selection-end-line="14" selection-end-column="100" />
+          <folding>
+            <marker date="1487030503050" expanded="true" signature="271:369" ph="UPDATE cotac... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2017_01_31_220424_update_cotacao_veiculos_dados.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="12" column="24" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
+          <folding>
+            <marker date="1487030503106" expanded="true" signature="274:808" ph="UPDATE cotac... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2017_02_07_000049_add_column_veiculo__id_to_proposta_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="16" column="31" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
           <folding />
         </state>
       </provider>
@@ -1560,6 +1446,135 @@
           <folding>
             <marker date="1486426425205" expanded="true" signature="312:417" ph="UPDATE propo... " />
             <marker date="1486426425205" expanded="true" signature="446:487" ph="UPDATE propo... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/auth/register.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="23" column="46" selection-start-line="23" selection-start-column="46" selection-end-line="23" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/auth/formusers/corretor.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="99" selection-start-line="3" selection-start-column="99" selection-end-line="3" selection-end-column="99" />
+          <folding>
+            <marker date="1487030634165" expanded="true" signature="7497:7934" ph="..." />
+            <marker date="1487030634165" expanded="true" signature="7511:7932" ph="..." />
+            <marker date="1487030634165" expanded="true" signature="7517:7855" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/themes/default/views/layouts/cotacao.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-807">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/themes/default/views/layouts/backend.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/themes/default/views/layouts/auth.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/themes/default/assets/js/script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="1672" column="7" selection-start-line="1672" selection-start-column="7" selection-end-line="1672" selection-end-column="7" />
+          <folding>
+            <element signature="e#2078#3728#0" expanded="false" />
+            <element signature="e#4519#5307#0" expanded="false" />
+            <element signature="e#5433#5569#0" expanded="false" />
+            <element signature="e#5819#6726#0" expanded="false" />
+            <element signature="e#6770#6959#0" expanded="false" />
+            <element signature="e#7006#7203#0" expanded="false" />
+            <element signature="e#7248#7447#0" expanded="false" />
+            <element signature="e#7488#18110#0" expanded="false" />
+            <element signature="e#19654#19709#0" expanded="false" />
+            <element signature="e#20572#21495#0" expanded="false" />
+            <element signature="e#21758#21928#0" expanded="false" />
+            <element signature="e#21955#22238#0" expanded="false" />
+            <element signature="e#22267#22520#0" expanded="false" />
+            <element signature="e#22560#24462#0" expanded="false" />
+            <element signature="e#24511#24802#0" expanded="false" />
+            <element signature="e#24870#25641#0" expanded="false" />
+            <element signature="e#25744#28036#0" expanded="false" />
+            <element signature="e#28060#28209#0" expanded="false" />
+            <element signature="e#28251#28597#0" expanded="false" />
+            <element signature="e#28644#28990#0" expanded="false" />
+            <element signature="e#29028#29212#0" expanded="false" />
+            <element signature="e#29246#30425#0" expanded="false" />
+            <element signature="e#30458#31562#0" expanded="false" />
+            <element signature="e#31601#31921#0" expanded="false" />
+            <element signature="e#31959#32500#0" expanded="false" />
+            <element signature="e#32579#38396#0" expanded="false" />
+            <element signature="e#33682#34177#0" expanded="false" />
+            <element signature="e#38434#39985#0" expanded="false" />
+            <element signature="e#38481#39950#0" expanded="false" />
+            <element signature="e#40045#41836#0" expanded="false" />
+            <element signature="e#41884#43571#0" expanded="false" />
+            <element signature="e#43628#52162#0" expanded="false" />
+            <element signature="e#52206#55612#0" expanded="false" />
+            <element signature="e#55662#56161#0" expanded="false" />
+            <element signature="e#56195#56522#0" expanded="false" />
+            <element signature="e#56565#58022#0" expanded="false" />
+            <element signature="e#58060#58489#0" expanded="false" />
+            <element signature="e#58551#59025#0" expanded="false" />
+            <element signature="e#62318#64936#0" expanded="false" />
+            <element signature="e#64945#64974#0" expanded="false" />
+            <element signature="e#65640#67562#0" expanded="false" />
+            <element signature="e#67616#67901#0" expanded="false" />
+            <element signature="e#68142#69106#0" expanded="false" />
+            <element signature="e#69156#69243#0" expanded="false" />
+            <element signature="e#69398#69549#0" expanded="false" />
+            <element signature="e#69630#70611#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/VeiculoController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding>
+            <element signature="e#47#67#0#PHP" expanded="true" />
+            <element signature="e#1057#1510#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/MovimentosController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="42" column="38" selection-start-line="42" selection-start-column="38" selection-end-line="42" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/movimentos/listas.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="33" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="33" />
+          <folding>
+            <element signature="e#366#3021#0#HTML" expanded="false" />
+            <element signature="e#3034#5682#0#HTML" expanded="false" />
           </folding>
         </state>
       </provider>

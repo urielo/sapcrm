@@ -1,7 +1,7 @@
 <div class="row">
     <div class="form-group form-group-sm{{ $errors->has('cpfcnpj') ? ' has-error' : '' }} col-md-3">
         {!! Form::label('cpfcnpj','CPF/CNPJ',['class'=>'label label-success']) !!}
-        {!! Form::text('cpfcnpj', old('cpfcnpj'), ['class' => 'form-control form-control-sm','id'=>'cpfcnpj','stats'=>1, 'tipoinput'=>'cpfcnpj']) !!}
+        {!! Form::text('cpfcnpj', old('cpfcnpj'), ['class' => 'form-control form-control-sm cpfcnpj','id'=>'cpfcnpj','stats'=>1, 'tipoinput'=>'cpfcnpj']) !!}
         <div id="msg-cpfcnpj"></div>
         @if ($errors->has('cpfcnpj'))
             <span class="help-block">

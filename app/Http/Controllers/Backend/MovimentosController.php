@@ -28,6 +28,7 @@ class MovimentosController extends Controller
                 $dados[(int)$enviado->numero_certificado]['desc_retorno']= '';
                 $dados[(int)$enviado->numero_certificado]['tipo']= ucfirst($movimento->tipo_envio);
                 $dados[(int)$enviado->numero_certificado]['status']= 'Movimento - Enviado';
+                $dados[(int)$enviado->numero_certificado]['_status']= 1;
 
             }
 
@@ -39,6 +40,8 @@ class MovimentosController extends Controller
                     $dados[(int)$retorno->numero_certificado]['status']= 'Movimento - Retorno';
                     $dados[(int)$retorno->numero_certificado]['desc_retorno']= strlen($retorno->texto) > 1 ? $retorno->texto : 'Sucesso';
                     $dados[(int)$retorno->numero_certificado]['retorno']= showDate($movimento->dt_envio);
+                    $dados[(int)$enviado->numero_certificado]['_status']= strlen($retorno->texto) > 1 ? 0 : 1;
+
 
                 }
 
