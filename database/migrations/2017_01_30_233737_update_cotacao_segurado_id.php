@@ -12,7 +12,7 @@ class UpdateCotacaoSeguradoId extends Migration
      */
     public function up()
     {
-//        DB::unprepared('UPDATE cotacao SET segurado_id = segurado.id from segurado where clicpfcnpj = segurado.clicpfcnpj;');
+        DB::unprepared('UPDATE cotacao SET segurado_id = segurado.id from segurado where segurado_id = segurado.clicpfcnpj;');
     }   
 
     /**
