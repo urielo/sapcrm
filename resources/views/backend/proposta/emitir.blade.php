@@ -6,11 +6,11 @@
 @section('contentSeg')
 
     {!!Form::open([ 'method' =>'post', 'route' =>['proposta.emitir'] , 'id' => 'form-cotacao' ]) !!}
-    {!!  Form::hidden('fipe',$cotacao->veiculo->veiccodfipe)!!}
-    {!!  Form::hidden('ano',$cotacao->veiculo->veicano)!!}
-    {!!  Form::hidden('combustivel',$cotacao->veiculo->veictipocombus)!!}
-    {!!  Form::hidden('autozero',$cotacao->veiculo->veicautozero)!!}
-    {!!  Form::hidden('tipoveiculo',$cotacao->veiculo->veiccdveitipo)!!}
+    {!!  Form::hidden('fipe',$cotacao->code_fipe)!!}
+    {!!  Form::hidden('ano',$cotacao->ano_veiculo)!!}
+    {!!  Form::hidden('combustivel',$cotacao->combustivel_id)!!}
+    {!!  Form::hidden('autozero',$cotacao->ind_veiculo_zero)!!}
+    {!!  Form::hidden('tipoveiculo',$cotacao->tipo_veiculo_id)!!}
     {!!  Form::hidden('cotacao_id',$cotacao->idcotacao)!!}
     {!!  Form::hidden('renova',$cotacao->renova)!!}
 
@@ -494,27 +494,27 @@
                                     <div class="row info-veiculo">
 
                                         <div class="col-md-4">
-                                            <strong>Marca: </strong> {{$cotacao->veiculo->fipe->marca}}
+                                            <strong>Marca: </strong> {{$cotacao->fipe->marca}}
 
                                         </div>
 
                                         <div class="col-md-8">
-                                            <strong>Modelo: </strong> {{$cotacao->veiculo->fipe->modelo}}
+                                            <strong>Modelo: </strong> {{$cotacao->fipe->modelo}}
 
                                         </div>
                                         <div class="col-md-3">
-                                            <strong>Fipe: </strong> {{$cotacao->veiculo->veiccodfipe}}
+                                            <strong>Fipe: </strong> {{$cotacao->code_fipe}}
                                         </div>
                                         <div class="col-md-3">
                                             <strong>Valor: </strong>
-                                            R$ {{format('real',$cotacao->veiculo->fipe->anovalor()->where('idcombustivel',$cotacao->veiculo->veictipocombus)->where('ano',$cotacao->veiculo->veicano)->first()->valor)}}
+                                            R$ {{format('real',$cotacao->fipe->anovalor()->where('idcombustivel',$cotacao->combustivel_id)->where('ano',$cotacao->ano_veiculo)->first()->valor)}}
                                         </div>
 
                                         <div class="col-md-2">
-                                            <strong>Ano: </strong> {{$cotacao->veiculo->veicano}}
+                                            <strong>Ano: </strong> {{$cotacao->ano_veiculo}}
                                         </div>
                                         <div class="col-md-4">
-                                            <strong>Combustivel: </strong> {{$cotacao->veiculo->combustivel->nm_comb}}
+                                            <strong>Combustivel: </strong> {{$cotacao->combustivel->nm_comb}}
                                         </div>
 
                                     </div>
@@ -575,12 +575,12 @@
                                         <select name="anof" id="anof"
                                                 class="form-control form-control-sm" value="{{old('anof')}}">
 
-                                            @if($cotacao->veiculo->veicano == 0)
+                                            @if($cotacao->ano_veiculo == 0)
 
                                                 <option value="{{date('Y')}}">{{date('Y')}}</option>
 
                                             @else
-                                                @for($i = $cotacao->veiculo->veicano; $i >= $cotacao->veiculo->veicano - 1; $i--)
+                                                @for($i = $cotacao->ano_veiculo; $i >= $cotacao->ano_veiculo - 1; $i--)
                                                     @if(old('anof') == $i)
                                                         <option value="{{$i}}" selected>{{$i}}</option>
 
@@ -610,7 +610,7 @@
                                             Renavan</label>
                                         <select name="anorenav" id="anorenav"
                                                 class="form-control form-control-sm">
-                                            @for($i = ($cotacao->veiculo->veicano == 0 ? date('Y') :$cotacao->veiculo->veicano); $i <= date('Y'); $i++)
+                                            @for($i = ($cotacao->ano_veiculo == 0 ? date('Y') :$cotacao->ano_veiculo); $i <= date('Y'); $i++)
                                                 @if(old('anorenav') == $i)
                                                     <option value="{{$i}}" selected>{{$i}}</option>
 

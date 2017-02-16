@@ -522,6 +522,15 @@ $(function () {
 
             }
         });
+        var mask_cpfcnpj
+
+        if ($('.cpfcnpj').val() && $('.cpfcnpj').val().length > 11) {
+            mask_cpfcnpj = "99.999.999/9999-99";
+        } else {
+            mask_cpfcnpj = "999.999.999-99";
+        }
+
+        $('.cpfcnpj').mask(mask_cpfcnpj)
 
 
         $('.cpfcnpj').on('focusin', function () {

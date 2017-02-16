@@ -101,17 +101,18 @@ $(function () {
         }
 
 
-    })
+    });
 
-    var mask_cpfcnpj
-
-    if ($('.cpfcnpj').val().length > 11) {
-        mask_cpfcnpj = "99.999.999/9999-99";
-    } else {
-        mask_cpfcnpj = "999.999.999-99";
-    }
-
-    $('.cpfcnpj').mask(mask_cpfcnpj)
+    //
+    // var mask_cpfcnpj
+    //
+    // if ($('.cpfcnpj').val().length > 11) {
+    //     mask_cpfcnpj = "99.999.999/9999-99";
+    // } else {
+    //     mask_cpfcnpj = "999.999.999-99";
+    // }
+    //
+    // $('.cpfcnpj').mask(mask_cpfcnpj);
     $('.ddd').mask("99")
     $('.cel').mask("9 9999-9999")
     $('.fixo').mask("9999-9999")

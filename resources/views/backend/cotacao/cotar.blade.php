@@ -51,7 +51,7 @@
                     {{Form::label('codefip-value','Fipe',['class'=>'label label-default'])}}
                     <div class=" form-group input-group input-group-sm">
 
-                        {!! Form::text('codefipe',($cotacao->veiculo->veiccodfipe ? $cotacao->veiculo->veiccodfipe : ''),
+                        {!! Form::text('codefipe',($cotacao->code_fipe ? $cotacao->code_fipe : ''),
                         [
                             'class'=>'form-control form-control-xs fipe',
                             'id'=>'codefip-value',
@@ -101,7 +101,7 @@
                         <label for="anomodelo" class="label label-default">Ano Modelo - Combustivel -
                             Valor</label>
 
-                        <meta name="anomodelo" value="{{($cotacao->veiculo->veicano ? $cotacao->veiculo->veicano : '')}}">
+                        <meta name="anomodelo" value="{{($cotacao->ano_veiculo ? $cotacao->ano_veiculo : '')}}">
                         <select name="anomodelo" id="anomodelo" class="form-control form-control-sm">
                             <option value="1">Escolha um modelo...</option>
                         </select>
@@ -143,7 +143,7 @@
 
                 <meta name="produto-master" value="{{(isset($produto_master) ? $produto_master : '')}}">
                 <meta name="produto-opcionais" value="{{(isset($produto_opcionais) ? json_encode($produto_opcionais, JSON_PRETTY_PRINT) : '')}}">
-                <meta name="produto-opcionais2" value="{{(isset($produto_opcionais) ? json_encode($produto_opcionais) : '')}}">
+                <meta name="produto-opcionais2" value="{{(isset($produto_opcionais) ? json_encode($produto_opcionais,JSON_PRETTY_PRINT) : '')}}">
                 <div class="col-md-6 ">
                     <div class="panel panel-default " id="panelprodutosmaster">
                         <div class="panel-heading panel-heading-sm">
