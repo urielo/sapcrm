@@ -24,8 +24,15 @@
             @foreach ($propostas as $proposta)
 
                 <tr>
-                    <td><a href="#" class="">{{$proposta->proposta->idproposta}}</a></td>
-                    <td><a href="{{route('show.segurado',$proposta->proposta->cotacao->segurado->clicpfcnpj)}}" class=""
+
+                    <td><a href="#" data-url="{{route('show.proposta',$proposta->proposta->idproposta)}}"  data-toggle="modal"
+                           data-target=".modal-show"
+                           class="modal-call"
+                           id="showinfo">{{$proposta->proposta->idproposta}}
+                        </a></td>
+                    <td><a href="#"
+                           data-url="{{route('show.segurado',$proposta->proposta->cotacao->segurado->id)}}"
+                           class="modal-call"
                            data-toggle="modal"
                            data-target=".modal-show"
                            id="linksegurado">{!! nomeCase($proposta->proposta->cotacao->segurado->clinomerazao) !!}</a>
@@ -43,9 +50,9 @@
 
                         <div class="btn-group" role="group">
 
-                            <button type="button" class="btn btn-success btn-xs" data-toggle="modal"
+                            <button type="button" class="btn btn-success btn-xs modal-call" data-toggle="modal"
                                     data-target=".modal-show"
-                                    href="{{route('show.confirmapgto',$proposta->proposta->idproposta)}}"
+                                    data-url="{{route('show.confirmapgto',$proposta->proposta->idproposta)}}"
                                     id="comfirmapgto">Confirmar
                             </button>
 
@@ -53,10 +60,8 @@
                         </div>
 
                         <div class="btn-group" role="group">
-                            <a href="{{route('cobranca.recusar',$proposta->proposta->idproposta)}}">
-                                <button type="button" class="btn btn-danger btn-xs"
-                                        id="recusar">Recusar
-                                </button>
+                            <a  class="btn btn-danger btn-xs" id="recusar" href="{{route('cobranca.recusar',$proposta->proposta->idproposta)}}">
+                                Recusar
                             </a>
 
                         </div>

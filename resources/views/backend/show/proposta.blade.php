@@ -26,8 +26,8 @@
                     em {{$proposta->quantparc}}x (1x de R$ {!!format('real',$proposta->primeiraparc)!!}
                     e {!! $proposta->quantparc - 1 !!}x de R$ {!!format('real',$proposta->demaisparc)!!})
                 </div>
-                @if($proposta->cotacao->veiculo->fipe->status)
-                    <div class="col-md-8"><b>{{$proposta->cotacao->veiculo->fipe->status->descricao}}
+                @if($proposta->veiculo->fipe->status)
+                    <div class="col-md-8"><b>{{$proposta->veiculo->fipe->status->descricao}}
                         </b></div>
                 @endif
 
@@ -202,37 +202,37 @@
                     <div class="row">
 
                         <div class="col-md-4">
-                            <b> Fipe: </b> {!!  $proposta->cotacao->veiculo->veiccodfipe !!}
+                            <b> Fipe: </b> {!!  $proposta->veiculo->veiccodfipe !!}
                         </div>
 
                         <div class="col-md-8">
-                            <b> Marca: </b> {!!  $proposta->cotacao->veiculo->fipe->marca !!}
+                            <b> Marca: </b> {!!  $proposta->veiculo->fipe->marca !!}
                         </div>
 
                         <div class="col-md-10">
-                            <b> Modelo: </b> {!!  $proposta->cotacao->veiculo->fipe->modelo !!}
+                            <b> Modelo: </b> {!!  $proposta->veiculo->fipe->modelo !!}
                         </div>
 
                         <div class="col-md-3">
-                            <b> Ano: </b> {!!  $proposta->cotacao->veiculo->veicano!!}
+                            <b> Ano: </b> {!!  $proposta->veiculo->veicano!!}
                         </div>
 
-                        @foreach($proposta->cotacao->veiculo->fipe->anovalor as $valor)
-                            @if($valor->ano == $proposta->cotacao->veiculo->veicano && $valor->idcombustivel == $proposta->cotacao->veiculo->veictipocombus)
+                        @foreach($proposta->veiculo->fipe->anovalor as $valor)
+                            @if($valor->ano == $proposta->veiculo->veicano && $valor->idcombustivel == $proposta->veiculo->veictipocombus)
                                 <div class="col-md-4">
                                     <b> Ano: </b> R$ {!!format('real',$valor->valor)!!}
                                 </div>
                             @endif
                         @endforeach
                         <div class="col-md-5">
-                            <b> Placa: </b> {!!  format('placa',$proposta->cotacao->veiculo->veicplaca) !!}
+                            <b> Placa: </b> {!!  format('placa',$proposta->veiculo->veicplaca) !!}
                         </div>
                         <div class="col-md-5">
-                            <b> Chassi: </b> {!!  $proposta->cotacao->veiculo->veicchassi!!}
+                            <b> Chassi: </b> {!!  $proposta->veiculo->veicchassi!!}
                         </div>
 
                         <div class="col-md-4">
-                            <b> Renavam: </b> {!!  $proposta->cotacao->veiculo->veicrenavam!!}
+                            <b> Renavam: </b> {!!  $proposta->veiculo->veicrenavam!!}
                         </div>
 
 

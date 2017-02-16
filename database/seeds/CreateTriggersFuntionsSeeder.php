@@ -15,7 +15,7 @@ class CreateTriggersFuntionsSeeder extends Seeder
                         DECLARE
                             statusid INTEGER;
                         BEGIN
-                            IF NEW .idstatus IN (SELECT id FROM status WHERE descricao ILIKE \'%cancelad%\' or descricao ILIKE \'%inati%\' or descricao ILIKE \'%recusad%\' or descricao ILIKE \'fim%\' or descricao ILIKE \'%vencida%\') THEN
+                            IF NEW .idstatus IN (SELECT id FROM status WHERE descricao ILIKE \'%cancelad%\' or descricao ILIKE \'%inati%\' or descricao ILIKE \'recusad%\' or descricao ILIKE \'fim%\' or descricao ILIKE \'%vencida%\') THEN
 	                            statusid := 9 ;
 	                        ELSE 
 	                            statusid := 10 ;
@@ -25,8 +25,7 @@ class CreateTriggersFuntionsSeeder extends Seeder
 	                        UPDATE cotacao SET idstatus = NEW .idstatus
                             WHERE 	idcotacao = NEW .idcotacao;
                             UPDATE veiculosegurado SET idstatus = statusid
-                            FROM cotacao WHERE idcotacao = NEW.idcotacao
-	                        AND veiculosegurado.veicid = cotacao.veicid;
+	                        WHERE veiculosegurado.veicid = NEW .veiculo_id;
 
                             RETURN NEW;
                         END;

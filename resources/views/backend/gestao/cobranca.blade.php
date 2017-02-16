@@ -21,8 +21,9 @@
                     <tr>
                         <td>
                             <div class="btn-group">
-                            <a href="{{route('show.proposta',$proposta->idproposta)}}" class="" data-toggle="modal"
+                            <a href="#" data-url="{{route('show.proposta',$proposta->idproposta)}}"  data-toggle="modal"
                                data-target=".modal-show"
+                               class="modal-call"
                                id="showinfo">{{$proposta->idproposta}}
                             </a>
                                 <a href="{{route('proposta.pdf',$crypt::encrypt($proposta->idproposta))}}" target="_blank">
@@ -30,7 +31,7 @@
                                 </a>
                             </div>
                         </td>
-                        <td><a href="{{route('show.segurado',$proposta->cotacao->segurado->clicpfcnpj)}}" class=""
+                        <td><a href="#" data-url="{{route('show.segurado',$proposta->cotacao->segurado->clicpfcnpj)}}" class="modal-call"
                                data-toggle="modal"
                                data-target=".modal-show"
                                id="showinfo">{!! nomeCase($proposta->cotacao->segurado->clinomerazao) !!}</a></td>
@@ -42,9 +43,9 @@
 
                             <div class="btn-group" role="group">
 
-                                <button type="button" class="btn btn-success btn-xs" data-toggle="modal"
+                                <button type="button" class="btn btn-success btn-xs modal-call" data-toggle="modal"
                                         data-target=".modal-show"
-                                        href="{{route('show.pagamento',$proposta->idproposta)}}"
+                                        data-url="{{route('show.pagamento',$proposta->idproposta)}}"
                                         id="pagar">Agenda Pagamento
                                 </button>
 
@@ -53,9 +54,9 @@
 
                             <div class="btn-group" role="group">
 
-                                <button type="button" class="btn btn-danger btn-xs" data-toggle="modal"
+                                <button type="button" class="btn btn-danger btn-xs modal-call" data-toggle="modal"
                                         data-target=".modal-show"
-                                        href="{{route('show.cancelaproposta',$proposta->idproposta)}}"
+                                        data-url="{{route('show.cancelaproposta',$proposta->idproposta)}}"
                                         id="cancelar">Cancelar
                                 </button>
 

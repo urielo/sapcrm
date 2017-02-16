@@ -162,6 +162,9 @@ $(function () {
 
     $.apllyFilters = function () {
 
+        $('a[data-toggle="tab"]').on( 'shown.bs.tab', function (e) {
+            $.fn.dataTable.tables( {visible: true, api: true} ).columns.adjust();
+        } );
 
 
 
@@ -547,10 +550,9 @@ $(function () {
                 $(this).mask("99.999.999/9999-99");
             }
         });
-        
+
         if($('.selectpicker')){
             $(".selectpicker").selectpicker();
-            $('.selectpicker').selectpicker('refresh');
         }
 
 
@@ -561,10 +563,11 @@ $(function () {
 
 
         $('.cpfcnpj').trigger('focusin');
-        console.log('ok');
+        $('.selectpicker').selectpicker('refresh');
+
     }
 
-    var table = $('.table-datatable').dataTable({
+    var table = $('table.table-datatable').dataTable({
         language: {
             sEmptyTable: "Nenhum registro encontrado",
             sInfo: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
@@ -2010,8 +2013,8 @@ $(function () {
             $('.input-consulta').mask('AAA-9999')
         }
     });
-    
-    
+
+
     $('.modal-content').delegate('button.cep', 'click', function () {
         var input = $('input.cep ');
 

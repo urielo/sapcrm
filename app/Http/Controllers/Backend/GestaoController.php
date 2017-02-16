@@ -68,7 +68,7 @@ class GestaoController extends Controller
     {
         $config = ConfigSeguradora::find(3);
         $proposta = Propostas::find($idproposta);
-        $proposta->cotacao->veiculo->categoria = 10;
+        $proposta->veiculo->categoria = 10;
 
 
 //        return $proposta->cotacao->veiculo;
@@ -373,6 +373,7 @@ class GestaoController extends Controller
     {
 
         $proposta = Propostas::find($idproposta);
+        $proposta->update(['idstatus'=>20]);
 
         foreach ($proposta->cobranca()->where('idstatus', 14)->get() as $cobranca) {
 
@@ -381,7 +382,6 @@ class GestaoController extends Controller
 
         }
 
-        $proposta->cotacao->veiculo->update(['idstatus'=>9, 'dtupdate'=>date('Y-m-d H:i:s')]);
 
 
         return Redirect::back()->with('sucesso', 'Operação relaizada com sucesso!!');

@@ -40,19 +40,22 @@
                                 <a class="btn btn-info"
                                    href="{{route('proposta.pdf',$crypt::encrypt($proposta->idproposta))}}"
                                    target="_blank">
-                                    <span
+                                    <spana
                                             class="glyphicon glyphicon glyphicon-print"
-                                            aria-hidden="true"></span> PDF
+                                            aria-hidden="true"></spana> PDF
 
                                 </a>
 
                                 @if(in_array($proposta->idstatus,[10,14]))
-                                    <a class="btn btn-danger"
-                                       href="{{route('proposta.cancela',$crypt::encrypt($proposta->idproposta))}}"
-                                       target="_blank">
+                                    <button class="btn btn-danger modal-call"
+                                       href="#"
+                                       data-toggle="modal"
+                                       data-target=".modal-show"
+                                       data-url="{{route('proposta.cancela',$crypt::encrypt($proposta->idproposta))}}"
+                                       >
                                         Cancelar
 
-                                    </a>
+                                    </button>
                                 @endif
 
                                 {{--<a class="btn btn-success"--}}
@@ -85,6 +88,13 @@
                 </tbody>
             </table>
         </div>
+        <div class="modal fade modal-show" tabindex="-1" role="dialog" aria-labelledby="Editar segurado!!!"
+             aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
 
+                </div>
+            </div>
+        </div>
     </div>
 @stop

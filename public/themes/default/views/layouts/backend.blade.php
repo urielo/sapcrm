@@ -288,7 +288,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <span>&copy;</span> Seguro AUTOPRATICO - {{date('Y')}}
-                    <small>Version - 3.0 b.2</small>
+                    <small>Version - 3.3 b.2</small>
                 </div>
             </div>
         </div>

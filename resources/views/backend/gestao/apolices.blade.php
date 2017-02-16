@@ -39,17 +39,17 @@
                             <td>
 
                                 <div class="btn-group" role="group">
-                                    <a type="button" class="btn btn-info btn-sm" data-toggle="modal"
+                                    <button type="button" class="btn btn-info btn-sm modal-call" data-toggle="modal"
                                        data-target=".modal-show"
-                                       href="{{route('apolices.show',$proposta->idproposta)}}"
+                                       data-url="{{route('apolices.show',$proposta->idproposta)}}"
                                        id="showinfo">Emitir
-                                    </a>
-                                    <a type="button" class="btn btn-danger btn-sm"
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-sm modal-call"
                                        data-toggle="modal"
                                        data-target=".modal-show"
-                                       href="{{route('proposta.cancela',$crypt::encrypt($proposta->idproposta))}}"
+                                       data-url="{{route('proposta.cancela',$crypt::encrypt($proposta->idproposta))}}"
                                        id="">Cancelar
-                                    </a>
+                                    </button>
                                 </div>
 
                             </td>
@@ -86,17 +86,17 @@
                                     {{$apolice->cancelado->motivo->descricao}}
                                 @else
                                     <div class="btn-group" role="group">
-                                        <a type="button" class="btn btn-success btn-sm" data-toggle="modal"
+                                        <button type="button" class="btn btn-success btn-sm modal-call" data-toggle="modal"
                                            data-target=".modal-show"
-                                           href="{{route('apolices.showemiditas',$apolice->id_proposta_sap)}}"
+                                           data-url="{{route('apolices.showemiditas',$apolice->id_proposta_sap)}}"
                                            id="showinfo">Apolices
-                                        </a>
-                                        <a type="button" class="btn btn-danger btn-sm"
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn-sm modal-call"
                                            data-toggle="modal"
                                            data-target=".modal-show"
-                                           href="{{route('apolices.cancela',$crypt::encrypt($apolice->id))}}"
+                                           data-url="{{route('apolices.cancela',$crypt::encrypt($apolice->id))}}"
                                            id="">Cancelar
-                                        </a>
+                                        </button>
                                     </div>
                                 @endif
                             </td>

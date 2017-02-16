@@ -124,20 +124,20 @@
                         <table class="table-bordered">
                             <tbody>
                             <tr class="spacing">
-                                <td><b>Marca: </b> {{$proposta->cotacao->veiculo->fipe->marca}}</td>
-                                <td><b>Modelo: </b> {{$proposta->cotacao->veiculo->fipe->modelo}}</td>
+                                <td><b>Marca: </b> {{$proposta->veiculo->fipe->marca}}</td>
+                                <td><b>Modelo: </b> {{$proposta->veiculo->fipe->modelo}}</td>
                                 <td><b>Veículo 0
-                                        Km: </b> {!! ($proposta->cotacao->veiculo->veicautozero ? 'Sim':'Não') !!}</td>
+                                        Km: </b> {!! ($proposta->veiculo->veicautozero ? 'Sim':'Não') !!}</td>
                             </tr>
                             <tr class="spacing">
-                                <td><b>Chassi: </b> {{$proposta->cotacao->veiculo->veicchassi}}</td>
-                                <td><b>Renavam: </b> {{$proposta->cotacao->veiculo->veicrenavam}}</td>
-                                <td><b>Ano: </b> {{$proposta->cotacao->veiculo->veicano}}</td>
+                                <td><b>Chassi: </b> {{$proposta->veiculo->veicchassi}}</td>
+                                <td><b>Renavam: </b> {{$proposta->veiculo->veicrenavam}}</td>
+                                <td><b>Ano: </b> {{$proposta->veiculo->veicano}}</td>
                             </tr>
                             <tr class="spacing">
-                                <td><b>Placa: </b> {{format('placa',$proposta->cotacao->veiculo->veicplaca)}}</td>
-                                <td><b>Cor: </b> {{$proposta->cotacao->veiculo->veicor}} </td>
-                                <td><b>Combustível: </b> {{$proposta->cotacao->veiculo->combustivel->nm_comb}}</td>
+                                <td><b>Placa: </b> {{format('placa',$proposta->veiculo->veicplaca)}}</td>
+                                <td><b>Cor: </b> {{$proposta->veiculo->veicor}} </td>
+                                <td><b>Combustível: </b> {{$proposta->veiculo->combustivel->nm_comb}}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -149,8 +149,8 @@
                         <table class="table-bordered">
                             <tbody>
                             <tr>
-                                @foreach($proposta->cotacao->veiculo->fipe->anovalor as $valor)
-                                    @if($valor->ano == $proposta->cotacao->veiculo->veicano && $valor->idcombustivel == $proposta->cotacao->veiculo->veictipocombus)
+                                @foreach($proposta->veiculo->fipe->anovalor as $valor)
+                                    @if($valor->ano == $proposta->veiculo->veicano && $valor->idcombustivel == $proposta->veiculo->veictipocombus)
                                         <td><b>Valor do veículo:</b> R$ {{format('real',$valor->valor)}}</td>
                                     @endif
                                 @endforeach
@@ -750,7 +750,7 @@
                 <td colspan="3">
                     <img src="{{ theme('images/assinatura-qbe.png') }}">
                     <div>
-                        Raphael Swierczynski
+                        Peter Rebrin
                         CEO
                         QBE Brasil Seguros S.A.
                     </div>

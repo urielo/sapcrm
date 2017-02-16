@@ -43,7 +43,7 @@ class PropostaController extends Controller
         if ($cotacao) {
             $menor_parcela = 0;
 
-            if($cotacao->renova == 0 ){
+            if ($cotacao->renova == 0) {
                 foreach ($cotacao->produtos as $produto) {
                     $menor_parcela = $menor_parcela + $produto->produto->precoproduto()->where('idprecoproduto', $produto->idprecoproduto)->first()->vlrminprimparc;
                 }
@@ -65,8 +65,6 @@ class PropostaController extends Controller
     {
 
         $url = env('API_URL', Config::where('env_local', env('APP_LOCAL'))->where('webservice', 'SAP')->first()->url);
-
-
 
 
         $proposta = [
@@ -203,6 +201,7 @@ class PropostaController extends Controller
         if ($err) {
             echo "cURL Error #:" . $err;
         } else {
+//            return $response;
             $pdf = json_decode($response);
             header("Content-type: application/pdf");
             header("Content-Disposition: inline; filename=\"proposta_N{$proposta_id}.pdf\";");
@@ -218,10 +217,10 @@ class PropostaController extends Controller
 
         $title = 'Acompanhamento';
 
-        $status = Status::where('descricao','ilike','%cancelad%')
-            ->orWhere('descricao','ilike','%inati%')
-            ->orWhere('descricao','ilike','%vencida%')
-            ->orWhere('descricao','ilike','%recusad%')
+        $status = Status::where('descricao', 'ilike', '%cancelad%')
+            ->orWhere('descricao', 'ilike', '%inati%')
+            ->orWhere('descricao', 'ilike', '%vencida%')
+            ->orWhere('descricao', 'ilike', '%recusad%')
             ->lists('id');
 
         if (Auth::user()->hasRole('admin')) {
@@ -247,53 +246,53 @@ class PropostaController extends Controller
 
         $motivo = true;
 
-        $status = Status::where('descricao','ilike','%cancelad%')
-            ->orWhere('descricao','ilike','%inati%')
-            ->orWhere('descricao','ilike','%vencid%')
-            ->orWhere('descricao','ilike','%recusad%')
+        $status = Status::where('descricao', 'ilike', '%cancelad%')
+            ->orWhere('descricao', 'ilike', '%inati%')
+            ->orWhere('descricao', 'ilike', '%vencid%')
+            ->orWhere('descricao', 'ilike', '%recusad%')
             ->lists('id');
 
         $title = 'Canceladas, Recusadas e Vencidas';
 
-        if (Auth::user()->can('ver-todos-cotacoes')) {
-            $propostas = Propostas::with('cotacao.segurado', 'status', 'motivos','cancelado')->whereHas('cotacao', function ($q) {
+        if (Auth::user()->hasRole('admin')) {
+            $propostas = Propostas::with('cotacao.segurado', 'status', 'motivos','cancelado')->whereIn('idstatus', $status)->orderby('idproposta', 'desc')->get();
+        } elseif (Auth::user()->can('ver-todos-cotacoes')) {
+            $propostas = Propostas::with('cotacao.segurado', 'status', 'motivos', 'cancelado')->whereHas('cotacao', function ($q) {
                 $q->where('idcorretor', Auth::user()->corretor->idcorretor);
             })->whereIn('idstatus', $status)->orderby('idproposta', 'desc')->get();
         } else {
-            $propostas = Propostas::with('cotacao.segurado', 'status', 'motivos','cancelado')->whereHas('cotacao', function ($q) {
+            $propostas = Propostas::with('cotacao.segurado', 'status', 'motivos', 'cancelado')->whereHas('cotacao', function ($q) {
                 $q->where('usuario_id', Auth::user()->id);
             })->whereIn('idstatus', $status)->orderby('idcotacao', 'desc')->get();
         }
-
-
         return view('backend.proposta.listas', compact('propostas', 'motivo', 'crypt', 'title'));
     }
 
     public function cancela($id)
     {
-        try{
+        try {
 
-            $motivos = MotivosCancelamentoCertificado::lists('descricao','id');
+            $motivos = MotivosCancelamentoCertificado::lists('descricao', 'id');
 
             $proposta = Propostas::find(Crypt::decrypt($id));
-            $route= 'proposta.cancelar';
+            $route = 'proposta.cancelar';
             $tipo = 'Proposta';
 
-            if($proposta){
+            if ($proposta) {
 
-                return view('backend.show.cancelaapolices',compact('proposta','motivos','route','tipo'));
+                return view('backend.show.cancelaapolices', compact('proposta', 'motivos', 'route', 'tipo'));
 
-            }else{
-                return 0 ;
+            } else {
+                return 0;
             }
-        }catch (DecryptException $e){
-            return 0 ;
+        } catch (DecryptException $e) {
+            return 0;
         }
     }
 
     public function cancelar(Request $request)
     {
-        try{
+        try {
             DB::beginTransaction();
             $proposta = Propostas::find($request->id);
             $cancelamento = new Cancelamentos;
@@ -304,13 +303,13 @@ class PropostaController extends Controller
             $proposta->save();
 
             DB::commit();
-            return Redirect::back()->with('sucesso','Operação realizada com sucesso!');
+            return Redirect::back()->with('sucesso', 'Operação realizada com sucesso!');
 
 
-        }catch (QueryException $e){
+        } catch (QueryException $e) {
 
             DB::rollback();
-            return Redirect::back()->with('Error','Erro ao tentar cancelar por favor tente novamente mais tarde!');
+            return Redirect::back()->with('Error', 'Erro ao tentar cancelar por favor tente novamente mais tarde!');
 
         }
     }
