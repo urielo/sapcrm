@@ -23,6 +23,8 @@ if (!function_exists('format')):
 
                     } elseif(strlen($string) == 11) {
                         $mask = "%s%s%s.%s%s%s.%s%s%s-%s%s";
+                    } else{
+                        return $string;
                     }
                     break;
                 case 'fone':
@@ -282,6 +284,10 @@ if (!function_exists('getDateFormat')):
             case 'nascimento':
                 $validade = str_replace('/', "-", $date);
                 return date('Ymd', strtotime($validade));
+            case 'db':
+                $validade = str_replace('/', "-", $date);
+                return date('Y-m-d', strtotime($validade));
+            
             default:
                 return $validade = str_replace('/', "-", $date);
 

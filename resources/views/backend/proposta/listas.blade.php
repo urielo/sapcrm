@@ -42,39 +42,43 @@
                                    target="_blank">
                                     <spana
                                             class="glyphicon glyphicon glyphicon-print"
-                                            aria-hidden="true"></spana> PDF
+                                            aria-hidden="true"></spana>
+                                    PDF
 
                                 </a>
 
                                 @if(in_array($proposta->idstatus,[10,14]))
+                                    <a class="btn btn-success"
+                                       href="{{route('cotacao.reemitir',$crypt::encrypt($proposta->idcotacao))}}"
+                                    >
+                                    <span
+                                            class="glyphicon glyphicon glyphicon-edit"
+                                            aria-hidden="true"></span> Reemitir
+
+                                    </a>
                                     <button class="btn btn-danger modal-call"
-                                       href="#"
-                                       data-toggle="modal"
-                                       data-target=".modal-show"
-                                       data-url="{{route('proposta.cancela',$crypt::encrypt($proposta->idproposta))}}"
-                                       >
+                                            href="#"
+                                            data-toggle="modal"
+                                            data-target=".modal-show"
+                                            data-url="{{route('proposta.cancela',$crypt::encrypt($proposta->idproposta))}}"
+                                    >
                                         Cancelar
 
                                     </button>
+
                                 @endif
 
-                                {{--<a class="btn btn-success"--}}
-                                {{--href="{{route('cotacao.reemitir',$crypt::encrypt($cotacao->idcotacao))}}"--}}
-                                {{-->--}}
-                                {{--<span--}}
-                                {{--class="glyphicon glyphicon glyphicon-edit"--}}
-                                {{--aria-hidden="true"></span> Reemitir--}}
+                                @if($motivo)
+                                    <a class="btn btn-success"
+                                       href="{{route('cotacao.reemitir',$crypt::encrypt($proposta->idcotacao))}}"
+                                    >
+                                    <span
+                                            class="glyphicon glyphicon glyphicon-edit"
+                                            aria-hidden="true"></span> Reemitir
 
-                                {{--</a>--}}
-                                {{--@if(!$cotacao->proposta && $cotacao->idstatus == 9)--}}
-                                {{--<a class="btn btn-primary "--}}
-                                {{--href="{{route('proposta.index',$crypt::encrypt($cotacao->idcotacao))}}">--}}
-                                {{--<span--}}
-                                {{--class="glyphicon glyphicon-expand" aria-hidden="true"></span>--}}
-                                {{--Emitir proposta--}}
-                                {{--</a>--}}
+                                    </a>
+                                @endif
 
-                                {{--@endif--}}
 
                             </div>
 

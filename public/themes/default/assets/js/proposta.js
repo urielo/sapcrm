@@ -113,10 +113,9 @@ $(function () {
     // }
     //
     // $('.cpfcnpj').mask(mask_cpfcnpj);
-    $('.ddd').mask("99")
-    $('.cel').mask("9 9999-9999")
-    $('.fixo').mask("9999-9999")
-    $('.placa').mask("AAA-9999")
+    $('.ddd').mask("99");
+    $('.cel').mask("9 9999-9999");
+    $('.fixo').mask("9999-9999");
 
 
     $('.input-group.date.nascimento').datepicker({

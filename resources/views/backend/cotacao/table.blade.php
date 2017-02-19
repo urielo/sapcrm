@@ -4,8 +4,8 @@
         <tr>
             <th># Cotação</th>
             <th>CPF/CNPJ</th>
+            <th >Veiculo</th>
             <th>Emissão</th>
-            <th>Validade</th>
             <th>Usuário</th>
             @if(Auth::user()->hasRole('admin'))
                 <th>Corretor(a)</th>
@@ -19,10 +19,10 @@
         @foreach ($cotacoes as $cotacao)
             <tr>
                 <th><a href="#" class="">{{$cotacao->idcotacao}}</a></th>
-                <th><a href="#" class=""> {{$cotacao->segurado->clicpfcnpj}}</a></th>
+                <th><a href="#" class=""> {{format('cpfcnpj',$cotacao->segurado->clicpfcnpj)}}</a></th>
+                <td style="font-size: 12px; width: 15%;">  {!! $cotacao->fipe->marca !!} - {{$cotacao->fipe->modelo}}</td>
                 <td>{!! date('d/m/Y', strtotime($cotacao->dtcreate)) !!}</td>
-                <td>{!! date('d/m/Y', strtotime($cotacao->dtvalidade)) !!}</td>
-                <td>{!! strtoupper($cotacao->usuario->nome) !!}</td>
+                <td style="font-size: 12px; width: 10%;">{!!   strtoupper($cotacao->usuario->nome) !!}</td>
                 @if(Auth::user()->hasRole('admin'))
                     <td>{{strtoupper(Auth::user()->corretor->corrnomerazao)}}</td>
                 @endif
@@ -55,7 +55,7 @@
                                href="{{route('proposta.index',$crypt::encrypt($cotacao->idcotacao))}}">
                                     <span
                                             class="glyphicon glyphicon-expand" aria-hidden="true"></span>
-                                Emitir proposta
+                                Proposta
                             </a>
 
                             <a type="button" class="btn btn-info btn-sm" data-toggle="modal"

@@ -405,5 +405,10 @@ Route::group(['prefix'=>'veiculos','middleware'=>'auth'],function (){
         'as'=>'veiculo.create',
         'uses'=>'Backend\VeiculoController@create'
     ]);
+    
+});
 
+Route::group(['prefix'=>'buscas','middleware'=>'auth'],function (){
+    Route::get('/{pesquisa}',['as'=>'busca.home','uses'=>'Backend\SearchControlle@index']);
+    Route::get('result/{pesquisa}',['as'=>'busca.result','uses'=>'Backend\SearchControlle@result']);
 });

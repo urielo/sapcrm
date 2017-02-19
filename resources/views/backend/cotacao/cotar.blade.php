@@ -1,7 +1,7 @@
 @extends('layouts.cotacao')
 
 @section('panelcolor','info')
-@section('heading','Cotação')
+@section('heading','Cotação - Nova')
 
 @section('contentSeg')
     {!!Form::open([ 'method' =>'post', 'route' =>['cotacao.salvar'] , 'id' => 'form-cotacao' ]) !!}
@@ -122,15 +122,13 @@
                 <div class="col-md-4 col-xs-7">
 
                     <div class="form-group form-group-sm " id="input-cpfcnpj">
-
-
                         {{Form::label('cpfcnpj','CPF/CNPJ do Segurado',['class'=>'label label-default', 'id'=>'label-cpfcnpj'])}}
                         {!! Form::text('cpfcnpj',($cotacao->segurado->clicpfcnpj ? $cotacao->segurado->clicpfcnpj : ''),
                         ['class'=>'form-control form-control-sm cpfcnpj',
                         'id'=>'cpfcnpj',
                         'data-target-input' => '#input-cpfcnpj',
                         'data-target-label' => '#label-cpfcnpj',
-                         'placeholder'=>'000.000.000-00 ']
+                        'placeholder'=>'000.000.000-00 ']
                         ) !!}
                     </div>
                 </div>

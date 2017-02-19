@@ -70,6 +70,7 @@ $(function () {
     var produto_master = false;
     var produto_opcional = false;
 
+
     var set_parcelas = function () {
 
         var parcelas = [];
@@ -162,10 +163,9 @@ $(function () {
 
     $.apllyFilters = function () {
 
-        $('a[data-toggle="tab"]').on( 'shown.bs.tab', function (e) {
-            $.fn.dataTable.tables( {visible: true, api: true} ).columns.adjust();
-        } );
-
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+            $.fn.dataTable.tables({visible: true, api: true}).columns.adjust();
+        });
 
 
         $('input.cep').mask('99999-999')
@@ -236,253 +236,254 @@ $(function () {
             autoclose: true
         });
 
-        $(':input').each(function () {
+        // $(':input').each(function () {
+        //
+        //     if ($(this).attr('tipoinput') == 'cpf' && $(this).attr('stats')) {
+        //         $(this).attr('placeholder', '999.999.999-00');
+        //         $(this).mask('999.999.999-99');
+        //
+        //         var idmsg = 'msg' + $(this).attr('id');
+        //         var pessoa = $(this).attr('pessoa');
+        //
+        //         $(this).focusout(function () {
+        //             var value = $(this).val();
+        //             if (!validate_cpf($(this).val()) && value.length > 0) {
+        //                 ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
+        //                 $(this).after(menssageError('CPF: Invalido', idmsg))
+        //                 $(this).focus();
+        //             } else if (validate_cpf($(this).val())) {
+        //                 ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
+        //                 value = value.replace('.', '');
+        //                 value = value.replace('.', '');
+        //                 value = value.replace('-', '');
+        //                 var dados = {'cpfcnpj': value, 'elemento': pessoa, 'tipo': $('#tipopessoa').val()}
+        //
+        //                 $.ajax({
+        //                     data: dados,
+        //                     url: geturl() + 'complete',
+        //                     dataType: "json",
+        //                     type: 'GET',
+        //                     success: function (retorno) {
+        //                         if (retorno.status) {
+        //
+        //                             $.each(retorno, function (key, value) {
+        //
+        //                                 $('#' + key).val(value)
+        //                                 $('#' + key).trigger('focusout')
+        //
+        //                             })
+        //                         } else {
+        //                             return false
+        //                         }
+        //
+        //                     },
+        //                     error: function (retorno) {
+        //                         console.log(retorno);
+        //                         console.log('error');
+        //                     }
+        //                 });
+        //
+        //             } else {
+        //                 ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
+        //             }
+        //         });
+        //
+        //         $(this).removeAttr('stats')
+        //
+        //
+        //     } else if ($(this).attr('tipoinput') == 'cnpj' && $(this).attr('stats')) {
+        //         $(this).attr('placeholder', '99.999.999/9999-00');
+        //         $(this).mask('99.999.999/9999-00');
+        //
+        //         var idmsg = 'msg' + $(this).attr('id');
+        //         $(this).focusout(function () {
+        //             var value = $(this).val();
+        //             if (!validate_cnpj($(this).val()) && value.length > 0) {
+        //                 ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
+        //                 $(this).after(menssageError('CNPJ: Invalido', idmsg))
+        //                 $(this).focus();
+        //             } else if (validate_cnpj($(this).val())) {
+        //                 ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
+        //                 ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
+        //                 value = value.replace('.', '');
+        //                 value = value.replace('.', '');
+        //                 value = value.replace('-', '');
+        //                 value = value.replace('/', '');
+        //
+        //                 var dados = {'cpfcnpj': value, 'elemento': pessoa, 'tipo': $('#tipopessoa').val()}
+        //
+        //                 $.ajax({
+        //                     data: dados,
+        //                     url: geturl() + 'complete',
+        //                     dataType: "json",
+        //                     type: 'GET',
+        //                     success: function (retorno) {
+        //                         if (retorno.status) {
+        //
+        //                             $.each(retorno, function (key, value) {
+        //
+        //                                 $('#' + key).val(value)
+        //                                 $('#' + key).trigger('focusout')
+        //
+        //                             })
+        //                         } else {
+        //                             return false
+        //                         }
+        //
+        //                     },
+        //                     error: function (retorno) {
+        //                         console.log(retorno);
+        //                         console.log('error');
+        //                     }
+        //                 });
+        //             } else {
+        //                 ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
+        //             }
+        //         });
+        //
+        //         $(this).removeAttr('stats')
+        //     } else if ($(this).attr('tipoinput') == 'cpfcnpj' && $(this).attr('stats')) {
+        //         $(this).attr('placeholder', 'CPF ou CNPJ');
+        //         // $(this).mask('99.999.999/9999-00');
+        //
+        //         $(this).keyup(function () {
+        //             var val = $(this).val();
+        //
+        //             $(this).unmask();
+        //
+        //             if (val.length < 15 && val.length > 3) {
+        //                 $(this).unmask();
+        //                 $(this).mask('999.999.999-999');
+        //             } else {
+        //                 $(this).unmask();
+        //                 $(this).mask('99.999.999/9999-00');
+        //             }
+        //
+        //         })
+        //
+        //
+        //         var idmsg = 'msg-' + $(this).attr('id');
+        //         $(this).focusout(function () {
+        //             $(this).trigger('keyup')
+        //             var val = $(this).val();
+        //
+        //             if (val.length > 2) {
+        //
+        //                 var value = $(this).cleanVal();
+        //                 if (value.length > 11) {
+        //                     if (!validate_cnpj($(this).val()) && value.length > 0) {
+        //                         ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
+        //                         $(this).after(menssageError('CNPJ: Invalido', idmsg))
+        //                         $(this).focus();
+        //                         return false;
+        //                     } else if (validate_cnpj($(this).val())) {
+        //                         ($('#' + idmsg) ? $('#' + idmsg).remove() : '');
+        //
+        //
+        //                     } else {
+        //                         ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
+        //                     }
+        //                 } else {
+        //                     if (!validate_cpf($(this).val()) && value.length > 0) {
+        //                         ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
+        //                         $(this).after(menssageError('CPF: Invalido', idmsg))
+        //                         $(this).focus();
+        //                         return false
+        //                     } else if (validate_cnpj($(this).val())) {
+        //                         ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
+        //
+        //
+        //                     } else {
+        //                         ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
+        //                     }
+        //                 }
+        //             }
+        //
+        //
+        //         });
+        //
+        //         $(this).removeAttr('stats')
+        //     } else if ($(this).attr('tipoinput') == "chassi" && $(this).attr('stats')) {
+        //         $(this).attr('placeholder', '9AAAA99AA99999999');
+        //         $(this).mask('XXXXXXXXXXXXXXXXX', {'translation': {X: {pattern: /[A-Za-z0-9]/}}})
+        //         $(this).keyup(function () {
+        //             $(this).val($(this).val().toUpperCase())
+        //         })
+        //         $(this).removeAttr('stats')
+        //     } else if ($(this).attr('tipoinput') == "placa" && $(this).attr('stats')) {
+        //         $(this).attr('placeholder', 'AAA-9999');
+        //         $(this).mask('AAA-9999')
+        //
+        //         $(this).keyup(function () {
+        //             $(this).val($(this).val().toUpperCase())
+        //         })
+        //
+        //         $(this).focusout(function () {
+        //             $(this).val($(this).val().toUpperCase())
+        //
+        //         })
+        //
+        //         $(this).removeAttr('stats')
+        //     } else if ($(this).attr('tipoinput') == "ddd" && $(this).attr('stats')) {
+        //
+        //         $(this).attr('placeholder', '99');
+        //         $(this).mask('99')
+        //         $(this).removeAttr('stats')
+        //     } else if ($(this).attr('tipoinput') == "cel" && $(this).attr('stats')) {
+        //
+        //         $(this).attr('placeholder', '99999-9999');
+        //         $(this).mask('99999-9999')
+        //         $(this).removeAttr('stats')
+        //     } else if ($(this).attr('tipoinput') == "fone" && $(this).attr('stats')) {
+        //
+        //         $(this).attr('placeholder', '9999-9999');
+        //         $(this).mask('9999-9999')
+        //         $(this).removeAttr('stats')
+        //     } else if ($(this).attr('tipoinput') == "data-nascimento" && $(this).attr('stats')) {
+        //
+        //         $(this).attr('placeholder', 'DD/MM/YYYY');
+        //         setDateP('#' + $(this).attr('id'), 'nascimento')
+        //         $(this).mask('99/99/9999')
+        //         $(this).removeAttr('stats')
+        //     } else if ($(this).attr('tipoinput') == "data-normal" && $(this).attr('stats')) {
+        //
+        //         $(this).attr('placeholder', 'DD/MM/YYYY');
+        //         setDateP('#' + $(this).attr('id'), null)
+        //         $(this).mask('99/99/9999')
+        //         $(this).removeAttr('stats')
+        //
+        //     } else if ($(this).attr('tipoinput') == "data-pagamento-boleto" && $(this).attr('stats')) {
+        //
+        //         $(this).attr('placeholder', 'DD/MM/YYYY');
+        //         setDateP('#' + $(this).attr('id'), 'pagamento-boleto')
+        //         $(this).mask('99/99/9999')
+        //         $(this).removeAttr('stats')
+        //
+        //     } else if ($(this).attr('tipoinput') == "data-validade-cartao" && $(this).attr('stats')) {
+        //
+        //         $(this).attr('placeholder', 'MM/YYYY');
+        //         setDateP('#' + $(this).attr('id'), 'valcartao')
+        //         $(this).mask('99/9999')
+        //         $(this).removeAttr('stats')
+        //     } else if ($(this).attr('tipoinput') == "cep" && $(this).attr('stats')) {
+        //
+        //         $(this).attr('placeholder', '00000-000');
+        //         $(this).mask('99999-999')
+        //         $(this).removeAttr('stats')
+        //     } else if ($(this).attr('tipoinput') == "renavan" && $(this).attr('stats')) {
+        //
+        //         $(this).attr('placeholder', '00000000000');
+        //         $(this).mask('99999999999')
+        //         $(this).removeAttr('stats')
+        //     } else if ($(this).attr('tipoinput') == "num-cartao" && $(this).attr('stats')) {
+        //
+        //         $(this).attr('placeholder', '0000 0000 0000 0000');
+        //         $(this).mask('9999 9999 9999 9999')
+        //         $(this).removeAttr('stats')
+        //     }
+        //     // console.log($(this).attr('data'));
+        // });
 
-            if ($(this).attr('tipoinput') == 'cpf' && $(this).attr('stats')) {
-                $(this).attr('placeholder', '999.999.999-00');
-                $(this).mask('999.999.999-99');
-
-                var idmsg = 'msg' + $(this).attr('id');
-                var pessoa = $(this).attr('pessoa');
-
-                $(this).focusout(function () {
-                    var value = $(this).val();
-                    if (!validate_cpf($(this).val()) && value.length > 0) {
-                        ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
-                        $(this).after(menssageError('CPF: Invalido', idmsg))
-                        $(this).focus();
-                    } else if (validate_cpf($(this).val())) {
-                        ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
-                        value = value.replace('.', '');
-                        value = value.replace('.', '');
-                        value = value.replace('-', '');
-                        var dados = {'cpfcnpj': value, 'elemento': pessoa, 'tipo': $('#tipopessoa').val()}
-
-                        $.ajax({
-                            data: dados,
-                            url: geturl() + 'complete',
-                            dataType: "json",
-                            type: 'GET',
-                            success: function (retorno) {
-                                if (retorno.status) {
-
-                                    $.each(retorno, function (key, value) {
-
-                                        $('#' + key).val(value)
-                                        $('#' + key).trigger('focusout')
-
-                                    })
-                                } else {
-                                    return false
-                                }
-
-                            },
-                            error: function (retorno) {
-                                console.log(retorno);
-                                console.log('error');
-                            }
-                        });
-
-                    } else {
-                        ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
-                    }
-                });
-
-                $(this).removeAttr('stats')
-
-
-            } else if ($(this).attr('tipoinput') == 'cnpj' && $(this).attr('stats')) {
-                $(this).attr('placeholder', '99.999.999/9999-00');
-                $(this).mask('99.999.999/9999-00');
-
-                var idmsg = 'msg' + $(this).attr('id');
-                $(this).focusout(function () {
-                    var value = $(this).val();
-                    if (!validate_cnpj($(this).val()) && value.length > 0) {
-                        ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
-                        $(this).after(menssageError('CNPJ: Invalido', idmsg))
-                        $(this).focus();
-                    } else if (validate_cnpj($(this).val())) {
-                        ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
-                        ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
-                        value = value.replace('.', '');
-                        value = value.replace('.', '');
-                        value = value.replace('-', '');
-                        value = value.replace('/', '');
-
-                        var dados = {'cpfcnpj': value, 'elemento': pessoa, 'tipo': $('#tipopessoa').val()}
-
-                        $.ajax({
-                            data: dados,
-                            url: geturl() + 'complete',
-                            dataType: "json",
-                            type: 'GET',
-                            success: function (retorno) {
-                                if (retorno.status) {
-
-                                    $.each(retorno, function (key, value) {
-
-                                        $('#' + key).val(value)
-                                        $('#' + key).trigger('focusout')
-
-                                    })
-                                } else {
-                                    return false
-                                }
-
-                            },
-                            error: function (retorno) {
-                                console.log(retorno);
-                                console.log('error');
-                            }
-                        });
-                    } else {
-                        ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
-                    }
-                });
-
-                $(this).removeAttr('stats')
-            } else if ($(this).attr('tipoinput') == 'cpfcnpj' && $(this).attr('stats')) {
-                $(this).attr('placeholder', 'CPF ou CNPJ');
-                // $(this).mask('99.999.999/9999-00');
-
-                $(this).keyup(function () {
-                    var val = $(this).val();
-
-                    $(this).unmask();
-
-                    if (val.length < 15 && val.length > 3) {
-                        $(this).unmask();
-                        $(this).mask('999.999.999-999');
-                    } else {
-                        $(this).unmask();
-                        $(this).mask('99.999.999/9999-00');
-                    }
-
-                })
-
-
-                var idmsg = 'msg-' + $(this).attr('id');
-                $(this).focusout(function () {
-                    $(this).trigger('keyup')
-                    var val = $(this).val();
-
-                    if (val.length > 2) {
-
-                        var value = $(this).cleanVal();
-                        if (value.length > 11) {
-                            if (!validate_cnpj($(this).val()) && value.length > 0) {
-                                ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
-                                $(this).after(menssageError('CNPJ: Invalido', idmsg))
-                                $(this).focus();
-                                return false;
-                            } else if (validate_cnpj($(this).val())) {
-                                ($('#' + idmsg) ? $('#' + idmsg).remove() : '');
-
-
-                            } else {
-                                ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
-                            }
-                        } else {
-                            if (!validate_cpf($(this).val()) && value.length > 0) {
-                                ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
-                                $(this).after(menssageError('CPF: Invalido', idmsg))
-                                $(this).focus();
-                                return false
-                            } else if (validate_cnpj($(this).val())) {
-                                ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
-
-
-                            } else {
-                                ($('#' + idmsg) ? $('#' + idmsg).remove() : '')
-                            }
-                        }
-                    }
-
-
-                });
-
-                $(this).removeAttr('stats')
-            } else if ($(this).attr('tipoinput') == "chassi" && $(this).attr('stats')) {
-                $(this).attr('placeholder', '9AAAA99AA99999999');
-                $(this).mask('XXXXXXXXXXXXXXXXX', {'translation': {X: {pattern: /[A-Za-z0-9]/}}})
-                $(this).keyup(function () {
-                    $(this).val($(this).val().toUpperCase())
-                })
-                $(this).removeAttr('stats')
-            } else if ($(this).attr('tipoinput') == "placa" && $(this).attr('stats')) {
-                $(this).attr('placeholder', 'AAA-9999');
-                $(this).mask('AAA-9999')
-
-                $(this).keyup(function () {
-                    $(this).val($(this).val().toUpperCase())
-                })
-
-                $(this).focusout(function () {
-                    $(this).val($(this).val().toUpperCase())
-
-                })
-
-                $(this).removeAttr('stats')
-            } else if ($(this).attr('tipoinput') == "ddd" && $(this).attr('stats')) {
-
-                $(this).attr('placeholder', '99');
-                $(this).mask('99')
-                $(this).removeAttr('stats')
-            } else if ($(this).attr('tipoinput') == "cel" && $(this).attr('stats')) {
-
-                $(this).attr('placeholder', '99999-9999');
-                $(this).mask('99999-9999')
-                $(this).removeAttr('stats')
-            } else if ($(this).attr('tipoinput') == "fone" && $(this).attr('stats')) {
-
-                $(this).attr('placeholder', '9999-9999');
-                $(this).mask('9999-9999')
-                $(this).removeAttr('stats')
-            } else if ($(this).attr('tipoinput') == "data-nascimento" && $(this).attr('stats')) {
-
-                $(this).attr('placeholder', 'DD/MM/YYYY');
-                setDateP('#' + $(this).attr('id'), 'nascimento')
-                $(this).mask('99/99/9999')
-                $(this).removeAttr('stats')
-            } else if ($(this).attr('tipoinput') == "data-normal" && $(this).attr('stats')) {
-
-                $(this).attr('placeholder', 'DD/MM/YYYY');
-                setDateP('#' + $(this).attr('id'), null)
-                $(this).mask('99/99/9999')
-                $(this).removeAttr('stats')
-
-            } else if ($(this).attr('tipoinput') == "data-pagamento-boleto" && $(this).attr('stats')) {
-
-                $(this).attr('placeholder', 'DD/MM/YYYY');
-                setDateP('#' + $(this).attr('id'), 'pagamento-boleto')
-                $(this).mask('99/99/9999')
-                $(this).removeAttr('stats')
-
-            } else if ($(this).attr('tipoinput') == "data-validade-cartao" && $(this).attr('stats')) {
-
-                $(this).attr('placeholder', 'MM/YYYY');
-                setDateP('#' + $(this).attr('id'), 'valcartao')
-                $(this).mask('99/9999')
-                $(this).removeAttr('stats')
-            } else if ($(this).attr('tipoinput') == "cep" && $(this).attr('stats')) {
-
-                $(this).attr('placeholder', '00000-000');
-                $(this).mask('99999-999')
-                $(this).removeAttr('stats')
-            } else if ($(this).attr('tipoinput') == "renavan" && $(this).attr('stats')) {
-
-                $(this).attr('placeholder', '00000000000');
-                $(this).mask('99999999999')
-                $(this).removeAttr('stats')
-            } else if ($(this).attr('tipoinput') == "num-cartao" && $(this).attr('stats')) {
-
-                $(this).attr('placeholder', '0000 0000 0000 0000');
-                $(this).mask('9999 9999 9999 9999')
-                $(this).removeAttr('stats')
-            }
-            // console.log($(this).attr('data'));
-        });
 
         var d = new Date();
         $('#nnmcartao').mask('9999 9999 9999 9999');
@@ -522,7 +523,7 @@ $(function () {
 
             }
         });
-        var mask_cpfcnpj
+        var mask_cpfcnpj;
 
         if ($('.cpfcnpj').val() && $('.cpfcnpj').val().length > 11) {
             mask_cpfcnpj = "99.999.999/9999-99";
@@ -530,14 +531,12 @@ $(function () {
             mask_cpfcnpj = "999.999.999-99";
         }
 
-        $('.cpfcnpj').mask(mask_cpfcnpj)
-
 
         $('.cpfcnpj').on('focusin', function () {
-            $(this).unmask()
-            var key = $.Event('keyup')
-            key.which = 8
-            $(this).trigger(key)
+            $(this).unmask();
+            var key = $.Event('keyup');
+            key.which = 8;
+            $(this).trigger(key);
         }).keyup(function (event) {
 
             if (event.which != 8 && isNaN(String.fromCharCode(event.which))) {
@@ -546,21 +545,18 @@ $(function () {
 
             $(this).unmask(mask_cpfcnpj);
 
-
             var tamanho = $(this).val().length;
-            // console.log(tamanho)
             if (tamanho <= 11) {
                 $(this).mask("999.999.999-999");
                 mask_cpfcnpj = "999.999.999-999";
 
             } else {
                 mask_cpfcnpj = "99.999.999/9999-99";
-
                 $(this).mask("99.999.999/9999-99");
             }
         });
 
-        if($('.selectpicker')){
+        if ($('.selectpicker')) {
             $(".selectpicker").selectpicker();
         }
 
@@ -572,6 +568,7 @@ $(function () {
 
 
         $('.cpfcnpj').trigger('focusin');
+
         $('.selectpicker').selectpicker('refresh');
 
     }
@@ -1683,7 +1680,7 @@ $(function () {
 
 
     });
-    $('table').delegate('.modal-call','click', function () {
+    $('table').delegate('.modal-call', 'click', function () {
         var this_ = $(this);
         var url = this_.attr('data-url');
         var target = $(this_.attr('data-target'));
@@ -1817,22 +1814,19 @@ $(function () {
     }
 
 
-
     $('.load-more').on('click', function () {
         // var table = $('.table-datatable').dataTable({});
         var _this = $(this);
         var _offset = parseInt(_this.attr('data-offset')) + parseInt(_this.attr('data-sum'));
         var _url = _this.attr('data-url');
-        var _mostrando = $(_this.attr('data-mostrando'));
-        var show = parseInt(_mostrando.attr('data-show')) + parseInt(_this.attr('data-sum'));
-        var who = _mostrando.attr('data-nome');
+        var data_ini = $(_this.attr('data-ini')).val();
+        var data_fim = $(_this.attr('data-fim')).val();
+        var carrega = _this.attr('data-carrega');
         _this.attr('data-offset', parseInt(_this.attr('data-offset')) + parseInt(_this.attr('data-sum')));
-
         $.ajax({
-            data: {offset: _offset},
+            data: {offset: _offset, date_ini: data_ini, date_fim: data_fim, carrega: carrega},
             url: _url,
             success: function (retorno) {
-                _mostrando.empty().attr('data-show',show).text('Mostrando últimas(os) '+show+ ' '+who);
 
 
                 $('.panel-body').append('<div class="hide temp_table">' + retorno + '</div>');
@@ -1841,7 +1835,11 @@ $(function () {
 
                 table.fnDestroy();
 
-                $('tbody').append(tr);
+                if (tr.length < _this.attr('data-sum')) {
+                    _this.prop('disabled', true);
+                }
+
+                $('.table-datatable').find('tbody').append(tr);
                 $('.table-datatable').dataTable({
                     language: {
                         sEmptyTable: "Nenhum registro encontrado",
@@ -1875,6 +1873,10 @@ $(function () {
                 });
                 $('.temp_table').remove();
 
+
+            },
+            error: function (response) {
+                console.log(response)
 
             }
 
@@ -2015,14 +2017,6 @@ $(function () {
         $(this).find('.dropdown-menu').stop(true, true).delay(100).fadeOut(500);
     });
 
-    $('.tipo-consulta').on('change', function () {
-        var tipo_consulta = $(this);
-
-        if (tipo_consulta.placa == 'placa') {
-            $('.input-consulta').mask('AAA-9999')
-        }
-    });
-
 
     $('.modal-content').delegate('button.cep', 'click', function () {
         var input = $('input.cep ');
@@ -2059,7 +2053,7 @@ $(function () {
 
     })
 
-    $('.modal-content').delegate('.modal-header','change',function(){
+    $('.modal-content').delegate('.modal-header', 'change', function () {
         $('.cpfcnpj').trigger('focusin');
         $('button.cep').trigger('click');
 
@@ -2067,5 +2061,61 @@ $(function () {
     });
 
 
+    $('.input-daterange input').each(function () {
+        $(this).datepicker({
+            format: "dd/mm/yyyy",
+            language: "pt-BR",
+            orientation: "auto",
+            autoclose: true
+        }).mask('99/99/9999').prop('readonly', true);
+    });
+
+   
+    $('.tipo-consulta').on('change', function () {
+        var this_ = $(this);
+        var target = $(this_.attr('data-target'));
+        var pesquisa = this_.val();
+        var addClass = '';
+        var removeClass = 'placa cpfcnpj';
+        var placehold = 'Nome ou razão do segurado';
+
+        $('.placa').unmask();
+        $('.cpfcnpj').unmask();
+        target.removeClass(removeClass).removeAttr('maxlength').val('').off('focusin').off('keyup');
+
+        if (pesquisa == 'cpfcnpj') {
+            addClass = 'cpfcnpj';
+            placehold = '000.000.000-00';
+        } else if (pesquisa == 'placa') {
+            addClass = 'placa';
+            placehold = 'AAA-0000';
+        }
+        target.addClass(addClass).attr('placeholder', placehold);
+        $.apllyFilters();
+    });
+    
+    $('.buscar').on('click',function () {
+        var this_ =$(this);
+        var target = $(this_.attr('data-target'));
+        var tipo_consulta = $(this_.attr('data-tipo-consulta')).val();
+        var value_pesquisa = $(this_.attr('data-input-pesquisa')).val();
+        var url = this_.attr('data-url');
+        target.fadeOut().empty();
+        $.ajax({
+            data:{tipo_consulta:tipo_consulta, value_pesquisa:value_pesquisa},
+            url:url,
+            success:function (retorno) {
+                console.log(retorno)
+                target.html(retorno).fadeIn();
+                $.apllyFilters();
+            },
+            error:function (erro) {
+                console.log(erro);
+            }
+            
+        });       
+        
+        
+    })
 });
 

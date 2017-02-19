@@ -85,6 +85,7 @@
                             @permission('proposta-gestao')
                             <li><a href="{{route('proposta.acompanhamento')}}">Acompanhamento</a></li>
                             <li><a href="{{route('proposta.negativas')}}">Inativas</a></li>
+                            <li><a href="{{route('busca.home','proposta')}}">Buscar</a></li>
                             @endpermission
 
 
@@ -190,26 +191,7 @@
 
                 <ul class="nav navbar-nav navbar-right">
                     <li class="hide">
-                        <form class="form-inline float-xs-right input-nav">
-                            <div class="input-group input-group-sm">
 
-                                <span class="input-group-btn">
-                                     <select id="tipo-consulta" class=" tipo-consulta selectpicker form-control"
-                                             data-style='btn-default btn-sm'>
-                                        <option value="placa">Placa</option>
-                                        <option value="cpfcnpj">CPF/CNPJ</option>
-                                    </select>
-
-                                </span>
-
-                                <input class="form-control input-consulta" type="text" placeholder="Placa">
-                                <span class="input-group-btn btn-up">
-
-                                    <button class="btn btn-xs btn-default" type="submit">Consultar</button>
-                                </span>
-
-                            </div>
-                        </form>
                     </li>
                     @permission('setup')
                     <li class="dropdown">
@@ -279,10 +261,7 @@
     <script src="{{ theme('datatables/datatables.min.js') }}"></script>
     <script src="{{ theme('js/maskedinput.min.js') }}"></script>
     <script src="{{ theme('js/script.js') }}"></script>
-
-
     @yield('script')
-
     <footer class="footer navbar-fixed-bottom">
         <div class="container-fluid">
             <div class="row">

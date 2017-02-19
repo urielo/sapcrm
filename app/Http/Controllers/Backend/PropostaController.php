@@ -252,7 +252,7 @@ class PropostaController extends Controller
             ->orWhere('descricao', 'ilike', '%recusad%')
             ->lists('id');
 
-        $title = 'Canceladas, Recusadas e Vencidas';
+        $title = 'Inativas';
 
         if (Auth::user()->hasRole('admin')) {
             $propostas = Propostas::with('cotacao.segurado', 'status', 'motivos','cancelado')->whereIn('idstatus', $status)->orderby('idproposta', 'desc')->get();

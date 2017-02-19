@@ -54,26 +54,32 @@ class CotacaoController extends Controller
     public function cotacoes(Request $request)
     {
         ini_set('max_execution_time', 0);
-        $title = 'Ativas';
+        $title = 'Gestão';
         $crypt = Crypt::class;
         $limit = 500;
         $offset = 0;
+        $tipo_carrega="ativas";
+
+        $data_ini = $request->date_ini ? getDateFormat($request->date_ini, 'db') : date('Y-m-d', strtotime('-30 days'));
+        $data_fim = $request->date_fim ? getDateFormat($request->date_fim, 'db') : date('Y-m-d');
+        $range = [$data_ini, $data_fim];
+        $data_ini = showDate($data_ini);
+        $data_fim = showDate($data_fim);
 
         $url = route('cotacao.ajaxativas');
 
 
+
         if (Auth::user()->hasRole('admin')) {
-            $cotacoes = Cotacoes::skip($offset)->take($limit)->with(['segurado', 'corretor'])->whereIn('idstatus', [9])->orderby('dtcreate', 'desc')->get();
+            $cotacoes = Cotacoes::skip($offset)->take($limit)->whereBetween('dtcreate',$range)->with(['segurado', 'corretor'])->whereIn('idstatus', [9])->orderby('dtcreate', 'desc')->get();
         } elseif (Auth::user()->can('ver-todos-cotacoes')) {
-            $cotacoes = Cotacoes::skip($offset)->take($limit)->with(['segurado', 'corretor'])->where('idcorretor', Auth::user()->corretor->idcorretor)->whereNotNull('usuario_id')->whereIn('idstatus', [9])->orderby('dtcreate', 'desc')->get();
+            $cotacoes = Cotacoes::skip($offset)->take($limit)->whereBetween('dtcreate',$range)->with(['segurado', 'corretor'])->where('idcorretor', Auth::user()->corretor->idcorretor)->whereNotNull('usuario_id')->whereIn('idstatus', [9])->orderby('dtcreate', 'desc')->get();
         } else {
-            $cotacoes = Cotacoes::skip($offset)->take($limit)->with(['segurado', 'corretor'])->where('usuario_id', Auth::user()->id)->whereNotNull('usuario_id')->whereIn('idstatus', [9])->orderby('dtcreate', 'desc')->get();
+            $cotacoes = Cotacoes::skip($offset)->take($limit)->whereBetween('dtcreate',$range)->with(['segurado', 'corretor'])->where('usuario_id', Auth::user()->id)->whereNotNull('usuario_id')->whereIn('idstatus', [9])->orderby('dtcreate', 'desc')->get();
         }
         $offset = 500;
 
-
-
-        return view('backend.cotacao.negociacoes', compact('cotacoes', 'crypt', 'title', 'url','offset'));
+        return view('backend.cotacao.negociacoes', compact('cotacoes', 'crypt', 'title', 'url','offset' ,'data_ini','data_fim','tipo_carrega'));
     }
 
     public function cotacoesAjax(Request $request)
@@ -84,42 +90,69 @@ class CotacaoController extends Controller
             $crypt = Crypt::class;
             $limit = 500;
             $offset = $request->offset;
-
-
-            if (Auth::user()->hasRole('admin')) {
-                $cotacoes = Cotacoes::skip($offset)->take($limit)->with(['segurado', 'corretor'])->whereIn('idstatus', [9])->orderby('dtcreate', 'desc')->get();
-            } elseif (Auth::user()->can('ver-todos-cotacoes')) {
-                $cotacoes = Cotacoes::skip($offset)->take($limit)->with(['segurado', 'corretor'])->where('idcorretor', Auth::user()->corretor->idcorretor)->whereNotNull('usuario_id')->whereIn('idstatus', [9])->orderby('dtcreate', 'desc')->get();
-            } else {
-                $cotacoes = Cotacoes::skip($offset)->take($limit)->with(['segurado', 'corretor'])->where('usuario_id', Auth::user()->id)->whereNotNull('usuario_id')->whereIn('idstatus', [9])->orderby('dtcreate', 'desc')->get();
+            $data_ini = $request->date_ini ? getDateFormat($request->date_ini, 'db') : date('Y-m-d', strtotime('-30 days'));
+            $data_fim = $request->date_fim ? getDateFormat($request->date_fim, 'db') : date('Y-m-d');
+            $range = [$data_ini, $data_fim];
+            
+            
+            if($request->carrega == 'ativas'){
+                if (Auth::user()->hasRole('admin')) {
+                    $cotacoes = Cotacoes::skip($offset)->take($limit)->whereBetween('dtcreate',$range)->with(['segurado', 'corretor'])->whereIn('idstatus', [9])->orderby('dtcreate', 'desc')->get();
+                } elseif (Auth::user()->can('ver-todos-cotacoes')) {
+                    $cotacoes = Cotacoes::skip($offset)->take($limit)->whereBetween('dtcreate',$range)->with(['segurado', 'corretor'])->where('idcorretor', Auth::user()->corretor->idcorretor)->whereNotNull('usuario_id')->whereIn('idstatus', [9])->orderby('dtcreate', 'desc')->get();
+                } else {
+                    $cotacoes = Cotacoes::skip($offset)->take($limit)->whereBetween('dtcreate',$range)->with(['segurado', 'corretor'])->where('usuario_id', Auth::user()->id)->whereNotNull('usuario_id')->whereIn('idstatus', [9])->orderby('dtcreate', 'desc')->get();
+                }
+            } else{
+                if (Auth::user()->hasRole('admin')) {
+                    $cotacoes = Cotacoes::skip($offset)->take($limit)->whereBetween('dtcreate',$range)->with(['segurado', 'corretor'])->whereNotIn('idstatus', [9, 10])->orderby('idcotacao', 'desc')->get();
+                } elseif (Auth::user()->can('ver-todos-cotacoes')) {
+                    $cotacoes = Cotacoes::skip($offset)->take($limit)->whereBetween('dtcreate',$range)->with(['segurado', 'corretor'])->where('idcorretor', Auth::user()->corretor->idcorretor)->whereNotNull('usuario_id')->whereNotIn('idstatus', [9, 10])->orderby('idcotacao', 'desc')->get();
+                } else {
+                    $cotacoes = Cotacoes::skip($offset)->take($limit)->whereBetween('dtcreate',$range)->with(['segurado', 'corretor'])->where('usuario_id', Auth::user()->id)->whereNotNull('usuario_id')->whereNotIn('idstatus', [9, 10])->orderby('idcotacao', 'desc')->get();
+                }
             }
 
+           
 
-            return view('backend.cotacao.cotacoes_ajax', compact('cotacoes', 'crypt', 'title'));
+
+            return view('backend.cotacao.table', compact('cotacoes', 'crypt', 'title'));
         }
 
     }
 
 
-    public function vencidas()
+    public function vencidas(Request $request)
     {
         ini_set('max_execution_time', 0);
         $crypt = Crypt::class;
-        $title = 'Canceladas ou Vencidas';
-        $end_date = date('Y-m-d');
-        $start_date = date('Y-m-d', strtotime('-15 days'));
+        $title = 'Vencidas';
+
+        $limit = 500;
+        $offset = 0;
+        $tipo_carrega="inativas";
+
+        $data_ini = $request->date_ini ? getDateFormat($request->date_ini, 'db') : date('Y-m-d', strtotime('-30 days'));
+        $data_fim = $request->date_fim ? getDateFormat($request->date_fim, 'db') : date('Y-m-d');
+        $range = [$data_ini, $data_fim];
+        $data_ini = showDate($data_ini);
+        $data_fim = showDate($data_fim);
+
+        $url = route('cotacao.ajaxativas');
+
 
 
         if (Auth::user()->hasRole('admin')) {
-            $cotacoes = Cotacoes::with(['segurado', 'corretor'])->whereNotIn('idstatus', [9, 10])->whereBetween('dtcreate', [$start_date, $end_date])->orderby('idcotacao', 'desc')->get();
+            $cotacoes = Cotacoes::skip($offset)->take($limit)->whereBetween('dtcreate',$range)->with(['segurado', 'corretor'])->whereNotIn('idstatus', [9, 10])->orderby('idcotacao', 'desc')->get();
         } elseif (Auth::user()->can('ver-todos-cotacoes')) {
-            $cotacoes = Cotacoes::with(['segurado', 'corretor'])->where('idcorretor', Auth::user()->corretor->idcorretor)->whereBetween('dtcreate', [$start_date, $end_date])->whereNotNull('usuario_id')->whereNotIn('idstatus', [9, 10])->orderby('idcotacao', 'desc')->get();
+            $cotacoes = Cotacoes::skip($offset)->take($limit)->whereBetween('dtcreate',$range)->with(['segurado', 'corretor'])->where('idcorretor', Auth::user()->corretor->idcorretor)->whereNotNull('usuario_id')->whereNotIn('idstatus', [9, 10])->orderby('idcotacao', 'desc')->get();
         } else {
-            $cotacoes = Cotacoes::with(['segurado', 'corretor'])->where('usuario_id', Auth::user()->id)->whereBetween('dtcreate', [$start_date, $end_date])->whereNotNull('usuario_id')->whereNotIn('idstatus', [9, 10])->orderby('idcotacao', 'desc')->get();
+            $cotacoes = Cotacoes::skip($offset)->take($limit)->whereBetween('dtcreate',$range)->with(['segurado', 'corretor'])->where('usuario_id', Auth::user()->id)->whereNotNull('usuario_id')->whereNotIn('idstatus', [9, 10])->orderby('idcotacao', 'desc')->get();
         }
 
+        $offset = 500;
 
-        return view('backend.cotacao.negociacoes', compact('cotacoes', 'crypt', 'title'));
+        return view('backend.cotacao.negociacoes', compact('tipo_carrega','cotacoes', 'crypt', 'title','url','data_ini','data_fim','limit','offset'));
     }
 
     public function sendEmail(Request $request)

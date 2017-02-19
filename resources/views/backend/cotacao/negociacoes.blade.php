@@ -6,97 +6,33 @@
 @section('contentSeg')
 
     <div class="col-md-12">
+        <div class="row" style="margin-bottom: 10px;">
+            <div class="col-md-3 ">
+                <form action="" method="GET">
+                    <div class="input-group input-group-sm input-daterange">
+                        <div class="input-group-addon">De</div>
+                        <input type="text" class="form-control" name="date_ini"  id="date_ini" value="{{$data_ini}}" required>
+                        <div class="input-group-addon">Até</div>
+                        <input type="text" class="form-control" name="date_fim"  id="date_fim" value="{{$data_fim}}" required>
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="submit">
+                                Filtrar
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-6 btn-group col-md-offset-3">
+                <button type="button" class="btn-primary btn-sm pull-right load-more" data-ini="#date_ini" data-fim="#date_fim"
+                        data-url="{{$url}}" data-carrega="{{$tipo_carrega}}" data-offset="0" data-sum="{{$offset}}">Carregar mais 500
+                </button>
+            </div>
+
+        </div>
+
         <div class="row">
-            <div class="col-md-4 col-md-offset-2">
-                <p class="mostrando" data-show="{{$offset}}" data-nome="cotações">Mostrando as últimas {{$offset}} cotações</p>
-            </div>
-            <div class="col-md-6 btn-group">
-                <button type="button" class="btn-primary btn-xs pull-right load-more" data-mostrando=".mostrando" data-url="{{$url}}" data-offset="0" data-sum="{{$offset}}">Carregar mais 500</button>
-            </div>
-
+            @include('backend.cotacao.table')
         </div>
-
-        <div class="table-responsive apolice">
-            <table class="table table-hover table-condensed table-datatable">
-                <thead>
-                <tr>
-                    <th># Cotação</th>
-                    <th>CPF/CNPJ</th>
-                    <th>Emissão</th>
-                    <th>Validade</th>
-                    <th>Usuário</th>
-                    @if(Auth::user()->hasRole('admin'))
-                        <th>Corretor(a)</th>
-                    @endif
-                    <th>Status</th>
-                    <th></th>
-
-                </tr>
-                </thead>
-                <tbody>
-                @foreach ($cotacoes as $cotacao)
-                    <tr>
-                        <th><a href="#" class="">{{$cotacao->idcotacao}}</a></th>
-                        <th><a href="#" class=""> {{$cotacao->segurado->clicpfcnpj}}</a></th>
-                        <td>{!! date('d/m/Y', strtotime($cotacao->dtcreate)) !!}</td>
-                        <td>{!! date('d/m/Y', strtotime($cotacao->dtvalidade)) !!}</td>
-                        <td>{!! strtoupper($cotacao->usuario->nome) !!}</td>
-                        @if(Auth::user()->hasRole('admin'))
-                        <td>{{strtoupper(Auth::user()->corretor->corrnomerazao)}}</td>
-                        @endif
-
-                        <td>{{$cotacao->status->descricao}}</td>
-
-                        <td>
-                            <div class="btn-group btn-group-xs">
-                                <a class="btn btn-danger"
-                                   href="{{route('cotacao.pdf',$crypt::encrypt($cotacao->idcotacao))}}"
-                                   target="_blank">
-                                    <span
-                                            class="glyphicon glyphicon glyphicon-print"
-                                            aria-hidden="true"></span> PDF
-
-                                </a>
-
-                                <a class="btn btn-success"
-                                   href="{{route('cotacao.reemitir',$crypt::encrypt($cotacao->idcotacao))}}"
-                                >
-                                    <span
-                                            class="glyphicon glyphicon glyphicon-edit"
-                                            aria-hidden="true"></span> Reemitir
-
-                                </a>
-
-
-                                @if(!$cotacao->proposta && $cotacao->idstatus == 9)
-                                    <a class="btn btn-primary "
-                                       href="{{route('proposta.index',$crypt::encrypt($cotacao->idcotacao))}}">
-                                    <span
-                                            class="glyphicon glyphicon-expand" aria-hidden="true"></span>
-                                        Emitir proposta
-                                    </a>
-
-                                    <a type="button" class="btn btn-info btn-sm" data-toggle="modal"
-                                       data-target=".modal-show"
-                                       href="{{route('cotacao.showemail',$crypt::encrypt($cotacao->idcotacao))}}"
-                                       id="showinfo"><i class="glyphicon glyphicon-envelope"></i> Email
-                                    </a>
-
-                                @endif
-
-                            </div>
-
-
-                        </td>
-
-
-                    </tr>
-
-                @endforeach
-                </tbody>
-            </table>
-        </div>
-
         <div class="modal fade modal-show" tabindex="-1" role="dialog" aria-labelledby="Emissao/Emitidas"
              aria-hidden="true">
             <div class="modal-dialog modal-sm">
