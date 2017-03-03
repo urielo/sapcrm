@@ -186,7 +186,7 @@ class CotacaoController extends Controller
 
             error_reporting(E_ERROR);
             $pdf = Pdf::loadView('backend.pdf.cotacao', compact('cotacao', 'formas'));
-            $pdf->SetProtection(['print'], '456');
+            $pdf->SetProtection(['print'],'', '456');
             $pdf->save(public_path('pdf/Cotacao.pdf'));
 
 

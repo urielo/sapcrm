@@ -76,4 +76,9 @@ class Segurado extends Model
 
     }
 
+    public function cotacao()
+    {
+        return $this->hasMany(Cotacoes::class,'segurado_id','id');
+    }
+
 }

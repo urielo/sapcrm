@@ -36,20 +36,29 @@ class TesteController extends Controller
     public function index(TipoUtilizacaoVeic $tipoutilizacao, TipoVeiculos $tipos, FormaPagamento $formas)
     {
 
-        $produtos = Produtos::with('precoproduto')->where('idproduto',1)->first();
-        
-        $seguradora =  SeguradoraProduto::where('idproduto',1)->get();
+//        $produtos = Produtos::with('precoproduto')->where('idproduto',1)->first();
+//
+//        $seguradora =  SeguradoraProduto::where('idproduto',1)->get();
+//
+//        return $produtos->precoproduto->max('vlrfipemaximo');
+//
+//
+//
+//        echo '<pre>';
+////        var_dump(PrecoProdutos::orderBy('idproduto','ASC')->orderBy('idprecoproduto','ASC')->get()->toArray());
+//
+//
+//        echo json_encode(json_decode(Logs::find(56398)->params), JSON_PRETTY_PRINT);
+//        echo '</pre>';
 
-        return $produtos->precoproduto->max('vlrfipemaximo');
+        $pesquisa = 'FVL3624';
+        $propostas = Propostas::whereHas('veiculo', function ($q) use ($pesquisa) {
+            $q->where('veicplaca', 'ilike', '%' . $pesquisa . '%');
+        });
 
+        $propostas =$propostas->get();
 
-
-        echo '<pre>';
-//        var_dump(PrecoProdutos::orderBy('idproduto','ASC')->orderBy('idprecoproduto','ASC')->get()->toArray());
-
-
-        echo json_encode(json_decode(Logs::find(56398)->params), JSON_PRETTY_PRINT);
-        echo '</pre>';
+        return $propostas;
 
 
     }

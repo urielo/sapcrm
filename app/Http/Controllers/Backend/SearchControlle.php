@@ -33,43 +33,46 @@ class SearchControlle extends Controller
             DB::enableQueryLog();
             $request->tipo_consulta;
             $pesquisa = getDataReady($request->value_pesquisa);
+            $nome = $request->value_pesquisa;
+            $crypt = Crypt::class;
+            
+            
+            
 
 
-            $propostas = Propostas::with('cotacao.segurado', 'status', 'motivos');
+            $propostas = Propostas::with('cotacao.segurado', 'status', 'motivos','veiculo');
             if ($request->tipo_consulta == 'placa') {
-                $propostas->whereHas('veiculo', function ($q) use ($pesquisa) {
+                $propostas =  $propostas->whereHas('veiculo', function ($q) use ($pesquisa) {
                     $q->where('veicplaca', 'ilike', '%' . $pesquisa . '%');
                 });
             } else if ($request->tipo_consulta == 'cpfcnpj') {
-                $propostas->whereHas('cotacao', function ($q) use ($pesquisa) {
-                    $q->whereHas('segurado', function ($qq) use ($pesquisa) {
-                        $qq->where('clicpfcnpj' ,'like', $pesquisa);
-                    });
+                $propostas =    $propostas->whereHas('cotacao', function ($q) use ($pesquisa) {
+                    $q->select('segurado.clicpfcnpj');
+                    $q->join('segurado', 'segurado_id', '=', 'segurado.id');
+                    $q->where('segurado.clicpfcnpj', 'ilike',  '%'.$pesquisa.'%');
                 });
             } else {
-                $propostas->whereHas('cotacao', function ($q) use ($pesquisa) {
-                    $q->whereHas('segurado', function ($qq) use ($pesquisa) {
-                        $qq->where('clinomerazao', 'ilike', $pesquisa);
+                $propostas =   $propostas->whereHas('cotacao', function ($q) use ($nome) {
+                    $q->whereHas('segurado', function ($qq) use ($nome) {
+                        $qq->where('clinomerazao', 'ilike', '%' . $nome . '%');
                     });
                 });
             }
 
 
             if (Auth::user()->hasRole('admin')) {
-                $propostas->orderby('idproposta', 'desc')->get();
+                $propostas =   $propostas->orderby('idproposta', 'desc')->get();
             } elseif (Auth::user()->can('ver-todos-cotacoes')) {
-                $propostas->whereHas('cotacao', function ($q) {
+                $propostas =  $propostas->whereHas('cotacao', function ($q) {
                     $q->where('idcorretor', Auth::user()->corretor->idcorretor);
                 })->orderby('idproposta', 'desc')->get();
             } else {
-                $propostas->whereHas('cotacao', function ($q) {
+                $propostas =   $propostas->whereHas('cotacao', function ($q) {
                     $q->where('usuario_id', Auth::user()->id)->whereNotNull('usuario_id');
                 })->orderby('idcotacao', 'desc')->get();
             }
-//            print_r(DB::getQueryLog())   ;
 
-
-            return view('backend.search.table_proposta', compact('propostas', 'motivo', 'crypt', 'title'));
+            return view('backend.search.table_proposta', compact('propostas', 'crypt'));
         }
     }
 
