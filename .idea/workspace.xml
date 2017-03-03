@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="158326c0-4f81-4588-bf4f-593b4ab725fa" name="Default" comment="Alterações nos viwes e criacoes de novos models">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.env" afterPath="$PROJECT_DIR$/.env" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Backend/CotacaoController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/CotacaoController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Backend/SearchControlle.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/SearchControlle.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Backend/TesteController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/TesteController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Model/Segurado.php" afterPath="$PROJECT_DIR$/app/Model/Segurado.php" />
     </list>
     <ignored path="sap.local.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -151,17 +148,7 @@
         <entry file="file://$PROJECT_DIR$/storage/logs/laravel.log">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
-              <caret line="0" column="232" selection-start-line="0" selection-start-column="192" selection-end-line="0" selection-end-column="232" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="8a9dbc6ebcebfbc4474b1d35d5217b8e810e819c.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/storage/framework/views/8a9dbc6ebcebfbc4474b1d35d5217b8e810e819c.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="27" column="69" selection-start-line="27" selection-start-column="63" selection-end-line="27" selection-end-column="69" />
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -173,7 +160,7 @@
             <state relative-caret-position="251">
               <caret line="19" column="30" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
               <folding>
-                <marker date="1488502300524" expanded="true" signature="283:361" ph="alter table cotacao... " />
+                <marker date="1488504466198" expanded="true" signature="283:361" ph="alter table cotacao... " />
               </folding>
             </state>
           </provider>
@@ -182,8 +169,8 @@
       <file leaf-file-name=".env" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.env">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="12" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
+            <state relative-caret-position="150">
+              <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -253,9 +240,9 @@
         <option value="$PROJECT_DIR$/app/Model/Propostas.php" />
         <option value="$PROJECT_DIR$/database/migrations/2017_03_03_005003_alter_column_segurado_id_on_cotacao_table.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/TesteController.php" />
-        <option value="$PROJECT_DIR$/storage/logs/laravel.log" />
         <option value="$PROJECT_DIR$/public/themes/default/assets/js/script.js" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/SearchControlle.php" />
+        <option value="$PROJECT_DIR$/storage/logs/laravel.log" />
         <option value="$PROJECT_DIR$/.env" />
       </list>
     </option>
@@ -757,12 +744,12 @@
       <workItem from="1487559469791" duration="274000" />
       <workItem from="1487893017051" duration="1422000" />
       <workItem from="1487901480142" duration="509000" />
-      <workItem from="1488496444252" duration="6475000" />
+      <workItem from="1488496444252" duration="6723000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1428709000" />
+    <option name="totallyTimeSpent" value="1428957000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1176,16 +1163,8 @@
         <state relative-caret-position="251">
           <caret line="19" column="30" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
           <folding>
-            <marker date="1488502300524" expanded="true" signature="283:361" ph="alter table cotacao... " />
+            <marker date="1488504466198" expanded="true" signature="283:361" ph="alter table cotacao... " />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/storage/logs/laravel.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="232" selection-start-line="0" selection-start-column="192" selection-end-line="0" selection-end-column="232" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1281,10 +1260,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/storage/logs/laravel.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="12" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
+        <state relative-caret-position="150">
+          <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
           <folding />
         </state>
       </provider>
