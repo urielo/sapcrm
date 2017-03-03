@@ -14,7 +14,7 @@
                     <th>#ID</th>
                     <th>Segurado</th>
                     <th>Placa</th>
-                    @if($apolices)
+                    @if(isset($apolices))
                         <th>Proposta</th>
                         <th>Certificado</th>
                     @endif

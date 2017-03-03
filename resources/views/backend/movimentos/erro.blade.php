@@ -36,7 +36,7 @@
                                 @if(!in_array($movimento['desc_retorno'],['','Sucesso']) )
                                     <div class="btn-group">
                                         <a class="btn btn-info btn-sm"
-                                           href="{{ route('certificado.pdf.update',$proposta->certificado->id) }}">
+                                           href="{{ route('certificado.pdf.update',$movimento['certificado']) }}">
                                             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                             Reejustar
                                             PDF
